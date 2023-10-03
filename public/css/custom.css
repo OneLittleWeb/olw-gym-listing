@@ -1,0 +1,286 @@
+.logo img {
+    width: 16rem;
+}
+
+.footer-logo img {
+    width: 15rem;
+}
+
+.review-bars-name {
+    color: #333f57 !important;
+    font-weight: 500;
+}
+
+.required {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#search-from-header {
+    width: 305px;
+    height: 52px;
+}
+
+.review-logo {
+    width: 20px;
+}
+
+.business-access-search-input-item {
+    margin-left: 0 !important;
+    margin-top: 10px !important;
+}
+
+.more-review-link:hover {
+    text-decoration: underline;
+}
+
+/* Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type: none;
+    padding: 0;
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.rating-stars ul > li.star {
+    display: inline-block;
+}
+
+.filter-image {
+    max-height: 60px;
+}
+
+#profile {
+    width: 255px;
+    height: 75px;
+    border-radius: 50%;
+    background: #512DA8;
+    font-size: 35px;
+    color: #fff;
+    text-align: center;
+    line-height: 100px;
+    margin: 20px 0;
+}
+
+.header-search-button {
+    background-color: #9f8fff;
+    border: #9f8fff;
+    padding: 13px;
+}
+
+.header-search-button:hover {
+    background-color: #8c7ce7;
+    border: #8c7ce7;
+}
+
+#profile span {
+    padding-bottom: 10px !important;
+}
+
+.main_container {
+    margin-top: 140px;
+    margin-bottom: 70px
+}
+
+.claim-button {
+    border: 0;
+}
+
+.owl-stage-outer {
+    /*height: 265px !important;*/
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+    font-size: 2.5em; /* Change the size of the stars */
+    color: #ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+    color: #FFA718;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+    color: #FFA718;
+}
+
+.contact-for-claim-business-profile {
+    padding-left: 30px;
+    list-style-type: disc;
+}
+
+.send-contact-button {
+    padding: 7px 42px;
+}
+
+.nebraska-badge-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.nebraska-badge-div {
+    padding: 10px 10px 25px;
+}
+
+/* Styles for desktop */
+.nebraska-badge-div.desktop {
+    display: block;
+}
+
+/* Styles for mobile */
+.nebraska-badge-div.mobile {
+    display: none;
+}
+
+.slide-image-top {
+    padding-top: 110px;
+}
+
+.slider-image-height img {
+    height: 355px;
+}
+
+.suggest-edit-button-div {
+    padding: 0 0 20px 0;
+}
+
+.suggest-edit-button {
+    padding: 10px;
+    width: 365px;
+    background: linear-gradient(270deg, #9f8fff, #7b68ee);
+    position: relative;
+    color: #fff;
+}
+
+.sidebar-widget-get-award {
+    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
+    background-color: #fff;
+    position: relative;
+}
+
+.suggest-edit-button:hover {
+    background: linear-gradient(270deg, #7b68ee, #9f8fff);
+    color: #fff;
+}
+
+/* Custom styles for the modal */
+.suggest-edit-modal-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.suggest-edit-modal-address {
+    font-size: 15px;
+    color: #1a5272;
+}
+
+.suggest-edit-close-button {
+    padding-left: 575px !important;
+}
+
+.suggest-edit-form-check-input {
+    margin-top: 0.4rem !important;
+}
+
+.suggested-modal-content-section {
+    padding-left: 70px;
+}
+
+.suggested-modal-content-text {
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+}
+
+.padding-top-12-px {
+    padding-top: 12px;
+}
+
+@media (max-width: 768px) {
+    /* Hide the desktop div on mobile */
+    .nebraska-badge-div.desktop {
+        display: none;
+    }
+
+    /* Show the mobile div on mobile */
+    .nebraska-badge-div.mobile {
+        display: block;
+    }
+
+    .suggest-edit-close-button {
+        padding-left: 430px !important;
+    }
+}
+
+
+@media screen and (max-width: 1450px) {
+    .logo img {
+        width: 12rem;
+    }
+
+    #search-from-header {
+        width: 230px;
+        height: 52px;
+    }
+}
+
+@media screen and (max-width: 1320px) {
+    .logo img {
+        width: 10rem;
+    }
+
+    #search-from-header {
+        width: 228px;
+        height: 52px;
+    }
+}
+
+@media screen and (max-width: 1260px) {
+    .logo img {
+        width: 8rem;
+    }
+
+    #search-from-header {
+        width: 198px;
+        height: 52px;
+    }
+}
+
+@media screen and (max-width: 1198px) {
+    .logo img {
+        width: 15rem;
+    }
+}
+
+@media screen and (max-width: 336px) {
+    .google-review {
+        width: 90px;
+    }
+
+    .suggest-edit-close-button {
+        padding-left: 450px !important;
+    }
+}
+
+@media screen and (max-width: 420px) and (min-width: 330px) {
+    .google-review button span {
+        display: none;
+    }
+
+    .nebraska-review-count {
+        display: none;
+    }
+
+    .suggest-edit-close-button {
+        padding-left: 450px !important;
+    }
+}

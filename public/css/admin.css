@@ -1,0 +1,20 @@
+.dataTables_length, .dataTables_info {
+    margin-left: 2rem;
+}
+
+.dataTables_filter, .dataTables_paginate {
+    text-align: right;
+    margin-right: 2rem;
+}
+
+.paging_simple_numbers .pagination {
+    justify-content: end;
+}
+
+#business_reviews_table th.actions-column {
+    width: 240px !important;
+}
+
+.actions-column .btn {
+    margin: 0 3px 0 3px;
+}
