@@ -53,6 +53,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('organization_tiktok')->nullable();
             $table->boolean('is_claimed')->default(0);
             $table->string('claimed_mail')->nullable();
+            $table->bigInteger('user_id')->default(1);
             $table->bigInteger('views')->unsigned()->default(0)->index();
             $table->boolean('temporarily_closed')->default(0)->comment('0=open,1=closed');
             $table->boolean('permanently_closed')->default(0)->comment('0=open,1=closed');
