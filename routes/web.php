@@ -60,7 +60,6 @@ Route::get('/payments/cancelled', [StripePaymentController::class, 'cancelled'])
 Route::get('/categories', [CategoryController::class, 'allCategories'])->name('all.categories');
 Route::get('/category/{slug}', [CategoryController::class, 'categoryBusiness'])->name('category.business');
 
-
 //claim business
 Route::get('/claim-your-business/{slug}', [OrganizationController::class, 'claimBusiness'])->name('claim.business');
 Route::post('/claim-your-business/{slug}', [OrganizationController::class, 'claimBusinessProfile'])->name('claim.business.profile');
@@ -82,7 +81,10 @@ Route::post('/store-review', [ReviewController::class, 'store'])->name('review.s
 
 Route::get('/sitemap', [SitemapController::class, 'sitemapStore'])->name('sitemap');
 
+//route for import data
 Route::get('/import', [OrganizationController::class, 'import'])->name('import');
+
+//route for image copy past from multiple folder to single folder
 Route::get('/copy-past', [OrganizationController::class, 'copyPast'])->name('copy.past');
 
 Route::get('/about-us', [PageController::class, 'aboutUs'])->name('page.about');
