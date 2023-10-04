@@ -1787,7 +1787,7 @@ body {
 }
 
 .theme-btn:hover {
-    color: #fff
+    color: #131443;
 }
 
 .theme-btn-primary {
@@ -1848,9 +1848,9 @@ body {
 }
 
 .gradient-btn {
-    background: linear-gradient(270deg, #9f8fff, #7b68ee);
+    background: linear-gradient(270deg, #f8c401, #ffff00);
     position: relative;
-    color: #fff;
+    color: #131443;
     -webkit-box-shadow: 0 5px 25px rgba(123, 104, 238, 0.3);
     -moz-box-shadow: 0 5px 25px rgba(123, 104, 238, 0.3);
     box-shadow: 0 5px 25px rgba(123, 104, 238, 0.3)
@@ -1866,7 +1866,7 @@ body {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    background: linear-gradient(270deg, #7b68ee, #9f8fff);
+    background: linear-gradient(270deg, #ffff00, #f8c401);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -5037,7 +5037,7 @@ div.datedropper .picker .pick-lg-b li {
     top: 0;
     width: 100%;
     z-index: 1010;
-    background-color: #333f57;
+    /*background-color: #333f57;*/
 }
 
 @media (max-width: 1199px) {
@@ -6460,8 +6460,8 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .hero-wrapper {
-    /*background-size: cover;*/
-    /*background-position: center;*/
+    background-size: cover;
+    background-position: center;
     position: relative;
     width: 100%;
     z-index: 1;
@@ -6509,11 +6509,11 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .hero-bg {
-    background-image: url(../images/hero-bg.jpg)
+    background-image: url(../images/hero-bg.png)
 }
 
 .hero-bg-2 {
-    background-image: url(../images/hero-bg2.jpg)
+    background-image: url(../images/hero-bg2.png)
 }
 
 .hero-bg-3 {

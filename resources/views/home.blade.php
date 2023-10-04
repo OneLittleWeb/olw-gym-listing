@@ -5,12 +5,12 @@
 @section('content')
     <section class="hero-wrapper hero-bg-2 pb-0 overflow-hidden">
         <div class="overlay"></div>
-        <span class="line-bg line-bg1"></span>
-        <span class="line-bg line-bg2"></span>
-        <span class="line-bg line-bg3"></span>
-        <span class="line-bg line-bg4"></span>
-        <span class="line-bg line-bg5"></span>
-        <span class="line-bg line-bg6"></span>
+{{--        <span class="line-bg line-bg1"></span>--}}
+{{--        <span class="line-bg line-bg2"></span>--}}
+{{--        <span class="line-bg line-bg3"></span>--}}
+{{--        <span class="line-bg line-bg4"></span>--}}
+{{--        <span class="line-bg line-bg5"></span>--}}
+{{--        <span class="line-bg line-bg6"></span>--}}
 
         <div class="container">
             <div class="row align-items-center padding-bottom-80px">

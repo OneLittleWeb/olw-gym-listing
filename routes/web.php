@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StateController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -83,6 +84,9 @@ Route::get('/sitemap', [SitemapController::class, 'sitemapStore'])->name('sitema
 
 //route for import data
 Route::get('/import', [OrganizationController::class, 'import'])->name('import');
+
+//route for import states data
+Route::get('/import-states', [StateController::class, 'importStateName'])->name('import.state.name');
 
 //route for image copy past from multiple folder to single folder
 Route::get('/copy-past', [OrganizationController::class, 'copyPast'])->name('copy.past');
