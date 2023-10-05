@@ -264,7 +264,7 @@
                                 businesses or search for services. Sign up, create your listing, or search for services
                                 today.
                             </p>
-                        </div><!-- end section-heading -->
+                        </div>
                     </div>
                 </div><!-- end col-lg-6 -->
             </div><!-- end row -->
