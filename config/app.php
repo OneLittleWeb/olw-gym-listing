@@ -15,7 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
-    'support_mail' => env('SUPPORT_MAIL_ADDRESS', 'support@nebraskalisting.com'),
+    'support_mail' => env('SUPPORT_MAIL_ADDRESS', 'support@gymnearx.com'),
     'support_phone' => env('SUPPORT_PHONE_NUMBER', '+1 402 318 7149'),
 
     /*

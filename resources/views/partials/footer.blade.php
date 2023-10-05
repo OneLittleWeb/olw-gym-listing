@@ -6,7 +6,7 @@
                 <div class="footer-item">
                     <div class="footer-logo">
                         <a href="{{ route('home') }}" class="foot-logo"><img
-                                src="{{asset('/images/nebraskalisting-logo.png')}}"
+                                src="{{asset('/images/logo-black.png')}}"
                                 alt="logo"></a>
                     </div>
                     <ul class="list-items contact-links pt-3">
