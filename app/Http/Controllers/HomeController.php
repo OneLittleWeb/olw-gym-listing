@@ -6,6 +6,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Organization;
+use App\Models\State;
 use Corcel\Model\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderByDesc('id')->get();
+        $categories = State::take(24)->get();
         $major_cities = City::where('is_major', 1)->get();
         $popular_cities = City::take(8)->orderByDesc('population')->get();
         $cities = City::all();

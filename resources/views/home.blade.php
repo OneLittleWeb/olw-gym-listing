@@ -3,7 +3,7 @@
 @section('meta_description', "Explore every best place and service nearby or anywhere in Nebraska. Photos-business hours-phone numbers-ratings-reviews-service details- all in one place.")
 @section('meta_keywords',"nebraska, gymnearx, best places in nebraska")
 @section('content')
-    <section class="hero-wrapper hero-bg-2 pb-0 overflow-hidden">
+    <section class="hero-wrapper hero-bg pb-0 overflow-hidden">
         <div class="overlay"></div>
 {{--        <span class="line-bg line-bg1"></span>--}}
 {{--        <span class="line-bg line-bg2"></span>--}}
@@ -70,8 +70,11 @@
                         <div class="col-lg-2 col-sm-6">
                             <div class="hero-category-item hero-category-item-layout-2">
                                 <a href="{{ route('category.index', $category->slug) }}" class="d-block hero-cat-link">
-                                    <span class="icon-element mx-auto {{ $category->background }}"><i
-                                            class="{{ $category->icon }}"></i></span>
+                                    <span class="icon-element mx-auto {{ $category->background }}">
+                                        <img src="{{asset('images/' . $category->background_image)}}"
+                                             data-src="{{asset('images/' . $category->background_image)}}"
+                                             alt="country-image" class="lazy icon-element">
+                                    </span>
                                     {{ $category->name }}
                                 </a>
                             </div>

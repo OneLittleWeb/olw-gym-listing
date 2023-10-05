@@ -4169,11 +4169,12 @@ div.datedropper .picker .pick-lg-b li {
 
 .icon-element {
     display: block;
-    width: 50px;
+    width: 80px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    background-color: #7b68ee;
+    /*background-color: #7b68ee;*/
+    background-color: #ffff;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -6460,8 +6461,8 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .hero-wrapper {
-    background-size: cover;
-    background-position: center;
+    /*background-size: cover;*/
+    /*background-position: center;*/
     position: relative;
     width: 100%;
     z-index: 1;

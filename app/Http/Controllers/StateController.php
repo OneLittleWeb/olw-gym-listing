@@ -20,7 +20,7 @@ class StateController extends Controller
             $state = new State();
             $state->name = $state_name;
             $state->slug = Str::slug($state_name);
-            $state->background_image = Str::slug($state_name) . '.jpg';
+            $state->background_image = Str::slug($state_name) . '.png';
             $state->save();
         }
 
