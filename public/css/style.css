@@ -1008,6 +1008,14 @@ body {
     background-image: linear-gradient(45deg, #31d0f5 0%, #2c61e6 100%) !important
 }
 
+.bg-gradient-5 {
+    background-image: linear-gradient(62deg, #f8c401 0%, #131443 100%) !important
+}
+
+.bg-gradient-6 {
+    background-image: linear-gradient(62deg,#131443 0%, #645621 100%) !important
+}
+
 .bg-1 {
     background-color: #8C43FF !important
 }
@@ -4175,9 +4183,9 @@ div.datedropper .picker .pick-lg-b li {
     text-align: center;
     /*background-color: #7b68ee;*/
     background-color: #ffff;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
+    -webkit-border-radius: 5%;
+    -moz-border-radius: 5%;
+    border-radius: 5%;
     position: relative;
     font-size: 26px;
     -webkit-transition: all .3s;
@@ -4571,7 +4579,7 @@ div.datedropper .picker .pick-lg-b li {
 
 .blockquote-item {
     border-left: none;
-    background-image: url(../images/video-img.jpg);
+    /*background-image: url(../images/video-img.jpg);*/
     background-size: cover;
     background-position: center;
     -webkit-border-radius: 4px;
@@ -4683,19 +4691,19 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .bread-bg {
-    background-image: url(../images/bread-bg.jpg)
+    /*background-image: url(../images/bread-bg.jpg)*/
 }
 
 .bread-bg-2 {
-    background-image: url(../images/bread-bg2.jpg)
+    /*background-image: url(../images/bread-bg2.jpg)*/
 }
 
 .bread-bg-3 {
-    background-image: url(../images/bread-bg3.jpg)
+    /*background-image: url(../images/bread-bg3.jpg)*/
 }
 
 .user-bread-bg {
-    background-image: url(../images/user-bread-img.jpg)
+    /*background-image: url(../images/user-bread-img.jpg)*/
 }
 
 @media (max-width: 480px) {
@@ -5100,7 +5108,8 @@ div.datedropper .picker .pick-lg-b li {
     -webkit-box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
     -moz-box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
     box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
-    background: #333f57 !important
+    /*background: #333f57 !important;*/
+    background: #131443 !important;
 }
 
 .header-menu-wrapper.header-fixed .logo .sticky-logo-hide {
@@ -6078,11 +6087,11 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .mh-bg {
-    background-image: url(../images/login-bg.jpg)
+    /*background-image: url(../images/login-bg.jpg)*/
 }
 
 .mh-bg-2 {
-    background-image: url(../images/signup-bg.jpg)
+    /*background-image: url(../images/signup-bg.jpg)*/
 }
 
 .user-action-meta .lost-pass-btn {
@@ -6514,19 +6523,19 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .hero-bg-2 {
-    background-image: url(../images/hero-bg2.png)
+    /*background-image: url(../images/hero-bg2.png)*/
 }
 
 .hero-bg-3 {
-    background-image: url(../images/hero-bg3.jpg)
+    /*background-image: url(../images/hero-bg3.jpg)*/
 }
 
 .hero-bg-4 {
-    background-image: url(../images/hero-bg4.jpg)
+    /*background-image: url(../images/hero-bg4.jpg)*/
 }
 
 .hero-bg-5 {
-    background-image: url(../images/hero-bg5.jpg)
+    /*background-image: url(../images/hero-bg5.jpg)*/
 }
 
 .hero-heading .section-heading .sec__desc {
@@ -6907,7 +6916,7 @@ div.datedropper .picker .pick-lg-b li {
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(../images/hero-shape.png);
+    /*background-image: url(../images/hero-shape.png);*/
     top: 0;
     left: 0;
     z-index: -1
@@ -7113,7 +7122,7 @@ div.datedropper .picker .pick-lg-b li {
     right: -41px;
     width: 45%;
     height: 45%;
-    background-image: url(../images/dots.png);
+    /*background-image: url(../images/dots.png);*/
     z-index: -1;
     background-size: cover;
     background-position: center;
@@ -8419,7 +8428,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .intro-bg {
-    background-image: url(../images/funfact-bg.jpg);
+    /*background-image: url(../images/funfact-bg.jpg);*/
     background-size: cover;
     background-position: center
 }
@@ -10815,13 +10824,13 @@ div.datedropper .picker .pick-lg-b li {
     right: 0;
     width: 180px;
     height: 68px;
-    background-image: url(../images/dashed-line.png);
+    /*background-image: url(../images/dashed-line.png);*/
     background-repeat: no-repeat;
     opacity: .1
 }
 
 .info-box-line-bg .col-lg-4:nth-child(2) .info-box:after {
-    background-image: url(../images/dashed-line-2.png)
+    /*background-image: url(../images/dashed-line-2.png)*/
 }
 
 .info-box-line-bg .col-lg-4:last-child .info-box:after {

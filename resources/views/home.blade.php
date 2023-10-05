@@ -246,7 +246,7 @@
     <!-- =======END MOST POPULAR CITY AREA====== -->
     <div class="section-block"></div>
     <!-- ==START HIW AREA==== -->
-    <section class="hiw-area bg-dark pattern-bg padding-top-100px pb-0">
+    <section class="hiw-area bg-gradient-6 pattern-bg padding-top-100px pb-0">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
