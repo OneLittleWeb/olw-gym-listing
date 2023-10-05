@@ -1856,7 +1856,8 @@ body {
 }
 
 .gradient-btn {
-    background: linear-gradient(270deg, #f8c401, #ffff00);
+    /*background: linear-gradient(270deg, #f8c401, #ffff00);*/
+    background: linear-gradient(270deg, #f8c401, #f8c401);
     position: relative;
     color: #131443;
     -webkit-box-shadow: 0 5px 25px rgba(123, 104, 238, 0.3);
@@ -1874,7 +1875,8 @@ body {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    background: linear-gradient(270deg, #ffff00, #f8c401);
+    /*background: linear-gradient(270deg, #ffff00, #f8c401);*/
+    background: linear-gradient(270deg, #f8c401, #f8c401);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -3673,11 +3675,11 @@ div.datedropper .picker .pick-lg-b li {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    background-color: #7b68ee;
+    background-color: #f8c401;
     -webkit-box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2);
     -moz-box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2);
     box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2);
-    color: #fff;
+    color: #131443;
     font-size: 16px;
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
@@ -3690,8 +3692,8 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 #back-to-top:hover {
-    background-color: #7b68ee;
-    color: #fff;
+    background-color: #f8c401;
+    color: #131443;
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
@@ -3856,7 +3858,7 @@ div.datedropper .picker .pick-lg-b li {
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    background: linear-gradient(270deg, #9f8fff 0, #7b68ee 100%)
+    background: linear-gradient(270deg, #f8c401 0, #f8c401 100%)
 }
 
 .line-bg {
@@ -4182,10 +4184,10 @@ div.datedropper .picker .pick-lg-b li {
     line-height: 50px;
     text-align: center;
     /*background-color: #7b68ee;*/
-    background-color: #ffff;
-    -webkit-border-radius: 5%;
-    -moz-border-radius: 5%;
-    border-radius: 5%;
+    background-color: #724f19;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
     position: relative;
     font-size: 26px;
     -webkit-transition: all .3s;

@@ -71,9 +71,11 @@
                             <div class="hero-category-item hero-category-item-layout-2">
                                 <a href="{{ route('category.index', $category->slug) }}" class="d-block hero-cat-link">
                                     <span class="icon-element mx-auto {{ $category->background }}">
-                                        <img src="{{asset('images/' . $category->background_image)}}"
-                                             data-src="{{asset('images/' . $category->background_image)}}"
-                                             alt="country-image" class="lazy icon-element">
+{{--                                        <img src="{{asset('images/' . $category->background_image)}}"--}}
+{{--                                             data-src="{{asset('images/' . $category->background_image)}}"--}}
+{{--                                             alt="country-image" class="lazy icon-element">--}}
+
+                                        <i class="fa-solid fa-dumbbell"></i>
                                     </span>
                                     {{ $category->name }}
                                 </a>
