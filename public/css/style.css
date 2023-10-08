@@ -1072,6 +1072,10 @@ body {
     background: rgba(204, 8, 233, 0.1) !important
 }
 
+.bg-opacity-5 {
+    background: rgba(82, 78, 183, 0.1) !important
+}
+
 .f-bg {
     background-color: #4267B2 !important
 }
@@ -1140,6 +1144,14 @@ body {
 
 .svg-icon-color-4 path {
     fill: #CC08E9
+}
+
+.svg-icon-color-5 path {
+    fill: #f8c401
+}
+
+.svg-icon-color-6 path {
+    fill: #131443
 }
 
 .svg-icon-white path {
@@ -1547,7 +1559,11 @@ body {
 }
 
 .text-color-16 {
-    color: #ffbb3d !important
+    color: #f8c401 !important
+}
+
+.text-color-17 {
+    color: #131443 !important
 }
 
 .p-relative {
@@ -2182,7 +2198,7 @@ body {
     display: inline-block;
     padding: 0 6px;
     background: rgba(255, 187, 61, 0.1);
-    color: #ffbb3d;
+    color: #f8c401;
     font-size: 12px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -3209,7 +3225,7 @@ div.datedropper .picker .pick-lg-b li {
     right: 0;
     width: 0;
     height: 2px;
-    background-color: #7b68ee;
+    background-color: #f8c401;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -ms-transition: all .3s;
@@ -3218,7 +3234,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .list-items li a:hover {
-    color: #7b68ee
+    color: #f8c401
 }
 
 .list-items li a:hover:before {
@@ -4364,7 +4380,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .form-box .form-control-styled {
-    border-left: 5px solid #7b68ee;
+    border-left: 5px solid #f8c401;
     border-top: none;
     border-right: none;
     border-bottom: none;
@@ -4374,7 +4390,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .form-box .form-control-styled:focus {
-    border-left-color: #533ae9;
+    border-left-color: #f8c401;
     -webkit-box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12)
@@ -5603,7 +5619,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .main-menu ul li .dropdown-menu-item li a:hover .ribbon {
-    background-color: #ffbb3d;
+    background-color: #f8c401;
     color: #fff
 }
 
@@ -12227,7 +12243,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .footer-item .footer__desc a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .footer-item .social-profile {

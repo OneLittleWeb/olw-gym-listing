@@ -11,8 +11,8 @@
                     </div>
                     <ul class="list-items contact-links pt-3">
                         <li><span class="d-block text-color mb-1"><i
-                                    class="la la-phone mr-1 text-color-2"></i>Phone:</span><a href="tel:{{ config('app.support_phone') }}">{{ config('app.support_phone') }}</a></li>
-                        <li><span class="d-block text-color mb-1"><i class="la la-envelope mr-1 text-color-2"></i>Email:</span><a
+                                    class="la la-phone mr-1 text-color-5"></i>Phone:</span><a href="tel:{{ config('app.support_phone') }}">{{ config('app.support_phone') }}</a></li>
+                        <li><span class="d-block text-color mb-1"><i class="la la-envelope mr-1 text-color-5"></i>Email:</span><a
                                 href="mailto:{{ config('app.support_mail') }}">{{ config('app.support_mail') }}</a></li>
                     </ul>
                 </div>

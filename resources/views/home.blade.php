@@ -475,8 +475,8 @@
             <div class="row">
                 <div class="col-lg-3 responsive-column">
                     <div class="counter-item d-flex align-items-center">
-                        <div class="counter-icon section-icon flex-shrink-0 bg-opacity-1">
-                            <svg class="svg-icon-color" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        <div class="counter-icon section-icon flex-shrink-0 bg-opacity-3">
+                            <svg class="svg-icon-color-5" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                  viewBox="0 0 438.891 438.891" xml:space="preserve">
                             <g>
                                 <path d="M347.968,57.503h-39.706V39.74c0-5.747-6.269-8.359-12.016-8.359h-30.824c-7.314-20.898-25.6-31.347-46.498-31.347
@@ -510,7 +510,7 @@
                         </svg>
                         </div>
                         <div class="counter-content pl-3">
-                            <h3 class="counter__number text-color-3 mb-2">
+                            <h3 class="counter__number text-color-5 mb-2">
                                 <span class="counter">{{ $total_pages }}</span>
                                 <span class="count-symbol">+</span>
                             </h3>
@@ -520,8 +520,8 @@
                 </div><!-- end col-lg-3 -->
                 <div class="col-lg-3 responsive-column">
                     <div class="counter-item d-flex align-items-center">
-                        <div class="counter-icon section-icon flex-shrink-0 bg-opacity-2">
-                            <svg class="svg-icon-color-2" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px"
+                        <div class="counter-icon section-icon flex-shrink-0 bg-opacity-5">
+                            <svg class="svg-icon-color-6" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px"
                                  y="0px"
                                  viewBox="0 0 490.667 490.667" xml:space="preserve">
                             <g>
@@ -557,7 +557,7 @@
                         </svg>
                         </div>
                         <div class="counter-content pl-3">
-                            <h3 class="counter__number text-color-4 mb-2">
+                            <h3 class="counter__number text-color-17 mb-2">
                                 <span class="counter">3500</span>
                                 <span class="count-symbol">+</span>
                             </h3>
@@ -590,8 +590,8 @@
                 </div><!-- end col-lg-3 -->
                 <div class="col-lg-3 responsive-column">
                     <div class="counter-item d-flex align-items-center">
-                        <div class="counter-icon section-icon flex-shrink-0 bg-opacity-4">
-                            <svg class="svg-icon-color-4" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <div class="counter-icon section-icon flex-shrink-0 bg-opacity-5">
+                            <svg class="svg-icon-color-6" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                 <g id="outline12">
                                     <path
                                         d="M344,273.992H320a23.865,23.865,0,0,0-5.14.585A7.919,7.919,0,0,0,312,274H280V222.641A36.684,36.684,0,0,0,243.359,186H232a8,8,0,0,0-8,8v28.562a62.323,62.323,0,0,1-8.859,32.032l-12.616,20.979-36.048,14.419H120a8,8,0,0,0-8,8v104a8,8,0,0,0,8,8h47.961c.014,0,.025.008.039.008h31.016l31.046,7.758A7.71,7.71,0,0,0,232,418h72a7.924,7.924,0,0,0,2.89-.583,23.916,23.916,0,0,0,5.11.575h24a24.026,24.026,0,0,0,24-24,23.708,23.708,0,0,0-3.211-11.766,23.767,23.767,0,0,0,4.969-36.234,23.627,23.627,0,0,0,0-32,23.9,23.9,0,0,0-17.758-40Zm-184,120H128v-88h32Zm142.242-48a23.438,23.438,0,0,0-3.031,27.767A23.948,23.948,0,0,0,288,393.992,23.7,23.7,0,0,0,289.477,402H232.984l-31.046-7.758A7.71,7.71,0,0,0,200,394H176V303.414l34.969-13.984c.105-.042.17-.133.273-.179a7.9,7.9,0,0,0,2.342-1.534c.061-.06.1-.134.158-.2a7.967,7.967,0,0,0,1.117-1.4l14.008-23.3A78.464,78.464,0,0,0,240,222.562V202h3.359A20.662,20.662,0,0,1,264,222.641v64.273a55.368,55.368,0,0,1-34.969,51.648,8,8,0,0,0,5.938,14.86A71.156,71.156,0,0,0,279.769,290h17.7a23.244,23.244,0,0,0,4.77,23.992,23.627,23.627,0,0,0,0,32Zm33.758,56H312a8,8,0,0,1,0-16h24a8,8,0,0,1,0,16Zm8-32H320a8,8,0,0,1,0-16h24a8,8,0,0,1,0,16Zm0-32H320a8,8,0,0,1,0-16h24a8,8,0,0,1,0,16Zm0-32H320a8,8,0,0,1,0-16h24a8,8,0,0,1,0,16Z"></path>
@@ -611,7 +611,7 @@
                             </svg>
                         </div>
                         <div class="counter-content pl-3">
-                            <h3 class="counter__number text-color-6 mb-2">
+                            <h3 class="counter__number text-color-17 mb-2">
                                 <span class="counter">{{ $five_star_ratings }}</span>
                                 <span class="count-symbol">+</span>
                             </h3>
