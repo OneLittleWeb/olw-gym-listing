@@ -66,18 +66,18 @@
         <section class="category-area position-relative bg-gray section--padding category-section">
             <div class="container">
                 <div class="row highlighted-categories justify-content-center">
-                    @foreach($categories as $category)
+                    @foreach($states as $state)
                         <div class="col-lg-2 col-sm-6">
                             <div class="hero-category-item hero-category-item-layout-2">
-                                <a href="{{ route('category.index', $category->slug) }}" class="d-block hero-cat-link">
-                                    <span class="icon-element mx-auto {{ $category->background }}">
-{{--                                        <img src="{{asset('images/' . $category->background_image)}}"--}}
-{{--                                             data-src="{{asset('images/' . $category->background_image)}}"--}}
+                                <a href="{{ route('category.index', $state->slug) }}" class="d-block hero-cat-link">
+                                    <span class="icon-element mx-auto {{ $state->background }}">
+{{--                                        <img src="{{asset('images/' . $state->background_image)}}"--}}
+{{--                                             data-src="{{asset('images/' . $state->background_image)}}"--}}
 {{--                                             alt="country-image" class="lazy icon-element">--}}
 
                                         <i class="fa-solid fa-dumbbell"></i>
                                     </span>
-                                    {{ $category->name }}
+                                    {{ $state->name }}
                                 </a>
                             </div>
                         </div><!-- end col-lg-2 -->

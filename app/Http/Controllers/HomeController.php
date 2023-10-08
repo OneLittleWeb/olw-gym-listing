@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = State::take(24)->get();
+        $states = State::where('is_major', 1)->get();
         $major_cities = City::where('is_major', 1)->get();
         $popular_cities = City::take(8)->orderByDesc('population')->get();
         $cities = City::all();
@@ -29,7 +29,7 @@ class HomeController extends Controller
         } catch (\Exception $e) {
             $posts = null;
         }
-        return view('home', compact('categories', 'major_cities', 'popular_cities', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
+        return view('home', compact('states', 'major_cities', 'popular_cities', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
     }
 
     public function autocomplete(Request $request)
