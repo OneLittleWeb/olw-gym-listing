@@ -187,8 +187,8 @@
                             </p>
                         </div>
                     </div>
-                </div><!-- end col-lg-6 -->
-            </div><!-- end row -->
+                </div>
+            </div>
             <div class="row hiw-info-box-wrap">
                 <div class="col-lg-3 responsive-column">
                     <div class="info-box info--box">
@@ -217,16 +217,15 @@
                                 <path
                                     d="m16.5 10c-.276 0-.5-.224-.5-.5v-4c0-.827-.673-1.5-1.5-1.5h-2c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h2c1.378 0 2.5 1.121 2.5 2.5v4c0 .276-.224.5-.5.5z"></path>
                             </svg>
-                        </div><!-- end info-icon-->
+                        </div>
                         <div class="info-content">
                             <h4 class="info__title">Pick a Keyword</h4>
                             <p class="info__desc">
-                                Search for the service you’re looking for, i.e. ‘plumber,’ ‘electrician,’ ‘pest
-                                control,’ etc.
+                                Search for the service you’re looking for, i.e. ‘gym name,’ ‘gym location,’ etc.
                             </p>
-                        </div><!-- end info-content -->
-                    </div><!-- end info-box -->
-                </div><!-- end col-lg-3 -->
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 responsive-column">
                     <div class="info-box info--box">
                         <div class="info-icon gradient-icon">
@@ -261,15 +260,15 @@
                                          M240,176c-13.255,0-24-10.745-24-24s10.745-24,24-24s24,10.745,24,24S253.255,176,240,176z"/>
                                 </g>
                         </svg>
-                        </div><!-- end info-icon-->
+                        </div>
                         <div class="info-content">
                             <h4 class="info__title">Select Location</h4>
                             <p class="info__desc">
                                 Select location from the dropdown menu so that you get exactly where you want.
                             </p>
-                        </div><!-- end info-content -->
-                    </div><!-- end info-box -->
-                </div><!-- end col-lg-3 -->
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 responsive-column">
                     <div class="info-box info--box">
                         <div class="info-icon gradient-icon">
@@ -327,15 +326,15 @@
                                         c0-11.717,9.533-21.25,21.25-21.25h0.167h55.167h53.917c11.717,0,21.25,9.533,21.25,21.25V187.999z"></path>
                                 </g>
                         </svg>
-                        </div><!-- end info-icon-->
+                        </div>
                         <div class="info-content">
                             <h4 class="info__title">Select Category</h4>
                             <p class="info__desc">
                                 You can also select any type of service from the ‘Category’ tab located in the Menu bar.
                             </p>
-                        </div><!-- end info-content -->
-                    </div><!-- end info-box -->
-                </div><!-- end col-lg-3 -->
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 responsive-column">
                     <div class="info-box info--box">
                         <div class="info-icon gradient-icon">
@@ -373,19 +372,19 @@
                                             c0,8.832,7.168,16,16,16h32v32H192V64z M416,480H96V96h64v16c0,8.832,7.168,16,16,16h160c8.832,0,16-7.168,16-16V96h64V480z"/>
                                 </g>
                         </svg>
-                        </div><!-- end info-icon-->
+                        </div>
                         <div class="info-content">
                             <h4 class="info__title">View Results</h4>
                             <p class="info__desc">
                                 After placing Keyword and Location, hit the “Search” button to get all available
                                 results.
                             </p>
-                        </div><!-- end info-content -->
-                    </div><!-- end info-box -->
-                </div><!-- end col-lg-3 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end hiw-area -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ====END HIW AREA==== -->
 
     <!-- ====START FUN-FACT AREA===== -->
@@ -435,9 +434,9 @@
                                 <span class="count-symbol">+</span>
                             </h3>
                             <p class="counter__title">{{ config('app.name') }} Pages</p>
-                        </div><!-- end counter-content -->
-                    </div><!-- end counter-item -->
-                </div><!-- end col-lg-3 -->
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 responsive-column">
                     <div class="counter-item d-flex align-items-center">
                         <div class="counter-icon section-icon flex-shrink-0 bg-opacity-5">
@@ -482,9 +481,9 @@
                                 <span class="count-symbol">+</span>
                             </h3>
                             <p class="counter__title">Happy Clients</p>
-                        </div><!-- end counter-content -->
-                    </div><!-- end counter-item -->
-                </div><!-- end col-lg-3 -->
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 responsive-column">
                     <div class="counter-item d-flex align-items-center">
                         <div class="counter-icon section-icon flex-shrink-0 bg-opacity-3">
@@ -505,9 +504,9 @@
                                 <span class="count-symbol">+</span>
                             </h3>
                             <p class="counter__title">Company Joined</p>
-                        </div><!-- end counter-content -->
-                    </div><!-- end counter-item -->
-                </div><!-- end col-lg-3 -->
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 responsive-column">
                     <div class="counter-item d-flex align-items-center">
                         <div class="counter-icon section-icon flex-shrink-0 bg-opacity-5">
@@ -536,12 +535,12 @@
                                 <span class="count-symbol">+</span>
                             </h3>
                             <p class="counter__title">Five Star Ratings</p>
-                        </div><!-- end counter-content -->
-                    </div><!-- end counter-item -->
-                </div><!-- end col-lg-3 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end funfact-area -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ====END FUN-FACT AREA======= -->
 
     <!-- ====START BLOG AREA===== -->
@@ -559,9 +558,9 @@
                                 Learn about unique attractions of Nebraska and what the cities have to offer.
                                 Activities, foods, spooky places and so on.
                             </p>
-                        </div><!-- end section-heading -->
-                    </div><!-- end col-lg-12 -->
-                </div><!-- end row -->
+                        </div>
+                    </div>
+                </div>
                 <div class="row padding-top-60px">
                     @foreach($posts as $post)
                         <div class="col-lg-4 responsive-column">
@@ -572,16 +571,16 @@
                                          alt="blog image">
                                     <span
                                         class="badge">{{\Carbon\Carbon::parse($post->post_modified)->format('F d, Y')}}</span>
-                                </div><!-- end card-image -->
+                                </div>
                                 <div class="card-content">
                                     <h4 class="card-title pt-2">
                                         <a href="{{url('/blog').'/'.$post->post_name}}">{{$post->post_title}}</a>
                                     </h4>
-                                </div><!-- end card-content -->
-                            </div><!-- end card-item -->
-                        </div><!-- end col-lg-4 -->
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
-                </div><!-- end row -->
+                </div>
                 <div class="more-btn-box d-flex flex-wrap align-items-center justify-content-between pt-4">
                     <div>
                         <h4 class="pb-2 font-weight-semi-bold">Stay in the loop.</h4>
@@ -590,8 +589,8 @@
                     <a href="{{url('/blog')}}" class="theme-btn gradient-btn">Read More Post<i
                             class="la la-arrow-right ml-2"></i></a>
                 </div>
-            </div><!-- end container -->
-        </section><!-- end blog-area -->
+            </div>
+        </section>
     @endif
     <!-- ================================
            START BLOG AREA
@@ -618,16 +617,16 @@
                                 present in every possible channel.
                                 <br>Step up and join us.
                             </p>
-                        </div><!-- end section-heading -->
+                        </div>
                         <div class="btn-box pt-4">
                             <a href="{{ route('login') }}" class="theme-btn gradient-btn"><i
                                     class="la la-user-plus mr-2"></i>Start Now</a>
-                        </div><!-- end btn-box -->
+                        </div>
                     </div>
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cta-area -->
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ===END CTA AREA====== -->
 @endsection
 
