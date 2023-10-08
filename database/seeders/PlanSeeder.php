@@ -14,6 +14,8 @@ class PlanSeeder extends Seeder
      */
     public function run()
     {
+        Plan::truncate();
+
         $includeBasic = [
             '1' => '1 User',
             '2' => 'Lifetime Availability',

@@ -14,6 +14,8 @@ class PaymentPlatformSeeder extends Seeder
      */
     public function run()
     {
+        PaymentPlatform::truncate();
+
         PaymentPlatform::create([
            'name' => 'PayPal',
             'image' => 'images/paypal.png'

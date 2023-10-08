@@ -14,6 +14,8 @@ class CurrenciesSeeder extends Seeder
      */
     public function run()
     {
+        Currency::truncate();
+
         $currencies = [
             'usd',
             'eur',
