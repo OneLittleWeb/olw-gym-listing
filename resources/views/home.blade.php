@@ -1,16 +1,10 @@
 @extends('layouts.master')
 @section('title', config('app.name') . " THE Local Business Directory")
-@section('meta_description', "Explore every best place and service nearby or anywhere in Nebraska. Photos-business hours-phone numbers-ratings-reviews-service details- all in one place.")
-@section('meta_keywords',"nebraska, gymnearx, best places in nebraska")
+@section('meta_description', "Explore every best place and service nearby or anywhere in the uSA. Photos-business hours-phone numbers-ratings-reviews-service details- all in one place.")
+@section('meta_keywords',"usa, gymnearx, best places in nebraska")
 @section('content')
     <section class="hero-wrapper hero-bg pb-0 overflow-hidden">
         <div class="overlay"></div>
-{{--        <span class="line-bg line-bg1"></span>--}}
-{{--        <span class="line-bg line-bg2"></span>--}}
-{{--        <span class="line-bg line-bg3"></span>--}}
-{{--        <span class="line-bg line-bg4"></span>--}}
-{{--        <span class="line-bg line-bg5"></span>--}}
-{{--        <span class="line-bg line-bg6"></span>--}}
 
         <div class="container">
             <div class="row align-items-center padding-bottom-80px">
@@ -30,7 +24,7 @@
                                     <input type="hidden" name="source_value" id="source_value">
                                     <input type="hidden" name="source_id" id="source_id">
                                 </div>
-                            </div><!-- end main-search-input-item -->
+                            </div>
                             <div class="main-search-input-item user-chosen-select-container w-100 mb-3 ml-0">
                                 <label class="label-text">Where to look?</label>
                                 <select class="user-chosen-select" name="search_city" id="search_city">
@@ -40,57 +34,56 @@
                                         </option>
                                     @endforeach
                                 </select>
-                            </div><!-- end main-search-input-item -->
+                            </div>
                             <div class="main-search-input-item w-100 ml-0">
                                 <label class="label-text">Search Activities</label>
                                 <button class="theme-btn gradient-btn border-0 w-100 hover-scale-2" type="submit"><i
                                         class="la la-search mr-2"></i>Search Now
                                 </button>
-                            </div><!-- end main-search-input-item -->
-                        </div><!-- end main-search-input -->
+                            </div>
+                        </div>
                     </form>
-                </div><!-- end col-lg-6 -->
+                </div>
                 <div class="col-lg-6">
                     <div class="hero-heading">
                         <div class="section-heading">
                             <h1 class="sec__title font-size-35">Find the best gyms in the USA</h1>
-                            <p class="sec__desc">{{ config('app.name') }} helps you find out what's happening in your city. Let’s
+                            <p class="sec__desc">{{ config('app.name') }} helps you find out what's happening in your
+                                city. Let’s
                                 explore!</p>
                         </div>
-                    </div><!-- end hero-heading -->
-                </div><!-- end col-lg-6 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- =======START CATEGORY AREA======= -->
         <section class="category-area position-relative bg-gray section--padding category-section">
             <div class="container">
                 <div class="row highlighted-categories justify-content-center">
-                    @foreach($states as $state)
+                    @foreach($major_states as $state)
                         <div class="col-lg-2 col-sm-6">
                             <div class="hero-category-item hero-category-item-layout-2">
                                 <a href="{{ route('category.index', $state->slug) }}" class="d-block hero-cat-link">
                                     <span class="icon-element mx-auto {{ $state->background }}">
 {{--                                        <img src="{{asset('images/' . $state->background_image)}}"--}}
-{{--                                             data-src="{{asset('images/' . $state->background_image)}}"--}}
-{{--                                             alt="country-image" class="lazy icon-element">--}}
+                                        {{--                                             data-src="{{asset('images/' . $state->background_image)}}"--}}
+                                        {{--                                             alt="country-image" class="lazy icon-element">--}}
 
                                         <i class="fa-solid fa-dumbbell"></i>
                                     </span>
                                     {{ $state->name }}
                                 </a>
                             </div>
-                        </div><!-- end col-lg-2 -->
+                        </div>
                     @endforeach
                 </div>
-            </div><!-- end container -->
-        </section><!-- end category-area -->
-        <!-- ================================
-            END CATEGORY AREA
-        ================================= -->
+            </div>
+        </section>
+        <!-- =======END CATEGORY AREA========= -->
     </section><!-- end hero-wrapper -->
     <!-- ====START MAJOR CITY AREA==== -->
-    <section class="category-area bg-white arrow-down-shape position-relative section-padding">
+    <section class="category-area bg-white position-relative section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -135,117 +128,41 @@
                                 </g>
                         </svg>
                         </div>
-                        <h2 class="sec__title">Major Cities</h2>
-                        <p class="sec__desc">Nebraska has four major cities: Omaha, Lincoln, Bellevue and Grand Island.
-                            Omaha is the
-                            largest and serves as the state's economic hub, while Lincoln is the capital and home to the
-                            University of Nebraska. Bellevue is a smaller city located just south of Omaha.
+                        <h2 class="sec__title">All States</h2>
+                        <p class="sec__desc">Across the USA's 50 states, the gym culture thrives. From fitness fanatics
+                            in California to bodybuilders in Texas, gym-goers sculpt their bodies in diverse settings,
+                            embodying the nation's commitment to health and wellness.
                         </p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
+                    </div>
+                </div>
+            </div>
             <div class="row mt-5">
-                @foreach($major_cities as $major_city)
+                @foreach($states as $state)
                     <div class="col-lg-3 responsive-column">
                         <div class="category-item overflow-hidden">
-                            <img src="{{asset('images/city/' . $major_city->background_image)}}"
-                                 data-src="{{asset('images/city/' . $major_city->background_image)}}"
-                                 alt="category-image" class="lazy cat-img">
+                            <img src="{{asset('images/gym-state.jpg')}}"
+                                 data-src="{{asset('images/gym-state.jpg')}}"
+                                 alt="state-image" class="lazy cat-img">
                             <div class="category-content d-flex align-items-center justify-content-center">
-                                <a href="{{ route('category.index', $major_city->slug) }}"
+                                <a href="{{ route('category.index', $state->slug) }}"
                                    class="category-link d-flex flex-column justify-content-center w-100 h-100">
                                     <div class="cat-content">
-                                        <h4 class="cat__title mb-3">{{ $major_city->name }}</h4>
+                                        <h4 class="cat__title mb-3">{{ $state->name }}</h4>
                                     </div>
                                 </a>
                             </div>
-                        </div><!-- end category-item -->
-                    </div><!-- end col-lg-3 -->
-                @endforeach
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end category-area -->
-    <!-- =======END MAJOR CITY AREA====== -->
-    <!-- ====START MOST POPULAR CITY AREA==== -->
-    <section class="category-area arrow-down-shape position-relative section-padding" style="background-color: #e9ecef">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading text-center">
-                        <div class="section-icon gradient-icon mb-3 mx-auto">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                 viewBox="0 0 438.891 438.891" xml:space="preserve">
-                            <defs>
-                                <linearGradient id="svg-gradient">
-                                    <stop offset="5%" stop-color="#ff6b6b"/>
-                                    <stop offset="95%" stop-color="#ffbb3d"/>
-                                </linearGradient>
-                            </defs>
-                                <g>
-                                    <path d="M347.968,57.503h-39.706V39.74c0-5.747-6.269-8.359-12.016-8.359h-30.824c-7.314-20.898-25.6-31.347-46.498-31.347
-                                                c-20.668-0.777-39.467,11.896-46.498,31.347h-30.302c-5.747,0-11.494,2.612-11.494,8.359v17.763H90.923
-                                                c-23.53,0.251-42.78,18.813-43.886,42.318v299.363c0,22.988,20.898,39.706,43.886,39.706h257.045
-                                                c22.988,0,43.886-16.718,43.886-39.706V99.822C390.748,76.316,371.498,57.754,347.968,57.503z M151.527,52.279h28.735
-                                                c5.016-0.612,9.045-4.428,9.927-9.404c3.094-13.474,14.915-23.146,28.735-23.51c13.692,0.415,25.335,10.117,28.212,23.51
-                                                c0.937,5.148,5.232,9.013,10.449,9.404h29.78v41.796H151.527V52.279z M370.956,399.185c0,11.494-11.494,18.808-22.988,18.808
-                                                H90.923c-11.494,0-22.988-7.314-22.988-18.808V99.822c1.066-11.964,10.978-21.201,22.988-21.42h39.706v26.645
-                                                c0.552,5.854,5.622,10.233,11.494,9.927h154.122c5.98,0.327,11.209-3.992,12.016-9.927V78.401h39.706
-                                                c12.009,0.22,21.922,9.456,22.988,21.42V399.185z"/>
-                                    <path d="M179.217,233.569c-3.919-4.131-10.425-4.364-14.629-0.522l-33.437,31.869l-14.106-14.629
-                                                c-3.919-4.131-10.425-4.363-14.629-0.522c-4.047,4.24-4.047,10.911,0,15.151l21.42,21.943c1.854,2.076,4.532,3.224,7.314,3.135
-                                                c2.756-0.039,5.385-1.166,7.314-3.135l40.751-38.661c4.04-3.706,4.31-9.986,0.603-14.025
-                                                C179.628,233.962,179.427,233.761,179.217,233.569z"/>
-                                    <path d="M329.16,256.034H208.997c-5.771,0-10.449,4.678-10.449,10.449s4.678,10.449,10.449,10.449H329.16
-                                                c5.771,0,10.449-4.678,10.449-10.449S334.931,256.034,329.16,256.034z"/>
-                                    <path d="M179.217,149.977c-3.919-4.131-10.425-4.364-14.629-0.522l-33.437,31.869l-14.106-14.629
-                                                c-3.919-4.131-10.425-4.364-14.629-0.522c-4.047,4.24-4.047,10.911,0,15.151l21.42,21.943c1.854,2.076,4.532,3.224,7.314,3.135
-                                                c2.756-0.039,5.385-1.166,7.314-3.135l40.751-38.661c4.04-3.706,4.31-9.986,0.603-14.025
-                                                C179.628,150.37,179.427,150.169,179.217,149.977z"/>
-                                    <path d="M329.16,172.442H208.997c-5.771,0-10.449,4.678-10.449,10.449s4.678,10.449,10.449,10.449H329.16
-                                                c5.771,0,10.449-4.678,10.449-10.449S334.931,172.442,329.16,172.442z"/>
-                                    <path d="M179.217,317.16c-3.919-4.131-10.425-4.363-14.629-0.522l-33.437,31.869l-14.106-14.629
-                                                c-3.919-4.131-10.425-4.363-14.629-0.522c-4.047,4.24-4.047,10.911,0,15.151l21.42,21.943c1.854,2.076,4.532,3.224,7.314,3.135
-                                                c2.756-0.039,5.385-1.166,7.314-3.135l40.751-38.661c4.04-3.706,4.31-9.986,0.603-14.025
-                                                C179.628,317.554,179.427,317.353,179.217,317.16z"/>
-                                    <path d="M329.16,339.626H208.997c-5.771,0-10.449,4.678-10.449,10.449s4.678,10.449,10.449,10.449H329.16
-                                                c5.771,0,10.449-4.678,10.449-10.449S334.931,339.626,329.16,339.626z"/>
-                                </g>
-                        </svg>
                         </div>
-                        <h2 class="sec__title">Most Popular Cities</h2>
-                        <p class="sec__desc">Nebraska is a Midwestern state with many cities, including the largest
-                            city, Omaha. Lincoln is the state capital. Each city offers unique attractions and
-                            characteristics.
-                        </p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-            <div class="row mt-5">
-                @foreach($popular_cities as $popular_city)
-                    <div class="col-lg-3 responsive-column">
-                        <div class="category-item overflow-hidden">
-                            <img src="{{asset('images/city/' . $popular_city->background_image)}}"
-                                 data-src="{{asset('images/city/' . $popular_city->background_image)}}"
-                                 alt="category-image" class="lazy cat-img">
-                            <div class="category-content d-flex align-items-center justify-content-center">
-                                <a href="{{ route('category.index', $popular_city->slug) }}"
-                                   class="category-link d-flex flex-column justify-content-center w-100 h-100">
-                                    <div class="cat-content">
-                                        <h4 class="cat__title mb-3">{{ $popular_city->name }}</h4>
-                                    </div>
-                                </a>
-                            </div>
-                        </div><!-- end category-item -->
-                    </div><!-- end col-lg-3 -->
+                    </div>
                 @endforeach
-            </div><!-- end row -->
+            </div>
+
             <div class="more-btn-box pt-3 text-center">
-                <a href="{{ route('city.index') }}" class="btn-gray hover-scale-2">Browse all cities <i
+                <a href="{{ route('states.index') }}" class="btn-gray hover-scale-2">Browse all states <i
                         class="la la-arrow-right ml-2"></i></a>
             </div>
-        </div><!-- end container -->
-    </section><!-- end category-area -->
-    <!-- =======END MOST POPULAR CITY AREA====== -->
+        </div>
+    </section>
+    <!-- =======END MAJOR CITY AREA====== -->
     <div class="section-block"></div>
     <!-- ==START HIW AREA==== -->
     <section class="hiw-area bg-gradient-6 pattern-bg padding-top-100px pb-0">
@@ -258,11 +175,13 @@
                                 <span class="ribbon ribbon-lg">Working Process</span>
                             </div>
                             <h2 class="sec__title line-height-50 text-white">
-                                Get Started With <span class="text-color-16">{{ config('app.name') }}</span> It's Very Easy to
+                                Get Started With <span class="text-color-16">{{ config('app.name') }}</span> It's Very
+                                Easy to
                                 Start.
                             </h2>
                             <p class="sec__desc text-white-50">
-                                {{ config('app.name') }} is an online platform in the USA that lets users create listings for
+                                {{ config('app.name') }} is an online platform in the USA that lets users create
+                                listings for
                                 businesses or search for services. Sign up, create your listing, or search for services
                                 today.
                             </p>
@@ -476,7 +395,8 @@
                 <div class="col-lg-3 responsive-column">
                     <div class="counter-item d-flex align-items-center">
                         <div class="counter-icon section-icon flex-shrink-0 bg-opacity-3">
-                            <svg class="svg-icon-color-5" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                            <svg class="svg-icon-color-5" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px"
+                                 y="0px"
                                  viewBox="0 0 438.891 438.891" xml:space="preserve">
                             <g>
                                 <path d="M347.968,57.503h-39.706V39.74c0-5.747-6.269-8.359-12.016-8.359h-30.824c-7.314-20.898-25.6-31.347-46.498-31.347
@@ -689,7 +609,8 @@
                                 <span class="ribbon ribbon-lg">Join Us</span>
                             </div>
                             <h2 class="sec__title mb-4 font-size-45 line-height-60 text-white">
-                                Expand Your Visibility with <span class="text-color-16">{{ config('app.name') }}</span> and <br>
+                                Expand Your Visibility with <span class="text-color-16">{{ config('app.name') }}</span>
+                                and <br>
                                 See Your Business Scale Up!
                             </h2>
                             <p class="sec__desc text-white line-height-35 mb-3">

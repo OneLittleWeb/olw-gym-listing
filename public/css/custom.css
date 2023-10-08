@@ -65,14 +65,18 @@
 }
 
 .header-search-button {
-    background-color: #9f8fff;
-    border: #9f8fff;
+    background-color: #f8c401;
+    border: #f8c401;
     padding: 13px;
 }
 
 .header-search-button:hover {
-    background-color: #8c7ce7;
-    border: #8c7ce7;
+    background-color: #E1C80A;
+    border: #E1C80A;
+}
+
+.header-search-button i {
+    color: #131443;
 }
 
 #profile span {

@@ -27,6 +27,7 @@
     <meta data-rh="true" name="twitter:image:src" content="@yield('sharingimg')"/>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@100;300;400;500;600;700;800&display=swap"
           rel="stylesheet">
+{{--    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap' rel='stylesheet'>--}}
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/line-awesome.min.css')}}">

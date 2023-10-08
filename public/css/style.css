@@ -5059,12 +5059,20 @@ div.datedropper .picker .pick-lg-b li {
     background-color: rgba(128, 137, 150, 0.6)
 }
 
-.header-area {
+.main-header-area {
     position: absolute;
     top: 0;
     width: 100%;
     z-index: 1010;
     /*background-color: #333f57;*/
+}
+
+.header-area {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1010;
+    background-color: #131443;
 }
 
 @media (max-width: 1199px) {

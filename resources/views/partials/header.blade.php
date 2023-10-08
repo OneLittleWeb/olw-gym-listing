@@ -1,4 +1,4 @@
-<header class="header-area">
+<header class="{{ Route::currentRouteName() == 'home' ? 'main-header-area' : 'header-area' }}">
     <div class="header-menu-wrapper padding-right-30px padding-left-30px">
         <div class="container-fluid">
             <div class="row">
@@ -64,7 +64,7 @@
                                         <a href="/">home</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('all.categories') }}">states</a>
+                                        <a href="{{ route('states.index') }}">states</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('city.index') }}">cities</a>
