@@ -16,11 +16,14 @@ class CreateOrganizationsTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id');
+            $table->integer('state_id')->nullable();
             $table->integer('city_id')->nullable();
-            $table->integer('county_id')->nullable();
             $table->string('slug')->nullable();
             $table->text('gmaps_link')->nullable();
             $table->string('organization_name')->nullable();
+            $table->string('price_policy')->nullable(); //new
+            $table->string('organization_located_in_information')->nullable(); //new
+            $table->string('search_position_number_overall')->nullable(); //new
             $table->string('organization_gmaps_id')->nullable();
             $table->string('rate_stars')->nullable();
             $table->string('reviews_total_count')->nullable();
