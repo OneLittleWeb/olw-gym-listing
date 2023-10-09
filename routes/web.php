@@ -90,6 +90,9 @@ Route::get('/import', [OrganizationController::class, 'import'])->name('import')
 //route for import states data
 Route::get('/import-states', [StateController::class, 'importStateName'])->name('import.state.name');
 
+//route for import cities data
+Route::get('/import-cities', [CityController::class, 'importCityData'])->name('import.city.data');
+
 //route for image copy past from multiple folder to single folder
 Route::get('/copy-past', [OrganizationController::class, 'copyPast'])->name('copy.past');
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', config('app.name') . " THE Local Business Directory | States")
 @section('meta_description', "Browse all the states in the USA to find the best local service you’re looking for. Professional gyms - all in one place.")
-@section('meta_keywords',"USA, gymnearx, best gym in the usa")
+@section('meta_keywords',"USA, gymnearx, best gym in the USA")
 @section('content')
     <section class="category-area section--padding margin-top-40px">
         <div class="container">

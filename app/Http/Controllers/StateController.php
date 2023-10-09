@@ -22,8 +22,6 @@ class StateController extends Controller
 
     public function importStateName()
     {
-        State::truncate();
-
         $state_directories = File::directories('H:\gym');
 
         foreach ($state_directories as $state_directory) {

@@ -15,6 +15,7 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+            $table->integer('state_id');
             $table->string('name');
             $table->string('slug');
             $table->boolean('is_major')->default(0);
