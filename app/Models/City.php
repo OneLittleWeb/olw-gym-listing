@@ -14,8 +14,8 @@ class City extends Model
 
     public function setNameAttribute($value)
     {
-        $generated_slug = $value . '-ne';
+//        $generated_slug = $value . '-ne';
         $this->attributes['name'] = $value;
-        $this->attributes['slug'] = Str::slug($generated_slug);
+        $this->attributes['slug'] = Str::slug($value);
     }
 }

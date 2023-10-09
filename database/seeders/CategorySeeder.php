@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
         Category::truncate();
 
         $categories = [
-            ['name' => 'gyms', 'icon' => 'fa-solid fa-dumbbell', 'background' => 'bg-10', 'background_image' => 'omaha.jpg'],
+            ['name' => 'gyms', 'icon' => 'fa-solid fa-dumbbell', 'background' => 'bg-10', 'background_image' => 'gyms.png'],
         ];
         foreach ($categories as $category) {
             Category::create($category);
