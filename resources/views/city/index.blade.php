@@ -30,11 +30,11 @@
                     @foreach($cities as $city)
                         <div class="col-lg-3 responsive-column">
                             <div class="category-item overflow-hidden">
-                                <img src="{{ asset('images/city/' . $city->background_image) }}"
-                                     data-src="{{ asset('images/city/' . $city->background_image) }}"
+                                <img src="{{ asset('images/gym-state.jpg') }}"
+                                     data-src="{{ asset('images/gym-state.jpg') }}"
                                      alt="{{ $city->name }}" class="cat-img lazy">
                                 <div class="category-content d-flex align-items-center justify-content-center">
-                                    <a href="{{ route('category.index', $city->slug) }}"
+                                    <a href="#"
                                        class="category-link d-flex flex-column justify-content-center w-100 h-100">
                                         <div class="cat-content">
                                             <h4 class="cat__title mb-3">{{ $city->name }}</h4>
