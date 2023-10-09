@@ -38,8 +38,7 @@ class CityController extends Controller
                 }
 
                 $stateId = $state->id;
-
-                // Fetch city directories within each state directory
+                
                 $cityDirectories = File::directories($stateDirectory);
 
                 foreach ($cityDirectories as $cityDirectory) {
