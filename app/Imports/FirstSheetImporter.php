@@ -39,15 +39,19 @@ class FirstSheetImporter implements ToCollection, WithStartRow
                 'organization_guid' => $row[38],
             ], [
                 'category_id' => $this->category_id,
-                'county_id' => null,
+
+                'state_id' => null,
                 'city_id' => $this->city_id,
                 'gmaps_link' => (!empty($row[1])) ? $row[1] : null,
+
                 'organization_name' => (!empty($row[2])) ? $row[2] : null,
                 'organization_gmaps_id' => (!empty($row[3])) ? $row[3] : null,
                 'rate_stars' => (!empty($row[4])) ? $row[4] : null,
                 'reviews_total_count' => (!empty($row[5])) ? $row[5] : null,
+                'price_policy' => (!empty($row[6])) ? $row[6] : null,
                 'organization_category' => (!empty($row[7])) ? $row[7] : null,
                 'organization_address' => (!empty($row[8])) ? $row[8] : null,
+                'located_in' => (!empty($row[9])) ? $row[9] : null,
                 'organization_website' => (!empty($row[10])) ? $row[10] : null,
                 'organization_phone_number' => (!empty($row[11])) ? $row[11] : null,
                 'organization_plus_code' => (!empty($row[12])) ? $row[12] : null,
@@ -71,22 +75,23 @@ class FirstSheetImporter implements ToCollection, WithStartRow
                 'organization_skype' => (!empty($row[35])) ? $row[35] : null,
                 'organization_telegram' => (!empty($row[36])) ? $row[36] : null,
                 'organization_phone_from_the_website' => (!empty($row[37])) ? $row[37] : null,
-                'organization_tiktok' => (!empty($row[39])) ? $row[39] : null
+                'organization_tiktok' => (!empty($row[39])) ? $row[39] : null,
+                'search_position_number_overall' => (!empty($row[41])) ? $row[41] : null
             ]);
 
-            $photo_paths = $row[20];
-            $photo_path_array = explode(',', $photo_paths);
-
-            foreach ($photo_path_array as $photo_path) {
-                if ($photo_path) {
-                    Picture::updateOrCreate([
-                        'picture_file' => $photo_path
-                    ], [
-                        'organization_guid' => $row[38],
-                    ]);
-                }
-
-            }
+//            $photo_paths = $row[20];
+//            $photo_path_array = explode(',', $photo_paths);
+//
+//            foreach ($photo_path_array as $photo_path) {
+//                if ($photo_path) {
+//                    Picture::updateOrCreate([
+//                        'picture_file' => $photo_path
+//                    ], [
+//                        'organization_guid' => $row[38],
+//                    ]);
+//                }
+//
+//            }
         }
     }
 }

@@ -22,8 +22,7 @@ class CreateOrganizationsTable extends Migration
             $table->text('gmaps_link')->nullable();
             $table->string('organization_name')->nullable();
             $table->string('price_policy')->nullable(); //new
-            $table->string('organization_located_in_information')->nullable(); //new
-            $table->string('search_position_number_overall')->nullable(); //new
+            $table->string('located_in')->nullable(); //new
             $table->string('organization_gmaps_id')->nullable();
             $table->string('rate_stars')->nullable();
             $table->string('reviews_total_count')->nullable();
@@ -58,6 +57,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('claimed_mail')->nullable();
             $table->bigInteger('user_id')->default(1);
             $table->bigInteger('views')->unsigned()->default(0)->index();
+            $table->string('search_position_number_overall')->nullable(); //new
             $table->boolean('temporarily_closed')->default(0)->comment('0=open,1=closed');
             $table->boolean('permanently_closed')->default(0)->comment('0=open,1=closed');
             $table->timestamps();

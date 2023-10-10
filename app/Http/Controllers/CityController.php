@@ -38,7 +38,7 @@ class CityController extends Controller
                 }
 
                 $stateId = $state->id;
-                
+
                 $cityDirectories = File::directories($stateDirectory);
 
                 foreach ($cityDirectories as $cityDirectory) {
