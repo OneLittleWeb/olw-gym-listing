@@ -23,34 +23,27 @@ class SecondSheetImporter implements ToCollection, WithStartRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            Review::updateOrCreate([
-                'review_id' => $row[1],
-            ], [
-                'organization_guid' => (!empty($row[13])) ? $row[13] : null,
-                'organization_gmaps_id' => (!empty($row[12])) ? $row[12] : null,
-                'review_id' => $row[1],
-                'reviewer_name' => (!empty($row[2])) ? $row[2] : null,
-                'reviewer_reviews_count' => (!empty($row[4])) ? $row[4] : null,
-                'review_date' => (!empty($row[5])) ? $row[5] : null,
-                'review_rate_stars' => (!empty($row[6])) ? $row[6] : null,
-                'review_text_original' => (!empty($row[7])) ? $row[7] : null,
-                'review_photos_files' => (!empty($row[10])) ? $row[10] : null,
-                'review_thumbs_up_value' => (!empty($row[14])) ? $row[14] : null,
-            ]);
+            $reviewId = $row[1];
 
-            $photo_paths = $row[10];
-            $photo_path_array = explode(',', $photo_paths);
-
-            foreach ($photo_path_array as $photo_path) {
-                if ($photo_path) {
-                    Picture::updateOrCreate([
-                        'picture_file' => $photo_path
-                    ], [
-                        'organization_guid' => $row[13],
-                        'review_id' => $row[1],
-                    ]);
-                }
+            // You might want to validate if $reviewId is a valid value before proceeding
+            if (!$reviewId) {
+                continue; // Skip this row if review_id is empty
             }
+
+            Review::updateOrCreate(
+                ['review_id' => $reviewId],
+                [
+                    'organization_guid' => $row[13] ?? null,
+                    'organization_gmaps_id' => $row[12] ?? null,
+                    'reviewer_name' => $row[2] ?? null,
+                    'reviewer_reviews_count' => $row[4] ?? null,
+                    'review_date' => $row[5] ?? null,
+                    'review_rate_stars' => $row[6] ?? null,
+                    'review_text_original' => $row[7] ?? null,
+                    'review_photos_files' => $row[10] ?? null,
+                    'review_thumbs_up_value' => $row[14] ?? null,
+                ]
+            );
         }
     }
 }

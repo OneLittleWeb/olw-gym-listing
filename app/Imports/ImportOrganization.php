@@ -2,17 +2,20 @@
 
 namespace App\Imports;
 
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
 
 class ImportOrganization implements WithMultipleSheets
 {
-    protected $category_id;
+    protected $state_id;
     protected $city_id;
 
-    public function __construct($category_id, $city_id)
+    public function __construct($state_id, $city_id)
     {
-        $this->category_id = $category_id;
+        $this->state_id = $state_id;
         $this->city_id = $city_id;
     }
 
@@ -24,8 +27,10 @@ class ImportOrganization implements WithMultipleSheets
 
     public function sheets(): array
     {
+        Log::info('Completed successfully for the city: ' . $this->city_id);
+
         return [
-            new FirstSheetImporter($this->category_id, $this->city_id),
+            new FirstSheetImporter($this->state_id, $this->city_id),
             new SecondSheetImporter(),
         ];
     }

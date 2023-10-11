@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\ImportOrganization;
+use App\Jobs\ExcelImportJob;
 use App\Mail\ClaimBusinessMail;
 use App\Mail\ClaimedBusiness;
 use App\Mail\ClaimedNotificationToAdmin;
@@ -14,6 +15,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\ContactForClaimBusiness;
 use App\Models\Organization;
+use App\Models\State;
 use App\Models\SuggestAnEdit;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
@@ -551,30 +553,127 @@ class OrganizationController extends Controller
 
     public function import()
     {
-        $category_directories = File::directories('H:\sc v4');
+        try {
+            $state_directories = File::directories('H:\gym');
 
-        foreach ($category_directories as $category_directory) {
+            foreach ($state_directories as $state_directory) {
+                $state_name = trim(basename($state_directory), " ");
+                $state = State::where('name', Str::lower($state_name))->first();
 
-            $category_name = basename($category_directory);
+                if ($state) {
+                    $state_id = $state->id;
 
-            $category_id = Category::where('name', Str::lower($category_name))->first()->id;
+                    foreach (File::directories($state_directory) as $city_directory) {
+                        $city_name = trim(basename($city_directory), " ");
+                        $city = City::where('name', Str::lower($city_name))->first();
 
-            foreach (File::directories($category_directory) as $city_directory) {
+                        if ($city) {
+                            $city_id = $city->id;
+                            $files = File::files($city_directory);
 
-                $directory_name = basename($city_directory);
-                $city_name = Str::lower(trim(str_replace("Nebraska US", '', $directory_name)));
-                $city_id = City::where('name', $city_name)->first()->id;
-
-                $files = File::files($city_directory);
-
-                Excel::import(new ImportOrganization($category_id, $city_id), $files[0]);
+                            if (count($files) > 0) {
+                                ExcelImportJob::dispatch($state_id, $city_id, $files[0]->getRealPath());
+                            } else {
+                                // Handle the case where no files were found in the city directory
+                                alert()->error('Error', "No Excel files found in the '$city_name' directory.");
+                            }
+                        } else {
+                            // Handle the case where the city is not found in the database
+                            alert()->error('Error', "City '$city_name' not found in the database.");
+                        }
+                    }
+                } else {
+                    // Handle the case where the state is not found in the database
+                    alert()->error('Error', "State '$state_name' not found in the database.");
+                }
             }
-        }
 
-        alert()->success('success', 'Data imported successfully.');
+            alert()->success('Success', 'Organization data import job dispatched successfully.');
+        } catch (\Exception $e) {
+            // Handle exceptions, log errors, and provide user feedback
+            alert()->error('Error', 'An error occurred during the import process.');
+            \Log::error('Import Error: ' . $e->getMessage());
+        }
 
         return redirect()->back();
     }
+
+//    public function import()
+//    {
+//        try {
+//            $state_directories = File::directories('H:\gym');
+//            $successCount = 0;
+//
+//            foreach ($state_directories as $state_directory) {
+//                $state_name = trim(basename($state_directory), " ");
+//                $state = State::where('name', Str::lower($state_name))->first();
+//
+//                if ($state) {
+//                    $state_id = $state->id;
+//
+//                    foreach (File::directories($state_directory) as $city_directory) {
+//                        $city_name = trim(basename($city_directory), " ");
+//                        $city = City::where('name', Str::lower($city_name))->first();
+//
+//                        if ($city) {
+//                            $city_id = $city->id;
+//                            $files = File::files($city_directory);
+//
+//                            if (count($files) > 0) {
+//                                Excel::import(new ImportOrganization($state_id, $city_id), $files[0]);
+//                                $successCount++; // Increment the success count
+//                            } else {
+//                                // Handle the case where no files were found in the city directory
+//                                alert()->error('Error', "No Excel files found in the '$city_name' directory.");
+//                            }
+//                        } else {
+//                            // Handle the case where the city is not found in the database
+//                            alert()->error('Error', "City '$city_name' not found in the database.");
+//                        }
+//                    }
+//                } else {
+//                    // Handle the case where the state is not found in the database
+//                    alert()->error('Error', "State '$state_name' not found in the database.");
+//                }
+//            }
+//
+//            if ($successCount > 0) {
+//                alert()->success('Success', "{$successCount} files imported successfully.");
+//            } else {
+//                alert()->info('Info', 'No files were imported.');
+//            }
+//        } catch (\Exception $e) {
+//            // Handle exceptions, log errors, and provide user feedback
+//            alert()->error('Error', 'An error occurred during the import process.');
+//            \Log::error('Import Error: ' . $e->getMessage());
+//        }
+//
+//        return redirect()->back();
+//    }
+
+//    public function import()
+//    {
+//        $state_directories = File::directories('H:\gym');
+//
+//        foreach ($state_directories as $state_directory) {
+//            $state_name = trim(basename($state_directory), " ");
+//            $state_id = State::where('name', Str::lower($state_name))->first()->id;
+//
+//            foreach (File::directories($state_directory) as $city_directory) {
+//
+//                $city_name = trim(basename($city_directory), " ");
+//                $city_id = City::where('name', Str::lower($city_name))->first()->id;
+//
+//                $files = File::files($city_directory);
+//
+//                Excel::import(new ImportOrganization($state_id, $city_id), $files[0]);
+//            }
+//        }
+//
+//        alert()->success('success', 'Organization data imported successfully.');
+//
+//        return redirect()->back();
+//    }
 
     public function copyPast()
     {

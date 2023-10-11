@@ -2,11 +2,9 @@
 
 namespace App\Imports;
 
-use App\Models\Category;
 use App\Models\Organization;
-use App\Models\Picture;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
@@ -17,12 +15,12 @@ class FirstSheetImporter implements ToCollection, WithStartRow
         return 2;
     }
 
-    protected $category_id;
+    protected $state_id;
     protected $city_id;
 
-    public function __construct($category_id, $city_id)
+    public function __construct($state_id, $city_id)
     {
-        $this->category_id = $category_id;
+        $this->state_id = $state_id;
         $this->city_id = $city_id;
     }
 
@@ -38,12 +36,10 @@ class FirstSheetImporter implements ToCollection, WithStartRow
             Organization::updateOrCreate([
                 'organization_guid' => $row[38],
             ], [
-                'category_id' => $this->category_id,
-
-                'state_id' => null,
+                'category_id' => 1,
+                'state_id' => $this->state_id,
                 'city_id' => $this->city_id,
                 'gmaps_link' => (!empty($row[1])) ? $row[1] : null,
-
                 'organization_name' => (!empty($row[2])) ? $row[2] : null,
                 'organization_gmaps_id' => (!empty($row[3])) ? $row[3] : null,
                 'rate_stars' => (!empty($row[4])) ? $row[4] : null,
@@ -78,20 +74,6 @@ class FirstSheetImporter implements ToCollection, WithStartRow
                 'organization_tiktok' => (!empty($row[39])) ? $row[39] : null,
                 'search_position_number_overall' => (!empty($row[41])) ? $row[41] : null
             ]);
-
-//            $photo_paths = $row[20];
-//            $photo_path_array = explode(',', $photo_paths);
-//
-//            foreach ($photo_path_array as $photo_path) {
-//                if ($photo_path) {
-//                    Picture::updateOrCreate([
-//                        'picture_file' => $photo_path
-//                    ], [
-//                        'organization_guid' => $row[38],
-//                    ]);
-//                }
-//
-//            }
         }
     }
 }

@@ -44,7 +44,7 @@ class CityController extends Controller
                 foreach ($cityDirectories as $cityDirectory) {
                     $cityName = trim(basename($cityDirectory), " ");
                     $city = new City();
-                    $city->name = $cityName;
+                    $city->name = Str::lower($cityName);
                     $city->slug = Str::slug($cityName);
                     $city->background_image = Str::slug($cityName) . '.png';
                     $city->state_id = $stateId;
