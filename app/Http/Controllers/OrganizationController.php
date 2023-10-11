@@ -556,6 +556,8 @@ class OrganizationController extends Controller
         try {
             $state_directories = File::directories('H:\gym');
 
+            dd($state_directories);
+
             foreach ($state_directories as $state_directory) {
                 $state_name = trim(basename($state_directory), " ");
                 $state = State::where('name', Str::lower($state_name))->first();
