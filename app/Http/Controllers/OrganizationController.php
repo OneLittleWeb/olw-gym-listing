@@ -673,15 +673,15 @@ class OrganizationController extends Controller
 
     public function copyPast()
     {
-        $category_directories = File::directories('H:\scraped data');
+        $state_directories = File::directories('H:\gym');
 
-        foreach ($category_directories as $category_directory) {
+        foreach ($state_directories as $category_directory) {
             foreach (File::directories($category_directory) as $category) {
                 $sourcePath = File::glob($category . '/media/*');
 
                 foreach ($sourcePath as $source) {
 
-                    $destinationPath = 'H:\images';
+                    $destinationPath = 'H:\gymnearx-images';
                     $file = basename($source);
                     $destinationPath = $destinationPath . '/' . $file;
                     File::copy($source, $destinationPath);
