@@ -35,15 +35,14 @@ class ExcelImportJob implements ShouldQueue
         try {
             $data = $excel->import($import, $this->filePath);
         } catch (\Exception $e) {
-            // Handle exceptions and log errors
-            \Log::error('ExcelImportJob failed for file: ' . $this->filePath);
-            \Log::error('Error: ' . $e->getMessage());
+            Log::error('ExcelImportJob failed for file: ' . $this->filePath);
+            Log::error('Error: ' . $e->getMessage());
         }
     }
 
+    // Log a message to indicate that the job has completed
     public function completed()
     {
-        // Log a message to indicate that the job has completed
         Log::info('ExcelImportJob for file ' . $this->filePath . ' has completed.');
     }
 }

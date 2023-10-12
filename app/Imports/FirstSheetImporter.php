@@ -24,12 +24,6 @@ class FirstSheetImporter implements ToCollection, WithStartRow
         $this->city_id = $city_id;
     }
 
-    /**
-     * @param array $row
-     *
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
-
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {

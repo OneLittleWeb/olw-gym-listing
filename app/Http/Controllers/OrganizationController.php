@@ -574,23 +574,19 @@ class OrganizationController extends Controller
                             if (count($files) > 0) {
                                 ExcelImportJob::dispatch($state_id, $city_id, $files[0]->getRealPath());
                             } else {
-                                // Handle the case where no files were found in the city directory
                                 alert()->error('Error', "No Excel files found in the '$city_name' directory.");
                             }
                         } else {
-                            // Handle the case where the city is not found in the database
                             alert()->error('Error', "City '$city_name' not found in the database.");
                         }
                     }
                 } else {
-                    // Handle the case where the state is not found in the database
                     alert()->error('Error', "State '$state_name' not found in the database.");
                 }
             }
 
             alert()->success('Success', 'Organization data import job dispatched successfully.');
         } catch (\Exception $e) {
-            // Handle exceptions, log errors, and provide user feedback
             alert()->error('Error', 'An error occurred during the import process.');
             \Log::error('Import Error: ' . $e->getMessage());
         }

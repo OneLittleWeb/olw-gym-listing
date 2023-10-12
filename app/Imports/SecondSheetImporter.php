@@ -2,7 +2,6 @@
 
 namespace App\Imports;
 
-use App\Models\Picture;
 use App\Models\Review;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
@@ -15,19 +14,13 @@ class SecondSheetImporter implements ToCollection, WithStartRow
         return 2;
     }
 
-    /**
-     * @param array $row
-     *
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
             $reviewId = $row[1];
 
-            // You might want to validate if $reviewId is a valid value before proceeding
             if (!$reviewId) {
-                continue; // Skip this row if review_id is empty
+                continue;
             }
 
             Review::updateOrCreate(
