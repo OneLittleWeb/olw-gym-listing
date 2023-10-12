@@ -70,7 +70,7 @@
                                                 <a href="#">
                                                     <i class="la la-map-marker mr-1 text-color-2"></i>
                                                     @if($organization->organization_address)
-                                                        {{ $organization->organization_address }}
+                                                        {{ str_replace('Address: ', '', $organization->organization_address) }}
                                                     @else
                                                         {{ ucfirst($organization->city->name) }}, Nebraska, US
                                                     @endif
@@ -87,7 +87,7 @@
                                                 <li>
                                                     <span class="price-range" data-toggle="tooltip" data-placement="top"
                                                           title="Pricey">
-                                                        <strong class="font-weight-medium">$</strong>
+                                                        <strong class="font-weight-medium">{{ $organization->price_policy ?? '$' }}</strong>
                                                     </span>
                                                 </li>
                                                 <li class="d-flex align-items-center">
