@@ -19,7 +19,7 @@
     <meta property="og:description" content="@yield('meta_description')"/>
     <meta property="og:type" content="website"/>
     <meta data-rh="true" property="og:url" content="{!! request()->fullUrl() !!}"/>
-    <meta data-rh="true" property="og:site_name" content="nebraskalisting"/>
+    <meta data-rh="true" property="og:site_name" content="gymnearx"/>
     <meta data-rh="true" property="twitter:domain" content="{!! request()->fullUrl() !!}"/>
     <meta data-rh="true" property="twitter:url" content="{!! request()->fullUrl() !!}"/>
     <meta data-rh="true" name="twitter:title" content="@yield('title')"/>

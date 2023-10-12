@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\ImportOrganization;
 use App\Jobs\ExcelImportJob;
 use App\Mail\ClaimBusinessMail;
 use App\Mail\ClaimedBusiness;
 use App\Mail\ClaimedNotificationToAdmin;
 use App\Mail\ContactForClaimToAdmin;
 use App\Mail\ContactForClaimToUser;
-use App\Mail\ContactUsMail;
 use App\Models\AwardCertificateRequest;
-use App\Models\Category;
 use App\Models\City;
 use App\Models\ContactForClaimBusiness;
 use App\Models\Organization;
@@ -19,14 +16,10 @@ use App\Models\State;
 use App\Models\SuggestAnEdit;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Finder\Finder;
 
 class OrganizationController extends Controller
 {
@@ -71,9 +64,9 @@ class OrganizationController extends Controller
                 ->where('category_id', $category->id)->count();
 
             if ($organizations->onFirstPage()) {
-                $category->meta_title = 'Top 10 Best ' . Str::title($category->name) . ' near ' . Str::title($city->name) . ', USA';
+                $category->meta_title = 'Top 10 Best Gym Near' . Str::title($city->name) . Str::title($category->name);
             } else {
-                $category->meta_title = Str::title($category->name) . ' near ' . Str::title($city->name) . ', USA';
+                $category->meta_title = 'Gym Near' . Str::title($city->name) . Str::title($category->name);
             }
 
             Meta::setPaginationLinks($organizations);

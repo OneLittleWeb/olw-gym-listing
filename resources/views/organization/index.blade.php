@@ -24,8 +24,8 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center pb-4 text-capitalize">
-                            <h1 class="sec__title mb-0">Top 10 Best {{ $category->name }} near {{ $city->name }},
-                                USA</h1>
+                            <h1 class="sec__title mb-0">Top 10 Best Gym near {{ $city->name }},
+                                {{ $category->name }}</h1>
                         </div>
                     </div>
                     @if($organizations->onFirstPage() && $organization_badge)
