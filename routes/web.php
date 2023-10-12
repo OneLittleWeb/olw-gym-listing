@@ -95,7 +95,7 @@ Route::get('/import-states', [StateController::class, 'importStateName'])->name(
 Route::get('/import-cities', [CityController::class, 'importCityData'])->name('import.city.data');
 
 //route for image copy past from multiple folder to single folder
-Route::get('/copy-past', [OrganizationController::class, 'copyPast'])->name('copy.past');
+Route::get('/copy-paste', [OrganizationController::class, 'copyPaste'])->name('copy.past');
 
 Route::get('/about-us', [PageController::class, 'aboutUs'])->name('page.about');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('page.privacy');

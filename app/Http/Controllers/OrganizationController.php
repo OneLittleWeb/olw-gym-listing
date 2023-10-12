@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ExcelImportJob;
+use App\Jobs\ImageCopyPasteJob;
 use App\Mail\ClaimBusinessMail;
 use App\Mail\ClaimedBusiness;
 use App\Mail\ClaimedNotificationToAdmin;
@@ -664,26 +665,37 @@ class OrganizationController extends Controller
 //        return redirect()->back();
 //    }
 
-    public function copyPast()
+    public function copyPaste()
     {
-        $state_directories = File::directories('H:\gym');
+        dispatch(new ImageCopyPasteJob());
 
-        foreach ($state_directories as $category_directory) {
-            foreach (File::directories($category_directory) as $category) {
-                $sourcePath = File::glob($category . '/media/*');
-
-                foreach ($sourcePath as $source) {
-
-                    $destinationPath = 'H:\gymnearx-images';
-                    $file = basename($source);
-                    $destinationPath = $destinationPath . '/' . $file;
-                    File::copy($source, $destinationPath);
-                }
-            }
-        }
-
-        alert()->success('success', 'Images copy and past successfully completed.');
-
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Images copy and paste job has been queued for execution.');
     }
+
+//    public function copyPaste()
+//    {
+//        try {
+//            $state_directories = File::directories('H:\gym');
+//
+//            foreach ($state_directories as $state_directory) {
+//                foreach (File::directories($state_directory) as $city_directory) {
+//
+//                    $sourcePath = File::glob($city_directory . '/media/*');
+//
+//                    foreach ($sourcePath as $source) {
+//
+//                        $destinationPath = 'H:\gymnearx-images';
+//                        $file = basename($source);
+//                        $destinationPath = $destinationPath . '/' . $file;
+//                        File::copy($source, $destinationPath);
+//                    }
+//                }
+//            }
+//
+//            return redirect()->back()->with('success', 'Images copy and past successfully completed.');
+//        } catch (\Exception $e) {
+//            // Handle exceptions
+//            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
+//        }
+//    }
 }
