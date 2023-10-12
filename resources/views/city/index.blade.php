@@ -34,7 +34,7 @@
                                      data-src="{{ asset('images/gym-state.jpg') }}"
                                      alt="{{ $city->name }}" class="cat-img lazy">
                                 <div class="category-content d-flex align-items-center justify-content-center">
-                                    <a href="#"
+                                    <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $city->state->slug]) }}"
                                        class="category-link d-flex flex-column justify-content-center w-100 h-100">
                                         <div class="cat-content">
                                             <h4 class="cat__title mb-3">{{ $city->name }}</h4>

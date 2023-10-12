@@ -25,7 +25,7 @@
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center pb-4 text-capitalize">
                             <h1 class="sec__title mb-0">Top 10 Best {{ $category->name }} near {{ $city->name }},
-                                Nebraska</h1>
+                                USA</h1>
                         </div>
                     </div>
                     @if($organizations->onFirstPage() && $organization_badge)
@@ -247,7 +247,7 @@
                                     <div class="stroke-shape mb-4"></div>
                                     <div class="category-list">
                                         @foreach($cities->take(6) as $f_city)
-                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'category_slug' => $category->slug]) }}"
+                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $category->slug]) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                 <img src="{{ asset('images/city/' . $f_city->background_image) }}"
                                                      data-src="{{ asset('images/city/' . $f_city->background_image) }}"
@@ -261,7 +261,7 @@
                                         @endforeach
                                         <div class="collapse collapse-content" id="showMoreCity">
                                             @foreach($cities->skip(6) as $f_city)
-                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'category_slug' => $category->slug]) }}"
+                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $category->slug]) }}"
                                                    class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                     <img src="{{ asset('images/city/' . $f_city->background_image) }}"
                                                          data-src="{{ asset('images/city/' . $f_city->background_image) }}"
@@ -290,7 +290,7 @@
                                     <div class="stroke-shape mb-4"></div>
                                     <div class="category-list">
                                         @foreach($categories->take(5) as $category)
-                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'category_slug' => $category->slug]) }}"
+                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $category->slug]) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                 <img src="{{ asset('images/category/' . $category->background_image) }}"
                                                      data-src="{{ asset('images/category/' . $category->background_image) }}"
@@ -299,14 +299,14 @@
                                                 <div
                                                     class="generic-img-card-content d-flex align-items-center justify-content-between">
                                                     <span class="badge text-capitalize">{{ $category->name }}</span>
-                                                    <span
-                                                        class="generic-img-card-counter">{{ $category->organizations->count() }}</span>
+{{--                                                    <span--}}
+{{--                                                        class="generic-img-card-counter">{{ $category->organizations->count() }}</span>--}}
                                                 </div>
                                             </a>
                                         @endforeach
                                         <div class="collapse collapse-content" id="showMoreCategory">
                                             @foreach($categories->skip(5) as $category)
-                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'category_slug' => $category->slug]) }}"
+                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $category->slug]) }}"
                                                    class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                     <img
                                                         src="{{ asset('images/category/' . $category->background_image) }}"
@@ -317,7 +317,7 @@
                                                         class="generic-img-card-content d-flex align-items-center justify-content-between">
                                                         <span class="badge text-capitalize">{{ $category->name }}</span>
                                                         <span
-                                                            class="generic-img-card-counter">{{ $category->organizations->count() }}</span>
+{{--                                                            class="generic-img-card-counter">{{ $category->organizations->count() }}</span>--}}
                                                     </div>
                                                 </a>
                                             @endforeach

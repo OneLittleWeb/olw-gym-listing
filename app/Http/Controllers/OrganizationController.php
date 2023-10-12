@@ -30,20 +30,20 @@ use Symfony\Component\Finder\Finder;
 
 class OrganizationController extends Controller
 {
-    public function cityWiseOrganizations($city_slug, $category_slug)
+    public function cityWiseOrganizations($city_slug, $state_slug)
     {
         $city_check = City::where('slug', $city_slug)->exists();
-        $category_check = Category::where('slug', $category_slug)->exists();
+        $state_check = State::where('slug', $state_slug)->exists();
 
-        if ($city_check && $category_check) {
+        if ($city_check && $state_check) {
             $city = City::where('slug', $city_slug)->first();
-            $category = Category::where('slug', $category_slug)->first();
+            $category = State::where('slug', $state_slug)->first();
 
-            $categories = Category::all();
+            $categories = State::all();
             $cities = City::all();
 
             $organizations = Organization::where('city_id', $city->id)
-                ->where('category_id', $category->id)
+                ->where('state_id', $category->id)
                 ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
@@ -71,9 +71,9 @@ class OrganizationController extends Controller
                 ->where('category_id', $category->id)->count();
 
             if ($organizations->onFirstPage()) {
-                $category->meta_title = 'Top 10 Best ' . Str::title($category->name) . ' near ' . Str::title($city->name) . ', Nebraska';
+                $category->meta_title = 'Top 10 Best ' . Str::title($category->name) . ' near ' . Str::title($city->name) . ', USA';
             } else {
-                $category->meta_title = Str::title($category->name) . ' near ' . Str::title($city->name) . ', Nebraska';
+                $category->meta_title = Str::title($category->name) . ' near ' . Str::title($city->name) . ', USA';
             }
 
             Meta::setPaginationLinks($organizations);

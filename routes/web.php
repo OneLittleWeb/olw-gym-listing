@@ -76,7 +76,8 @@ Route::post('/get-your-award-certificate/{slug}', [OrganizationController::class
 //Suggest an edit
 Route::post('/suggest-an-edit/store/{slug}', [OrganizationController::class, 'storeSuggestAnEdit'])->name('store.suggest.edit');
 
-Route::get('/{city_slug}/{category_slug}', [OrganizationController::class, 'cityWiseOrganizations'])->name('city.wise.organizations');
+//city wise organization
+Route::get('/{city_slug}/{state_slug}', [OrganizationController::class, 'cityWiseOrganizations'])->name('city.wise.organizations');
 Route::get('/{city_slug}/nls/{organization_slug}', [OrganizationController::class, 'cityWiseOrganization'])->name('city.wise.organization');
 
 Route::get('/cities', [CityController::class, 'index'])->name('city.index');
