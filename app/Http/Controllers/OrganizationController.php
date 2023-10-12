@@ -553,14 +553,8 @@ class OrganizationController extends Controller
 
     public function import()
     {
-        $state_directories = File::directories('H:\gym');
-
-        dd($state_directories);
-
         try {
             $state_directories = File::directories('H:\gym');
-
-            dd($state_directories);
 
             foreach ($state_directories as $state_directory) {
                 $state_name = trim(basename($state_directory), " ");
