@@ -72,7 +72,8 @@
                                                     @if($organization->organization_address)
                                                         {{ str_replace('Address: ', '', $organization->organization_address) }}
                                                     @else
-                                                        {{ ucfirst($organization->city->name) }}, {{ ucfirst($organization->state->name) }}, US
+                                                        {{ ucfirst($organization->city->name) }}
+                                                        , {{ ucfirst($organization->state->name) }}, US
                                                     @endif
                                                 </a>
                                             </p>
@@ -273,13 +274,15 @@
                                             </a>
                                         @endforeach
                                     </div>
-                                    <a class="collapse-btn" data-toggle="collapse" href="#showMoreCity"
-                                       role="button" aria-expanded="false" aria-controls="showMoreCity">
+                                    @if(count($cities) > 6)
+                                        <a class="collapse-btn" data-toggle="collapse" href="#showMoreCity"
+                                           role="button" aria-expanded="false" aria-controls="showMoreCity">
                                             <span class="collapse-btn-hide">Show More <i
                                                     class="la la-plus ml-1"></i></span>
-                                        <span class="collapse-btn-show">Show Less <i
-                                                class="la la-minus ml-1"></i></span>
-                                    </a>
+                                            <span class="collapse-btn-show">Show Less <i
+                                                    class="la la-minus ml-1"></i></span>
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="sidebar-widget">

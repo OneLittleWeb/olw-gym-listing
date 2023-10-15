@@ -34,7 +34,7 @@ class OrganizationController extends Controller
             $s_state = State::where('slug', $state_slug)->first();
 
             $states = State::all();
-            $cities = City::all();
+            $cities = City::where('state_id', $s_state->id)->get();
 
             $organizations = Organization::where('city_id', $city->id)
                 ->where('state_id', $s_state->id)
