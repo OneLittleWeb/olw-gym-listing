@@ -157,7 +157,7 @@
 .suggest-edit-button {
     padding: 10px;
     width: 365px;
-    background: linear-gradient(270deg, #9f8fff, #7b68ee);
+    background: linear-gradient(270deg, #f8c401, #f8c401);
     position: relative;
     color: #fff;
 }
@@ -172,7 +172,7 @@
 }
 
 .suggest-edit-button:hover {
-    background: linear-gradient(270deg, #7b68ee, #9f8fff);
+    background: linear-gradient(270deg, #f8c401, #f8c401);
     color: #fff;
 }
 
@@ -207,6 +207,13 @@
 
 .padding-top-12-px {
     padding-top: 12px;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #f8c401 !important;
+    border-color: #f8c401 !important;
 }
 
 @media (max-width: 768px) {

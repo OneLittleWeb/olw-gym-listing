@@ -1851,7 +1851,7 @@ body {
 }
 
 .btn-text:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .btn-text:hover .icon {
@@ -1911,7 +1911,7 @@ body {
 
 .offer-btn {
     background: #fff;
-    color: #7b68ee;
+    color: #f8c401;
     -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -2184,7 +2184,7 @@ body {
 
 .loader-container .loader-ripple div {
     position: absolute;
-    border: 4px solid #7b68ee;
+    border: 4px solid #f8c401;
     opacity: 1;
     border-radius: 50%;
     animation: loader-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite
@@ -2527,8 +2527,8 @@ body {
 }
 
 .custom-checkbox input[type=checkbox]:checked + label:before {
-    background-color: #7b68ee;
-    border-color: #7b68ee
+    background-color: #f8c401;
+    border-color: #f8c401;
 }
 
 .custom-radio li + li {
@@ -2807,11 +2807,11 @@ body {
 }
 
 .range-slider.ui-widget-content .ui-slider-range {
-    background-color: #7b68ee
+    background-color: #f8c401
 }
 
 .range-slider.ui-widget-content .ui-slider-handle {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -2911,7 +2911,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .social-profile li a:hover {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff
 }
 
@@ -3138,7 +3138,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .info-list li .icon {
-    color: #7b68ee;
+    color: #f8c401;
     margin-right: 2px;
     font-size: 16px;
     width: 30px;
@@ -3157,11 +3157,11 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .info-list li:hover a {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .info-list li:hover .icon {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff
 }
 
@@ -3528,9 +3528,9 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .section-pagination .page-link.page-link-active {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff;
-    border-color: #7b68ee
+    border-color: #f8c401;
 }
 
 .section-pagination .page-link.page-link-first, .section-pagination .page-link.page-link-last {
@@ -3647,9 +3647,9 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .filter-nav li a.active {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff;
-    border-color: #7b68ee
+    border-color: #f8c401;
 }
 
 .dot-action-wrap .dropdown-menu {
@@ -3788,7 +3788,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .owl-trigger-action .owl-nav div:hover {
-    color: #7b68ee;
+    color: #f8c401;
     -webkit-box-shadow: 0 5px 30px rgba(82, 85, 90, 0.2);
     -moz-box-shadow: 0 5px 30px rgba(82, 85, 90, 0.2);
     box-shadow: 0 5px 30px rgba(82, 85, 90, 0.2)
@@ -3829,7 +3829,7 @@ div.datedropper .picker .pick-lg-b li {
     -o-transform: scale(1);
     transform: scale(1);
     background-color: transparent;
-    border-color: #7b68ee
+    border-color: #f8c401;
 }
 
 .owl-trigger-action-2 .owl-nav div {
@@ -4199,7 +4199,7 @@ div.datedropper .picker .pick-lg-b li {
     height: 50px;
     line-height: 50px;
     text-align: center;
-    /*background-color: #7b68ee;*/
+    /*background-color: #f8c401;*/
     background-color: #5c4725;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -4807,7 +4807,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .breadcrumb-content .contact-form-action .form-group .submit-btn:hover {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff
 }
 
@@ -4912,11 +4912,11 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .bread-list-2 li a:before {
-    background-color: #7b68ee
+    background-color: #f8c401;
 }
 
 .bread-list-2 li a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .bread-thumb {
@@ -4992,7 +4992,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .hover-tooltip-box .hover-tooltip a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .hover-tooltip-box .hover-tooltip:after {
@@ -5043,7 +5043,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .category-link a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .category-link:after {
@@ -5623,7 +5623,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .main-menu ul li .dropdown-menu-item li a:hover {
-    color: #7b68ee
+    color: #f8c401
 }
 
 .main-menu ul li .dropdown-menu-item li a:hover .ribbon {
@@ -5932,7 +5932,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .dashboard-header .main-menu-content nav ul li a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 @media (min-width: 992px) {
@@ -5968,7 +5968,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .modal-form .modal-top .close-arrow span:hover {
-    color: #7b68ee;
+    color: #f8c401;
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
@@ -6131,7 +6131,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .user-action-meta .lost-pass-btn:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .copy-to-clipboard {
@@ -7279,7 +7279,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .card-image .post-share:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .card-item .card-image .bookmark-btn {
@@ -7288,7 +7288,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .card-image .bookmark-btn:hover {
-    background-color: #7b68ee
+    background-color: #f8c401;
 }
 
 .card-item .card-image .bookmark-btn.active .la-bookmark:before {
@@ -7349,7 +7349,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .card-image .post-share-social .post-share-social-icon:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .card-item .card-image .post-share:hover .post-share-social, .card-item .card-image .post-share:hover .post-share-social-icon {
@@ -7415,7 +7415,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .card-title a:hover {
-    color: #7b68ee
+    color: #f8c401
 }
 
 .card-item .card-title i {
@@ -7468,7 +7468,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .listing-meta .listing-cat-link:hover {
-    color: #7b68ee
+    color: #f8c401
 }
 
 .card-item .listing-meta .listing-icon {
@@ -7491,7 +7491,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .listing-meta .listing-star {
-    color: #7b68ee;
+    color: #f8c401;
     line-height: 16px
 }
 
@@ -7817,7 +7817,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .pill:hover {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff
 }
 
@@ -8316,7 +8316,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .mini-list-card .mini-list-title a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .generic-img-card {
@@ -8714,7 +8714,7 @@ div.datedropper .picker .pick-lg-b li {
 
 .category-item .icon-element {
     background-color: #fff;
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .category-item .icon-element:after {
@@ -8822,7 +8822,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .category-item:hover .category-content .badge {
-    background-color: #7b68ee
+    background-color:#f8c401;
 }
 
 .category-item:hover .category-content .category-link {
@@ -8948,7 +8948,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .location-item:hover {
-    color: #7b68ee;
+    color: #f8c401;
     -webkit-transform: scale(1.03);
     -moz-transform: scale(1.03);
     -ms-transform: scale(1.03);
@@ -9584,7 +9584,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .search-box .btn-primary {
-    background-color: #7b68ee !important
+    background-color: #f8c401 !important
 }
 
 .search-box .form-control {
@@ -9594,7 +9594,7 @@ div.datedropper .picker .pick-lg-b li {
     border-top: 0;
     border-right: 0;
     border-bottom: 0;
-    border-left: 5px solid #7b68ee;
+    border-left: 5px solid #f8c401;
     -webkit-box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1)
@@ -9844,7 +9844,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .generic-list-card .generic-close:hover {
-    color: #7b68ee;
+    color: #f8c401;
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
@@ -9874,7 +9874,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .generic-list-card-content .generic-link:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .my-table .order-id {
@@ -10554,7 +10554,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .meta-data .comment__title a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .meta-data .comment__meta {
@@ -10710,7 +10710,7 @@ div.datedropper .picker .pick-lg-b li {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff;
     text-align: center;
     font-size: 36px;
@@ -10731,7 +10731,7 @@ div.datedropper .picker .pick-lg-b li {
     width: 33px;
     height: 33px;
     line-height: 30px;
-    color: #7b68ee;
+    color: #f8c401;
     background-color: rgba(123, 104, 238, 0.1);
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -11080,14 +11080,14 @@ div.datedropper .picker .pick-lg-b li {
 
 .section-tab .nav-link.active {
     background-color: #fff;
-    color: #7b68ee;
+    color: #f8c401;
     -webkit-box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2);
     -moz-box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2);
     box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2)
 }
 
 .section-tab .nav-link.nav-link-gradient.active {
-    background: linear-gradient(270deg, #9f8fff, #7b68ee);
+    background: linear-gradient(270deg, #9f8fff, #f8c401);
     -webkit-box-shadow: 0 5px 25px rgba(123, 104, 238, 0.3);
     -moz-box-shadow: 0 5px 25px rgba(123, 104, 238, 0.3);
     box-shadow: 0 5px 25px rgba(123, 104, 238, 0.3);
@@ -11496,7 +11496,7 @@ div.datedropper .picker .pick-lg-b li {
     transform: translateX(-50%);
     font-family: "Line Awesome Free";
     font-weight: 900;
-    color: #7b68ee;
+    color: #f8c401;
     z-index: -1;
     font-size: 35px;
     width: 65px;
@@ -11525,7 +11525,7 @@ div.datedropper .picker .pick-lg-b li {
     font-size: 14px;
     text-transform: capitalize;
     font-weight: 500;
-    color: #7b68ee;
+    color: #f8c401;
     background-color: rgba(123, 104, 238, 0.05);
     padding: 6px 17px;
     -webkit-border-radius: 30px;
@@ -11727,7 +11727,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .enable-scroll.enabled {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff
 }
 
@@ -11888,7 +11888,7 @@ div.datedropper .picker .pick-lg-b li {
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .item-popup-box .map-badge {
@@ -11911,7 +11911,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .item-popup-box .map-badge:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .item-popup-box .map-img-box:before {
@@ -11971,7 +11971,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .item-popup-box .item-list-content h4 a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .item-popup-box .item-list-content .item-call, .item-popup-box .item-list-content .location-info {
@@ -11989,7 +11989,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .item-popup-box .item-list-content .item-call a:hover, .item-popup-box .item-list-content .location-info a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
 
 .item-popup-box .item-list-content .item-call i, .item-popup-box .item-list-content .location-info i {
@@ -12002,7 +12002,7 @@ div.datedropper .picker .pick-lg-b li {
     border-radius: 50%;
     background-color: rgba(123, 104, 238, 0.1);
     margin-right: 8px;
-    color: #7b68ee;
+    color: #f8c401;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -ms-transition: all .3s;
@@ -12011,7 +12011,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .item-popup-box .item-list-content .item-call:hover i, .item-popup-box .item-list-content .location-info:hover i {
-    background-color: #7b68ee;
+    background-color: #f8c401;
     color: #fff
 }
 
@@ -12484,7 +12484,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .copy-right .copy__desc span {
-    color: #7b68ee;
+    color: #f8c401;
     animation: heartBeat 1000ms infinite linear
 }
 
@@ -12498,5 +12498,5 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .copy-right .copy__desc a:hover {
-    color: #7b68ee
+    color: #f8c401;
 }
