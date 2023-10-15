@@ -31,13 +31,13 @@ class OrganizationController extends Controller
 
         if ($city_check && $state_check) {
             $city = City::where('slug', $city_slug)->first();
-            $category = State::where('slug', $state_slug)->first();
+            $state = State::where('slug', $state_slug)->first();
 
-            $categories = State::all();
+            $states = State::all();
             $cities = City::all();
 
             $organizations = Organization::where('city_id', $city->id)
-                ->where('state_id', $category->id)
+                ->where('state_id', $state->id)
                 ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
@@ -62,16 +62,16 @@ class OrganizationController extends Controller
             }
 
             $organization_count = Organization::where('city_id', $city->id)
-                ->where('category_id', $category->id)->count();
+                ->where('state_id', $state->id)->count();
 
             if ($organizations->onFirstPage()) {
-                $category->meta_title = 'Top 10 Best Gym Near' . Str::title($city->name) . Str::title($category->name);
+                $state->meta_title = 'Top 10 Best Gym Near ' . Str::title($city->name) . ', ' . Str::title($state->name);
             } else {
-                $category->meta_title = 'Gym Near' . Str::title($city->name) . Str::title($category->name);
+                $state->meta_title = 'Gym Near ' . Str::title($city->name) . ', ' . Str::title($state->name);
             }
 
             Meta::setPaginationLinks($organizations);
-            return view('organization.index', compact('organizations', 'cities', 'city', 'category', 'categories', 'organization_badge', 'organization_count'));
+            return view('organization.index', compact('organizations', 'cities', 'city', 'state', 'states', 'organization_badge', 'organization_count'));
         }
         return abort(404);
     }
@@ -665,7 +665,7 @@ class OrganizationController extends Controller
 //        return redirect()->back();
 //    }
 
-    public function copyPaste()
+    public function imageCopyPasteFromOneFolderToAnother()
     {
         dispatch(new ImageCopyPasteJob());
 

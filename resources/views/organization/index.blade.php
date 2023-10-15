@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', "$category->meta_title")
+@section('title', "$state->meta_title")
 @if (count($organizations) && $organizations->currentPage() > 1)
     @section('meta')
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', "Explore the best $category->name in " . Str::title($city->name) . ", Nebraska. Get photos, business hours, phone numbers, ratings, reviews and service details.")
-@section('meta_keywords', "$category->name in $city->name,ne , $category->name in $city->name near me")
+@section('meta_description', "Explore the best $state->name in " . Str::title($city->name) . ", Nebraska. Get photos, business hours, phone numbers, ratings, reviews and service details.")
+@section('meta_keywords', "$state->name in $city->name,ne , $state->name in $city->name near me")
 @section('content')
     <section class="card-area section-padding">
         <div class="container pt-5">
@@ -18,14 +18,14 @@
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
                                 <li><a href="{{ route('category.index', $city->slug) }}">{{ $city->name }}</a></li>
-                                <li>{{ $category->name }}</li>
+                                <li>{{ $state->name }}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center pb-4 text-capitalize">
                             <h1 class="sec__title mb-0">Top 10 Best Gym near {{ $city->name }},
-                                {{ $category->name }}</h1>
+                                {{ $state->name }}</h1>
                         </div>
                     </div>
                     @if($organizations->onFirstPage() && $organization_badge)
@@ -247,10 +247,10 @@
                                     <div class="stroke-shape mb-4"></div>
                                     <div class="category-list">
                                         @foreach($cities->take(6) as $f_city)
-                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $category->slug]) }}"
+                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $state->slug]) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
-                                                <img src="{{ asset('images/city/' . $f_city->background_image) }}"
-                                                     data-src="{{ asset('images/city/' . $f_city->background_image) }}"
+                                                <img src="{{ asset('images/cta-sm.jpg') }}"
+                                                     data-src="{{ asset('images/cta-sm.jpg') }}"
                                                      alt="image" class="generic-img-card-img filter-image lazy"
                                                      loading="lazy">
                                                 <div
@@ -261,10 +261,10 @@
                                         @endforeach
                                         <div class="collapse collapse-content" id="showMoreCity">
                                             @foreach($cities->skip(6) as $f_city)
-                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $category->slug]) }}"
+                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $state->slug]) }}"
                                                    class="generic-img-card d-block hover-y overflow-hidden mb-3">
-                                                    <img src="{{ asset('images/city/' . $f_city->background_image) }}"
-                                                         data-src="{{ asset('images/city/' . $f_city->background_image) }}"
+                                                    <img src="{{ asset('images/cta-sm.jpg') }}"
+                                                         data-src="{{ asset('images/cta-sm.jpg') }}"
                                                          alt="image" class="generic-img-card-img filter-image lazy"
                                                          loading="lazy">
                                                     <div
@@ -289,35 +289,35 @@
                                     <h3 class="widget-title">Filter by Category</h3>
                                     <div class="stroke-shape mb-4"></div>
                                     <div class="category-list">
-                                        @foreach($categories->take(5) as $category)
-                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $category->slug]) }}"
+                                        @foreach($states->take(5) as $state)
+                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $state->slug]) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
-                                                <img src="{{ asset('images/category/' . $category->background_image) }}"
-                                                     data-src="{{ asset('images/category/' . $category->background_image) }}"
+                                                <img src="{{ asset('images/sm-bg.jpg') }}"
+                                                     data-src="{{ asset('images/sm-bg.jpg') }}"
                                                      alt="image" class="generic-img-card-img filter-image lazy"
                                                      loading="lazy">
                                                 <div
                                                     class="generic-img-card-content d-flex align-items-center justify-content-between">
-                                                    <span class="badge text-capitalize">{{ $category->name }}</span>
-{{--                                                    <span--}}
-{{--                                                        class="generic-img-card-counter">{{ $category->organizations->count() }}</span>--}}
+                                                    <span class="badge text-capitalize">{{ $state->name }}</span>
+                                                    <span
+                                                        class="generic-img-card-counter">{{ $state->organizations->count() }}</span>
                                                 </div>
                                             </a>
                                         @endforeach
                                         <div class="collapse collapse-content" id="showMoreCategory">
-                                            @foreach($categories->skip(5) as $category)
-                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $category->slug]) }}"
+                                            @foreach($states->skip(5) as $state)
+                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $state->slug]) }}"
                                                    class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                     <img
-                                                        src="{{ asset('images/category/' . $category->background_image) }}"
-                                                        data-src="{{ asset('images/category/' . $category->background_image) }}"
+                                                        src="{{ asset('images/sm-bg.jpg') }}"
+                                                        data-src="{{ asset('images/sm-bg.jpg') }}"
                                                         alt="image" class="generic-img-card-img filter-image lazy"
                                                         loading="lazy">
                                                     <div
                                                         class="generic-img-card-content d-flex align-items-center justify-content-between">
-                                                        <span class="badge text-capitalize">{{ $category->name }}</span>
+                                                        <span class="badge text-capitalize">{{ $state->name }}</span>
                                                         <span
-{{--                                                            class="generic-img-card-counter">{{ $category->organizations->count() }}</span>--}}
+                                                            class="generic-img-card-counter">{{ $state->organizations->count() }}</span>
                                                     </div>
                                                 </a>
                                             @endforeach
