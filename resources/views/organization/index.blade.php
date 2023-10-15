@@ -68,7 +68,7 @@
                                             </h2>
                                             <p class="card-sub">
                                                 <a href="#">
-                                                    <i class="la la-map-marker mr-1 text-color-2"></i>
+                                                    <i class="la la-map-marker mr-1 text-color-5"></i>
                                                     @if($organization->organization_address)
                                                         {{ str_replace('Address: ', '', $organization->organization_address) }}
                                                     @else
@@ -87,7 +87,8 @@
                                                 <li>
                                                     <span class="price-range" data-toggle="tooltip" data-placement="top"
                                                           title="Pricey">
-                                                        <strong class="font-weight-medium">{{ $organization->price_policy ?? '$' }}</strong>
+                                                        <strong
+                                                            class="font-weight-medium">{{ $organization->price_policy ?? '$' }}</strong>
                                                     </span>
                                                 </li>
                                                 <li class="d-flex align-items-center">
@@ -240,14 +241,26 @@
                                         and experience to identify the top 10.</p>
                                 </div>
                             @endif
-
-                            @if($cities)
-                                <div class="sidebar-widget">
-                                    <h3 class="widget-title">Filter by City</h3>
-                                    <div class="stroke-shape mb-4"></div>
-                                    <div class="category-list">
-                                        @foreach($cities->take(6) as $f_city)
-                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $state->slug]) }}"
+                            <div class="sidebar-widget">
+                                <h3 class="widget-title">Filter by City</h3>
+                                <div class="stroke-shape mb-4"></div>
+                                <div class="category-list">
+                                    @foreach($cities->take(6) as $f_city)
+                                        <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $f_city->state->slug]) }}"
+                                           class="generic-img-card d-block hover-y overflow-hidden mb-3">
+                                            <img src="{{ asset('images/cta-sm.jpg') }}"
+                                                 data-src="{{ asset('images/cta-sm.jpg') }}"
+                                                 alt="image" class="generic-img-card-img filter-image lazy"
+                                                 loading="lazy">
+                                            <div
+                                                class="generic-img-card-content d-flex align-items-center justify-content-between">
+                                                <span class="badge text-capitalize">{{ $f_city->name }}</span>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                    <div class="collapse collapse-content" id="showMoreCity">
+                                        @foreach($cities->skip(6) as $f_city)
+                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $f_city->state->slug]) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                 <img src="{{ asset('images/cta-sm.jpg') }}"
                                                      data-src="{{ asset('images/cta-sm.jpg') }}"
@@ -259,43 +272,44 @@
                                                 </div>
                                             </a>
                                         @endforeach
-                                        <div class="collapse collapse-content" id="showMoreCity">
-                                            @foreach($cities->skip(6) as $f_city)
-                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $state->slug]) }}"
-                                                   class="generic-img-card d-block hover-y overflow-hidden mb-3">
-                                                    <img src="{{ asset('images/cta-sm.jpg') }}"
-                                                         data-src="{{ asset('images/cta-sm.jpg') }}"
-                                                         alt="image" class="generic-img-card-img filter-image lazy"
-                                                         loading="lazy">
-                                                    <div
-                                                        class="generic-img-card-content d-flex align-items-center justify-content-between">
-                                                        <span class="badge text-capitalize">{{ $f_city->name }}</span>
-                                                    </div>
-                                                </a>
-                                            @endforeach
-                                        </div>
-                                        <a class="collapse-btn" data-toggle="collapse" href="#showMoreCity"
-                                           role="button" aria-expanded="false" aria-controls="showMoreCity">
+                                    </div>
+                                    <a class="collapse-btn" data-toggle="collapse" href="#showMoreCity"
+                                       role="button" aria-expanded="false" aria-controls="showMoreCity">
                                             <span class="collapse-btn-hide">Show More <i
                                                     class="la la-plus ml-1"></i></span>
-                                            <span class="collapse-btn-show">Show Less <i
-                                                    class="la la-minus ml-1"></i></span>
-                                        </a>
-                                    </div>
+                                        <span class="collapse-btn-show">Show Less <i
+                                                class="la la-minus ml-1"></i></span>
+                                    </a>
                                 </div>
-                            @endif
-                            @if($city != null)
-                                <div class="sidebar-widget">
-                                    <h3 class="widget-title">Filter by Category</h3>
-                                    <div class="stroke-shape mb-4"></div>
-                                    <div class="category-list">
-                                        @foreach($states->take(5) as $state)
+                            </div>
+                            <div class="sidebar-widget">
+                                <h3 class="widget-title">Filter by State</h3>
+                                <div class="stroke-shape mb-4"></div>
+                                <div class="category-list">
+                                    @foreach($states->take(5) as $state)
+                                        <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $state->slug]) }}"
+                                           class="generic-img-card d-block hover-y overflow-hidden mb-3">
+                                            <img src="{{ asset('images/sm-bg.jpg') }}"
+                                                 data-src="{{ asset('images/sm-bg.jpg') }}"
+                                                 alt="image" class="generic-img-card-img filter-image lazy"
+                                                 loading="lazy">
+                                            <div
+                                                class="generic-img-card-content d-flex align-items-center justify-content-between">
+                                                <span class="badge text-capitalize">{{ $state->name }}</span>
+                                                <span
+                                                    class="generic-img-card-counter">{{ $state->organizations->count() }}</span>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                    <div class="collapse collapse-content" id="showMoreCategory">
+                                        @foreach($states->skip(5) as $state)
                                             <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $state->slug]) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
-                                                <img src="{{ asset('images/sm-bg.jpg') }}"
-                                                     data-src="{{ asset('images/sm-bg.jpg') }}"
-                                                     alt="image" class="generic-img-card-img filter-image lazy"
-                                                     loading="lazy">
+                                                <img
+                                                    src="{{ asset('images/sm-bg.jpg') }}"
+                                                    data-src="{{ asset('images/sm-bg.jpg') }}"
+                                                    alt="image" class="generic-img-card-img filter-image lazy"
+                                                    loading="lazy">
                                                 <div
                                                     class="generic-img-card-content d-flex align-items-center justify-content-between">
                                                     <span class="badge text-capitalize">{{ $state->name }}</span>
@@ -304,34 +318,16 @@
                                                 </div>
                                             </a>
                                         @endforeach
-                                        <div class="collapse collapse-content" id="showMoreCategory">
-                                            @foreach($states->skip(5) as $state)
-                                                <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $state->slug]) }}"
-                                                   class="generic-img-card d-block hover-y overflow-hidden mb-3">
-                                                    <img
-                                                        src="{{ asset('images/sm-bg.jpg') }}"
-                                                        data-src="{{ asset('images/sm-bg.jpg') }}"
-                                                        alt="image" class="generic-img-card-img filter-image lazy"
-                                                        loading="lazy">
-                                                    <div
-                                                        class="generic-img-card-content d-flex align-items-center justify-content-between">
-                                                        <span class="badge text-capitalize">{{ $state->name }}</span>
-                                                        <span
-                                                            class="generic-img-card-counter">{{ $state->organizations->count() }}</span>
-                                                    </div>
-                                                </a>
-                                            @endforeach
-                                        </div>
-                                        <a class="collapse-btn" data-toggle="collapse" href="#showMoreCategory"
-                                           role="button" aria-expanded="false" aria-controls="showMoreCategory">
+                                    </div>
+                                    <a class="collapse-btn" data-toggle="collapse" href="#showMoreCategory"
+                                       role="button" aria-expanded="false" aria-controls="showMoreCategory">
                                             <span class="collapse-btn-hide">Show More <i
                                                     class="la la-plus ml-1"></i></span>
-                                            <span class="collapse-btn-show">Show Less <i
-                                                    class="la la-minus ml-1"></i></span>
-                                        </a>
-                                    </div>
+                                        <span class="collapse-btn-show">Show Less <i
+                                                class="la la-minus ml-1"></i></span>
+                                    </a>
                                 </div>
-                            @endif
+                            </div>
                         </div>
                     </div>
                 </div>
