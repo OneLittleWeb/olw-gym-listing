@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Organization;
 use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -18,6 +19,25 @@ class StateController extends Controller
         $category = null;
 
         return view('state.index', compact('states', 'cities', 'city', 'category'));
+    }
+
+    public function stateWiseOrganization($slug)
+    {
+        $s_state = State::where('slug', $slug)->first();
+        if ($s_state) {
+            $organizations = Organization::where('state_id', $s_state->id)
+                ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
+                ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
+                ->paginate(10)
+                ->onEachSide(0);
+
+            $states = State::all();
+            $cities = City::where('state_id', $s_state->id)->get();
+            $city = null;
+
+            return view('state.state-wise-organization', compact('organizations', 's_state', 'states', 'cities', 'city'));
+        }
+        abort(404);
     }
 
     public function importStateName()
@@ -46,23 +66,4 @@ class StateController extends Controller
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
-
-
-//    public function importStateName()
-//    {
-//        $state_directories = File::directories('H:\gym');
-//
-//        foreach ($state_directories as $state_directory) {
-//            $state_name = trim(basename($state_directory), " ");
-//            $state = new State();
-//            $state->name = $state_name;
-//            $state->slug = Str::slug($state_name);
-//            $state->background_image = Str::slug($state_name) . '.png';
-//            $state->save();
-//        }
-//
-//        alert()->success('success', 'States imported successfully.');
-//
-//        return redirect()->back();
-//    }
 }

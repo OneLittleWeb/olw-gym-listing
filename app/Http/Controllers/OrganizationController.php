@@ -124,14 +124,17 @@ class OrganizationController extends Controller
                 $meta = explode(',', $organization->organization_address);
                 $organization->meta_title = $organization->organization_name . ' -' . $meta[1] . ',' . $meta[2];
             } else {
-                $organization->meta_title = $organization->organization_name . ' - ' . $city->name . ', ' . 'NE';
+                $organization->meta_title = $organization->organization_name . ' - ' . $city->name . ', ' . $city->state->name;
             }
 
-            if ($organization->organization_address) {
+            if ($organization->organization_address && $organization->located_in) {
                 $address_line = explode(',', $organization->organization_address);
-                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at' . $address_line[1] . ',' . $address_line[2] . '.';
+                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . $organization->located_in . ',' . $address_line[1] . ',' . $address_line[2] . '.';
+            } elseif ($organization->organization_address) {
+                $address_line = explode(',', $organization->organization_address);
+                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . $address_line[1] . ',' . $address_line[2] . '.';
             } else {
-                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . Str::title($organization->city->name) . ', NE.';
+                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . Str::title($organization->city->name) . ', ' . Str::title($organization->city->state->name) . '.';
             }
 
             if ($organization->organization_phone_number) {

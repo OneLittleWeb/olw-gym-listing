@@ -64,7 +64,7 @@
                     @foreach($major_states as $state)
                         <div class="col-lg-2 col-sm-6">
                             <div class="hero-category-item hero-category-item-layout-2">
-                                <a href="{{ route('category.index', $state->slug) }}" class="d-block hero-cat-link">
+                                <a href="{{ route('state.wise.organizations', $state->slug) }}" class="d-block hero-cat-link">
                                     <span class="icon-element mx-auto {{ $state->background }}">
 {{--                                        <img src="{{asset('images/' . $state->background_image)}}"--}}
                                         {{--                                             data-src="{{asset('images/' . $state->background_image)}}"--}}
@@ -144,7 +144,7 @@
                                  data-src="{{asset('images/gym-state.jpg')}}"
                                  alt="state-image" class="lazy cat-img">
                             <div class="category-content d-flex align-items-center justify-content-center">
-                                <a href="{{ route('category.index', $state->slug) }}"
+                                <a href="{{ route('state.wise.organizations', $state->slug) }}"
                                    class="category-link d-flex flex-column justify-content-center w-100 h-100">
                                     <div class="cat-content">
                                         <h4 class="cat__title mb-3">{{ $state->name }}</h4>

@@ -17,7 +17,7 @@
                             class="breadcrumb-content breadcrumb-content-2 d-flex flex-wrap align-items-end justify-content-between margin-bottom-30px">
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="{{ route('category.index', $city->slug) }}">{{ $city->name }}</a></li>
+                                <li><a href="#">{{ $city->name }}</a></li>
                                 <li>{{ $s_state->name }}</li>
                             </ul>
                         </div>
@@ -94,7 +94,7 @@
                                                 </li>
                                                 <li class="d-flex align-items-center">
                                                     <i class="{{ $organization->category->icon }}"></i>&nbsp;&nbsp;
-                                                    <a href="{{ route('category.business', $organization->organization_category ? $organization->organization_category : $organization->category->slug) }}"
+                                                    <a href="#"
                                                        class="listing-cat-link text-capitalize">{{ $organization->organization_category ? $organization->organization_category : $organization->category->name }}</a>
                                                 </li>
                                             </ul>

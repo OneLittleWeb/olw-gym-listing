@@ -104,6 +104,6 @@ Route::get('/contact-us', [PageController::class, 'contactUs'])->name('page.cont
 Route::post('/contact-store', [PageController::class, 'contactStore'])->name('contact.store');
 Route::get('/pricing', [PricingController::class, 'index'])->name('page.pricing');
 
-Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/{slug}', [StateController::class, 'stateWiseOrganization'])->name('state.wise.organizations');
 
 
