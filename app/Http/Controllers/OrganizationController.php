@@ -31,13 +31,13 @@ class OrganizationController extends Controller
 
         if ($city_check && $state_check) {
             $city = City::where('slug', $city_slug)->first();
-            $state = State::where('slug', $state_slug)->first();
+            $s_state = State::where('slug', $state_slug)->first();
 
             $states = State::all();
             $cities = City::all();
 
             $organizations = Organization::where('city_id', $city->id)
-                ->where('state_id', $state->id)
+                ->where('state_id', $s_state->id)
                 ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
@@ -62,16 +62,16 @@ class OrganizationController extends Controller
             }
 
             $organization_count = Organization::where('city_id', $city->id)
-                ->where('state_id', $state->id)->count();
+                ->where('state_id', $s_state->id)->count();
 
             if ($organizations->onFirstPage()) {
-                $state->meta_title = 'Top 10 Best Gym Near ' . Str::title($city->name) . ', ' . Str::title($state->name);
+                $s_state->meta_title = 'Top 10 Best Gym Near ' . Str::title($city->name) . ', ' . Str::title($s_state->name);
             } else {
-                $state->meta_title = 'Gym Near ' . Str::title($city->name) . ', ' . Str::title($state->name);
+                $s_state->meta_title = 'Gym Near ' . Str::title($city->name) . ', ' . Str::title($s_state->name);
             }
 
             Meta::setPaginationLinks($organizations);
-            return view('organization.index', compact('organizations', 'cities', 'city', 'state', 'states', 'organization_badge', 'organization_count'));
+            return view('organization.index', compact('organizations', 'cities', 'city', 's_state', 'states', 'organization_badge', 'organization_count'));
         }
         return abort(404);
     }

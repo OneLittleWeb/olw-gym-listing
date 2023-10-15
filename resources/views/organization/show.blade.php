@@ -40,7 +40,7 @@
                                     <a href="{{ route('category.index', $organization->city->slug) }}">{{ $organization->city->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('city.wise.organizations', ['city_slug' => $organization->city->slug, 'category_slug' => $organization->category->slug]) }}">{{ $organization->category->name }}</a>
+                                    <a href="{{ route('city.wise.organizations', ['city_slug' => $organization->city->slug, 'state_slug' => $organization->state->slug]) }}">{{ $organization->state->name }}</a>
                                 </li>
                                 <li>{{ $organization->organization_name }}</li>
                             </ul>
@@ -58,7 +58,7 @@
                                     <div class="hover-tooltip-box ml-3 pt-2">
                                         <a href="{{ route('claim.business', $organization->slug) }}"
                                            class="gradient-btn btn-sm claim-button">
-                                            <i class="la la-check-circle mr-1 text-color-4"></i>Claim</a>
+                                            <i class="la la-check-circle mr-1 text-color-17"></i>Claim</a>
                                         <div class="hover-tooltip">
                                             <p>If you are the owner or representative of this business, you can claim it
                                                 by
@@ -69,7 +69,7 @@
                             </div>
 
                             <p class="sec__desc py-2 font-size-17"><i
-                                    class="la la-map-marker mr-1 text-color-2"></i>
+                                    class="la la-map-marker mr-1 text-color-16"></i>
                                 @if($organization->organization_address)
                                     {{ $organization->organization_address }}
                                 @else
@@ -155,25 +155,25 @@
                                 <ul class="list-items list--items list-items-style-2 py-4">
                                     @if($organization->organization_address)
                                         <li><span class="text-color"><i
-                                                    class="la la-map mr-2 text-color-2 font-size-18"></i>Address:</span>
+                                                    class="la la-map mr-2 text-color-16 font-size-18"></i>Address:</span>
                                             {{ $organization->organization_address }}
                                         </li>
                                     @endif
                                     @if($organization->organization_phone_number)
                                         <li><span class="text-color"><i
-                                                    class="la la-phone mr-2 text-color-2 font-size-18"></i>Phone:</span><a
+                                                    class="la la-phone mr-2 text-color-16 font-size-18"></i>Phone:</span><a
                                                 href="tel:{{ $organization->organization_phone_number }}">{{ $organization->organization_phone_number }}</a>
                                         </li>
                                     @endif
                                     @if($organization->organization_email)
                                         <li><span class="text-color"><i
-                                                    class="la la-envelope mr-2 text-color-2 font-size-18"></i>Email:</span><a
+                                                    class="la la-envelope mr-2 text-color-16 font-size-18"></i>Email:</span><a
                                                 href="mailto:{{$organization->organization_email}}">{{ $organization->organization_email }}</a>
                                         </li>
                                     @endif
                                     @if($organization->organization_website)
                                         <li><span class="text-color"><i
-                                                    class="la la-globe mr-2 text-color-2 font-size-18"></i>Website:</span><a
+                                                    class="la la-globe mr-2 text-color-16 font-size-18"></i>Website:</span><a
                                                 rel="nofollow"
                                                 href="{{ 'https://' . $organization->organization_website }}"
                                                 target="_blank">{{ $organization->organization_website }}</a>
@@ -278,7 +278,7 @@
                         @if($organization->reviews->count())
                             <div class="block-card mb-4">
                                 <div class=" pb-4">
-                                    <h2 class="widget-title">Reviews <span class="ml-1 text-color-2">({{ $organization->reviews->whereNotNull('review_id')->count() }})</span>
+                                    <h2 class="widget-title">Reviews <span class="ml-1 text-color-16">({{ $organization->reviews->whereNotNull('review_id')->count() }})</span>
                                     </h2>
                                     <div class="stroke-shape"></div>
                                 </div>
@@ -300,7 +300,7 @@
                                                 aria-controls="nebraska-review"
                                                 aria-selected="false"><img class="review-logo"
                                                                            src="{{asset('/images/favicon.png')}}"
-                                                                           alt="Logo"> Nebraskalisting
+                                                                           alt="Logo"> Gymnearx
                                             <span class="nebraska-review-count"> ({{ $organization->reviews->whereNull('review_id')->count() }})</span>
                                         </button>
                                     </li>
@@ -1034,16 +1034,16 @@
                             <div class="stroke-shape mb-4"></div>
                             <ul class="list-items list-items-style-2">
                                 @if($organization->organization_website)
-                                    <li><i class="la la-external-link mr-2 text-color-2 font-size-18"></i><a
+                                    <li><i class="la la-external-link mr-2 text-color-16 font-size-18"></i><a
                                             rel="nofollow" href="{{ 'https://' . $organization->organization_website }}"
                                             target="_blank">{{ $organization->organization_website }}</a></li>
                                 @endif
                                 @if($organization->organization_phone_number)
-                                    <li><i class="la la-phone mr-2 text-color-2 font-size-18"></i>
+                                    <li><i class="la la-phone mr-2 text-color-16 font-size-18"></i>
                                         <a href="tel:{{ $organization->organization_phone_number }}">{{ $organization->organization_phone_number }}</a>
                                     </li>
                                 @endif
-                                <li><i class="la la-map-signs mr-2 text-color-2 font-size-18"></i>
+                                <li><i class="la la-map-signs mr-2 text-color-16 font-size-18"></i>
                                     <a rel="nofollow" href="{{ $organization->gmaps_link }}" target="_blank">Get
                                         Directions</a>
                                 </li>

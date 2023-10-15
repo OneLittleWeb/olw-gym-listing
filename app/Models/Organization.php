@@ -57,6 +57,11 @@ class Organization extends Model
         return $this->belongsTo(City::class);
     }
 
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class, 'organization_guid', 'organization_guid');

@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', "$state->meta_title")
+@section('title', "$s_state->meta_title")
 @if (count($organizations) && $organizations->currentPage() > 1)
     @section('meta')
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', "Explore the best $state->name in " . Str::title($city->name) . ", Nebraska. Get photos, business hours, phone numbers, ratings, reviews and service details.")
-@section('meta_keywords', "$state->name in $city->name,ne , $state->name in $city->name near me")
+@section('meta_description', "Explore the best gym in $s_state->name , " . Str::title($city->name) . ", Get photos, business hours, phone numbers, ratings, reviews and service details.")
+@section('meta_keywords', "$s_state->name in $city->name, $s_state->name in $city->name near me")
 @section('content')
     <section class="card-area section-padding">
         <div class="container pt-5">
@@ -18,20 +18,20 @@
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
                                 <li><a href="{{ route('category.index', $city->slug) }}">{{ $city->name }}</a></li>
-                                <li>{{ $state->name }}</li>
+                                <li>{{ $s_state->name }}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center pb-4 text-capitalize">
                             <h1 class="sec__title mb-0">Top 10 Best Gym near {{ $city->name }},
-                                {{ $state->name }}</h1>
+                                {{ $s_state->name }}</h1>
                         </div>
                     </div>
                     @if($organizations->onFirstPage() && $organization_badge)
                         <div class="col-lg-12 nebraska-badge-div mobile">
                             <img class="nebraska-badge-image" src="{{ asset('images/badges/' . $organization_badge) }}"
-                                 data-src="{{ asset('images/badges/' . $organization_badge) }}" alt="Nebraska Badge">
+                                 data-src="{{ asset('images/badges/' . $organization_badge) }}" alt="Gymnearx Badge">
                             <p class="text-justify">We considered
                                 all {{ $organization_count }} {{ $organizations[0]->category->name }} Companies in the
                                 {{ $organizations[0]->city->name }} area. We looked at
@@ -72,7 +72,7 @@
                                                     @if($organization->organization_address)
                                                         {{ str_replace('Address: ', '', $organization->organization_address) }}
                                                     @else
-                                                        {{ ucfirst($organization->city->name) }}, Nebraska, US
+                                                        {{ ucfirst($organization->city->name) }}, {{ ucfirst($organization->state->name) }}, US
                                                     @endif
                                                 </a>
                                             </p>
