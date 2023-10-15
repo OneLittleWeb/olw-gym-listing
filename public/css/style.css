@@ -3225,7 +3225,7 @@ div.datedropper .picker .pick-lg-b li {
     right: 0;
     width: 0;
     height: 2px;
-    background-color: #f8c401;
+    background-color: #131443;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -ms-transition: all .3s;
@@ -3234,7 +3234,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .list-items li a:hover {
-    color: #f8c401
+    color: #131443
 }
 
 .list-items li a:hover:before {

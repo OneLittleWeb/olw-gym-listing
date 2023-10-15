@@ -127,44 +127,11 @@ class OrganizationController extends Controller
                 $organization->meta_title = $organization->organization_name . ' - ' . $city->name . ', ' . 'NE';
             }
 
-            //For Restaurants/Resorts/Hotels
-            $restaurant_type = [22, 21, 12];
-
-
-            //For Gyms/Nail Salons/Hair Salons/Beauty Salons
-            $gym_type = [10, 16, 11, 1];
-
-            //For Landscapers/Physical Therapists/Dentists/Car Wash/Car Detailing/Car Rental
-            $landscaper_type = [14, 19, 6, 4, 2, 3];
-
-            if (in_array($organization->category_id, $restaurant_type)) {
-                if ($organization->organization_address) {
-                    $address_line = explode(',', $organization->organization_address);
-                    $organization->about1 = 'Sitting at the Breathtaking spot of ' . Str::title($organization->city->name) . ' city, ' . "<strong>$organization->organization_name</strong>" . ' is located at' . $address_line[1] . ',' . $address_line[2] . '.';
-                } else {
-                    $organization->about1 = 'Sitting at the Breathtaking spot of ' . Str::title($organization->city->name) . ' city, ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . Str::title($organization->city->name) . ', NE.';
-                }
-            } elseif (in_array($organization->category_id, $gym_type)) {
-                if ($organization->organization_address) {
-                    $address_line = explode(',', $organization->organization_address);
-                    $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at' . $address_line[1] . ',' . $address_line[2] . '.';
-                } else {
-                    $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . Str::title($organization->city->name) . ', NE.';
-                }
-            } elseif (in_array($organization->category_id, $landscaper_type)) {
-                if ($organization->organization_address) {
-                    $address_line = explode(',', $organization->organization_address);
-                    $organization->about1 = 'Sitting at the graceful service center of ' . Str::title($organization->city->name) . ' city, ' . "<strong>$organization->organization_name</strong>" . ' is located at' . $address_line[1] . ',' . $address_line[2] . '.';
-                } else {
-                    $organization->about1 = 'Sitting at the graceful service center of ' . Str::title($organization->city->name) . ' city, ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . Str::title($organization->city->name) . ', NE.';
-                }
+            if ($organization->organization_address) {
+                $address_line = explode(',', $organization->organization_address);
+                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at' . $address_line[1] . ',' . $address_line[2] . '.';
             } else {
-                if ($organization->organization_address) {
-                    $address_line = explode(',', $organization->organization_address);
-                    $organization->about1 = 'Positioned at the neighborhood of ' . Str::title($organization->city->name) . ' city, ' . "<strong>$organization->organization_name</strong>" . ' is located at' . $address_line[1] . ',' . $address_line[2] . '.';
-                } else {
-                    $organization->about1 = 'Positioned at the neighborhood of ' . Str::title($organization->city->name) . ' city, ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . Str::title($organization->city->name) . ', NE.';
-                }
+                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . Str::title($organization->city->name) . ', NE.';
             }
 
             if ($organization->organization_phone_number) {
@@ -284,9 +251,9 @@ class OrganizationController extends Controller
                 $seventh_day_opening_hours = ltrim($seventh_day_work_hours[0]);
                 $seventh_day_closing_hours = ltrim($seventh_day_work_hours[1]);
 
-                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'restaurant_type', 'gym_type', 'landscaper_type', 'select_hours', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours'));
+                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours'));
             } else {
-                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'restaurant_type', 'gym_type', 'landscaper_type', 'select_hours'));
+                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours'));
             }
         }
 

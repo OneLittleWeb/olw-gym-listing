@@ -71,9 +71,9 @@
                             <p class="sec__desc py-2 font-size-17"><i
                                     class="la la-map-marker mr-1 text-color-16"></i>
                                 @if($organization->organization_address)
-                                    {{ $organization->organization_address }}
+                                    {{ str_replace('Address: ', '', $organization->organization_address) }}
                                 @else
-                                    {{ ucfirst($organization->city->name) }}, Nebraska, US
+                                    {{ ucfirst($organization->city->name) }}, {{ ucfirst($organization->state->name) }}, US
                                 @endif
                             </p>
                             <p class="pb-2 font-weight-medium">
@@ -853,47 +853,14 @@
                                         <h2 class="widget-title pb-1">Finally</h2>
                                     </div>
                                     <div class="pt-2">
-                                        @if(in_array($organization->category_id, $restaurant_type))
-                                            <p class="text-dark text-justify">
-                                                <strong>{{ $organization->organization_name }}</strong> is a very
-                                                picturesque
-                                                and welcoming place for all. Come join with
-                                                your friends or family, relax, have a great meal, take some good selfies
-                                                and
-                                                enjoy your time together. Thus, you can make it a memorable day for
-                                                everyone.
-                                            </p>
-                                        @elseif(in_array($organization->category_id, $gym_type))
-                                            <p class="text-dark text-justify">
-                                                <strong>{{ $organization->organization_name }}</strong> is a very
-                                                picturesque
-                                                and welcoming place for all. Come join with
-                                                your friends or family, relax, take some good selfies and
-                                                enjoy your time together. Thus, you can make it a memorable day for
-                                                everyone.
-                                            </p>
-                                        @elseif(in_array($organization->category_id, $landscaper_type))
-                                            <p class="text-dark text-justify">
-                                                <strong>{{ $organization->organization_name }}</strong> is a very neat
-                                                and
-                                                welcoming place for all. Just make an appointment or go directly and
-                                                wait if you
-                                                find a little queue. After that, you can share your need with the
-                                                concerned
-                                                person and book your desired service.
-                                            </p>
-                                        @else
-                                            <p class="text-dark text-justify">
-                                                <strong>{{ $organization->organization_name }}</strong> is very
-                                                professional and
-                                                always active in customer service. Book their service or clarify things
-                                                if you
-                                                have any query by contacting them
-                                                at <a
-                                                    href="tel:{{$organization->organization_phone_number }}">{{ $organization->organization_phone_number}}</a>.
-                                            </p>
-                                        @endif
-
+                                        <p class="text-dark text-justify">
+                                            <strong>{{ $organization->organization_name }}</strong> is a very
+                                            picturesque
+                                            and welcoming place for all. Come join with
+                                            your friends or family, relax, take some good selfies and
+                                            enjoy your time together. Thus, you can make it a memorable day for
+                                            everyone.
+                                        </p>
                                         @if($organization->organization_website || $organization->organization_facebook)
                                             <p class="text-dark pt-3">For more info about
                                                 <strong>{{ $organization->organization_name }}</strong>, visit their
@@ -972,7 +939,8 @@
                                                 <span class="la la-envelope-o form-icon"></span>
                                                 <input class="form-control" type="email" name="reviewer_email"
                                                        id="reviewer_email"
-                                                       placeholder="Email Address" value="{{ old('reviewer_email') }}" required>
+                                                       placeholder="Email Address" value="{{ old('reviewer_email') }}"
+                                                       required>
                                             </div>
                                         </div>
                                     </div>
@@ -1183,5 +1151,6 @@
             "reviewCount": "{{ $organization->reviews->count() ?? 0}}"
           }
         }
+
     </script>
 @endsection
