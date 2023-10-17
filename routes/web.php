@@ -59,6 +59,8 @@ Route::get('/payments/cancelled', [StripePaymentController::class, 'cancelled'])
 
 Route::get('/states', [StateController::class, 'index'])->name('states.index');
 
+Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');
+
 //claim business
 Route::get('/claim-your-business/{slug}', [OrganizationController::class, 'claimBusiness'])->name('claim.business');
 Route::post('/claim-your-business/{slug}', [OrganizationController::class, 'claimBusinessProfile'])->name('claim.business.profile');

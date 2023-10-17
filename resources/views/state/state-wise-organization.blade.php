@@ -26,18 +26,6 @@
                             <h1 class="sec__title mb-0">Top 10 Best Gym near {{ $s_state->name }}</h1>
                         </div>
                     </div>
-{{--                    @if($organizations->onFirstPage() && $organization_badge)--}}
-{{--                        <div class="col-lg-12 nebraska-badge-div mobile">--}}
-{{--                            <img class="nebraska-badge-image" src="{{ asset('images/badges/' . $organization_badge) }}"--}}
-{{--                                 data-src="{{ asset('images/badges/' . $organization_badge) }}" alt="Gymnearx Badge">--}}
-{{--                            <p class="text-justify">We considered--}}
-{{--                                all {{ $organization_count }} {{ $organizations[0]->category->name }} Companies in the--}}
-{{--                                {{ $organizations[0]->city->name }} area. We looked at--}}
-{{--                                all the data and analyzed these companies on costs, customer rating,--}}
-{{--                                reliability,--}}
-{{--                                and experience to identify the top 10.</p>--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
                     <div class="col-lg-8">
                         <div class="row">
                             @foreach($organizations as $organization)
@@ -225,21 +213,6 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="sidebar mb-0">
-{{--                            @if($organizations->onFirstPage() && $organization_badge)--}}
-{{--                                <div class="nebraska-badge-div desktop">--}}
-{{--                                    <img class="nebraska-badge-image"--}}
-{{--                                         src="{{ asset('images/badges/' . $organization_badge) }}"--}}
-{{--                                         data-src="{{ asset('images/badges/' . $organization_badge) }}"--}}
-{{--                                         alt="Nebraska Badge">--}}
-{{--                                    <p class="text-justify">We considered--}}
-{{--                                        all {{ $organization_count }} {{ $organizations[0]->category->name }} Companies--}}
-{{--                                        in the--}}
-{{--                                        {{ $organizations[0]->city->name }} area. We looked at--}}
-{{--                                        all the data and analyzed these companies on costs, customer rating,--}}
-{{--                                        reliability,--}}
-{{--                                        and experience to identify the top 10.</p>--}}
-{{--                                </div>--}}
-{{--                            @endif--}}
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Filter by City</h3>
                                 <div class="stroke-shape mb-4"></div>
@@ -284,12 +257,20 @@
                                 </div>
                             </div>
                             <div class="sidebar-widget">
-                                <h3 class="widget-title">Filter by State</h3>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <div class="w-40">
+                                        <h3 class="widget-title">Filter by State</h3>
+                                    </div>
+                                    <div class="w-60">
+                                        <input type="search" class="p-1" id="state_search" name="state_search" placeholder="Search State" autocomplete="off">
+                                    </div>
+                                </div>
                                 <div class="stroke-shape mb-4"></div>
-                                <div class="category-list">
+                                <div class="state-list">
                                     @foreach($states->take(5) as $state)
                                         <a href="{{ route('state.wise.organizations', $state->slug) }}"
-                                           class="generic-img-card d-block hover-y overflow-hidden mb-3">
+                                           class="generic-img-card d-block hover-y overflow-hidden mb-3 state-card"
+                                           data-organization-count="{{ $state->organizations->count() }}">
                                             <img src="{{ asset('images/sm-bg.jpg') }}"
                                                  data-src="{{ asset('images/sm-bg.jpg') }}"
                                                  alt="image" class="generic-img-card-img filter-image lazy"
@@ -305,7 +286,8 @@
                                     <div class="collapse collapse-content" id="showMoreCategory">
                                         @foreach($states->skip(5) as $state)
                                             <a href="{{ route('state.wise.organizations', $state->slug) }}"
-                                               class="generic-img-card d-block hover-y overflow-hidden mb-3">
+                                               class="generic-img-card d-block hover-y overflow-hidden mb-3"
+                                               data-organization-count="{{ $state->organizations->count() }}">
                                                 <img
                                                     src="{{ asset('images/sm-bg.jpg') }}"
                                                     data-src="{{ asset('images/sm-bg.jpg') }}"
@@ -344,5 +326,13 @@
             @endif
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        let searchStatesRoute = '{{ route('search-states') }}';
+        let stateWiseOrganizationsRoute = '{{ route('state.wise.organizations', '') }}';
+        let assetPath = '{{ asset('images/sm-bg.jpg') }}';
+    </script>
 @endsection
 

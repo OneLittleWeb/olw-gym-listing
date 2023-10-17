@@ -77,4 +77,15 @@ class StateController extends Controller
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
+
+    public function searchStates(Request $request)
+    {
+        $query = $request->input('query');
+        $states = State::where('name', 'LIKE', '%' . $query . '%')
+            ->withCount('organizations')
+            ->take(6)
+            ->get();
+
+        return response()->json(['states' => $states]);
+    }
 }
