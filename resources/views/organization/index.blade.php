@@ -286,9 +286,16 @@
                                 </div>
                             </div>
                             <div class="sidebar-widget">
-                                <h3 class="widget-title">Filter by State</h3>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <div class="w-40">
+                                        <h3 class="widget-title">Filter by State</h3>
+                                    </div>
+                                    <div class="w-60">
+                                        <input type="search" class="p-1" id="state_search" name="state_search" placeholder="Search State" autocomplete="off">
+                                    </div>
+                                </div>
                                 <div class="stroke-shape mb-4"></div>
-                                <div class="category-list">
+                                <div class="state-list">
                                     @foreach($states->take(5) as $state)
                                         <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $state->slug]) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3">
@@ -346,4 +353,12 @@
             @endif
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        let searchStatesRoute = '{{ route('search-states') }}';
+        let stateWiseOrganizationsRoute = '{{ route('state.wise.organizations', '') }}';
+        let assetPath = '{{ asset('images/sm-bg.jpg') }}';
+    </script>
 @endsection
