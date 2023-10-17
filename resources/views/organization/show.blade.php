@@ -37,7 +37,7 @@
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
                                 <li>
-                                    <a href="#">{{ $organization->city->name }}</a>
+                                    <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $city->state->slug]) }}">{{ $organization->city->name }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('city.wise.organizations', ['city_slug' => $organization->city->slug, 'state_slug' => $organization->state->slug]) }}">{{ $organization->state->name }}</a>
