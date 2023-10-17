@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Organization;
 use App\Models\State;
+use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -35,7 +36,17 @@ class StateController extends Controller
             $cities = City::where('state_id', $s_state->id)->get();
             $city = null;
 
-            return view('state.state-wise-organization', compact('organizations', 's_state', 'states', 'cities', 'city'));
+            $organization_count = Organization::where('state_id', $s_state->id)->count();
+
+            if ($organizations->onFirstPage()) {
+                $s_state->meta_title = 'Top 10 Best Gym Near ' . Str::title($s_state->name);
+            } else {
+                $s_state->meta_title = 'Gym Near ' . Str::title($s_state->name);
+            }
+
+            Meta::setPaginationLinks($organizations);
+
+            return view('state.state-wise-organization', compact('organizations', 'organization_count', 's_state', 'states', 'cities', 'city'));
         }
         abort(404);
     }

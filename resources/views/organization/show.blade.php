@@ -156,7 +156,7 @@
                                     @if($organization->organization_address)
                                         <li><span class="text-color"><i
                                                     class="la la-map mr-2 text-color-16 font-size-18"></i>Address:</span>
-                                            {{ $organization->organization_address }}
+                                            {{ str_replace('Address: ', '', $organization->organization_address) }}
                                         </li>
                                     @endif
                                     @if($organization->organization_phone_number)
@@ -168,7 +168,7 @@
                                     @if($organization->organization_email)
                                         <li><span class="text-color"><i
                                                     class="la la-envelope mr-2 text-color-16 font-size-18"></i>Email:</span><a
-                                                href="mailto:{{$organization->organization_email}}">{{ $organization->organization_email }}</a>
+                                                href="mailto:{{$organization->exploded_organization_email[0]}}">{{ $organization->exploded_organization_email[0] }}</a>
                                         </li>
                                     @endif
                                     @if($organization->organization_website)

@@ -149,6 +149,8 @@ class OrganizationController extends Controller
                 $organization->about2 = null;
             }
 
+            $organization->exploded_organization_email = explode(',', $organization->organization_email);
+
             $organization->rate_stars = $organization->rate_stars ?? 0;
             $organization->reviews_total_count = $organization->reviews_total_count ?? 0;
 
