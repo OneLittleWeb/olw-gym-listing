@@ -9,7 +9,6 @@ use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\admin\OrganizationController as AdminOrganizationController;
@@ -59,9 +58,6 @@ Route::get('/payments/approval', [StripePaymentController::class, 'approval'])->
 Route::get('/payments/cancelled', [StripePaymentController::class, 'cancelled'])->name('payment.cancelled');
 
 Route::get('/states', [StateController::class, 'index'])->name('states.index');
-
-Route::get('/categories', [CategoryController::class, 'allCategories'])->name('all.categories');
-Route::get('/category/{slug}', [CategoryController::class, 'categoryBusiness'])->name('category.business');
 
 //claim business
 Route::get('/claim-your-business/{slug}', [OrganizationController::class, 'claimBusiness'])->name('claim.business');

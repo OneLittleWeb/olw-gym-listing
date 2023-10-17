@@ -73,7 +73,8 @@
                                 @if($organization->organization_address)
                                     {{ str_replace('Address: ', '', $organization->organization_address) }}
                                 @else
-                                    {{ ucfirst($organization->city->name) }}, {{ ucfirst($organization->state->name) }}, US
+                                    {{ ucfirst($organization->city->name) }}, {{ ucfirst($organization->state->name) }},
+                                    US
                                 @endif
                             </p>
                             <p class="pb-2 font-weight-medium">
@@ -83,11 +84,7 @@
                                 <strong class="font-weight-medium ml-n1">$</strong>
                             </span>
                                 <span class="category-link text-capitalize">
-                                    @if($organization->organization_category)
-                                        <a href="{{ route('category.business', $organization->organization_category ?? $organization->category->slug) }}">{{ $organization->organization_category }}</a>
-                                    @else
-                                        <a href="{{ route('city.wise.organizations', ['city_slug' => $organization->city->slug, 'category_slug' => $organization->category->slug]) }}">{{ $organization->category->name }}</a>
-                                    @endif
+                                        {{ $organization->organization_category ?? $organization->category->name }}
                                 </span>
                             </p>
                             <div class="d-flex flex-wrap align-items-center">
@@ -1151,6 +1148,7 @@
             "reviewCount": "{{ $organization->reviews->count() ?? 0}}"
           }
         }
+
 
     </script>
 @endsection
