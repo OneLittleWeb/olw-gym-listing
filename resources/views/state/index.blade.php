@@ -20,8 +20,14 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="d-flex align-items-center pb-4 text-capitalize">
-                        <h1 class="sec__title mb-0">All states in the USA</h1>
+                    <div class="d-flex flex-row justify-content-between pb-4 text-capitalize">
+                        <div>
+                            <h1 class="sec__title mb-0">All states in the USA</h1>
+                        </div>
+                        <div>
+                            <input type="search" class="p-2 form-control" id="state_search" name="state_search"
+                                   placeholder="Search State" autocomplete="off">
+                        </div>
                     </div>
                 </div>
             </div>
