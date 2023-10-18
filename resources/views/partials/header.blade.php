@@ -25,8 +25,8 @@
                                   class="main-search-input-item quick-search-form form-box d-flex align-items-center">
                                 @csrf
                                 <div class="form-group mb-0">
-                                    <input class="form-control rounded-0 looking-for" type="search"
-                                           id="search-from-header"
+                                    <input class="form-control rounded-0 looking-for search-from-header" type="search"
+                                           id="search_from_header"
                                            name="looking_for" placeholder="What are you looking for?" autocomplete="off"
                                            required>
                                 </div>

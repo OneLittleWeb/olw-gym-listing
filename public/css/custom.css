@@ -17,9 +17,9 @@
     font-size: 20px;
 }
 
-#search-from-header {
-    width: 345px;
-    height: 52px;
+.search-from-header {
+    width: 345px !important;
+    height: 52px !important;
 }
 
 .review-logo {
@@ -233,9 +233,9 @@
         width: 12rem;
     }
 
-    #search-from-header {
-        width: 230px;
-        height: 52px;
+    .search-from-header {
+        width: 230px !important;
+        height: 52px !important;
     }
 }
 
@@ -244,9 +244,9 @@
         width: 10rem;
     }
 
-    #search-from-header {
-        width: 228px;
-        height: 52px;
+    .search-from-header {
+        width: 228px !important;
+        height: 52px !important;
     }
 }
 
@@ -255,9 +255,9 @@
         width: 8rem;
     }
 
-    #search-from-header {
-        width: 198px;
-        height: 52px;
+    .search-from-header {
+        width: 198px !important;
+        height: 52px !important;
     }
 }
 

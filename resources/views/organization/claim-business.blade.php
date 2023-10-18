@@ -79,7 +79,7 @@
                 business_verification_data.innerHTML = '<p class="padding-top-20px">We will send an email with registration link</p>' +
                     '                        <div' +
                     '                            class="main-search-input-item business-access-search-input-item input-group margin-top-20px">' +
-                    '                            <input class="form-control rounded-0 looking-for" type="search" id="search-from-header"' +
+                    '                            <input class="form-control rounded-0 looking-for search-from-header" type="search" id="search-from-header"' +
                     '                                   name="business_email" autocomplete="off"' +
                     '                                   required>' +
                     '                            <div class="input-group-prepend">' +

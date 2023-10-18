@@ -91,7 +91,7 @@ $(document).ready(function () {
 //autocomplete search script
 
 $(document).ready(function () {
-    $('#search-from-header').typeahead({
+    $('#search_from_header').typeahead({
         source: function (query, process) {
             return $.get(autocompleteRoute, { term: query }, function (data) {
                 return process(data);

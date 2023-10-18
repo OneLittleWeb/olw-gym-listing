@@ -6,8 +6,8 @@
     <section class="hero-wrapper hero-bg pb-0 overflow-hidden">
         <div class="overlay"></div>
 
-        <div class="container">
-            <div class="row align-items-center padding-bottom-80px">
+        <div class="container padding-bottom-90px">
+            <div class="row align-items-center padding-bottom-90px">
                 <div class="col-lg-5 mr-auto">
                     <form action="{{ route('search') }}" class="form-box">
                         @csrf
@@ -18,22 +18,12 @@
                                             class="required">*</span></label>
                                     <div class="form-group">
                                         <span class="la la-search form-icon"></span>
-                                        <input class="form-control" type="search" id="looking_for" name="looking_for"
+                                        <input class="form-control" type="search" id="search_from_header" name="looking_for"
                                                placeholder="looking for?" autocomplete="off" required>
                                     </div>
                                     <input type="hidden" name="source_value" id="source_value">
                                     <input type="hidden" name="source_id" id="source_id">
                                 </div>
-                            </div>
-                            <div class="main-search-input-item user-chosen-select-container w-100 mb-3 ml-0">
-                                <label class="label-text">Where to look?</label>
-                                <select class="user-chosen-select" name="search_city" id="search_city">
-                                    @foreach($cities as $city)
-                                        <option class="text-capitalize"
-                                                value="{{ $city->id }}">{{ $city->name }}, NE
-                                        </option>
-                                    @endforeach
-                                </select>
                             </div>
                             <div class="main-search-input-item w-100 ml-0">
                                 <label class="label-text">Search Activities</label>
@@ -64,7 +54,8 @@
                     @foreach($major_states as $state)
                         <div class="col-lg-2 col-sm-6">
                             <div class="hero-category-item hero-category-item-layout-2">
-                                <a href="{{ route('state.wise.organizations', $state->slug) }}" class="d-block hero-cat-link">
+                                <a href="{{ route('state.wise.organizations', $state->slug) }}"
+                                   class="d-block hero-cat-link">
                                     <span class="icon-element mx-auto {{ $state->background }}">
 {{--                                        <img src="{{asset('images/' . $state->background_image)}}"--}}
                                         {{--                                             data-src="{{asset('images/' . $state->background_image)}}"--}}
@@ -631,23 +622,23 @@
 @endsection
 
 @section('js')
-{{--    <script--}}
-{{--        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>--}}
-{{--    <script>--}}
-{{--        let path = "{{ route('autocomplete')}}";--}}
-{{--        $('#looking_for').typeahead({--}}
-{{--            source: function (query, process) {--}}
-{{--                return $.get(path, {term: query}, function (data) {--}}
-{{--                    return process(data);--}}
-{{--                });--}}
-{{--            },--}}
-{{--            updater: function (item) {--}}
-{{--                let id = item.id; // Replace "id" with the name of your ID field--}}
-{{--                let name = item.source; // Replace "id" with the name of your ID field--}}
-{{--                $('#source_value').val(name);--}}
-{{--                $('#source_id').val(id);--}}
-{{--                return item.name;--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
+    {{--    <script--}}
+    {{--        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>--}}
+    {{--    <script>--}}
+    {{--        let path = "{{ route('autocomplete')}}";--}}
+    {{--        $('#looking_for').typeahead({--}}
+    {{--            source: function (query, process) {--}}
+    {{--                return $.get(path, {term: query}, function (data) {--}}
+    {{--                    return process(data);--}}
+    {{--                });--}}
+    {{--            },--}}
+    {{--            updater: function (item) {--}}
+    {{--                let id = item.id; // Replace "id" with the name of your ID field--}}
+    {{--                let name = item.source; // Replace "id" with the name of your ID field--}}
+    {{--                $('#source_value').val(name);--}}
+    {{--                $('#source_id').val(id);--}}
+    {{--                return item.name;--}}
+    {{--            }--}}
+    {{--        });--}}
+    {{--    </script>--}}
 @endsection
