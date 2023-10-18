@@ -18,8 +18,10 @@
                                             class="required">*</span></label>
                                     <div class="form-group">
                                         <span class="la la-search form-icon"></span>
+{{--                                        <input class="form-control" type="search" id="search_from_header" name="looking_for"--}}
+{{--                                               placeholder="looking for?" autocomplete="off" required>--}}
                                         <input class="form-control" type="search" id="search_from_header" name="looking_for"
-                                               placeholder="looking for?" autocomplete="off" required>
+                                               placeholder="Looking for business, state, city?" autocomplete="off" required>
                                     </div>
                                     <input type="hidden" name="source_value" id="source_value">
                                     <input type="hidden" name="source_id" id="source_id">
@@ -622,23 +624,24 @@
 @endsection
 
 @section('js')
-    {{--    <script--}}
-    {{--        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>--}}
-    {{--    <script>--}}
-    {{--        let path = "{{ route('autocomplete')}}";--}}
-    {{--        $('#looking_for').typeahead({--}}
-    {{--            source: function (query, process) {--}}
-    {{--                return $.get(path, {term: query}, function (data) {--}}
-    {{--                    return process(data);--}}
-    {{--                });--}}
-    {{--            },--}}
-    {{--            updater: function (item) {--}}
-    {{--                let id = item.id; // Replace "id" with the name of your ID field--}}
-    {{--                let name = item.source; // Replace "id" with the name of your ID field--}}
-    {{--                $('#source_value').val(name);--}}
-    {{--                $('#source_id').val(id);--}}
-    {{--                return item.name;--}}
-    {{--            }--}}
-    {{--        });--}}
-    {{--    </script>--}}
+{{--    <script>--}}
+{{--        document.addEventListener("DOMContentLoaded", function () {--}}
+{{--            const input = document.getElementById("search_from_header");--}}
+{{--            const placeholders = [--}}
+{{--                "Looking for?  Business",--}}
+{{--                "Looking for? State",--}}
+{{--                "Looking for? City",--}}
+{{--            ];--}}
+{{--            let currentIndex = 0;--}}
+
+{{--            function showNextPlaceholder() {--}}
+{{--                input.placeholder = placeholders[currentIndex];--}}
+{{--                currentIndex = (currentIndex + 1) % placeholders.length;--}}
+
+{{--                setTimeout(showNextPlaceholder, 2000); // 2000 milliseconds (2 seconds)--}}
+{{--            }--}}
+
+{{--            showNextPlaceholder();--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection

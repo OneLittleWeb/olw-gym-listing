@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 //suggest an edit temporarily and permanently closed enable disable script
 
 $(document).ready(function() {
@@ -105,4 +107,23 @@ $(document).ready(function () {
             return item.name;
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('search_from_header');
+    const placeholders = [
+        'Looking for? Business',
+        'Looking for? State',
+        'Looking for? City',
+    ];
+    let currentIndex = 0;
+
+    function showNextPlaceholder() {
+        input.placeholder = placeholders[currentIndex];
+        currentIndex = (currentIndex + 1) % placeholders.length;
+
+        setTimeout(showNextPlaceholder, 2000); // 2000 milliseconds (2 seconds)
+    }
+
+    showNextPlaceholder();
 });
