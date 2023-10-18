@@ -88,6 +88,24 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $('#search-from-header').typeahead({
+        source: function (query, process) {
+            return $.get(autocompleteRoute, { term: query }, function (data) {
+                return process(data);
+            });
+        },
+        updater: function (item) {
+            var id = item.id;
+            var name = item.source;
+            $('#source_value').val(name);
+            $('#source_id').val(id);
+            return item.name;
+        }
+    });
+});
+
+
 
 
 

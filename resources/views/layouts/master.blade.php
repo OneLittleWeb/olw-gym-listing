@@ -106,6 +106,11 @@
 <script src="{{asset('/js/jquery.lazy.min.js')}}"></script>
 <script src="{{asset('/js/main.js')}}"></script>
 <script src="{{asset('/js/custom.js')}}"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+<script>
+    var autocompleteRoute = "{{ route('autocomplete') }}";
+</script>
 
 @yield('js')
 @include('sweetalert::alert')

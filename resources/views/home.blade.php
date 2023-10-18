@@ -631,23 +631,23 @@
 @endsection
 
 @section('js')
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-    <script>
-        let path = "{{ route('autocomplete')}}";
-        $('#looking_for').typeahead({
-            source: function (query, process) {
-                return $.get(path, {term: query}, function (data) {
-                    return process(data);
-                });
-            },
-            updater: function (item) {
-                let id = item.id; // Replace "id" with the name of your ID field
-                let name = item.source; // Replace "id" with the name of your ID field
-                $('#source_value').val(name);
-                $('#source_id').val(id);
-                return item.name;
-            }
-        });
-    </script>
+{{--    <script--}}
+{{--        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>--}}
+{{--    <script>--}}
+{{--        let path = "{{ route('autocomplete')}}";--}}
+{{--        $('#looking_for').typeahead({--}}
+{{--            source: function (query, process) {--}}
+{{--                return $.get(path, {term: query}, function (data) {--}}
+{{--                    return process(data);--}}
+{{--                });--}}
+{{--            },--}}
+{{--            updater: function (item) {--}}
+{{--                let id = item.id; // Replace "id" with the name of your ID field--}}
+{{--                let name = item.source; // Replace "id" with the name of your ID field--}}
+{{--                $('#source_value').val(name);--}}
+{{--                $('#source_id').val(id);--}}
+{{--                return item.name;--}}
+{{--            }--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection

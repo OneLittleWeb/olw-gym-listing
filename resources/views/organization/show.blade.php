@@ -40,7 +40,7 @@
                                     <a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $city->state->slug]) }}">{{ $organization->city->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('city.wise.organizations', ['city_slug' => $organization->city->slug, 'state_slug' => $organization->state->slug]) }}">{{ $organization->state->name }}</a>
+                                    <a href="{{ route('state.wise.organizations', $organization->state->slug) }}">{{ $organization->state->name }}</a>
                                 </li>
                                 <li>{{ $organization->organization_name }}</li>
                             </ul>
@@ -1045,25 +1045,6 @@
 @endsection
 @section('js')
     <script src="{{asset('plugins/ratings/src/jquery.star-rating-svg.js')}}"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-    <script>
-        let path = "{{ route('autocomplete')}}";
-        $('#search-from-header').typeahead({
-            source: function (query, process) {
-                return $.get(path, {term: query}, function (data) {
-                    return process(data);
-                });
-            },
-            updater: function (item) {
-                let id = item.id; // Replace "id" with the name of your ID field
-                let name = item.source; // Replace "id" with the name of your ID field
-                $('#source_value').val(name);
-                $('#source_id').val(id);
-                return item.name;
-            }
-        });
-    </script>
     <script>
         $(".users_review_ratings").starRating({
             totalStars: 5,
@@ -1148,5 +1129,7 @@
             "reviewCount": "{{ $organization->reviews->count() ?? 0}}"
           }
         }
+
+
     </script>
 @endsection
