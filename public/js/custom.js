@@ -1,4 +1,3 @@
-
 function handleIsClosedChange() {
     var isClosedCheckbox = document.getElementById('is_it_closed');
     var temporarilyClosedCheckbox = document.getElementById('temporarily_closed');
@@ -13,12 +12,14 @@ function handleTemporarilyClosedChange() {
     isClosedCheckbox.disabled = !!temporarilyClosedCheckbox.checked;
 }
 
+//Search Organization state script
+
 $(document).ready(function () {
     function performSearch(query) {
         $.ajax({
             url: searchStatesRoute,
             method: 'GET',
-            data: { query: query },
+            data: {query: query},
             success: function (data) {
                 updateStateList(data.states);
             },
@@ -60,6 +61,16 @@ $(document).ready(function () {
     $('#state_search').on('keyup', function () {
         var query = $(this).val();
         performSearch(query);
+    });
+});
+
+//All state search script
+$(document).ready(function () {
+    $('#all_state_search').on('keyup', function () {
+        var value = $(this).val().toLowerCase();
+        $('.organization-state-list .responsive-column').filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
 });
 

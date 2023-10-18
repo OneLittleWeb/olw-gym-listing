@@ -20,19 +20,22 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="d-flex flex-row justify-content-between pb-4 text-capitalize">
+                    <div class="d-md-flex flex-row justify-content-between pb-4 text-capitalize">
                         <div>
                             <h1 class="sec__title mb-0">All states in the USA</h1>
+
+                            <div class="stroke-shape mb-4"></div>
                         </div>
                         <div>
-                            <input type="search" class="p-2 form-control" id="state_search" name="state_search"
+                            <input type="search" class="form-control p-2 mt-2 mt-md-0" id="all_state_search"
+                                   name="all_state_search"
                                    placeholder="Search State" autocomplete="off">
                         </div>
                     </div>
                 </div>
             </div>
             @if(count($states))
-                <div class="row">
+                <div class="row organization-state-list">
                     @foreach($states as $state)
                         <div class="col-lg-3 responsive-column">
                             <div class="category-item overflow-hidden">
