@@ -1,16 +1,14 @@
-function handleIsClosedChange() {
-    var isClosedCheckbox = document.getElementById('is_it_closed');
-    var temporarilyClosedCheckbox = document.getElementById('temporarily_closed');
+$(document).ready(function() {
+    $('#is_it_closed').change(function() {
+        var temporarilyClosedCheckbox = $('#temporarily_closed');
+        temporarilyClosedCheckbox.prop('disabled', this.checked);
+    });
 
-    temporarilyClosedCheckbox.disabled = !!isClosedCheckbox.checked;
-}
-
-function handleTemporarilyClosedChange() {
-    var isClosedCheckbox = document.getElementById('is_it_closed');
-    var temporarilyClosedCheckbox = document.getElementById('temporarily_closed');
-
-    isClosedCheckbox.disabled = !!temporarilyClosedCheckbox.checked;
-}
+    $('#temporarily_closed').change(function() {
+        var isClosedCheckbox = $('#is_it_closed');
+        isClosedCheckbox.prop('disabled', this.checked);
+    });
+});
 
 //Search Organization state script
 

@@ -38,8 +38,9 @@
                                 <div class="form-check">
                                     <input class="form-check-input suggest-edit-form-check-input" type="checkbox"
                                            name="is_it_closed"
-                                           id="is_it_closed" value="1"
-                                           onchange="handleIsClosedChange()" {{ $organization->permanently_closed ? 'checked' : '' }}>
+                                           id="is_it_closed"
+                                           value="1"
+                                        {{ $organization->permanently_closed ? 'checked' : '' }}>
                                     <label class="form-check-label suggested-modal-content-text" for="is_it_closed">
                                         Yes, this business is permanently closed
                                     </label>
@@ -52,8 +53,9 @@
                                 <div class="form-check">
                                     <input class="form-check-input suggest-edit-form-check-input" type="checkbox"
                                            name="temporarily_closed"
-                                           id="temporarily_closed" value="1"
-                                           onchange="handleTemporarilyClosedChange()" {{ $organization->temporarily_closed ? 'checked' : '' }}>
+                                           id="temporarily_closed"
+                                           value="1"
+                                        {{ $organization->temporarily_closed ? 'checked' : '' }}>
                                     <label class="form-check-label suggested-modal-content-text"
                                            for="temporarily_closed">
                                         Yes, this business is temporarily closed
