@@ -59,20 +59,20 @@ class HomeController extends Controller
 
         if ($request->looking_for) {
             if ($source == 'organizations') {
+
                 $organization = Organization::find($search_source_id);
                 $sourceController = new OrganizationController();
 
                 return $sourceController->cityWiseOrganization($organization->city->slug, $organization->slug);
             } elseif ($source == 'states') {
-                $state = State::find($search_source_id);
 
+                $state = State::find($search_source_id);
                 $sourceController = new StateController();
 
                 return $sourceController->stateWiseOrganizations($state->slug);
             } elseif ($source == 'cities') {
 
                 $city = City::find($search_source_id);
-
                 $sourceController = new OrganizationController();
 
                 return $sourceController->cityWiseOrganizations($city->slug, $city->state->slug);

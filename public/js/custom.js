@@ -88,6 +88,8 @@ $(document).ready(function () {
     });
 });
 
+//autocomplete search script
+
 $(document).ready(function () {
     $('#search-from-header').typeahead({
         source: function (query, process) {
@@ -104,8 +106,3 @@ $(document).ready(function () {
         }
     });
 });
-
-
-
-
-
