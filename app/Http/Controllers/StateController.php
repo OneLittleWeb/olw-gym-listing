@@ -22,7 +22,7 @@ class StateController extends Controller
         return view('state.index', compact('states', 'cities', 'city', 'category'));
     }
 
-    public function stateWiseOrganization($slug)
+    public function stateWiseOrganizations($slug)
     {
         $s_state = State::where('slug', $slug)->first();
         if ($s_state) {

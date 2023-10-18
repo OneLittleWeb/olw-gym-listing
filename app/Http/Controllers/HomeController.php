@@ -39,11 +39,15 @@ class HomeController extends Controller
             ->select(DB::raw('"organizations" as source'), 'id', 'organization_name')
             ->where('organization_name', 'like', '%' . $query . '%');
 
-        $categories = DB::table('categories')
-            ->select(DB::raw('"categories" as source'), 'id', 'name')
+        $states = DB::table('states')
+            ->select(DB::raw('"states" as source'), 'id', 'name')
             ->where('name', 'like', '%' . $query . '%');
 
-        $results = $categories->union($organizations)->get();
+        $cities = DB::table('cities')
+            ->select(DB::raw('"cities" as source'), 'id', 'name')
+            ->where('name', 'like', '%' . $query . '%');
+
+        $results = $states->unionAll($organizations)->unionAll($cities)->get();
 
         return response()->json($results);
     }
@@ -51,36 +55,27 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $source = $request->source_value;
-        $search_city = $request->search_city;
         $search_source_id = $request->source_id;
 
         if ($request->looking_for) {
-
-            $city = City::find($search_city);
-
             if ($source == 'organizations') {
-
                 $organization = Organization::find($search_source_id);
+                $sourceController = new OrganizationController();
+
+                return $sourceController->cityWiseOrganization($organization->city->slug, $organization->slug);
+            } elseif ($source == 'states') {
+                $state = State::find($search_source_id);
+
+                $sourceController = new StateController();
+
+                return $sourceController->stateWiseOrganizations($state->slug);
+            } elseif ($source == 'cities') {
+
+                $city = City::find($search_source_id);
 
                 $sourceController = new OrganizationController();
-                return $sourceController->cityWiseOrganization($organization->city->slug, $organization->slug);
 
-            } elseif ($source == 'categories') {
-                $category = Category::find($search_source_id);
-
-                $category->meta_title = Str::title($category->name) . ' in ' . Str::title($city->name) . ', NE | nebraskalisting.com';
-
-                $cities = City::all();
-                $categories = Category::all();
-                $organizations = Organization::where('category_id', $search_source_id)
-                    ->orWhere('city_id', $search_city)
-                    ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
-                    ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
-                    ->paginate(20)
-                    ->withQueryString()
-                    ->onEachSide(0);
-
-                return view('organization.index', compact('organizations', 'cities', 'city', 'categories', 'category'));
+                return $sourceController->cityWiseOrganizations($city->slug, $city->state->slug);
             }
         }
 

@@ -18,7 +18,7 @@
 }
 
 #search-from-header {
-    width: 305px;
+    width: 345px;
     height: 52px;
 }
 
@@ -68,11 +68,6 @@
     background-color: #f8c401;
     border: #f8c401;
     padding: 13px;
-}
-
-.header-search-button:hover {
-    background-color: #E1C80A;
-    border: #E1C80A;
 }
 
 .header-search-button i {

@@ -32,24 +32,11 @@
                                 </div>
                                 <input type="hidden" name="source_value" id="source_value">
                                 <input type="hidden" name="source_id" id="source_id">
-                                <div class="main-search-input-item user-chosen-select-container">
-                                    <select class="user-chosen-select" name="search_city" id="search_city">
-                                        @foreach($cities as $search_city)
-                                            @if($city != null)
-                                                <option class="text-capitalize"
-                                                        value="{{ $search_city->id }}" {{ $search_city->id ==  $city->id ? 'selected="selected"' : '' }}>{{ $search_city->name }}
-                                                    , NE
-                                                </option>
-                                            @else
-                                                <option class="text-capitalize"
-                                                        value="{{ $search_city->id }}">{{ $search_city->name }}, NE
-                                                </option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                </div>
+
+                                <!-- Autocomplete results div -->
+                                <div id="autocomplete-results"></div>
                                 <div>
-                                    <button type="submit" class="btn btn-info header-search-button rounded-0">
+                                    <button type="submit" class="btn btn-warning header-search-button rounded-0">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
@@ -89,23 +76,64 @@
 </header>
 
 @section('js')
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+{{--    <script--}}
+{{--        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>--}}
     <script>
-        let path = "{{ route('autocomplete')}}";
-        $('#search-from-header').typeahead({
-            source: function (query, process) {
-                return $.get(path, {term: query}, function (data) {
-                    return process(data);
+        {{--let path = "{{ route('autocomplete')}}";--}}
+        {{--$('#search-from-header').typeahead({--}}
+        {{--    source: function (query, process) {--}}
+        {{--        return $.get(path, {term: query}, function (data) {--}}
+        {{--            return process(data);--}}
+        {{--        });--}}
+        {{--    },--}}
+        {{--    updater: function (item) {--}}
+        {{--        let id = item.id;--}}
+        {{--        let name = item.source;--}}
+        {{--        $('#source_value').val(name);--}}
+        {{--        $('#source_id').val(id);--}}
+        {{--        return item.name;--}}
+        {{--    }--}}
+        {{--});--}}
+
+        $(document).ready(function () {
+            let path = "{{ route('autocomplete')}}";
+            let input = $('#search-from-header');
+            let sourceValue = $('#source_value');
+            let sourceId = $('#source_id');
+            let resultsDiv = $('#autocomplete-results');
+
+            input.on('input', function () {
+                let query = input.val();
+
+                $.get(path, { term: query }, function (data) {
+                    resultsDiv.empty();
+
+                    if (data.length > 0) {
+                        data.forEach(function (item) {
+                            let listItem = $('<div class="autocomplete-item">' + item.name + '</div>');
+
+                            listItem.on('click', function () {
+                                let id = item.id;
+                                let name = item.source;
+
+                                sourceValue.val(name);
+                                sourceId.val(id);
+                                input.val(item.name);
+                                resultsDiv.empty();
+                            });
+
+                            resultsDiv.append(listItem);
+                        });
+                    }
                 });
-            },
-            updater: function (item) {
-                let id = item.id;
-                let name = item.source;
-                $('#source_value').val(name);
-                $('#source_id').val(id);
-                return item.name;
-            }
+            });
+
+            // Handle click outside to close results
+            $(document).on('click', function (e) {
+                if (!input.is(e.target) && input.has(e.target).length === 0) {
+                    resultsDiv.empty();
+                }
+            });
         });
     </script>
 @endsection

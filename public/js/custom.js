@@ -1,3 +1,5 @@
+//suggest an edit temporarily and permanently closed enable disable script
+
 $(document).ready(function() {
     $('#is_it_closed').change(function() {
         var temporarilyClosedCheckbox = $('#temporarily_closed');
@@ -63,14 +65,6 @@ $(document).ready(function () {
 });
 
 //All state search script
-// $(document).ready(function () {
-//     $('#all_state_search').on('keyup', function () {
-//         var value = $(this).val().toLowerCase();
-//         $('.organization-state-list .responsive-column').filter(function () {
-//             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-//         });
-//     });
-// });
 
 $(document).ready(function () {
     $('#all_state_search').on('keyup', function () {
