@@ -24,14 +24,16 @@
                         <div>
                             <h1 class="sec__title mb-0">All states in the USA</h1>
 
-                            <div class="stroke-shape mb-4"></div>
+                            <div class="stroke-shape mb-4 mb-md-0"></div>
                         </div>
                         <div>
-                            <input type="search" class="form-control p-2 mt-2 mt-md-0" id="all_state_search"
+                            <input type="text" class="form-control p-2 mt-2 mt-md-0" id="all_state_search"
                                    name="all_state_search"
                                    placeholder="Search State" autocomplete="off">
                         </div>
                     </div>
+
+                    <div id="no_results_message" style="display: none">No State Result Found</div>
                 </div>
             </div>
             @if(count($states))

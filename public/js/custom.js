@@ -65,12 +65,34 @@ $(document).ready(function () {
 });
 
 //All state search script
+// $(document).ready(function () {
+//     $('#all_state_search').on('keyup', function () {
+//         var value = $(this).val().toLowerCase();
+//         $('.organization-state-list .responsive-column').filter(function () {
+//             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+//         });
+//     });
+// });
+
 $(document).ready(function () {
     $('#all_state_search').on('keyup', function () {
         var value = $(this).val().toLowerCase();
-        $('.organization-state-list .responsive-column').filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        var resultsFound = false;
+
+        $('.organization-state-list .responsive-column').each(function () {
+            var itemText = $(this).text().toLowerCase();
+            var itemVisible = itemText.indexOf(value) > -1;
+            $(this).toggle(itemVisible);
+            if (itemVisible) {
+                resultsFound = true;
+            }
         });
+
+        if (!resultsFound) {
+            $('#no_results_message').show();
+        } else {
+            $('#no_results_message').hide();
+        }
     });
 });
 

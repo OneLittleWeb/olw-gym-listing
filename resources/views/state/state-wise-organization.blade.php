@@ -262,7 +262,7 @@
                                         <h3 class="widget-title">Filter by State</h3>
                                     </div>
                                     <div class="w-60">
-                                        <input type="search" class="p-1 form-control" id="state_search" name="state_search" placeholder="Search State" autocomplete="off">
+                                        <input type="text" class="p-1 form-control" id="state_search" name="state_search" placeholder="Search State" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="stroke-shape mb-4"></div>

@@ -20,13 +20,23 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="d-flex align-items-center pb-4 text-capitalize">
-                        <h1 class="sec__title mb-0">Popular Cities in the USA</h1>
+                    <div class="d-md-flex flex-row justify-content-between pb-4 text-capitalize">
+                        <div>
+                            <h1 class="sec__title mb-0">Popular Cities in the USA</h1>
+                            <div class="stroke-shape mb-4 mb-md-0"></div>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control p-2 mt-2 mt-md-0" id="all_state_search"
+                                   name="all_state_search"
+                                   placeholder="Search City" autocomplete="off">
+                        </div>
                     </div>
+
+                    <div id="no_results_message" style="display: none">No City Result Found</div>
                 </div>
             </div>
             @if(count($cities))
-                <div class="row">
+                <div class="row organization-state-list">
                     @foreach($cities as $city)
                         <div class="col-lg-3 responsive-column">
                             <div class="category-item overflow-hidden">
