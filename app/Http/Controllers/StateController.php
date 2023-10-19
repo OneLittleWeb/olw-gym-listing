@@ -7,6 +7,7 @@ use App\Models\Organization;
 use App\Models\State;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -24,7 +25,25 @@ class StateController extends Controller
 
     public function stateWiseOrganizations($slug)
     {
+        // Define a unique cache key based on the slug.
+        $cacheKey = 'state_wise_organization_data_' . $slug;
+
+        // Attempt to retrieve the view as a string from the cache.
+        $cachedView = Cache::get($cacheKey);
+
+        if ($cachedView === null) {
+            // If the view is not found in the cache, retrieve and store it.
+            $cachedView = $this->generateStateWiseOrganizationView($slug);
+            Cache::put($cacheKey, $cachedView, now()->addHours(10));
+        }
+
+        return response($cachedView);
+    }
+
+    private function generateStateWiseOrganizationView($slug)
+    {
         $s_state = State::where('slug', $slug)->first();
+
         if ($s_state) {
             $organizations = Organization::where('state_id', $s_state->id)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
@@ -46,8 +65,10 @@ class StateController extends Controller
 
             Meta::setPaginationLinks($organizations);
 
-            return view('state.state-wise-organization', compact('organizations', 'organization_count', 's_state', 'states', 'cities', 'city'));
+            // Render the view as a string.
+            return view('state.state-wise-organization', compact('organizations', 'organization_count', 's_state', 'states', 'cities', 'city'))->render();
         }
+
         abort(404);
     }
 
