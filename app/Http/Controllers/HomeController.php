@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $cachedData = Cache::remember('cached_data', 60, function () {
+        $cachedData = Cache::remember('cached_data', now()->addHours(10), function () {
             $major_states = State::where('is_major', 1)->get();
             $states = State::take(8)->get();
             $cities = City::all();
