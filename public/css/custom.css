@@ -211,6 +211,10 @@
     border-color: #f8c401 !important;
 }
 
+.hero-container {
+    padding-bottom: 180px !important;
+}
+
 @media (max-width: 768px) {
     /* Hide the desktop div on mobile */
     .nebraska-badge-div.desktop {
@@ -225,8 +229,11 @@
     .suggest-edit-close-button {
         padding-left: 430px !important;
     }
-}
 
+    .hero-container {
+        padding-bottom: 100px !important;
+    }
+}
 
 @media screen and (max-width: 1450px) {
     .logo img {

@@ -6,8 +6,8 @@
     <section class="hero-wrapper hero-bg pb-0 overflow-hidden">
         <div class="overlay"></div>
 
-        <div class="container padding-bottom-180px">
-            <div class="row align-items-center">
+        <div class="container">
+            <div class="row align-items-center hero-container">
                 <div class="col-lg-5 mr-auto">
                     <form action="{{ route('search') }}" class="form-box">
                         @csrf
