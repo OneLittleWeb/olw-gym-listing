@@ -18,8 +18,10 @@
                                             class="required">*</span></label>
                                     <div class="form-group">
                                         <span class="la la-search form-icon"></span>
-                                        <input class="form-control" type="search" id="search_from_header" name="looking_for"
-                                               placeholder="Looking for Business, State, City?" autocomplete="off" required>
+                                        <input class="form-control" type="search" id="search_from_header"
+                                               name="looking_for"
+                                               placeholder="Looking for Business, State, City?" autocomplete="off"
+                                               required>
                                     </div>
                                     <input type="hidden" name="source_value" id="source_value">
                                     <input type="hidden" name="source_id" id="source_id">
@@ -47,7 +49,7 @@
             </div>
         </div>
 
-        <!-- =======START CATEGORY AREA======= -->
+        <!-- =======START Major States AREA======= -->
         <section class="category-area position-relative bg-gray section--padding category-section">
             <div class="container">
                 <div class="row highlighted-categories justify-content-center">
@@ -60,8 +62,9 @@
 {{--                                        <img src="{{asset('images/' . $state->background_image)}}"--}}
                                         {{--                                             data-src="{{asset('images/' . $state->background_image)}}"--}}
                                         {{--                                             alt="country-image" class="lazy icon-element">--}}
-
-                                        <i class="fa-solid fa-dumbbell"></i>
+                                        <img src="{{asset('images/pattern-image.jpg')}}"
+                                             data-src="{{asset('images/pattern-image.jpg')}}"
+                                             alt="country-image" class="lazy icon-element">
                                     </span>
                                     {{ $state->name }}
                                 </a>
