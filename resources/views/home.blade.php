@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('title', config('app.name') . " THE Local Business Directory")
-@section('meta_description', "Explore every best place and service nearby or anywhere in the uSA. Photos-business hours-phone numbers-ratings-reviews-service details- all in one place.")
-@section('meta_keywords',"usa, gymnearx, best places in nebraska")
+@section('meta_description', "Explore every best place and service nearby or anywhere in the USA. Photos-business hours-phone numbers-ratings-reviews-service details- all in one place.")
+@section('meta_keywords',"USA, gymnearx, best places in the USA")
 @section('content')
     <section class="hero-wrapper hero-bg pb-0 overflow-hidden">
         <div class="overlay"></div>
 
-        <div class="container padding-bottom-90px">
-            <div class="row align-items-center padding-bottom-90px">
+        <div class="container padding-bottom-180px">
+            <div class="row align-items-center">
                 <div class="col-lg-5 mr-auto">
                     <form action="{{ route('search') }}" class="form-box">
                         @csrf
@@ -18,10 +18,8 @@
                                             class="required">*</span></label>
                                     <div class="form-group">
                                         <span class="la la-search form-icon"></span>
-{{--                                        <input class="form-control" type="search" id="search_from_header" name="looking_for"--}}
-{{--                                               placeholder="looking for?" autocomplete="off" required>--}}
                                         <input class="form-control" type="search" id="search_from_header" name="looking_for"
-                                               placeholder="Looking for business, state, city?" autocomplete="off" required>
+                                               placeholder="Looking for Business, State, City?" autocomplete="off" required>
                                     </div>
                                     <input type="hidden" name="source_value" id="source_value">
                                     <input type="hidden" name="source_id" id="source_id">
@@ -621,27 +619,4 @@
         </div>
     </section>
     <!-- ===END CTA AREA====== -->
-@endsection
-
-@section('js')
-{{--    <script>--}}
-{{--        document.addEventListener("DOMContentLoaded", function () {--}}
-{{--            const input = document.getElementById("search_from_header");--}}
-{{--            const placeholders = [--}}
-{{--                "Looking for?  Business",--}}
-{{--                "Looking for? State",--}}
-{{--                "Looking for? City",--}}
-{{--            ];--}}
-{{--            let currentIndex = 0;--}}
-
-{{--            function showNextPlaceholder() {--}}
-{{--                input.placeholder = placeholders[currentIndex];--}}
-{{--                currentIndex = (currentIndex + 1) % placeholders.length;--}}
-
-{{--                setTimeout(showNextPlaceholder, 2000); // 2000 milliseconds (2 seconds)--}}
-{{--            }--}}
-
-{{--            showNextPlaceholder();--}}
-{{--        });--}}
-{{--    </script>--}}
 @endsection

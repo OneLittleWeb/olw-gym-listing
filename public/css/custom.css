@@ -252,7 +252,7 @@
 
 @media screen and (max-width: 1260px) {
     .logo img {
-        width: 8rem;
+        width: 12rem;
     }
 
     .search-from-header {
@@ -261,11 +261,11 @@
     }
 }
 
-@media screen and (max-width: 1198px) {
-    .logo img {
-        width: 15rem;
-    }
-}
+/*@media screen and (max-width: 1198px) {*/
+/*    .logo img {*/
+/*        width: 15rem;*/
+/*    }*/
+/*}*/
 
 @media screen and (max-width: 336px) {
     .google-review {

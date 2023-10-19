@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 !function (e) {
     "use strict";
     var a = e(window);
