@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $cachedData = Cache::remember('cached_data', now()->addHours(10), function () {
+        $businessIndex = Cache::remember('business_index', now()->addHours(10), function () {
             $major_states = State::where('is_major', 1)->get();
             $states = State::take(8)->get();
             $cities = City::all();
@@ -40,7 +40,7 @@ class HomeController extends Controller
         });
 
         // Extract the data if needed.
-        extract($cachedData);
+        extract($businessIndex);
 
         return view('home', compact('major_states', 'states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
     }
