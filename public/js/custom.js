@@ -36,15 +36,11 @@ $(document).ready(function () {
         stateList.empty();
 
         if (states.length === 0) {
-            // If no states are found, display "No State Found"
             stateList.append('<p>No State Found</p>');
         } else {
-            // Display states if found
             states.forEach(function (state) {
-                // Construct the dynamic URL for each state
                 let stateWiseOrganizationsURL = stateWiseOrganizationsRoute + '/' + state.slug;
 
-                // Create the state card HTML
                 let stateCard = '<a href="' + stateWiseOrganizationsURL + '" class="generic-img-card d-block hover-y overflow-hidden mb-3">' +
                     '<img src="' + assetPath + '" data-src="' + assetPath + '" ' +
                     'alt="image" class="generic-img-card-img filter-image lazy" loading="lazy">' +
@@ -54,7 +50,6 @@ $(document).ready(function () {
                     '</div>' +
                     '</a';
 
-                // Append the state card to the state list
                 stateList.append(stateCard);
             });
         }
