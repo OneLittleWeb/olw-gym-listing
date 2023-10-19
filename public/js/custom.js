@@ -4,12 +4,12 @@
 
 $(document).ready(function() {
     $('#is_it_closed').change(function() {
-        var temporarilyClosedCheckbox = $('#temporarily_closed');
+        let temporarilyClosedCheckbox = $('#temporarily_closed');
         temporarilyClosedCheckbox.prop('disabled', this.checked);
     });
 
     $('#temporarily_closed').change(function() {
-        var isClosedCheckbox = $('#is_it_closed');
+        let isClosedCheckbox = $('#is_it_closed');
         isClosedCheckbox.prop('disabled', this.checked);
     });
 });
@@ -32,7 +32,7 @@ $(document).ready(function () {
     }
 
     function updateStateList(states) {
-        var stateList = $('.state-list');
+        let stateList = $('.state-list');
         stateList.empty();
 
         if (states.length === 0) {
@@ -42,10 +42,10 @@ $(document).ready(function () {
             // Display states if found
             states.forEach(function (state) {
                 // Construct the dynamic URL for each state
-                var stateWiseOrganizationsURL = stateWiseOrganizationsRoute + '/' + state.slug;
+                let stateWiseOrganizationsURL = stateWiseOrganizationsRoute + '/' + state.slug;
 
                 // Create the state card HTML
-                var stateCard = '<a href="' + stateWiseOrganizationsURL + '" class="generic-img-card d-block hover-y overflow-hidden mb-3">' +
+                let stateCard = '<a href="' + stateWiseOrganizationsURL + '" class="generic-img-card d-block hover-y overflow-hidden mb-3">' +
                     '<img src="' + assetPath + '" data-src="' + assetPath + '" ' +
                     'alt="image" class="generic-img-card-img filter-image lazy" loading="lazy">' +
                     '<div class="generic-img-card-content d-flex align-items-center justify-content-between">' +
@@ -61,7 +61,7 @@ $(document).ready(function () {
     }
 
     $('#state_search').on('keyup', function () {
-        var query = $(this).val();
+        let query = $(this).val();
         performSearch(query);
     });
 });
@@ -70,12 +70,12 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#all_state_search').on('keyup', function () {
-        var value = $(this).val().toLowerCase();
-        var resultsFound = false;
+        let value = $(this).val().toLowerCase();
+        let resultsFound = false;
 
         $('.organization-state-list .responsive-column').each(function () {
-            var itemText = $(this).text().toLowerCase();
-            var itemVisible = itemText.indexOf(value) > -1;
+            let itemText = $(this).text().toLowerCase();
+            let itemVisible = itemText.indexOf(value) > -1;
             $(this).toggle(itemVisible);
             if (itemVisible) {
                 resultsFound = true;
@@ -100,8 +100,8 @@ $(document).ready(function () {
             });
         },
         updater: function (item) {
-            var id = item.id;
-            var name = item.source;
+            let id = item.id;
+            let name = item.source;
             $('#source_value').val(name);
             $('#source_id').val(id);
             return item.name;
