@@ -218,7 +218,7 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <div class="category-list">
                                     @foreach($cities->take(6) as $f_city)
-                                        <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $f_city->state->slug]) }}"
+                                        <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug]) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                             <img src="{{ asset('images/cta-sm.jpg') }}"
                                                  data-src="{{ asset('images/cta-sm.jpg') }}"
@@ -232,7 +232,7 @@
                                     @endforeach
                                     <div class="collapse collapse-content" id="showMoreCity">
                                         @foreach($cities->skip(6) as $f_city)
-                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $f_city->state->slug]) }}"
+                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug]) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                 <img src="{{ asset('images/cta-sm.jpg') }}"
                                                      data-src="{{ asset('images/cta-sm.jpg') }}"

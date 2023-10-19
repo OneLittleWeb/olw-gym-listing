@@ -17,8 +17,10 @@
                             class="breadcrumb-content breadcrumb-content-2 d-flex flex-wrap align-items-end justify-content-between margin-bottom-30px">
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="{{ route('city.wise.organizations', ['city_slug' => $city->slug, 'state_slug' => $city->state->slug]) }}">{{ $city->name }}</a></li>
-                                <li>{{ $s_state->name }}</li>
+                                <li><a href="{{ route('state.wise.organizations', $s_state->slug) }}">{{ $s_state->name }}</a></li>
+                                <li>
+                                    {{ $city->name }}
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -247,7 +249,7 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <div class="category-list">
                                     @foreach($cities->take(6) as $f_city)
-                                        <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $f_city->state->slug]) }}"
+                                        <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug]) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                             <img src="{{ asset('images/cta-sm.jpg') }}"
                                                  data-src="{{ asset('images/cta-sm.jpg') }}"
@@ -261,7 +263,7 @@
                                     @endforeach
                                     <div class="collapse collapse-content" id="showMoreCity">
                                         @foreach($cities->skip(6) as $f_city)
-                                            <a href="{{ route('city.wise.organizations', ['city_slug' => $f_city->slug, 'state_slug' => $f_city->state->slug]) }}"
+                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug]) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                 <img src="{{ asset('images/cta-sm.jpg') }}"
                                                      data-src="{{ asset('images/cta-sm.jpg') }}"
@@ -291,7 +293,8 @@
                                         <h3 class="widget-title">Filter by State</h3>
                                     </div>
                                     <div class="w-60">
-                                        <input type="text" class="p-1 form-control" id="state_search" name="state_search" placeholder="Search State" autocomplete="off">
+                                        <input type="text" class="p-1 form-control" id="state_search"
+                                               name="state_search" placeholder="Search State" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="stroke-shape mb-4"></div>

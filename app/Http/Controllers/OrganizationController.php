@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\File;
 
 class OrganizationController extends Controller
 {
-    public function cityWiseOrganizations($city_slug, $state_slug)
+    public function cityWiseOrganizations($state_slug, $city_slug)
     {
         $city_check = City::where('slug', $city_slug)->exists();
         $state_check = State::where('slug', $state_slug)->exists();
