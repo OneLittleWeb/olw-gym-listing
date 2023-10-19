@@ -104,21 +104,47 @@ $(document).ready(function () {
     });
 });
 
+// document.addEventListener('DOMContentLoaded', function () {
+//     const input = document.getElementById('search_from_header');
+//     const placeholders = [
+//         'Looking for? Business',
+//         'Looking for? State',
+//         'Looking for? City',
+//     ];
+//     let currentIndex = 0;
+//
+//     function showNextPlaceholder() {
+//         input.placeholder = placeholders[currentIndex];
+//         currentIndex = (currentIndex + 1) % placeholders.length;
+//
+//         setTimeout(showNextPlaceholder, 2000); // 2000 milliseconds (2 seconds)
+//     }
+//
+//     showNextPlaceholder();
+// });
+
 document.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('search_from_header');
-    const placeholders = [
-        'Looking for? Business',
-        'Looking for? State',
-        'Looking for? City',
+    const title = document.getElementById('hero_title_animation');
+    const titles = [
+        'Find The Best GymNear California',
+        'Find The Best GymNear Florida',
+        'Find The Best GymNear Georgia',
+        'Find The Best GymNear Illinois',
+        'Find The Best GymNear Michigan',
+        'Find The Best GymNear New York',
+        // 'Find The Best GymNear North Carolina',
+        'Find The Best GymNear Ohio',
+        // 'Find The Best GymNear Pennsylvania',
+        'Find The Best GymNear Texas',
     ];
     let currentIndex = 0;
 
-    function showNextPlaceholder() {
-        input.placeholder = placeholders[currentIndex];
-        currentIndex = (currentIndex + 1) % placeholders.length;
+    function showNextTitle() {
+        title.textContent = titles[currentIndex];
+        currentIndex = (currentIndex + 1) % titles.length;
 
-        setTimeout(showNextPlaceholder, 2000); // 2000 milliseconds (2 seconds)
+        setTimeout(showNextTitle, 2000); // 2000 milliseconds (2 seconds)
     }
 
-    showNextPlaceholder();
+    showNextTitle();
 });

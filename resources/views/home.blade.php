@@ -20,7 +20,7 @@
                                         <span class="la la-search form-icon"></span>
                                         <input class="form-control" type="search" id="search_from_header"
                                                name="looking_for"
-                                               placeholder="Looking for Business, State, City?" autocomplete="off"
+                                               placeholder="Looking for?" autocomplete="off"
                                                required>
                                     </div>
                                     <input type="hidden" name="source_value" id="source_value">
@@ -39,7 +39,7 @@
                 <div class="col-lg-6">
                     <div class="hero-heading">
                         <div class="section-heading">
-                            <h1 class="sec__title font-size-35">Find the best gyms in the USA</h1>
+                            <h1 class="sec__title font-size-35" id="hero_title_animation">Find the best gyms in the USA</h1>
                             <p class="sec__desc">{{ config('app.name') }} helps you find out what's happening in your
                                 city. Let’s
                                 explore!</p>
