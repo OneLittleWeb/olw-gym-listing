@@ -2,33 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\OrganizationController;
-use App\Models\Category;
 use App\Models\City;
 use App\Models\Organization;
 use App\Models\State;
 use Corcel\Model\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $major_states = State::where('is_major', 1)->get();
-        $states = State::take(8)->get();
-        $cities = City::all();
+        $cachedData = Cache::remember('cached_data', 60, function () {
+            $major_states = State::where('is_major', 1)->get();
+            $states = State::take(8)->get();
+            $cities = City::all();
+            $total_pages = Organization::count();
+            $five_star_ratings = Organization::where('rate_stars', 5)->count();
+            $company_joined = Organization::select('organization_name')->distinct()->get();
 
-        $total_pages = Organization::count();
-        $five_star_ratings = Organization::where('rate_stars', 5)->count();
-        $company_joined = Organization::select('organization_name')->distinct()->get();
-        try {
-            $posts = Post::taxonomy('category', 'uncategorized')->newest()->take(6)->get();
-        } catch (\Exception $e) {
-            $posts = null;
-        }
-        return view('home', compact('states', 'major_states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
+            try {
+                $posts = Post::taxonomy('category', 'uncategorized')->newest()->take(6)->get();
+            } catch (\Exception $e) {
+                $posts = null;
+            }
+
+            return [
+                'major_states' => $major_states,
+                'states' => $states,
+                'cities' => $cities,
+                'total_pages' => $total_pages,
+                'five_star_ratings' => $five_star_ratings,
+                'company_joined' => $company_joined,
+                'posts' => $posts,
+            ];
+        });
+
+        // Extract the data if needed.
+        extract($cachedData);
+
+        return view('home', compact('major_states', 'states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
     }
 
     public function autocomplete(Request $request)
