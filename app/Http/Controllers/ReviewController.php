@@ -97,8 +97,6 @@ class ReviewController extends Controller
     {
         $reviews = Review::all();
 
-        dd($reviews);
-
         foreach ($reviews as $review) {
             $created_at = $review->created_at;
             $current_review_date = $review->review_date;
