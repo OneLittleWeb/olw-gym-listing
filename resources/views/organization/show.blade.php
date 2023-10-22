@@ -37,10 +37,10 @@
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
                                 <li>
-                                    <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $organization->city->name }}</a>
+                                    <a href="{{ route('state.wise.organizations', $organization->state->slug) }}">{{ $organization->state->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('state.wise.organizations', $organization->state->slug) }}">{{ $organization->state->name }}</a>
+                                    <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $organization->city->name }}</a>
                                 </li>
                                 <li>{{ $organization->organization_name }}</li>
                             </ul>
