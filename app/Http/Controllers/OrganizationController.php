@@ -97,34 +97,6 @@ class OrganizationController extends Controller
         abort(404);
     }
 
-//    public function cityWiseOrganizations($city_slug, $category_slug)
-//    {
-//        if ($city_slug && $category_slug) {
-//            $city = City::where('slug', $city_slug)->first();
-//            $category = Category::where('slug', $category_slug)->first();
-//
-//            if ($city && $category) {
-//                $category->meta_title = Str::title($category->name) . ' in ' . Str::title($city->name) . ', NE | nebraskalisting.com';
-//
-//                $categories = Category::select('id', 'name', 'slug', 'icon', 'background', 'background_image')->get();
-//                $cities = City::select('id', 'name', 'slug', 'is_major', 'population', 'background_image')->get();
-//
-//                $organizations = Organization::withCount('reviews')
-//                    ->where('city_id', $city->id)
-//                    ->where('category_id', $category->id)
-//                    ->leftJoin('reviews', 'organizations.organization_guid', '=', 'reviews.organization_guid') // Left join to include reviews table
-//                    ->select('organizations.*', DB::raw('COUNT(reviews.id) AS reviews_count')) // Calculate the reviews_count
-//                    ->groupBy('organizations.id') // Group by organization to avoid duplicates
-//                    ->orderBy('reviews_count', 'DESC') // Order by the reviews_count
-//                    ->paginate(10);
-//
-//                Meta::setPaginationLinks($organizations);
-//                return view('organization.index', compact('organizations', 'cities', 'city', 'category', 'categories'));
-//            }
-//        }
-//        return abort(404);
-//    }
-
     public function cityWiseOrganization($city_slug, $organization_slug)
     {
         // Define a unique cache key based on the city and organization slugs.
