@@ -95,7 +95,9 @@ class ReviewController extends Controller
 
     public function reviewDateDiffFromHumanToDate()
     {
-        $reviews = Review::all();
+//        $date = Carbon::now()->toDateTimeString();
+
+        $reviews = Review::where('review_specified_date', null)->get();
 
         foreach ($reviews as $review) {
             $created_at = $review->created_at;
