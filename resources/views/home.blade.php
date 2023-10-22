@@ -39,7 +39,8 @@
                 <div class="col-lg-6">
                     <div class="hero-heading">
                         <div class="section-heading">
-                            <h1 class="sec__title font-size-35" id="hero_title_animation">Find the best gyms in the USA</h1>
+                            <h1 class="sec__title font-size-35" id="hero_title_animation">Find the best gyms in the
+                                USA</h1>
                             <p class="sec__desc">{{ config('app.name') }} helps you find out what's happening in your
                                 city. Let’s
                                 explore!</p>
@@ -59,12 +60,11 @@
                                 <a href="{{ route('state.wise.organizations', $state->slug) }}"
                                    class="d-block hero-cat-link">
                                     <span class="icon-element mx-auto {{ $state->background }}">
-{{--                                        <img src="{{asset('images/' . $state->background_image)}}"--}}
-                                        {{--                                             data-src="{{asset('images/' . $state->background_image)}}"--}}
-                                        {{--                                             alt="country-image" class="lazy icon-element">--}}
-                                        <img src="{{asset('images/pattern-image.jpg')}}"
-                                             data-src="{{asset('images/pattern-image.jpg')}}"
+                                        <img src="{{asset('images/state/' . $state->background_image)}}" data-src="{{asset('images/state/' . $state->background_image)}}"
                                              alt="country-image" class="lazy icon-element">
+{{--                                        <img src="{{asset('images/pattern-image.jpg')}}"--}}
+                                        {{--                                             data-src="{{asset('images/pattern-image.jpg')}}"--}}
+                                        {{--                                             alt="country-image" class="lazy icon-element">--}}
                                     </span>
                                     {{ $state->name }}
                                 </a>

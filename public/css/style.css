@@ -4200,10 +4200,10 @@ div.datedropper .picker .pick-lg-b li {
     line-height: 50px;
     text-align: center;
     /*background-color: #f8c401;*/
-    background-color: #5c4725;
+    /*background-color: #5c4725;*/
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    border-radius: 50%;
+    border-radius: 5%;
     position: relative;
     font-size: 26px;
     -webkit-transition: all .3s;
@@ -8673,11 +8673,11 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .hero-category-item-layout-2 .hero-cat-link {
-    background-color: #fff
+    background-color: #edf2fd;
 }
 
 .hero-category-item-layout-2 .hero-cat-link:hover {
-    background-color: #fff;
+    background-color: #e8eef9;
     -webkit-transform: translateY(-3px);
     -moz-transform: translateY(-3px);
     -ms-transform: translateY(-3px);
