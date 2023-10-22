@@ -332,9 +332,9 @@
                                                                          data-rating="{{ $review->review_rate_stars }}">
                                                                     </div>
                                                                     @if($review->review_date)
-                                                                        <p class="font-size-13 font-weight-medium">{{ $review->review_date }}</p>
+                                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->review_specified_date)->diffForHumans() }}</p>
                                                                     @else
-                                                                        <p class="font-size-13 font-weight-medium">{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</p>
+                                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->created_at)->diffForHumans() }}</p>
                                                                     @endif
                                                                 </div>
                                                             </div>
@@ -521,7 +521,7 @@
                                                                              data-rating="{{ $nebraska_review->review_rate_stars }}">
                                                                         </div>
                                                                         @if($nebraska_review->review_date)
-                                                                            <p class="font-size-13 font-weight-medium">{{ $nebraska_review->review_date }}</p>
+                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($nebraska_review->review_specified_date)->diffForHumans() }}</p>
                                                                         @else
                                                                             <p class="font-size-13 font-weight-medium">{{ Carbon::parse($nebraska_review->created_at)->diffForHumans() }}</p>
                                                                         @endif

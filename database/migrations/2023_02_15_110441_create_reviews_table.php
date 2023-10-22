@@ -23,6 +23,7 @@ class CreateReviewsTable extends Migration
             $table->string('reviewer_email')->nullable();
             $table->string('reviewer_reviews_count')->nullable();
             $table->string('review_date')->nullable();
+            $table->string('review_specified_date')->nullable();
             $table->string('review_rate_stars')->nullable();
             $table->text('review_text_original')->nullable();
             $table->text('review_photos_files')->nullable();

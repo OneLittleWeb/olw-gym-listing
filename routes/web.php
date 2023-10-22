@@ -84,6 +84,13 @@ Route::post('/store-review', [ReviewController::class, 'store'])->name('review.s
 
 Route::get('/sitemap', [SitemapController::class, 'sitemapStore'])->name('sitemap');
 
+Route::get('/about-us', [PageController::class, 'aboutUs'])->name('page.about');
+Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('page.privacy');
+Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('terms.conditions');
+Route::get('/contact-us', [PageController::class, 'contactUs'])->name('page.contact');
+Route::post('/contact-store', [PageController::class, 'contactStore'])->name('contact.store');
+Route::get('/pricing', [PricingController::class, 'index'])->name('page.pricing');
+
 //route for import data
 Route::get('/import', [OrganizationController::class, 'import'])->name('import');
 
@@ -96,12 +103,8 @@ Route::get('/import-cities', [CityController::class, 'importCityData'])->name('i
 //route for image copy past from multiple folder to single folder
 Route::get('/copy-paste', [OrganizationController::class, 'imageCopyPasteFromOneFolderToAnother'])->name('copy.past');
 
-Route::get('/about-us', [PageController::class, 'aboutUs'])->name('page.about');
-Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('page.privacy');
-Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('terms.conditions');
-Route::get('/contact-us', [PageController::class, 'contactUs'])->name('page.contact');
-Route::post('/contact-store', [PageController::class, 'contactStore'])->name('contact.store');
-Route::get('/pricing', [PricingController::class, 'index'])->name('page.pricing');
+//review date diff from human to date route
+Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDiffFromHumanToDate'])->name('get.original.review.date');
 
 Route::get('/{slug}', [StateController::class, 'stateWiseOrganizations'])->name('state.wise.organizations');
 
