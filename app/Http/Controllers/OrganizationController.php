@@ -35,14 +35,14 @@ class OrganizationController extends Controller
 
         if ($cachedView === null) {
             // If the view is not found in the cache, retrieve and store it.
-            $cachedView = $this->generateCityWiseOrganizationView($state_slug, $city_slug);
+            $cachedView = $this->generateCityWiseOrganizationsView($state_slug, $city_slug);
             Cache::forever($cacheKey, $cachedView);
         }
 
         return response($cachedView);
     }
 
-    private function generateCityWiseOrganizationView($state_slug, $city_slug)
+    private function generateCityWiseOrganizationsView($state_slug, $city_slug)
     {
         $city_check = City::where('slug', $city_slug)->exists();
         $state_check = State::where('slug', $state_slug)->exists();
@@ -126,6 +126,24 @@ class OrganizationController extends Controller
 //    }
 
     public function cityWiseOrganization($city_slug, $organization_slug)
+    {
+        // Define a unique cache key based on the city and organization slugs.
+        $cacheKey = 'city_wise_organization_' . $city_slug . '_' . $organization_slug;
+
+        // Attempt to retrieve the view as a string from the cache.
+        $cachedView = Cache::get($cacheKey);
+
+        if ($cachedView === null) {
+            // If the view is not found in the cache, generate and store it.
+            $cachedView = $this->generateCityWiseOrganizationView($city_slug, $organization_slug);
+            Cache::forever($cacheKey, $cachedView);
+        }
+
+        return response($cachedView);
+    }
+
+
+    public function generateCityWiseOrganizationView($city_slug, $organization_slug)
     {
         $city = City::where('slug', $city_slug)->first();
         $organization = Organization::where('slug', $organization_slug)->where('permanently_closed', 0)->first();
@@ -277,9 +295,9 @@ class OrganizationController extends Controller
                 $seventh_day_opening_hours = ltrim($seventh_day_work_hours[0]);
                 $seventh_day_closing_hours = ltrim($seventh_day_work_hours[1]);
 
-                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours'));
+                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours'))->render();;
             } else {
-                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours'));
+                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours'))->render();;
             }
         }
 

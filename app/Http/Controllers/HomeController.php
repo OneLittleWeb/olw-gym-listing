@@ -39,6 +39,9 @@ class HomeController extends Controller
             ];
         });
 
+        // Use Cache::forever to cache the data forever
+        Cache::forever('business_index', $businessIndex);
+
         // Extract the data if needed.
         extract($businessIndex);
 
