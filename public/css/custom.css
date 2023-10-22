@@ -233,6 +233,10 @@
     .hero-container {
         padding-bottom: 100px !important;
     }
+
+    .slide-image-top {
+        padding-top: 92px;
+    }
 }
 
 @media screen and (max-width: 1450px) {
