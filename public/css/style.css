@@ -4203,7 +4203,7 @@ div.datedropper .picker .pick-lg-b li {
     /*background-color: #5c4725;*/
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    border-radius: 5%;
+    border-radius: 50%;
     position: relative;
     font-size: 26px;
     -webkit-transition: all .3s;
