@@ -179,23 +179,23 @@
                                 </ul>
                                 <ul class="social-profile social-profile-styled">
                                     @if($organization->organization_facebook)
-                                        <li><a href="{{ $organization->organization_facebook }}" class="facebook-bg"
+                                        <li><a rel="nofollow" href="{{ $organization->organization_facebook }}" class="facebook-bg"
                                                data-toggle="tooltip" data-placement="top"
                                                title="Facebook" target="_blank"><i class="lab la-facebook-f"></i></a>
                                         </li>
                                     @endif
                                     @if($organization->organization_twitter)
-                                        <li><a href="{{ $organization->organization_twitter }}" class="twitter-bg"
+                                        <li><a rel="nofollow" href="{{ $organization->organization_twitter }}" class="twitter-bg"
                                                data-toggle="tooltip" data-placement="top"
                                                title="Twitter"><i class="lab la-twitter"></i></a></li>
                                     @endif
                                     @if($organization->organization_instagram)
-                                        <li><a href="{{ $organization->organization_instagram }}" class="instagram-bg"
+                                        <li><a rel="nofollow" href="{{ $organization->organization_instagram }}" class="instagram-bg"
                                                data-toggle="tooltip" data-placement="top"
                                                title="Instagram"><i class="lab la-instagram"></i></a></li>
                                     @endif
                                     @if($organization->organization_youTube)
-                                        <li><a href="{{ $organization->organization_youTube }}" class="youtube-bg"
+                                        <li><a rel="nofollow" href="{{ $organization->organization_youTube }}" class="youtube-bg"
                                                data-toggle="tooltip" data-placement="top"
                                                title="Youtube"><i class="la la-youtube"></i></a></li>
                                     @endif
