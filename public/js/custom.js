@@ -140,10 +140,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentIndex = 0;
 
     function showNextTitle() {
-        title.textContent = titles[currentIndex];
-        currentIndex = (currentIndex + 1) % titles.length;
+        if (title){
+            title.textContent = titles[currentIndex];
+            currentIndex = (currentIndex + 1) % titles.length;
 
-        setTimeout(showNextTitle, 2000); // 2000 milliseconds (2 seconds)
+            setTimeout(showNextTitle, 2000); // 2000 milliseconds (2 seconds)
+        }
     }
 
     showNextTitle();
