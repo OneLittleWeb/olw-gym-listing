@@ -34,7 +34,7 @@ class StateController extends Controller
         if ($cachedView === null) {
             // If the view is not found in the cache, retrieve and store it.
             $cachedView = $this->generateStateWiseOrganizationView($slug);
-            Cache::put($cacheKey, $cachedView, now()->addHours(10));
+            Cache::forever($cacheKey, $cachedView);
         }
 
         return response($cachedView);

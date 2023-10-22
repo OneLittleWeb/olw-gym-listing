@@ -27,6 +27,23 @@ class OrganizationController extends Controller
 {
     public function cityWiseOrganizations($state_slug, $city_slug)
     {
+        // Define a unique cache key based on the state and city slugs.
+        $cacheKey = 'city_wise_organization_data_' . $state_slug . '_' . $city_slug;
+
+        // Attempt to retrieve the view as a string from the cache.
+        $cachedView = Cache::get($cacheKey);
+
+        if ($cachedView === null) {
+            // If the view is not found in the cache, retrieve and store it.
+            $cachedView = $this->generateCityWiseOrganizationView($state_slug, $city_slug);
+            Cache::forever($cacheKey, $cachedView);
+        }
+
+        return response($cachedView);
+    }
+
+    private function generateCityWiseOrganizationView($state_slug, $city_slug)
+    {
         $city_check = City::where('slug', $city_slug)->exists();
         $state_check = State::where('slug', $state_slug)->exists();
 
@@ -40,14 +57,14 @@ class OrganizationController extends Controller
             $organizations = Organization::where('city_id', $city->id)
                 ->where('state_id', $s_state->id)
                 ->where('permanently_closed', 0)
-                ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
+                ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->paginate(10)
                 ->onEachSide(0);
 
             $organization_badge = '';
 
-            if ($organizations[0]) {
+            if ($organizations->isNotEmpty()) {
                 $files = File::files(public_path('images/badges'));
                 $images = [];
 
@@ -72,9 +89,12 @@ class OrganizationController extends Controller
             }
 
             Meta::setPaginationLinks($organizations);
-            return view('organization.index', compact('organizations', 'cities', 'city', 's_state', 'states', 'organization_badge', 'organization_count'));
+
+            // Render the view as a string.
+            return view('organization.index', compact('organizations', 'cities', 'city', 's_state', 'states', 'organization_badge', 'organization_count'))->render();
         }
-        return abort(404);
+
+        abort(404);
     }
 
 //    public function cityWiseOrganizations($city_slug, $category_slug)
