@@ -1,74 +1,96 @@
 @extends('layouts.master')
-@section('title', "Nebraskalisting THE Local Business Directory | Privacy Policy")
-@section('meta_description', "nebraskalisting, best places in nebraska")
+@section('title', "Gymnearx THE Local Business Directory | Privacy Policy")
+@section('meta_description', "Gymnearx, best gym in the USA")
 @section('content')
     <section>
         <div class="container main_container">
             <div class="padding-bottom-20px">
                 <h1 class="text-center">Privacy Policy</h1>
-                <p class="padding-top-30px">Thank you for using NebraskaListing.com. Protecting your privacy is
-                    important to us, and we are committed to safeguarding your personal information. This privacy policy
-                    outlines how we collect, use, and protect your personal information on our website.</p>
+                <p class="padding-top-30px">GymNearX ("we," "our," or "us") is committed to protecting the privacy of
+                    our users. This Privacy Policy outlines how we collect, use, and protect your personal information
+                    when you use our website and services. By using GymNearX, you agree to the practices described in
+                    this policy.</p>
             </div>
 
             <div class="padding-bottom-20px">
                 <h2><strong>Information We Collect</strong></h2>
-                <p class="padding-top-10px">When you use our website, we may collect personal information, such as your
-                    name, email address, phone number, and address. We may also collect non-personal information, such
-                    as your IP address and web browser information.</p>
-
-                <p class="padding-top-10px">We collect information in several ways, including when you fill out a form
-                    on our website, when you create an account, when you contact us, and through the use of cookies.</p>
+                <p class="padding-top-10px"><strong>1. Personal Information:</strong> When you use GymNearX, we may
+                    collect personal information such as your name, email address, and contact details.</p>
+                <p class="padding-top-10px"><strong>2. Usage Data:</strong> We automatically collect information about
+                    your use of GymNearX, including your IP address, device information, browser type, and the pages you
+                    visit.</p>
+                <p class="padding-top-10px"><strong>3. User-Generated Content:</strong> We collect any content you post
+                    on our platform, such as gym reviews and ratings.</p>
             </div>
 
             <div class="padding-bottom-20px">
                 <h2><strong>How We Use Your Information</strong></h2>
-                <p class="padding-top-10px">We may use your personal information to provide you with services on our
-                    website, such as to create and manage your account, to respond to your inquiries, to send you
-                    promotional materials, and to process your transactions. We may also use your personal information
-                    to improve our website and to personalize your experience on our site.</p>
-                <p class="padding-top-10px">We may share your personal information with third-party service providers,
-                    such as payment processors, to assist us in providing services to you. We may also share your
-                    personal information with law enforcement or government officials when required by law.</p>
+                <p class="padding-top-10px">We use your information for the following purposes:</p>
+                <p class="padding-top-10px"><strong>1. Providing Services:</strong> We use your information to operate
+                    and maintain GymNearX, including displaying gym listings, user reviews, and ratings.</p>
+                <p class="padding-top-10px"><strong>2. Communication:</strong> We may use your contact information to
+                    respond to your inquiries, send important updates, or provide support.</p>
+                <p class="padding-top-10px"><strong>3. Improvement:</strong> Your information helps us understand how
+                    users interact with GymNearX, enabling us to improve our platform and services.</p>
             </div>
 
             <div class="padding-bottom-20px">
-                <h2><strong>How We Protect Your Information</strong></h2>
-                <p class="padding-top-10px">We take reasonable measures to protect your personal information from
-                    unauthorized access, disclosure, alteration, or destruction. We use secure servers and encryption
-                    technologies to protect your information. However, no method of transmission over the internet or
-                    electronic storage is completely secure, and we cannot guarantee the absolute security of your
-                    information.</p>
+                <h2><strong>Sharing Your Information</strong></h2>
+                <p class="padding-top-10px">We do not sell, trade, or rent your personal information to third parties.
+                    We may share your information in the following situations:</p>
+                <p class="padding-top-10px"><strong>1. Consent:</strong> When you provide us with explicit consent to
+                    share your information.</p>
+                <p class="padding-top-10px"><strong>2. Service Providers:</strong> We may share your information with
+                    third-party service providers who help us operate GymNearX, such as hosting, analytics, and customer
+                    support.</p>
+                <p class="padding-top-10px"><strong>3. Legal Compliance:</strong> If required by law or in response to
+                    legal requests or government authorities, we may disclose your information.</p>
             </div>
 
             <div class="padding-bottom-20px">
                 <h2><strong>Your Choices</strong></h2>
-                <p class="padding-top-10px">You have the right to opt-out of receiving promotional materials from us.
-                    You may do so by clicking the “unsubscribe” link at the bottom of any promotional email we send
-                    you.</p>
+                <p class="padding-top-10px">You can manage your information and privacy preferences in the following
+                    ways:</p>
+                <p class="padding-top-10px"><strong>1. Access and Correction: </strong> You may access and update your
+                    personal information in your account settings.</p>
+                <p class="padding-top-10px"><strong>2. Unsubscribe:</strong> You can unsubscribe from our email
+                    communications by following the instructions in the email.</p>
+                <p class="padding-top-10px"><strong>3. Deletion:</strong> You may request the deletion of your account
+                    and associated information by contacting us.</p>
+            </div>
 
-                <p class="padding-top-10px">You may also update your personal information by logging into your account
-                    on our website.</p>
+            <div class="padding-bottom-20px">
+                <h2><strong>Security</strong></h2>
+                <p class="padding-top-10px">We take appropriate security measures to protect your information from
+                    unauthorized access, disclosure, alteration, or destruction. However, no method of transmission over
+                    the internet or electronic storage is entirely secure. While we strive to protect your information,
+                    we cannot guarantee its absolute security.</p>
             </div>
 
             <div class="padding-bottom-20px">
                 <h2><strong>Children's Privacy</strong></h2>
-                <p class="padding-top-10px">Our website is not intended for children under the age of 18, and we do not
-                    knowingly collect personal information from children under the age of 18. If we learn that we have
-                    collected personal information from a child under the age of 18, we will take steps to delete the
-                    information as soon as possible.</p>
+                <p class="padding-top-10px">GymNearX is not intended for individuals under the age of 18. We do not
+                    knowingly collect personal information from children. If you believe that a child has provided us
+                    with their personal information, please contact us, and we will take appropriate steps to remove
+                    this information.</p>
             </div>
 
             <div class="padding-bottom-20px">
-                <h2><strong>Changes to Our Privacy Policy</strong></h2>
-                <p class="padding-top-10px">We reserve the right to modify this privacy policy at any time. We encourage
-                    you to review this policy periodically for any updates or changes.</p>
+                <h2><strong>Changes to this Privacy Policy</strong></h2>
+                <p class="padding-top-10px">We may update this Privacy Policy from time to time. Any changes will be
+                    posted on this page with an updated effective date. Please review this Privacy Policy regularly to
+                    stay informed about our data practices.</p>
             </div>
 
-            <div class="padding-bottom-20px">
-                <h2><strong>Contact Us</strong></h2>
-                <p class="padding-top-10px">If you have any questions or concerns about our privacy policy or our use of
-                    your personal information, please contact us at <a href="mailto:support@nebraskalisting.com">support@nebraskalisting.com</a>.</p>
+            <div class="padding-bottom-20px text-justify">
+                <h4>Contact Us</h4>
+                <p class="padding-top-10px">If you have questions or concerns about this Privacy Policy or your personal
+                    information, please contact us at <a
+                        href="mailto:{{ config('app.support_mail') }}">{{ config('app.support_mail') }}</a> or <a
+                        href="tel:{{ config('app.support_phone') }}">{{ config('app.support_phone') }}</a>.
+                </p>
+                <p class="padding-top-10px">By using GymNearX, you agree to these Terms and Conditions and our Privacy
+                    Policy. Thank you for using GymNearX as your fitness directory.</p>
             </div>
 
         </div>
