@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', "Checkout - Nebraskalisting")
+@section('title', "Checkout - Gymnearx")
 @section('meta_description', "To be added")
 @section('content')
     <section>
