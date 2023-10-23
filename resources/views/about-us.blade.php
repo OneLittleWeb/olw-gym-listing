@@ -64,7 +64,6 @@
                     multiple gyms side by side to make the best choice for your needs.</p>
             </div>
 
-
             <div class="padding-bottom-20px">
                 <h1 class="text-center pb-4">Join the GymNearX Community</h1>
                 <p class="padding-top-10px">Join the ever-growing GymNearX community and take your fitness journey to
