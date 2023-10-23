@@ -5,75 +5,76 @@
     <section>
         <div class="container main_container">
             <div class="padding-bottom-20px">
-                <h1 class="text-center">About Us</h1>
-                <p class="padding-top-30px">NebraskaListing.com is your unbeatable GPS for finding local businesses and
-                    services in the cities of
-                    Nebraska. This website acts as a one-stop-shop for users for a seamless access to all the important
-                    business information you need before picking the rightmost one.</p>
+                <h1 class="text-center">About GymNearX: Your Fitness Destination</h1>
+                <p class="padding-top-30px">Welcome to GymNearX, your ultimate fitness directory, designed to help you
+                    discover the best gyms and fitness centers across the United States. Whether you're a seasoned
+                    fitness enthusiast or just starting your wellness journey, GymNearX is your go-to resource for
+                    locating the perfect fitness facility near you.</p>
             </div>
 
             <div class="padding-bottom-20px">
-                <h2><strong>Why Choose Us?</strong></h2>
-                <p class="padding-top-10px">We understand that finding reliable and trustworthy businesses in your local
-                    area can be challenging.
-                    That's why we've created a comprehensive platform where you can browse a wide range of categories,
-                    including restaurants, hotels, resorts, fitness centers, plumbers, beauty salons, electricians, pest
-                    control services, car rentals, professional services like dentists, and many more.</p>
-
-                <p class="padding-top-10px">Our website features detailed listings of each business, complete with
-                    photos, business hours, phone
-                    numbers, ratings, reviews, service details, and other important information. It ensures that you can
-                    decide which business is the right fit for your needs. In addition, you can add photos, ratings, and
-                    reviews to your site if you have visited a place.</p>
+                <h1 class="text-center">Our Mission</h1>
+                <p class="padding-top-30px">At GymNearX, our mission is to empower individuals across all states and
+                    cities in the USA to take control of their health and well-being by making it easier than ever to
+                    find the ideal fitness facility. We're dedicated to connecting fitness seekers with a diverse range
+                    of gyms, fitness centers, and health clubs, making it simple to find the perfect fit for your unique
+                    fitness goals.</p>
             </div>
 
             <div class="padding-bottom-20px">
-                <h2><strong>Accuracy of Data</strong></h2>
-                <p class="padding-top-10px">We take pride in being the leading source of information for businesses in
-                    Nebraska. Our website is
-                    designed with user-friendliness in mind, making it easy to find the information you need
-                    effortlessly.</p>
-                <p class="padding-top-10px">Our team is constantly working to ensure that our website is up-to-date with
-                    the latest information so
-                    that you can be confident about your findings on NebraskaListing.com.</p>
-                <p class="padding-top-10px">But please note that we can't always guarantee 100% data accuracy because
-                    things get updated or changed
-                    faster than we anticipate. Yet we are always alert.</p>
-                <p class="padding-top-10px">If you see any misleading information about your service on our list, click
-                    <strong>“Claim this Business,”</strong> which
-                    you will find on that service page. After that, you can fix, add or remove information just like you
-                    want.</p>
+                <h1 class="text-center pb-4">Why Choose GymNearX?</h1>
+                <h3><strong>Comprehensive Listings:</strong></h3>
+                <p class="padding-top-10px">GymNearX boasts an extensive database that covers all 50 states and
+                    countless cities. We understand that fitness preferences are as diverse as our nation, so we're here
+                    to help you find a gym that suits your lifestyle and objectives.</p>
             </div>
 
             <div class="padding-bottom-20px">
-                <h2><strong>What Motivates Us</strong></h2>
-                <p class="padding-top-10px">At NebraskaListing.com, supporting local businesses is key to building
-                    strong communities. We are dedicated to promoting local businesses and making them easily accessible
-                    to you.</p>
-
-                <p class="padding-top-10px">By supporting local businesses, you not only help strengthen the local
-                    economy, but you also contribute to the country’s growth and development.</p>
+                <h3><strong>User-Friendly Interface:</strong></h3>
+                <p class="padding-top-10px">Our website is designed with your convenience in mind. Simply enter your
+                    location, and we'll provide you with a list of fitness facilities nearby, complete with essential
+                    information to help you make an informed decision.</p>
             </div>
 
             <div class="padding-bottom-20px">
-                <h2><strong>Advertise Your Business</strong></h2>
-                <p class="padding-top-10px">If you find out that we have missed your business on our website, click the
-                    <strong>“+ Add Listing”</strong> button on every page on the Menu bar. If you need help
-                    understanding anything, feel
-                    free to ping us with a message. We are committed to providing you with the best possible user
-                    experience.</p>
-
-                <p class="padding-top-10px">Even if you have any questions or concerns, our team is always available to
-                    assist you. Contact us through our website, and we will respond to your inquiry immediately.</p>
+                <h3><strong>Detailed Gym Profiles:</strong></h3>
+                <p class="padding-top-10px">GymNearX goes beyond basic listings. We provide detailed profiles for each
+                    gym, including photos, descriptions, operating hours, services offered, and contact information.
+                    This ensures you can evaluate your options thoroughly.</p>
             </div>
 
             <div class="padding-bottom-20px">
-                <h2><strong>Finally. . .</strong></h2>
-                <p class="padding-top-10px">We are glad that you have thoughtfully landed on NebraskaListing.com. We
-                    hope you find this site as your trusted source for finding local businesses and services in
-                    Nebraska. We look forward to serving you and helping you explore the best that Nebraska has to
-                    offer. <strong>NebraskaListing- Honestly, it’s <span class="text-danger"><del>not</del></span> for
-                        everyone!</strong></p>
+                <h3><strong>Reviews and Ratings:</strong></h3>
+                <p class="padding-top-10px">We believe in the power of community feedback. Read reviews from real
+                    gym-goers to gain insights into the quality and atmosphere of each facility. You can also leave your
+                    own reviews to contribute to our fitness community.</p>
+            </div>
+
+            <div class="padding-bottom-20px">
+                <h3><strong>Fitness Resources:</strong></h3>
+                <p class="padding-top-10px">GymNearX isn't just a directory; it's a hub for fitness knowledge. Explore
+                    our blog and articles to access valuable tips, workouts, and advice to enhance your fitness
+                    journey.</p>
+            </div>
+
+            <div class="padding-bottom-20px">
+                <h3><strong>Filter and Compare:</strong></h3>
+                <p class="padding-top-10px">Use our filtering options to narrow down your search based on your
+                    preferences, such as gym type, equipment, membership pricing, and more. You can even compare
+                    multiple gyms side by side to make the best choice for your needs.</p>
+            </div>
+
+
+            <div class="padding-bottom-20px">
+                <h1 class="text-center pb-4">Join the GymNearX Community</h1>
+                <p class="padding-top-10px">Join the ever-growing GymNearX community and take your fitness journey to
+                    the next level. We're passionate about helping you find the right fitness facility to match your
+                    goals, lifestyle, and budget. Whether you're seeking a local gym for daily workouts, a yoga studio
+                    for relaxation, or a state-of-the-art fitness center with a variety of amenities, GymNearX has you
+                    covered.</p>
+                <p class="padding-top-10px">GymNearX is more than just a directory; it's your partner in pursuing a
+                    healthier, fitter you. Start exploring our listings today, and embark on your path to a better,
+                    healthier lifestyle.</p>
             </div>
         </div>
     </section>
