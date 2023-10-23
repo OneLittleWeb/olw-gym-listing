@@ -75,6 +75,17 @@
                     healthier, fitter you. Start exploring our listings today, and embark on your path to a better,
                     healthier lifestyle.</p>
             </div>
+
+            <div class="padding-bottom-20px">
+                <h1 class="text-center pb-4">Contact Us</h1>
+                <p class="padding-top-10px">Have questions, feedback, or suggestions? We'd love to hear from you.
+                    Contact us at <a
+                        href="mailto:{{ config('app.support_mail') }}">{{ config('app.support_mail') }}</a> or <a
+                        href="tel:{{ config('app.support_phone') }}">{{ config('app.support_phone') }}</a>, and our
+                    dedicated team will be happy to assist you on your
+                    fitness journey.</p>
+                <p class="padding-top-10px">Choose GymNearX for a fitter, healthier you.</p>
+            </div>
         </div>
     </section>
 @endsection
