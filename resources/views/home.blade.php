@@ -60,7 +60,8 @@
                                 <a href="{{ route('state.wise.organizations', $state->slug) }}"
                                    class="d-block hero-cat-link">
                                     <span class="icon-element mx-auto {{ $state->background }}">
-                                        <img src="{{asset('images/state/' . $state->background_image)}}" data-src="{{asset('images/state/' . $state->background_image)}}"
+                                        <img src="{{asset('images/state/' . $state->background_image)}}"
+                                             data-src="{{asset('images/state/' . $state->background_image)}}"
                                              alt="country-image" class="lazy icon-element">
 {{--                                        <img src="{{asset('images/pattern-image.jpg')}}"--}}
                                         {{--                                             data-src="{{asset('images/pattern-image.jpg')}}"--}}
@@ -549,8 +550,8 @@
                             </div>
                             <h2 class="sec__title">Articles You Might <span class="text-color-16">Like.</span></h2>
                             <p class="sec__desc">
-                                Learn about unique attractions of Nebraska and what the cities have to offer.
-                                Activities, foods, spooky places and so on.
+                                The USA's cities offer a wide range of attractions, from NYC's Times Square to LA's
+                                Hollywood. Gyms abound, catering to all fitness needs.
                             </p>
                         </div>
                     </div>
