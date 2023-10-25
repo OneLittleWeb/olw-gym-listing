@@ -92,7 +92,7 @@ class HomeController extends Controller
                 $city = City::find($search_source_id);
                 $sourceController = new OrganizationController();
 
-                return $sourceController->cityWiseOrganizations($city->slug, $city->state->slug);
+                return $sourceController->cityWiseOrganizations($city->state->slug, $city->slug);
             }
         }
 
