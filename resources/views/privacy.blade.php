@@ -89,7 +89,7 @@
                         href="mailto:{{ config('app.support_mail') }}">{{ config('app.support_mail') }}</a> or <a
                         href="tel:{{ config('app.support_phone') }}">{{ config('app.support_phone') }}</a>.
                 </p>
-                <p class="padding-top-10px">By using GymNearX, you agree to these Terms and Conditions and our Privacy
+                <p class="padding-top-10px">By using GymNearX, you agree to these <a href="{{ route('terms.conditions') }}">Terms and Conditions</a> and our Privacy
                     Policy. Thank you for using GymNearX as your fitness directory.</p>
             </div>
 
