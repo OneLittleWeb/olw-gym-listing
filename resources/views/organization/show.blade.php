@@ -988,7 +988,7 @@
                                 <img class="nebraska-badge-image"
                                      src="{{ asset('images/badges/' . $organization->organization_badge) }}"
                                      data-src="{{ asset('images/badges/' . $organization->organization_badge) }}"
-                                     alt="Nebraska Badge">
+                                     alt="GymNearX Badge">
                                 <span class="text-center pt-4 font-weight-bold">Get your award certificate!</span>
                             </button>
                         @endif
@@ -1128,7 +1128,5 @@
             "reviewCount": "{{ $organization->reviews->count() ?? 0}}"
           }
         }
-
-
     </script>
 @endsection
