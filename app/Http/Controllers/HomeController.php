@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $businessIndex = Cache::rememberForever('business_index', function () {
+        $businessIndex = Cache::remember('business_index', now()->addHours(10), function () {
             $major_states = State::where('is_major', 1)->get();
             $states = State::take(8)->get();
             $cities = City::all();
@@ -38,6 +38,9 @@ class HomeController extends Controller
                 'posts' => $posts,
             ];
         });
+
+        // Use Cache::forever to cache the data forever
+//        Cache::forever('business_index', $businessIndex);
 
         // Extract the data if needed.
         extract($businessIndex);
