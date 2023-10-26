@@ -495,7 +495,7 @@
                         </div>
                         <div class="counter-content pl-3">
                             <h3 class="counter__number text-color-5 mb-2">
-                                <span class="counter">{{ $company_joined->count() }}</span>
+                                <span class="counter">{{ $company_joined }}</span>
                                 <span class="count-symbol">+</span>
                             </h3>
                             <p class="counter__title">Company Joined</p>

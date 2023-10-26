@@ -20,7 +20,7 @@ class HomeController extends Controller
             $cities = City::all();
             $total_pages = Organization::count();
             $five_star_ratings = Organization::where('rate_stars', 5)->count();
-            $company_joined = Organization::select('organization_name')->distinct()->get();
+            $company_joined = Organization::select('organization_name')->distinct()->count();
 
             try {
                 $posts = Post::taxonomy('category', 'uncategorized')->newest()->take(6)->get();
