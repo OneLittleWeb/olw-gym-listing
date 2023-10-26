@@ -80,8 +80,7 @@
                             <p class="pb-2 font-weight-medium">
                             <span class="price-range mr-1 text-color font-size-16" data-toggle="tooltip"
                                   data-placement="top" title="Moderate">
-                                <strong class="font-weight-medium">$</strong>
-                                <strong class="font-weight-medium ml-n1">$</strong>
+                                <strong class="font-weight-medium">{{ $organization->price_policy ?? '$' }}</strong>
                             </span>
                                 <span class="category-link text-capitalize">
                                         {{ $organization->organization_category ?? $organization->category->name }}
