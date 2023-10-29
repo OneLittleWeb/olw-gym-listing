@@ -2,13 +2,13 @@
 
 //suggest an edit temporarily and permanently closed enable disable script
 
-$(document).ready(function() {
-    $('#is_it_closed').change(function() {
+$(document).ready(function () {
+    $('#is_it_closed').change(function () {
         let temporarilyClosedCheckbox = $('#temporarily_closed');
         temporarilyClosedCheckbox.prop('disabled', this.checked);
     });
 
-    $('#temporarily_closed').change(function() {
+    $('#temporarily_closed').change(function () {
         let isClosedCheckbox = $('#is_it_closed');
         isClosedCheckbox.prop('disabled', this.checked);
     });
@@ -90,7 +90,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#search_from_header').typeahead({
         source: function (query, process) {
-            return $.get(autocompleteRoute, { term: query }, function (data) {
+            return $.get(autocompleteRoute, {term: query}, function (data) {
                 return process(data);
             });
         },
@@ -132,15 +132,13 @@ document.addEventListener('DOMContentLoaded', function () {
         'Find The Best GymNear Illinois',
         'Find The Best GymNear Michigan',
         'Find The Best GymNear New York',
-        // 'Find The Best GymNear North Carolina',
         'Find The Best GymNear Ohio',
-        // 'Find The Best GymNear Pennsylvania',
         'Find The Best GymNear Texas',
     ];
     let currentIndex = 0;
 
     function showNextTitle() {
-        if (title){
+        if (title) {
             title.textContent = titles[currentIndex];
             currentIndex = (currentIndex + 1) % titles.length;
 
@@ -149,4 +147,62 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     showNextTitle();
+});
+
+$(document).ready(function () {
+    $('.users_review_ratings').starRating({
+        totalStars: 5,
+        starSize: 18,
+        starShape: 'rounded',
+        emptyColor: 'lightgray',
+        activeColor: '#FFA718',
+        readOnly: true,
+        useGradient: false
+    });
+
+    $('.organization_rating').starRating({
+        totalStars: 5,
+        starSize: 18,
+        starShape: 'rounded',
+        emptyColor: 'lightgray',
+        activeColor: '#FFA718',
+        readOnly: true,
+        useGradient: false
+    });
+
+    /* 1. Visualizing things on Hover - See next part for action on click */
+
+    $('#stars li').on('mouseover', function () {
+        let onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+        // Now highlight all the stars that's not after the current hovered star
+        $(this).parent().children('li.star').each(function (e) {
+            if (e < onStar) {
+                $(this).addClass('hover');
+            } else {
+                $(this).removeClass('hover');
+            }
+        });
+
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
+            $(this).removeClass('hover');
+        });
+    });
+
+    /* 2. Action to perform on click */
+    $('#stars li').on('click', function () {
+        let onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        let stars = $(this).parent().children('li.star');
+
+        for (let i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
+        }
+
+        for (let i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
+        }
+        // JUST RESPONSE (Not needed)
+        document.getElementById('review_rate_stars').value = parseInt($('#stars li.selected').last().data('value'), 10);
+    });
 });
