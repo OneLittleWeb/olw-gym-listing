@@ -41,7 +41,7 @@
                                 @foreach($plans as $key => $plan)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{\Illuminate\Support\Str::title($plan->name)}}</td>
+                                        <td>{{Str::title($plan->name)}}</td>
                                         <td>{{$plan->slug}}</td>
                                         <td>{{$plan->stripe_id}}</td>
                                         <td>${{$plan->price}}</td>

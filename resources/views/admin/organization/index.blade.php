@@ -40,10 +40,10 @@
                                 @foreach($organizations as $key => $organization)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{\Illuminate\Support\Str::title($organization->organization_name)}}</td>
+                                        <td>{{Str::title($organization->organization_name)}}</td>
                                         <td>{{$organization->slug}}</td>
                                         <td>{{$organization->is_claimed == 0 ? "No" : "Yes"}}</td>
-                                        <td>{{\Carbon\Carbon::parse($organization->updated_at)->diffForHumans()}}</td>
+                                        <td>{{Carbon::parse($organization->updated_at)->diffForHumans()}}</td>
                                         <td>
                                             <form action="{{route('admin.category.destroy',$organization->id)}}"
                                                   onsubmit="return confirm('Do you really want to delete?');"

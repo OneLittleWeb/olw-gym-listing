@@ -41,7 +41,7 @@
                                 @foreach($categories as $key => $category)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{\Illuminate\Support\Str::title($category->name)}}</td>
+                                        <td>{{Str::title($category->name)}}</td>
                                         <td>{{$category->slug}}</td>
                                         <td>{{$category->icon}}</td>
                                         <td>{{$category->background}}</td>

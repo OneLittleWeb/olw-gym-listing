@@ -41,7 +41,7 @@
                                 @foreach($cities as $key => $city)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{\Illuminate\Support\Str::title($city->name)}}</td>
+                                        <td>{{Str::title($city->name)}}</td>
                                         <td>{{$city->slug}}</td>
                                         <td><input type="checkbox" {{$city->is_major == 1 ? 'checked' : ''}}></td>
                                         <td>{{$city->population}}</td>
