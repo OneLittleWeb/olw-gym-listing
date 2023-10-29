@@ -6,7 +6,7 @@
     </li>
     <li>
         <a class="sidebar-brand" href="{{ route('admin.dashboard') }}">
-            <img src="{{asset('images/admin/logo.png')}}" alt="logo" style="width: 84%">
+            <img src="{{asset('images/logo-white.png')}}" alt="logo" style="width: 84%">
         </a>
     </li>
     <li class="sidebar-heading pt-3">Main</li>

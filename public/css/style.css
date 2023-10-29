@@ -9385,7 +9385,8 @@ div.datedropper .picker .pick-lg-b li {
     display: block;
     padding: 20px;
     z-index: 1;
-    background-color: #4c60da
+    background-color: #131443;
+    height: 78px;
 }
 
 .dashboard-sidebar .nav-item {
@@ -9449,7 +9450,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .bg-navbar {
-    background-color: #6777ef
+    background-color: #131443;
 }
 
 #sidebar-close, #sidebarToggleTop {
