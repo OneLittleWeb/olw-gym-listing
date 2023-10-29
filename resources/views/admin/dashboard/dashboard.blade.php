@@ -47,8 +47,8 @@
                     <div class="card-content">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="card-title font-size-40">{{ $category_count }}</h2>
-                                <p class="card-sub font-size-18 line-height-24">Total Categories</p>
+                                <h2 class="card-title font-size-40">{{ $state_count }}</h2>
+                                <p class="card-sub font-size-18 line-height-24">Total States</p>
                             </div>
                             <div class="col-auto font-size-60">
                                 <i class="la la-line-chart text-success"></i>

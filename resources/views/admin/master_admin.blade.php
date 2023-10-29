@@ -56,7 +56,7 @@
             <div class="container-fluid">
                 <div class="copy-right d-flex align-items-center justify-content-between">
                     <p class="copy__desc">
-                        &copy; Copyright SerpKick {{date('Y')}} . Made with
+                        &copy; Copyright GymNearX {{date('Y')}} . Made with
                         <span class="la la-heart-o"></span>
                     </p>
                 </div>
