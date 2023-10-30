@@ -22,39 +22,46 @@
                 <div class="col-lg-12">
                     <div class="d-md-flex flex-row justify-content-between pb-4 text-capitalize">
                         <div>
-                            <h1 class="sec__title mb-0">All states in the USA</h1>
+                            <h1 class="sec__title mb-0">All States and Popular Cities in the USA</h1>
 
                             <div class="stroke-shape mb-4 mb-md-0"></div>
                         </div>
                         <div>
                             <input type="text" class="form-control p-2 mt-2 mt-md-0" id="all_state_search"
                                    name="all_state_search"
-                                   placeholder="Search State" autocomplete="off">
+                                   placeholder="Search State/City" autocomplete="off">
                         </div>
                     </div>
-
-                    <div id="no_results_message" style="display: none">No State Result Found</div>
                 </div>
             </div>
             @if(count($states))
                 <div class="row organization-state-list">
-                    @foreach($states as $state)
-                        <div class="col-lg-3 responsive-column">
-                            <div class="category-item overflow-hidden">
-                                <img src="{{ asset('images/gym-state.jpg') }}"
-                                     data-src="{{ asset('images/gym-state.jpg') }}"
-                                     alt="{{ $state->name }}" class="cat-img lazy">
-                                <div class="category-content d-flex align-items-center justify-content-center">
-                                    <a href="{{ route('state.wise.organizations', $state->slug) }}"
-                                       class="category-link d-flex flex-column justify-content-center w-100 h-100">
-                                        <div class="cat-content">
-                                            <h4 class="cat__title mb-3">{{ $state->name }}</h4>
+                    <div class="col-lg-12">
+                        <div class="listing-detail-wrap">
+                            <div class="state-block-card mb-4">
+                                @foreach($states as $state)
+                                    <div class="search-repeated-div">
+                                        <div>
+                                            <h2 class="widget-title text-center pt-3 city-state-title">
+                                                <a class="state-wise-link" href="{{ route('state.wise.organizations', $state->slug) }}">{{ $state->name }}</a>
+                                            </h2>
                                         </div>
-                                    </a>
-                                </div>
+                                        <div class="state-block-card-body">
+                                            <div class="info-list-box pb-4">
+                                                <ul class="row info-list">
+                                                    @foreach($state->cities as $city)
+                                                        <li class="col-lg-3 city-state-title">
+                                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $city->name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             @else
                 <div class="row">

@@ -150,25 +150,27 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 $(document).ready(function () {
-    $('.users_review_ratings').starRating({
-        totalStars: 5,
-        starSize: 18,
-        starShape: 'rounded',
-        emptyColor: 'lightgray',
-        activeColor: '#FFA718',
-        readOnly: true,
-        useGradient: false
-    });
+    if ($.fn.starRating) {
+        $('.users_review_ratings').starRating({
+            totalStars: 5,
+            starSize: 18,
+            starShape: 'rounded',
+            emptyColor: 'lightgray',
+            activeColor: '#FFA718',
+            readOnly: true,
+            useGradient: false
+        });
 
-    $('.organization_rating').starRating({
-        totalStars: 5,
-        starSize: 18,
-        starShape: 'rounded',
-        emptyColor: 'lightgray',
-        activeColor: '#FFA718',
-        readOnly: true,
-        useGradient: false
-    });
+        $('.organization_rating').starRating({
+            totalStars: 5,
+            starSize: 18,
+            starShape: 'rounded',
+            emptyColor: 'lightgray',
+            activeColor: '#FFA718',
+            readOnly: true,
+            useGradient: false
+        });
+    }
 
     /* 1. Visualizing things on Hover - See next part for action on click */
 
@@ -204,5 +206,98 @@ $(document).ready(function () {
         }
         // JUST RESPONSE (Not needed)
         document.getElementById('review_rate_stars').value = parseInt($('#stars li.selected').last().data('value'), 10);
+    });
+});
+
+// $(document).ready(function() {
+//     $('#all_state_search').on('input', function() {
+//         var searchText = $(this).val().toLowerCase();
+//         $('.search-repeated-div').each(function() {
+//             var stateName = $(this).find('.widget-title').text().toLowerCase();
+//             var cityNames = $(this).find('.info-list a').map(function() {
+//                 return $(this).text().toLowerCase();
+//             }).get();
+//
+//             if (stateName.includes(searchText) || cityNames.some(city => city.includes(searchText))) {
+//                 $(this).show();
+//                 $(this).addClass('highlight');
+//             } else {
+//                 $(this).hide();
+//                 $(this).removeClass('highlight');
+//             }
+//         });
+//     });
+// });
+
+
+// $(document).ready(function() {
+//     $('#all_state_search').on('input', function() {
+//         var searchText = $(this).val().toLowerCase();
+//         $('.search-repeated-div').each(function() {
+//             var stateName = $(this).find('.widget-title');
+//             var cityNames = $(this).find('.info-list a');
+//
+//             // Remove previous highlighting
+//             stateName.html(stateName.text());
+//             cityNames.each(function() {
+//                 $(this).html($(this).text());
+//             });
+//
+//             if (stateName.text().toLowerCase().includes(searchText)) {
+//                 // Apply the yellow color to text content
+//                 stateName.html(stateName.text().replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
+//             }
+//             cityNames.each(function() {
+//                 var cityText = $(this).text().toLowerCase();
+//                 if (cityText.includes(searchText)) {
+//                     // Apply the yellow color to text content
+//                     $(this).html(cityText.replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
+//                 }
+//             });
+//
+//             if (stateName.text().toLowerCase().includes(searchText) || cityNames.toArray().some(city => $(city).text().toLowerCase().includes(searchText))) {
+//                 $(this).show();
+//             } else {
+//                 $(this).hide();
+//             }
+//         });
+//     });
+// });
+
+$(document).ready(function() {
+    $('#all_state_search').on('input', function() {
+        var searchText = $(this).val().toLowerCase();
+        $('.search-repeated-div').each(function() {
+            var stateName = $(this).find('.widget-title a');
+            var cityNames = $(this).find('.info-list a');
+
+            // Remove previous highlighting for city names
+            cityNames.each(function() {
+                $(this).html($(this).text());
+            });
+
+            // Reset state name text content
+            var stateText = stateName.text();
+            stateName.html(stateText);
+
+            if (stateText.toLowerCase().includes(searchText)) {
+                // Apply the yellow color to matched text
+                stateName.html(stateText.replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
+            }
+
+            cityNames.each(function() {
+                var cityText = $(this).text().toLowerCase();
+                if (cityText.includes(searchText)) {
+                    // Apply the yellow color to text content
+                    $(this).html(cityText.replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
+                }
+            });
+
+            if (stateText.toLowerCase().includes(searchText) || cityNames.toArray().some(city => $(city).text().toLowerCase().includes(searchText))) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
     });
 });

@@ -15,7 +15,7 @@ class StateController extends Controller
 {
     public function index()
     {
-        $states = State::all();
+        $states = State::with('cities')->get();
         $cities = City::orderByDesc('id')->get();
         $city = null;
         $category = null;
