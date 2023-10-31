@@ -53,7 +53,7 @@
         <!-- =======START Major States AREA======= -->
         <section class="category-area position-relative bg-gray section--padding category-section">
             <div class="container">
-                <div class="row">
+                <div class="row pb-2">
                     <div class="col-lg-12">
                         <div class="section-heading text-center">
                             <div class="section-badge pb-3">
