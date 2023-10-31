@@ -244,6 +244,35 @@
     color: #f8c401;
 }
 
+.state-icon-element {
+    width: 30px;
+    height: 25px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    position: relative;
+    font-size: 26px;
+    transition: all .3s;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.state-info-list li {
+    display: block;
+    font-size: 16px;
+    color: #808996 !important;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.state-info-list li a {
+    color: #808996 !important;
+}
+
+.state-info-list li a:hover {
+    color: #131443 !important;
+}
+
 @media (max-width: 768px) {
     /* Hide the desktop div on mobile */
     .nebraska-badge-div.desktop {

@@ -16,6 +16,7 @@ class HomeController extends Controller
     {
         $businessIndex = Cache::remember('business_index', now()->addHours(10), function () {
             $major_states = State::where('is_major', 1)->get();
+            $all_states = State::all();
             $states = State::take(8)->get();
             $cities = City::all();
             $total_pages = Organization::count();
@@ -30,6 +31,7 @@ class HomeController extends Controller
 
             return [
                 'major_states' => $major_states,
+                'all_states' => $all_states,
                 'states' => $states,
                 'cities' => $cities,
                 'total_pages' => $total_pages,
@@ -45,7 +47,7 @@ class HomeController extends Controller
         // Extract the data if needed.
         extract($businessIndex);
 
-        return view('home', compact('major_states', 'states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
+        return view('home', compact('major_states', 'all_states', 'states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
     }
 
     public function autocomplete(Request $request)

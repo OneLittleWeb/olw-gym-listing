@@ -54,24 +54,44 @@
         <section class="category-area position-relative bg-gray section--padding category-section">
             <div class="container">
                 <div class="row highlighted-categories justify-content-center">
-                    @foreach($major_states as $state)
-                        <div class="col-lg-2 col-sm-6">
-                            <div class="hero-category-item hero-category-item-layout-2">
-                                <a href="{{ route('state.wise.organizations', $state->slug) }}"
-                                   class="d-block hero-cat-link">
-                                    <span class="icon-element mx-auto {{ $state->background }}">
-                                        <img src="{{asset('images/state/' . $state->background_image)}}"
-                                             data-src="{{asset('images/state/' . $state->background_image)}}"
-                                             alt="country-image" class="lazy icon-element">
-{{--                                        <img src="{{asset('images/pattern-image.jpg')}}"--}}
-                                        {{--                                             data-src="{{asset('images/pattern-image.jpg')}}"--}}
-                                        {{--                                             alt="country-image" class="lazy icon-element">--}}
-                                    </span>
-                                    {{ $state->name }}
-                                </a>
+{{--                    @foreach($major_states as $state)--}}
+{{--                        <div class="col-lg-2 col-sm-6">--}}
+{{--                            <div class="hero-category-item hero-category-item-layout-2">--}}
+{{--                                <a href="{{ route('state.wise.organizations', $state->slug) }}"--}}
+{{--                                   class="d-block hero-cat-link">--}}
+{{--                                    <span class="icon-element mx-auto">--}}
+{{--                                        <img src="{{asset('images/state/' . $state->background_image)}}"--}}
+{{--                                             data-src="{{asset('images/state/' . $state->background_image)}}"--}}
+{{--                                             alt="country-image" class="lazy icon-element">--}}
+{{--                                    </span>--}}
+{{--                                    {{ $state->name }}--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+
+                    <div class="col-lg-12">
+                        <div class="listing-detail-wrap">
+                            <div>
+                                <div>
+                                    <div class="info-list-box">
+                                        <ul class="row state-info-list">
+                                            @foreach($all_states as $state)
+                                                <li class="col-lg-3 text-capitalize">
+                                                    <a href="{{ route('state.wise.organizations', $state->slug) }}">
+                                                        <img src="{{asset('images/state/' . $state->background_image)}}"
+                                                             data-src="{{asset('images/state/' . $state->background_image)}}"
+                                                             alt="country-image" class="lazy state-icon-element">
+                                                        {{ $state->name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </div>
         </section>
