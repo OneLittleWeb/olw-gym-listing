@@ -53,42 +53,53 @@
         <!-- =======START Major States AREA======= -->
         <section class="category-area position-relative bg-gray section--padding category-section">
             <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading text-center">
+                            <div class="section-badge pb-3">
+                                <span class="ribbon ribbon-2">State</span>
+                            </div>
+                            <h2 class="sec__title">Browse By States</h2>
+                            <p class="sec__desc">
+                                Discover the best workouts near you with GymNearX. Find nearby gyms, fitness classes,
+                                and personal trainers <br>
+                                for your fitness journey.
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div class="row highlighted-categories justify-content-center">
-{{--                    @foreach($major_states as $state)--}}
-{{--                        <div class="col-lg-2 col-sm-6">--}}
-{{--                            <div class="hero-category-item hero-category-item-layout-2">--}}
-{{--                                <a href="{{ route('state.wise.organizations', $state->slug) }}"--}}
-{{--                                   class="d-block hero-cat-link">--}}
-{{--                                    <span class="icon-element mx-auto">--}}
-{{--                                        <img src="{{asset('images/state/' . $state->background_image)}}"--}}
-{{--                                             data-src="{{asset('images/state/' . $state->background_image)}}"--}}
-{{--                                             alt="country-image" class="lazy icon-element">--}}
-{{--                                    </span>--}}
-{{--                                    {{ $state->name }}--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
+                    {{--                    @foreach($major_states as $state)--}}
+                    {{--                        <div class="col-lg-2 col-sm-6">--}}
+                    {{--                            <div class="hero-category-item hero-category-item-layout-2">--}}
+                    {{--                                <a href="{{ route('state.wise.organizations', $state->slug) }}"--}}
+                    {{--                                   class="d-block hero-cat-link">--}}
+                    {{--                                    <span class="icon-element mx-auto">--}}
+                    {{--                                        <img src="{{asset('images/state/' . $state->background_image)}}"--}}
+                    {{--                                             data-src="{{asset('images/state/' . $state->background_image)}}"--}}
+                    {{--                                             alt="country-image" class="lazy icon-element">--}}
+                    {{--                                    </span>--}}
+                    {{--                                    {{ $state->name }}--}}
+                    {{--                                </a>--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    @endforeach--}}
 
                     <div class="col-lg-12">
                         <div class="listing-detail-wrap">
-                            <div>
-                                <div>
-                                    <div class="info-list-box">
-                                        <ul class="row state-info-list">
-                                            @foreach($all_states as $state)
-                                                <li class="col-lg-3 text-capitalize">
-                                                    <a href="{{ route('state.wise.organizations', $state->slug) }}">
-                                                        <img src="{{asset('images/state/' . $state->background_image)}}"
-                                                             data-src="{{asset('images/state/' . $state->background_image)}}"
-                                                             alt="country-image" class="lazy state-icon-element">
-                                                        {{ $state->name }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="info-list-box">
+                                <ul class="row state-info-list">
+                                    @foreach($all_states as $state)
+                                        <li class="col-lg-3 col-md-6 col-6 text-capitalize">
+                                            <a href="{{ route('state.wise.organizations', $state->slug) }}">
+                                                <img src="{{asset('images/state/' . $state->background_image)}}"
+                                                     data-src="{{asset('images/state/' . $state->background_image)}}"
+                                                     alt="country-image" class="lazy state-icon-element">
+                                                {{ $state->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>

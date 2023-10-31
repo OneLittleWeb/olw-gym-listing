@@ -273,7 +273,7 @@
     color: #131443 !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     /* Hide the desktop div on mobile */
     .nebraska-badge-div.desktop {
         display: none;
@@ -294,6 +294,12 @@
 
     .slide-image-top {
         padding-top: 92px;
+    }
+    @media screen and (max-width: 767px) {
+        .state-info-list li {
+            display: block; /* Display each state on a new line */
+            text-align: left; /* Adjust text alignment to left */
+        }
     }
 }
 

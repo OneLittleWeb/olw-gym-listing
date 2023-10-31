@@ -417,7 +417,7 @@ body {
 }
 
 .category-section {
-    padding-top: 30px !important;
+    padding-top: 60px !important;
 }
 
 .section--margin {
@@ -4199,8 +4199,6 @@ div.datedropper .picker .pick-lg-b li {
     height: 50px;
     line-height: 50px;
     text-align: center;
-    /*background-color: #f8c401;*/
-    /*background-color: #5c4725;*/
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
