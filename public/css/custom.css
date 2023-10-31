@@ -249,9 +249,15 @@
     height: 25px;
     line-height: 50px;
     text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
     position: relative;
     font-size: 26px;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
     transition: all .3s;
     color: #fff;
     margin-right: 5px;
@@ -273,7 +279,7 @@
     color: #131443 !important;
 }
 
-@media (max-width: 767px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     /* Hide the desktop div on mobile */
     .nebraska-badge-div.desktop {
         display: none;
