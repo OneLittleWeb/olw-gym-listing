@@ -44,12 +44,12 @@ class OrganizationController extends Controller
 
     private function generateCityWiseOrganizationsView($state_slug, $city_slug)
     {
-        $city_check = City::where('slug', $city_slug)->exists();
         $state_check = State::where('slug', $state_slug)->exists();
+        $city_check = City::where('slug', $city_slug)->exists();
 
         if ($city_check && $state_check) {
-            $city = City::where('slug', $city_slug)->first();
             $s_state = State::where('slug', $state_slug)->first();
+            $city = City::where('slug', $city_slug)->first();
 
             $states = State::all();
             $cities = City::where('state_id', $s_state->id)->get();

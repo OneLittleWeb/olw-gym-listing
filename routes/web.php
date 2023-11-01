@@ -58,6 +58,7 @@ Route::get('/payments/approval', [StripePaymentController::class, 'approval'])->
 Route::get('/payments/cancelled', [StripePaymentController::class, 'cancelled'])->name('payment.cancelled');
 
 Route::get('/states', [StateController::class, 'index'])->name('states.index');
+Route::get('/cities', [CityController::class, 'index'])->name('city.index');
 
 //search routes
 Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');
@@ -79,7 +80,6 @@ Route::post('/suggest-an-edit/store/{slug}', [OrganizationController::class, 'st
 Route::get('/{state_slug}/{city_slug}', [OrganizationController::class, 'cityWiseOrganizations'])->name('city.wise.organizations');
 Route::get('/{city_slug}/gnx/{organization_slug}', [OrganizationController::class, 'cityWiseOrganization'])->name('city.wise.organization');
 
-Route::get('/cities', [CityController::class, 'index'])->name('city.index');
 Route::post('/store-review', [ReviewController::class, 'store'])->name('review.store');
 
 Route::get('/sitemap', [SitemapController::class, 'sitemapStore'])->name('sitemap');
