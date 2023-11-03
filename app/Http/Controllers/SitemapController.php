@@ -32,20 +32,20 @@ class SitemapController extends Controller
         $sitemap_state_business->store('xml', 'sitemap_state_business');
 
         //state and city wise businesses
-        $sitemap_state_city_all_business = App::make("sitemap");
+        $sitemap_state_city_business = App::make("sitemap");
         $states = State::all();
         foreach ($states as $state) {
             foreach ($state->cities as $city) {
-                $sitemap_state_city_all_business->add(route('city.wise.organizations', ['state_slug' => $state->slug, 'city_slug' => $city->slug]), $now, '0.8', 'monthly');
+                $sitemap_state_city_business->add(route('city.wise.organizations', ['state_slug' => $state->slug, 'city_slug' => $city->slug]), $now, '0.8', 'monthly');
             }
         }
-        $sitemap_state_city_all_business->store('xml', 'sitemap_state_city_all_business');
+        $sitemap_state_city_business->store('xml', 'sitemap_state_city_business');
 
         // create sitemap index
         $sitemap = App::make("sitemap");
         $sitemap->addSitemap(URL::to('sitemap-pages.xml'), $now);
         $sitemap->addSitemap(URL::to('sitemap_state_business.xml'), $now);
-        $sitemap->addSitemap(URL::to('sitemap_state_city_all_business.xml'), $now);
+        $sitemap->addSitemap(URL::to('sitemap_state_city_business.xml'), $now);
 
         // fetch records in batches of 2000
         Organization::chunk(2000, function ($businesses) use ($sitemap, &$counter, &$sitemapCounter, $now) {
