@@ -114,7 +114,6 @@ class OrganizationController extends Controller
         return response($cachedView);
     }
 
-
     public function generateCityWiseOrganizationView($city_slug, $organization_slug)
     {
         $city = City::where('slug', $city_slug)->first();
@@ -526,6 +525,11 @@ class OrganizationController extends Controller
         }
 
         abort(404);
+    }
+
+    public function gymNearMe()
+    {
+        return view('organization.gym-near-me');
     }
 
     public function import()
