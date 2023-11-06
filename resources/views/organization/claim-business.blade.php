@@ -31,12 +31,12 @@
                     <form method="post" action="{{ route('claim.business.profile', $organization->slug) }}">
                         @csrf
                         <div class="main-search-input-item user-chosen-select-container margin-top-10px">
-                            <label>Business state <span class="required">*</span></label>
+                            <label>Business location <span class="required">*</span></label>
                             <select class="user-chosen-select" name="organization_city" id="organization_city">
                                 @foreach($cities as $organization_city)
                                     <option class="text-capitalize"
                                             value="{{ $organization_city->id }}" {{ $organization_city->id == $organization->city_id ? 'selected' : '' }}>{{ $organization_city->name }},
-                                        NE
+                                        {{ $organization_city->state->name }}
                                     </option>
                                 @endforeach
                             </select>

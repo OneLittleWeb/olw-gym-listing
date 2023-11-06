@@ -90,11 +90,11 @@
             <![endif]-->
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
-                    <td align="center" valign="top" style="padding: 20px 24px;">
-                        <a href="https://www.nebraskalisting.com" target="_blank" style="display: inline-block;">
-                            <img src="{{asset('/images/nebraskalisting-logo.png')}}" alt="Logo"
+                    <td align="center" valign="top" style="padding: 20px 24px 10px;">
+                        <a href="{{ config('app.url') }}" target="_blank" style="display: inline-block;">
+                            <img src="{{asset('/images/logo-black.png')}}" alt="Logo"
                                  border="0" width="48"
-                                 style="display: block; width: 135px; max-width: 135px; min-width: 135px; max-height: 37px;">
+                                 style="display: block; width: 170px; max-width: 170px; min-width: 170px; max-height: 37px;">
                         </a>
                     </td>
                 </tr>
@@ -145,7 +145,7 @@
                     <td align="left" bgcolor="#ffffff"
                         style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
                         <p style="margin: 0;">Tap the button below to confirm your business. If you didn't sent
-                            an email from <a href="{{ env('APP_URL') }}">nebraskalisting.com</a>, you can safely
+                            an email from <a href="{{ config('app.url') }}">{{ config('app.name') }}</a>, you can safely
                             delete this
                             email.</p>
                     </td>
@@ -158,10 +158,10 @@
                                 <td align="center" bgcolor="#ffffff" style="padding: 12px;">
                                     <table border="0" cellpadding="0" cellspacing="0">
                                         <tr>
-                                            <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
+                                            <td align="center" bgcolor="#f8cf01" style="border-radius: 6px;">
                                                 <a href="{{ route('confirm.claim.business', $organization->slug) }}"
                                                    target="_blank"
-                                                   style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Confirm
+                                                   style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #0d0d0d; text-decoration: none; border-radius: 6px;">Confirm
                                                     Business</a>
                                             </td>
                                         </tr>

@@ -306,7 +306,7 @@ class OrganizationController extends Controller
                     return redirect()->back();
                 }
             } else {
-                alert()->warning('No Found', 'This business is not available in this state!');
+                alert()->warning('No Found', 'This business is not available in this location!');
                 return redirect()->back();
             }
         }
