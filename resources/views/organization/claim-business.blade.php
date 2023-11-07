@@ -86,7 +86,7 @@
                     '                            </div>' +
                     '                        </div>' +
                     '<div class="padding-top-20px">' +
-                    '<button type="submit" class="btn btn-primary send-contact-button">Send</button>' +
+                    '<button type="submit" class="btn btn-warning send-contact-button">Send</button>' +
                     '</div>';
             } else if (selected_value === 'nothing_out_of_this') {
                 business_verification_data.innerHTML = '<p class="padding-top-20px"><a href="{{ route('contact.for.claim.business', $organization->slug) }}" target="_blank">Please contact us to continue the verification process</a></p>';

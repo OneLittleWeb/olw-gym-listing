@@ -114,6 +114,9 @@
 
 .send-contact-button {
     padding: 7px 42px;
+    background-color: #f8c401;
+    border-color: #f8c401;
+    color: #131443;
 }
 
 .nebraska-badge-image {

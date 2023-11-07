@@ -70,7 +70,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary send-contact-button">Send</button>
+                        <button type="submit" class="btn btn-warning send-contact-button">Send</button>
                     </form>
 
                 </div>
