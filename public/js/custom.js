@@ -229,41 +229,6 @@ $(document).ready(function () {
 //     });
 // });
 
-
-// $(document).ready(function() {
-//     $('#all_state_search').on('input', function() {
-//         var searchText = $(this).val().toLowerCase();
-//         $('.search-repeated-div').each(function() {
-//             var stateName = $(this).find('.widget-title');
-//             var cityNames = $(this).find('.info-list a');
-//
-//             // Remove previous highlighting
-//             stateName.html(stateName.text());
-//             cityNames.each(function() {
-//                 $(this).html($(this).text());
-//             });
-//
-//             if (stateName.text().toLowerCase().includes(searchText)) {
-//                 // Apply the yellow color to text content
-//                 stateName.html(stateName.text().replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
-//             }
-//             cityNames.each(function() {
-//                 var cityText = $(this).text().toLowerCase();
-//                 if (cityText.includes(searchText)) {
-//                     // Apply the yellow color to text content
-//                     $(this).html(cityText.replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
-//                 }
-//             });
-//
-//             if (stateName.text().toLowerCase().includes(searchText) || cityNames.toArray().some(city => $(city).text().toLowerCase().includes(searchText))) {
-//                 $(this).show();
-//             } else {
-//                 $(this).hide();
-//             }
-//         });
-//     });
-// });
-
 $(document).ready(function() {
     $('#all_state_search').on('input', function() {
         var searchText = $(this).val().toLowerCase();

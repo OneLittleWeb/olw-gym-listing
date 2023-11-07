@@ -1013,7 +1013,7 @@ body {
 }
 
 .bg-gradient-6 {
-    background-image: linear-gradient(62deg,#131443 0%, #645621 100%) !important
+    background-image: linear-gradient(62deg, #131443 0%, #645621 100%) !important
 }
 
 .bg-1 {
@@ -2645,7 +2645,7 @@ body {
 
 .user-chosen-select-container .chosen-single span {
     text-transform: capitalize;
-    color:black;
+    color: black;
 }
 
 .user-chosen-select-container .chosen-single div {
@@ -4324,7 +4324,8 @@ div.datedropper .picker .pick-lg-b li {
     -o-transition: all .3s;
     transition: all .3s
 }
-.looking-for{
+
+.looking-for {
     padding: 0 8px 0 12px !important;
 }
 
@@ -6686,12 +6687,32 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .main-search-input-item {
-    width: 42%
+    width: 42%;
+}
+
+.main-search-input-item-hero {
+    width: 60%;
+}
+
+.header-text-decoration b {
+    border-bottom: 4px solid #f8c401; /* Adjust the color and thickness as needed */
+    text-decoration: none; /* Remove the default underline */
+}
+
+.main-search-now-button {
+    width: 40%;
+    margin-left: 10px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .main-search-input-item {
         width: 100%
+    }
+
+    .main-search-now-button {
+        width: 100%;
+        padding-top: 15px;
+        margin-left: 0;
     }
 }
 
@@ -6699,11 +6720,22 @@ div.datedropper .picker .pick-lg-b li {
     .main-search-input-item {
         width: 100%
     }
+
+    .main-search-now-button {
+        width: 100%;
+        padding-top: 15px;
+        margin-left: 0;
+    }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
     .main-search-input-item {
         width: 100%
+    }
+    .main-search-now-button {
+        width: 100%;
+        padding-top: 15px;
+        margin-left: 0;
     }
 }
 
@@ -8820,7 +8852,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .category-item:hover .category-content .badge {
-    background-color:#f8c401;
+    background-color: #f8c401;
 }
 
 .category-item:hover .category-content .category-link {

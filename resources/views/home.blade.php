@@ -6,49 +6,102 @@
     <section class="hero-wrapper hero-bg pb-0 overflow-hidden">
         <div class="overlay"></div>
 
-        <div class="container">
-            <div class="row align-items-center hero-container">
-                <div class="col-lg-5 mr-auto">
+        <div class="container hero-container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hero-heading text-center">
+                        <div class="section-heading">
+                            <h2 class="sec__title cd-headline slide">
+                                Find The Best GymNear
+                                <span class="cd-words-wrapper py-0 header-text-decoration">
+                            <b class="is-visible">California</b>
+                            <b>Florida</b>
+                            <b>Georgia</b>
+                            <b>Illinois</b>
+                            <b>Michigan</b>
+                            <b>New York</b>
+                            <b>Ohio</b>
+                            <b>Texas</b>
+                        </span>
+                            </h2>
+                            <p class="sec__desc">
+                                {{ config('app.name') }} helps you find out what's happening in your city. Let’s
+                                explore!
+                            </p>
+                        </div>
+                    </div><!-- end hero-heading -->
+                </div><!-- end col-lg-12 -->
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
                     <form action="{{ route('search') }}" class="form-box">
                         @csrf
-                        <div class="main-search-input flex-column mt-0">
-                            <div class="main-search-input-item w-100">
-                                <div class="input-box">
-                                    <label class="label-text">What are you <span
-                                            class="required">*</span></label>
-                                    <div class="form-group">
-                                        <span class="la la-search form-icon"></span>
-                                        <input class="form-control" type="search" id="search_from_header"
-                                               name="looking_for"
-                                               placeholder="Looking for?" autocomplete="off"
-                                               required>
-                                    </div>
-                                    <input type="hidden" name="source_value" id="source_value">
-                                    <input type="hidden" name="source_id" id="source_id">
+                        <div class="main-search-input">
+                            <div class="main-search-input-item-hero">
+                                <div class="form-group mb-0">
+                                    <span class="la la-search form-icon"></span>
+                                    <input class="form-control" type="search"
+                                           placeholder="What are you looking for?" name="looking_for"
+                                           id="search_from_header" autocomplete="off" required>
                                 </div>
-                            </div>
-                            <div class="main-search-input-item w-100 ml-0">
-                                <label class="label-text">Search Activities</label>
-                                <button class="theme-btn gradient-btn border-0 w-100 hover-scale-2" type="submit"><i
+                                <input type="hidden" name="source_value" id="source_value">
+                                <input type="hidden" name="source_id" id="source_id">
+                            </div><!-- end main-search-input-item -->
+                            <div class="main-search-now-button">
+                                <button class="theme-btn gradient-btn border-0 w-100" type="submit"><i
                                         class="la la-search mr-2"></i>Search Now
                                 </button>
-                            </div>
-                        </div>
+                            </div><!-- end main-search-input-item -->
+                        </div><!-- end main-search-input -->
                     </form>
                 </div>
-                <div class="col-lg-6">
-                    <div class="hero-heading">
-                        <div class="section-heading">
-                            <h1 class="sec__title font-size-35" id="hero_title_animation">Find the best gyms in the
-                                USA</h1>
-                            <p class="sec__desc">{{ config('app.name') }} helps you find out what's happening in your
-                                city. Let’s
-                                explore!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <div class="col-lg-2"></div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+
+
+        {{--        <div class="container">--}}
+        {{--            <div class="row align-items-center hero-container">--}}
+        {{--                <div class="col-lg-5 mr-auto">--}}
+        {{--                    <form action="{{ route('search') }}" class="form-box">--}}
+        {{--                        @csrf--}}
+        {{--                        <div class="main-search-input flex-column mt-0">--}}
+        {{--                            <div class="main-search-input-item w-100">--}}
+        {{--                                <div class="input-box">--}}
+        {{--                                    <label class="label-text">What are you <span--}}
+        {{--                                            class="required">*</span></label>--}}
+        {{--                                    <div class="form-group">--}}
+        {{--                                        <span class="la la-search form-icon"></span>--}}
+        {{--                                        <input class="form-control" type="search" id="search_from_header"--}}
+        {{--                                               name="looking_for"--}}
+        {{--                                               placeholder="Looking for?" autocomplete="off"--}}
+        {{--                                               required>--}}
+        {{--                                    </div>--}}
+        {{--                                    <input type="hidden" name="source_value" id="source_value">--}}
+        {{--                                    <input type="hidden" name="source_id" id="source_id">--}}
+        {{--                                </div>--}}
+        {{--                            </div>--}}
+        {{--                            <div class="main-search-input-item w-100 ml-0">--}}
+        {{--                                <label class="label-text">Search Activities</label>--}}
+        {{--                                <button class="theme-btn gradient-btn border-0 w-100 hover-scale-2" type="submit"><i--}}
+        {{--                                        class="la la-search mr-2"></i>Search Now--}}
+        {{--                                </button>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    </form>--}}
+        {{--                </div>--}}
+        {{--                <div class="col-lg-6">--}}
+        {{--                    <div class="hero-heading">--}}
+        {{--                        <div class="section-heading">--}}
+        {{--                            <h1 class="sec__title font-size-35" id="hero_title_animation">Find the best gyms in the--}}
+        {{--                                USA</h1>--}}
+        {{--                            <p class="sec__desc">{{ config('app.name') }} helps you find out what's happening in your--}}
+        {{--                                city. Let’s--}}
+        {{--                                explore!</p>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
 
         <!-- =======START Major States AREA======= -->
         <section class="category-area position-relative bg-gray section--padding category-section">
@@ -69,22 +122,6 @@
                     </div>
                 </div>
                 <div class="row highlighted-categories justify-content-center">
-                    {{--                    @foreach($major_states as $state)--}}
-                    {{--                        <div class="col-lg-2 col-sm-6">--}}
-                    {{--                            <div class="hero-category-item hero-category-item-layout-2">--}}
-                    {{--                                <a href="{{ route('state.wise.organizations', $state->slug) }}"--}}
-                    {{--                                   class="d-block hero-cat-link">--}}
-                    {{--                                    <span class="icon-element mx-auto">--}}
-                    {{--                                        <img src="{{asset('images/state/' . $state->background_image)}}"--}}
-                    {{--                                             data-src="{{asset('images/state/' . $state->background_image)}}"--}}
-                    {{--                                             alt="country-image" class="lazy icon-element">--}}
-                    {{--                                    </span>--}}
-                    {{--                                    {{ $state->name }}--}}
-                    {{--                                </a>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    {{--                    @endforeach--}}
-
                     <div class="col-lg-12">
                         <div class="listing-detail-wrap">
                             <div class="info-list-box">
