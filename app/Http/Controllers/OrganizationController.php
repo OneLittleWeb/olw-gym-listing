@@ -148,16 +148,20 @@ class OrganizationController extends Controller
             }
 
             if ($organization->organization_phone_number) {
-                $organization->about2 = 'Get a reservation or know necessary information by contacting them at ' . "<a href='tel:$organization->organization_phone_number'>$organization->organization_phone_number</a>" . '.';
+                $contactInfo = "<a href='tel:$organization->organization_phone_number'>$organization->organization_phone_number</a>";
             } elseif ($organization->organization_email) {
-                $organization->about2 = 'Get a reservation or know necessary information by contacting them at ' . "<strong>$organization->organization_email</strong>" . '.';
+                $contactInfo = "<strong>$organization->organization_email</strong>";
             } elseif ($organization->organization_address) {
-                $organization->about2 = 'Get a reservation or know necessary information by contacting them at ' . "<strong>$organization->organization_address</strong>" . '.';
+                $contactInfo = "<strong>$organization->organization_address</strong>";
             } elseif ($organization->organization_website) {
-                $organization->about2 = 'Get a reservation or know necessary information by contacting them at ' . "<strong>$organization->organization_website</strong>" . '.';
+                $contactInfo = "<strong>$organization->organization_website</strong>";
             } else {
-                $organization->about2 = null;
+                $contactInfo = null;
             }
+
+            $organization->about2 = $contactInfo
+                ? 'Get a reservation or know necessary information by contacting them at ' . $contactInfo . '.'
+                : null;
 
             $organization->exploded_organization_email = explode(',', $organization->organization_email);
 
