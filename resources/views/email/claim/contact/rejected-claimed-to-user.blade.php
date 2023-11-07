@@ -20,6 +20,7 @@
                 src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
             }
         }
+
         body,
         table,
         td,
@@ -107,8 +108,8 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td align="center" valign="top" style="padding: 20px 24px;">
-                        <a href="https://www.nebraskalisting.com" target="_blank" style="display: inline-block;">
-                            <img src="{{asset('/images/nebraskalisting-logo.png')}}" alt="Logo"
+                        <a href="{{ config('app.url') }}" target="_blank" style="display: inline-block;">
+                            <img src="{{asset('/images/logo-black.png')}}" alt="Logo"
                                  border="0" width="48"
                                  style="display: block; width: 135px; max-width: 135px; min-width: 135px; max-height: 37px;">
                         </a>
@@ -167,10 +168,10 @@
                         <p style="margin: 0;">Your business <a
                                 href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}">{{ $organization->organization_name }}</a>
                             has been declined due to some reasons. You may contact us using the
-                            email <a href="mailto:{{env('SUPPORT_MAIL_ADDRESS')}}">{{ env('SUPPORT_MAIL_ADDRESS') }}</a>.</p>
-                        <p>If you didn't sent
-                            an email from <a href="{{ env('APP_URL') }}">nebraskalisting.com</a>, you can safely
-                            delete this
+                            email <a href="mailto:{{ config('app.support_mail') }}">{{ config('app.support_mail') }}</a>.
+                        </p>
+                        <p>If you didn't expect to receive an email from <a
+                                href="{{ config('app.url') }}">{{ config('app.name') }}</a>, you can safely delete this
                             email.</p>
                     </td>
                 </tr>
@@ -180,7 +181,7 @@
                 <tr>
                     <td align="left" bgcolor="#ffffff"
                         style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-                        <p style="margin: 0;">Cheers,<br> {{ env('APP_NAME') }}</p>
+                        <p style="margin: 0;">Cheers,<br> {{ config('app.name') }}</p>
                     </td>
                 </tr>
                 <!-- end copy -->
