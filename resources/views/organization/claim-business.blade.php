@@ -35,7 +35,8 @@
                             <select class="user-chosen-select" name="organization_city" id="organization_city">
                                 @foreach($cities as $organization_city)
                                     <option class="text-capitalize"
-                                            value="{{ $organization_city->id }}" {{ $organization_city->id == $organization->city_id ? 'selected' : '' }}>{{ $organization_city->name }},
+                                            value="{{ $organization_city->id }}" {{ $organization_city->id == $organization->city_id ? 'selected' : '' }}>{{ $organization_city->name }}
+                                        ,
                                         {{ $organization_city->state->name }}
                                     </option>
                                 @endforeach
@@ -60,9 +61,6 @@
                         <div id="business_verification_data_div">
 
                         </div>
-                        <div class="padding-top-20px">
-                            <button type="submit" class="btn btn-primary send-contact-button">Send</button>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -86,7 +84,10 @@
                     '                                <span class="input-group-text"' +
                     '                                      id="organization_website">{{ '@' . $organization->organization_website }}</span>' +
                     '                            </div>' +
-                    '                        </div>';
+                    '                        </div>' +
+                    '<div class="padding-top-20px">' +
+                    '<button type="submit" class="btn btn-primary send-contact-button">Send</button>' +
+                    '</div>';
             } else if (selected_value === 'nothing_out_of_this') {
                 business_verification_data.innerHTML = '<p class="padding-top-20px"><a href="{{ route('contact.for.claim.business', $organization->slug) }}" target="_blank">Please contact us to continue the verification process</a></p>';
             } else {
