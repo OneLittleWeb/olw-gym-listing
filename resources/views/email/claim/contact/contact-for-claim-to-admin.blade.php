@@ -90,8 +90,8 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td align="center" valign="top" style="padding: 20px 24px;">
-                        <a href="https://www.nebraskalisting.com" target="_blank" style="display: inline-block;">
-                            <img src="{{asset('/images/nebraskalisting-logo.png')}}" alt="Logo"
+                        <a href="{{ config('app.url') }}" target="_blank" style="display: inline-block;">
+                            <img src="{{asset('/images/logo-black.png')}}" alt="Logo"
                                  border="0" width="48"
                                  style="display: block; width: 135px; max-width: 135px; min-width: 135px; max-height: 37px;">
                         </a>
@@ -139,16 +139,16 @@
                 <tr>
                     <td align="left" bgcolor="#ffffff"
                         style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                        <p style="margin: 0;">An user has submitted a contact form to claim a business from <a
+                        <p style="margin: 0;">A user has submitted a contact form to claim a business from <a
                                 href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}">{{ $organization->organization_name }}</a>
-                            . Please review the business details and approve the request. The user will need to log in
-                            to their account to complete the process <a href="{{ route('login') }}">login</a>.</p>
+                            . Please review the business details and approve the request. <br /> <br />
+                            You need to <a href="{{ route('login') }}">login</a> and complete the process.</p>
                     </td>
                 </tr>
                 <tr>
                     <td align="left" bgcolor="#ffffff"
                         style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-                        <p style="margin: 0;">Cheers,<br> {{ env('APP_NAME') }}</p>
+                        <p style="margin: 0;">Cheers,<br> {{ config('app.name') }}</p>
                     </td>
                 </tr>
             </table>
