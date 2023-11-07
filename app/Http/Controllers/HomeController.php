@@ -75,8 +75,9 @@ class HomeController extends Controller
     {
         $source = $request->source_value;
         $search_source_id = $request->source_id;
+        $looking_for = $request->looking_for;
 
-        if ($request->looking_for) {
+        if ($looking_for && $source) {
             if ($source == 'organizations') {
 
                 $organization = Organization::find($search_source_id);
@@ -96,6 +97,19 @@ class HomeController extends Controller
 
                 return $sourceController->cityWiseOrganizations($city->state->slug, $city->slug);
             }
+        } elseif ($looking_for) {
+
+            $organizations = Organization::where(function ($query) use ($looking_for) {
+                $query->where('organization_name', 'like', '%' . $looking_for . '%')
+                    ->orWhere('organization_address', 'like', '%' . $looking_for . '%')
+                    ->orWhere('organization_phone_number', 'like', '%' . $looking_for . '%')
+                    ->orWhere('organization_email', 'like', '%' . $looking_for . '%')
+                    ->orWhere('organization_website', 'like', '%' . $looking_for . '%')
+                    ->orWhere('organization_short_description', 'like', '%' . $looking_for . '%')
+                    ->orWhere('organization_category', 'like', '%' . $looking_for . '%');
+            })->paginate(10);
+
+            return redirect()->back();
         }
 
         abort(404);
