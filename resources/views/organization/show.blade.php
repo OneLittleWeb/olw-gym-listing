@@ -178,29 +178,29 @@
                                 </ul>
                                 <ul class="social-profile social-profile-styled">
                                     @if($organization->organization_facebook)
-                                        <li><a rel="nofollow" href="{{ $organization->organization_facebook }}"
+                                        <li><a rel="nofollow" href="{{ $organization->exploded_organization_facebook[0] }}"
                                                class="facebook-bg"
                                                data-toggle="tooltip" data-placement="top"
                                                title="Facebook" target="_blank"><i class="lab la-facebook-f"></i></a>
                                         </li>
                                     @endif
                                     @if($organization->organization_twitter)
-                                        <li><a rel="nofollow" href="{{ $organization->organization_twitter }}"
+                                        <li><a rel="nofollow" href="{{ $organization->exploded_organization_twitter[0] }}"
                                                class="twitter-bg"
                                                data-toggle="tooltip" data-placement="top"
-                                               title="Twitter"><i class="lab la-twitter"></i></a></li>
+                                               title="Twitter" target="_blank"><i class="lab la-twitter"></i></a></li>
                                     @endif
                                     @if($organization->organization_instagram)
-                                        <li><a rel="nofollow" href="{{ $organization->organization_instagram }}"
+                                        <li><a rel="nofollow" href="{{ $organization->exploded_organization_instagram[0] }}"
                                                class="instagram-bg"
                                                data-toggle="tooltip" data-placement="top"
-                                               title="Instagram"><i class="lab la-instagram"></i></a></li>
+                                               title="Instagram" target="_blank"><i class="lab la-instagram"></i></a></li>
                                     @endif
                                     @if($organization->organization_youTube)
-                                        <li><a rel="nofollow" href="{{ $organization->organization_youTube }}"
+                                        <li><a rel="nofollow" href="{{ $organization->exploded_organization_youTube[0] }}"
                                                class="youtube-bg"
                                                data-toggle="tooltip" data-placement="top"
-                                               title="Youtube"><i class="la la-youtube"></i></a></li>
+                                               title="Youtube" target="_blank"><i class="la la-youtube"></i></a></li>
                                     @endif
                                 </ul>
                             </div>

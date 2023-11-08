@@ -164,6 +164,10 @@ class OrganizationController extends Controller
                 : null;
 
             $organization->exploded_organization_email = explode(',', $organization->organization_email);
+            $organization->exploded_organization_facebook = explode(',', $organization->organization_facebook);
+            $organization->exploded_organization_twitter = explode(',', $organization->organization_twitter);
+            $organization->exploded_organization_instagram = explode(',', $organization->organization_instagram);
+            $organization->exploded_organization_youTube = explode(',', $organization->organization_youTube);
 
             $organization->rate_stars = $organization->rate_stars ?? 0;
             $organization->reviews_total_count = $organization->reviews_total_count ?? 0;
