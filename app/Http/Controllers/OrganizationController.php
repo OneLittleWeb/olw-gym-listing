@@ -61,8 +61,7 @@ class OrganizationController extends Controller
                 ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
-                ->paginate(10)
-                ->onEachSide(0);
+                ->paginate(10);
 
             $organization_badge = '';
 

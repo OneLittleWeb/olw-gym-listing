@@ -46,8 +46,7 @@ class StateController extends Controller
             $organizations = Organization::where('state_id', $s_state->id)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
-                ->paginate(10)
-                ->onEachSide(0);
+                ->paginate(10);
 
             $states = State::all();
             $cities = City::where('state_id', $s_state->id)->get();
