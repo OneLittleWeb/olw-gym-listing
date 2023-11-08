@@ -282,6 +282,21 @@
     color: #131443 !important;
 }
 
+.search-result-img {
+    height: 278px;
+    max-height: 278px;
+    object-fit: cover;
+}
+
+/* Default styles for desktop */
+.pagination-desktop {
+    display: block;
+}
+
+.pagination-mobile {
+    display: none;
+}
+
 @media screen and (max-width: 767px) {
     /* Hide the desktop div on mobile */
     .nebraska-badge-div.desktop {
@@ -308,6 +323,14 @@
     .state-info-list li {
         display: block; /* Display each state on a new line */
         text-align: left; /* Adjust text alignment to left */
+    }
+
+    .pagination-desktop {
+        display: none;
+    }
+
+    .pagination-mobile {
+        display: block;
     }
 }
 

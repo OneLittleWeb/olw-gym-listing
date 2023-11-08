@@ -7218,6 +7218,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item {
+    /*height: 570px;*/
     margin-bottom: 30px;
     background-color: #fff;
     -webkit-box-shadow: 0 10px 40px rgba(82, 85, 90, 0.1);
@@ -7474,8 +7475,10 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .listing-meta .rate {
-    background-color: #40CC6F;
-    color: #fff;
+    /*background-color: #40CC6F;*/
+    /*color: #fff;*/
+    background-color: #f8c401b8;
+    color: #131443;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -7502,8 +7505,10 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .listing-meta .listing-icon {
-    font-size: 20px;
-    color: #40CC6F
+    font-size: 18px;
+    /*font-size: 20px;*/
+    /*color: #40CC6F;*/
+    color: #131443;
 }
 
 .card-item .listing-meta .listing--icon {

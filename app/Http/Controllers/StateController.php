@@ -25,17 +25,15 @@ class StateController extends Controller
 
     public function stateWiseOrganizations($slug)
     {
-        // Define a unique cache key based on the slug.
-        $cacheKey = 'state_wise_organization_data_' . $slug;
+        $currentPage = request()->get('page', 1);
 
-        // Attempt to retrieve the view as a string from the cache.
-        $cachedView = Cache::get($cacheKey);
+        // Define a unique cache key based on the slug and current page.
+        $cacheKey = 'state_wise_organization_data_' . $slug . '_' . $currentPage;
 
-        if ($cachedView === null) {
-            // If the view is not found in the cache, retrieve and store it.
-            $cachedView = $this->generateStateWiseOrganizationView($slug);
-            Cache::forever($cacheKey, $cachedView);
-        }
+        // Attempt to retrieve the view as a string from the cache, or generate and cache it indefinitely.
+        $cachedView = Cache::rememberForever($cacheKey, function () use ($slug) {
+            return $this->generateStateWiseOrganizationView($slug);
+        });
 
         return response($cachedView);
     }

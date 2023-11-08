@@ -69,7 +69,7 @@
                                                 <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}">{{ $organization->organization_name }}</a>
                                             </h2>
                                             <p class="card-sub">
-                                                <a href="#">
+                                                <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}">
                                                     <i class="la la-map-marker mr-1 text-color-5"></i>
                                                     @if($organization->organization_address)
                                                         {{ str_replace('Address: ', '', $organization->organization_address) }}
@@ -95,9 +95,9 @@
                                                     </span>
                                                 </li>
                                                 <li class="d-flex align-items-center">
-                                                    <i class="{{ $organization->category->icon }}"></i>&nbsp;&nbsp;
+                                                    <i class="{{ $organization->category->icon }} mr-2 listing-icon"></i>&nbsp;&nbsp;
                                                     <a href="#"
-                                                       class="listing-cat-link text-capitalize">{{ $organization->organization_category ? $organization->organization_category : $organization->category->name }}</a>
+                                                       class="listing-cat-link text-capitalize">{{ $organization->organization_category ?? $organization->category->name }}</a>
                                                 </li>
                                             </ul>
                                             <ul class="info-list padding-top-20px">
@@ -121,111 +121,20 @@
                                 </div>
                             @endforeach
                         </div>
-                        @if ($organizations->hasPages())
-                            <div class="row">
-                                <div class="col-lg-12 pt-3 text-center">
-                                    <div class="pagination-wrapper d-inline-block">
-                                        <div class="section-pagination">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination flex-wrap justify-content-center">
-                                                    {{-- First Page Link --}}
-                                                    @if ($organizations->onFirstPage())
-                                                        <li class="page-item disabled" aria-disabled="true">
-                                                            <a class="page-link page-link-first" href="#"
-                                                               aria-hidden="true"><i
-                                                                    class="la la-long-arrow-left mr-1"
-                                                                    aria-hidden="true"></i> First</a>
-                                                        </li>
-                                                    @else
-                                                        <li class="page-item">
-                                                            <a class="page-link page-link-first"
-                                                               href="{{ $organizations->url(1) }}" rel="first"><i
-                                                                    class="la la-long-arrow-left mr-1"></i> First</a>
-                                                        </li>
-                                                    @endif
-                                                    {{-- Previous Page Link --}}
-                                                    @if ($organizations->onFirstPage())
-                                                        <li class="page-item disabled" aria-disabled="true">
-                                                            <a class="page-link" href="#" aria-label="Previous">
-                                                            <span aria-hidden="true"><i
-                                                                    class="la la-angle-left"></i></span>
-                                                                <span class="sr-only" aria-hidden="true">Previous</span>
-                                                            </a>
-                                                        </li>
-                                                    @else
-                                                        <li class="page-item">
-                                                            <a class="page-link"
-                                                               href="{{ $organizations->previousPageUrl() }}"
-                                                               aria-label="Previous" rel="prev">
-                                                            <span aria-hidden="true"><i
-                                                                    class="la la-angle-left"></i></span>
-                                                                <span class="sr-only">Previous</span>
-                                                            </a>
-                                                        </li>
-                                                    @endif
-                                                    {{-- Pagination Elements --}}
-                                                    @foreach ($organizations->links()->elements as $element)
-                                                        {{-- "Three Dots" Separator --}}
-                                                        @if (is_string($element))
-                                                            <li class="page-item disabled" aria-disabled="true"><span
-                                                                    class="page-link">{{ $element }}</span></li>
-                                                        @endif
-                                                        {{-- Array Of Links --}}
-                                                        @if (is_array($element))
-                                                            @foreach ($element as $page => $url)
-                                                                @if ($page == $organizations->currentPage())
-                                                                    <li class="page-item active"
-                                                                        aria-current="page"><span
-                                                                            class="page-link">{{ $page }}</span></li>
-                                                                @else
-                                                                    <li class="page-item"><a class="page-link"
-                                                                                             href="{{ $url }}">{{ $page }}</a>
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
-                                                    @endforeach
-                                                    {{-- Next Page Link --}}
-                                                    @if ($organizations->hasMorePages())
-                                                        <li class="page-item">
-                                                            <a class="page-link"
-                                                               href="{{ $organizations->nextPageUrl() }}"
-                                                               aria-label="Next" rel="next">
-                                                        <span aria-hidden="true"><i
-                                                                class="la la-angle-right"></i></span>
-                                                                <span class="sr-only">Next</span>
-                                                            </a>
-                                                        </li>
-                                                    @else
-                                                        <li class="page-item disabled" aria-disabled="true">
-                                                        <span class="page-link" aria-hidden="true"><i
-                                                                class="la la-angle-right"></i></span>
-                                                            <span class="sr-only">Next</span>
-                                                        </li>
-                                                    @endif
-                                                    {{-- Last Page Link --}}
-                                                    @if ($organizations->hasMorePages())
-                                                        <li class="page-item">
-                                                            <a class="page-link page-link-last"
-                                                               href="{{ $organizations->url($organizations->lastPage()) }}"
-                                                               rel="last">Last <i
-                                                                    class="la la-long-arrow-right ml-1"></i></a>
-                                                        </li>
-                                                    @else
-                                                        <li class="page-item disabled" aria-disabled="true">
-                                                            <a class="page-link page-link-last" href="#"
-                                                               aria-hidden="true">Last
-                                                                <i class="la la-long-arrow-right ml-1"
-                                                                   aria-hidden="true"></i></a>
-                                                        </li>
-                                                    @endif
-                                                </ul>
-                                            </nav>
-                                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 pt-3 text-center">
+                                <div class="pagination-wrapper d-inline-block">
+                                    <div class="section-pagination">
+                                        <nav aria-label="Page navigation" class="pagination-desktop">
+                                            {{ $organizations->onEachSide(1)->links() }}
+                                        </nav>
+                                        <nav aria-label="Page navigation" class="pagination-mobile">
+                                            {{ $organizations->onEachSide(0)->links() }}
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="sidebar mb-0">

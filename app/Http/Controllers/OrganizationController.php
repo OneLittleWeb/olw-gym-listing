@@ -27,8 +27,10 @@ class OrganizationController extends Controller
 {
     public function cityWiseOrganizations($state_slug, $city_slug)
     {
+        $currentPage = request()->get('page', 1);
+
         // Define a unique cache key based on the state and city slugs.
-        $cacheKey = 'city_wise_organization_data_' . $state_slug . '_' . $city_slug;
+        $cacheKey = 'city_wise_organization_data_' . $state_slug . '_' . $city_slug. '_' . $currentPage;
 
         // Attempt to retrieve the view as a string from the cache.
         $cachedView = Cache::get($cacheKey);
