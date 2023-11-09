@@ -100,10 +100,9 @@ class OrganizationController extends Controller
 
     public function cityWiseOrganization($city_slug, $organization_slug)
     {
-        $current_page = request()->get('page', 1);
+        $g_reviews_page = request()->get('g_reviews', 1);
 
-        // Define a unique cache key based on the city and organization slugs.
-        $cacheKey = 'city_wise_organization_' . $city_slug . '_' . $organization_slug . '_' . $current_page;
+        $cacheKey = 'city_wise_organization_' . $city_slug . '_' . $organization_slug . '_' . $g_reviews_page;
 
         // Attempt to retrieve the view as a string from the cache.
         $cachedView = Cache::get($cacheKey);
@@ -177,8 +176,8 @@ class OrganizationController extends Controller
 
             $organization->about3 = "<strong>$organization->organization_name</strong>" . ' has a ' . "<strong>$organization->rate_stars</strong>" . '-star rating and ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. Check out the photos and customer reviews to make an image in your mind about what to expect there.';
 
-            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10);
-            $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10);
+            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'g_reviews');
+            $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'own_reviews');
 
             Meta::setPaginationLinks($organization->reviews_paginator);
 
