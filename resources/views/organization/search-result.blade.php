@@ -30,7 +30,6 @@
                                              alt="{{ $organization->organization_name }}" loading="lazy">
                                     @endif
                                 </a>
-                                </span>
                             </div>
                             <div class="card-content">
                                 <h4 class="card-title">
@@ -84,8 +83,8 @@
                                     @endif
                                 </ul>
                             </div>
-                        </div><!-- end card-item -->
-                    </div><!-- end col-lg-4 -->
+                        </div>
+                    </div>
                 @empty
                     <div class="col-lg-12">
                         <div class="alert alert-danger text-center">
@@ -94,7 +93,7 @@
                         </div>
                     </div>
                 @endforelse
-            </div><!-- end row -->
+            </div>
             <div class="row">
                 <div class="col-lg-12 pt-3 text-center">
                     <div class="pagination-wrapper d-inline-block">
