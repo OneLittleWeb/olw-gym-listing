@@ -266,3 +266,19 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).ready(function () {
+    // Check if the page parameter is present in the URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var pageParam = urlParams.get('page');
+
+    if (pageParam) {
+        var firstBusinessReviewCard = $('#business-reviews-card').first();
+
+        if (firstBusinessReviewCard.length) {
+            $('html, body').animate({
+                scrollTop: firstBusinessReviewCard.offset().top
+            }, 1000);
+        }
+    }
+});
