@@ -109,7 +109,7 @@
     <!-- ======END BREADCRUMB AREA======= -->
 
     <!-- =======START LISTING DETAIL AREA====== -->
-    <section class="listing-detail-area padding-top-60px padding-bottom-100px" id="business-reviews-card">
+    <section class="listing-detail-area padding-top-60px padding-bottom-100px">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                         @if($organization->rate_stars && $organization->reviews_total_count)
-                            <div class="block-card mb-4">
+                            <div class="block-card mb-4" id="business-reviews-card">
                                 <div class="block-card-header">
                                     <h2 class="widget-title">Rating Stats</h2>
                                     <div class="stroke-shape"></div>

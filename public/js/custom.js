@@ -273,12 +273,14 @@ $(document).ready(function () {
     var pageParam = urlParams.get('g_reviews');
 
     if (pageParam) {
-        var firstBusinessReviewCard = $('#business-reviews-card').first();
+        // Scroll down to the element with the ID "business-reviews-card"
+        var businessReviewsCard = $('#business-reviews-card');
 
-        if (firstBusinessReviewCard.length) {
+        if (businessReviewsCard.length) {
             $('html, body').animate({
-                scrollTop: firstBusinessReviewCard.offset().top
+                scrollTop: businessReviewsCard.offset().top
             }, 1000);
         }
     }
 });
+
