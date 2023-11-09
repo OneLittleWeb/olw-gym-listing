@@ -178,26 +178,31 @@
                                 </ul>
                                 <ul class="social-profile social-profile-styled">
                                     @if($organization->organization_facebook)
-                                        <li><a rel="nofollow" href="{{ $organization->exploded_organization_facebook[0] }}"
+                                        <li><a rel="nofollow"
+                                               href="{{ $organization->exploded_organization_facebook[0] }}"
                                                class="facebook-bg"
                                                data-toggle="tooltip" data-placement="top"
                                                title="Facebook" target="_blank"><i class="lab la-facebook-f"></i></a>
                                         </li>
                                     @endif
                                     @if($organization->organization_twitter)
-                                        <li><a rel="nofollow" href="{{ $organization->exploded_organization_twitter[0] }}"
+                                        <li><a rel="nofollow"
+                                               href="{{ $organization->exploded_organization_twitter[0] }}"
                                                class="twitter-bg"
                                                data-toggle="tooltip" data-placement="top"
                                                title="Twitter" target="_blank"><i class="lab la-twitter"></i></a></li>
                                     @endif
                                     @if($organization->organization_instagram)
-                                        <li><a rel="nofollow" href="{{ $organization->exploded_organization_instagram[0] }}"
+                                        <li><a rel="nofollow"
+                                               href="{{ $organization->exploded_organization_instagram[0] }}"
                                                class="instagram-bg"
                                                data-toggle="tooltip" data-placement="top"
-                                               title="Instagram" target="_blank"><i class="lab la-instagram"></i></a></li>
+                                               title="Instagram" target="_blank"><i class="lab la-instagram"></i></a>
+                                        </li>
                                     @endif
                                     @if($organization->organization_youTube)
-                                        <li><a rel="nofollow" href="{{ $organization->exploded_organization_youTube[0] }}"
+                                        <li><a rel="nofollow"
+                                               href="{{ $organization->exploded_organization_youTube[0] }}"
                                                class="youtube-bg"
                                                data-toggle="tooltip" data-placement="top"
                                                title="Youtube" target="_blank"><i class="la la-youtube"></i></a></li>
@@ -300,7 +305,7 @@
                                                 aria-controls="nebraska-review"
                                                 aria-selected="false"><img class="review-logo"
                                                                            src="{{asset('/images/favicon.png')}}"
-                                                                           alt="Logo"> Gymnearx
+                                                                           alt="Logo"> GymNearX
                                             <span class="nebraska-review-count"> ({{ $organization->reviews->whereNull('review_id')->count() }})</span>
                                         </button>
                                     </li>
@@ -378,115 +383,13 @@
                                                 <div class="text-center padding-bottom-10px">
                                                     <div class="pagination-wrapper d-inline-block">
                                                         <div class="section-pagination">
-                                                            <nav aria-label="Page navigation">
-                                                                <ul class="pagination flex-wrap justify-content-center">
-                                                                    {{-- First Page Link --}}
-                                                                    @if ($organization->reviews_paginator->onFirstPage())
-                                                                        <li class="page-item disabled"
-                                                                            aria-disabled="true">
-                                                                            <a class="page-link page-link-first"
-                                                                               href="#"
-                                                                               aria-hidden="true"><i
-                                                                                    class="la la-long-arrow-left mr-1"
-                                                                                    aria-hidden="true"></i> First</a>
-                                                                        </li>
-                                                                    @else
-                                                                        <li class="page-item">
-                                                                            <a class="page-link page-link-first"
-                                                                               href="{{ $organization->reviews_paginator->url(1) }}"
-                                                                               rel="first"><i
-                                                                                    class="la la-long-arrow-left mr-1"></i>
-                                                                                First</a>
-                                                                        </li>
-                                                                    @endif
-                                                                    {{-- Previous Page Link --}}
-                                                                    @if ($organization->reviews_paginator->onFirstPage())
-                                                                        <li class="page-item disabled"
-                                                                            aria-disabled="true">
-                                                                            <a class="page-link" href="#"
-                                                                               aria-label="Previous">
-                                                            <span aria-hidden="true"><i
-                                                                    class="la la-angle-left"></i></span>
-                                                                                <span class="sr-only"
-                                                                                      aria-hidden="true">Previous</span>
-                                                                            </a>
-                                                                        </li>
-                                                                    @else
-                                                                        <li class="page-item">
-                                                                            <a class="page-link"
-                                                                               href="{{ $organization->reviews_paginator->previousPageUrl() }}"
-                                                                               aria-label="Previous" rel="prev">
-                                                            <span aria-hidden="true"><i
-                                                                    class="la la-angle-left"></i></span>
-                                                                                <span class="sr-only">Previous</span>
-                                                                            </a>
-                                                                        </li>
-                                                                    @endif
-                                                                    {{-- Pagination Elements --}}
-                                                                    @foreach ($organization->reviews_paginator->links()->elements as $element)
-                                                                        {{-- "Three Dots" Separator --}}
-                                                                        @if (is_string($element))
-                                                                            <li class="page-item disabled"
-                                                                                aria-disabled="true"><span
-                                                                                    class="page-link">{{ $element }}</span>
-                                                                            </li>
-                                                                        @endif
-                                                                        {{-- Array Of Links --}}
-                                                                        @if (is_array($element))
-                                                                            @foreach ($element as $page => $url)
-                                                                                @if ($page == $organization->reviews_paginator->currentPage())
-                                                                                    <li class="page-item active"
-                                                                                        aria-current="page"><span
-                                                                                            class="page-link">{{ $page }}</span>
-                                                                                    </li>
-                                                                                @else
-                                                                                    <li class="page-item"><a
-                                                                                            class="page-link"
-                                                                                            href="{{ $url }}">{{ $page }}</a>
-                                                                                    </li>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endforeach
-                                                                    {{-- Next Page Link --}}
-                                                                    @if ($organization->reviews_paginator->hasMorePages())
-                                                                        <li class="page-item">
-                                                                            <a class="page-link"
-                                                                               href="{{ $organization->reviews_paginator->nextPageUrl() }}"
-                                                                               aria-label="Next" rel="next">
-                                                        <span aria-hidden="true"><i
-                                                                class="la la-angle-right"></i></span>
-                                                                                <span class="sr-only">Next</span>
-                                                                            </a>
-                                                                        </li>
-                                                                    @else
-                                                                        <li class="page-item disabled"
-                                                                            aria-disabled="true">
-                                                        <span class="page-link" aria-hidden="true"><i
-                                                                class="la la-angle-right"></i></span>
-                                                                            <span class="sr-only">Next</span>
-                                                                        </li>
-                                                                    @endif
-                                                                    {{-- Last Page Link --}}
-                                                                    @if ($organization->reviews_paginator->hasMorePages())
-                                                                        <li class="page-item">
-                                                                            <a class="page-link page-link-last"
-                                                                               href="{{ $organization->reviews_paginator->url($organization->reviews_paginator->lastPage()) }}"
-                                                                               rel="last">Last <i
-                                                                                    class="la la-long-arrow-right ml-1"></i></a>
-                                                                        </li>
-                                                                    @else
-                                                                        <li class="page-item disabled"
-                                                                            aria-disabled="true">
-                                                                            <a class="page-link page-link-last" href="#"
-                                                                               aria-hidden="true">Last
-                                                                                <i
-                                                                                    class="la la-long-arrow-right ml-1"
-                                                                                    aria-hidden="true"></i></a>
-                                                                        </li>
-                                                                    @endif
-
-                                                                </ul>
+                                                            <nav aria-label="Page navigation"
+                                                                 class="pagination-desktop">
+                                                                {{ $organization->reviews_paginator->onEachSide(1)->links() }}
+                                                            </nav>
+                                                            <nav aria-label="Page navigation"
+                                                                 class="pagination-mobile">
+                                                                {{ $organization->reviews_paginator->onEachSide(0)->links() }}
                                                             </nav>
                                                         </div>
                                                     </div>
@@ -496,15 +399,15 @@
                                     </div>
                                     <div class="tab-pane fade" id="nebraska-review" role="tabpanel"
                                          aria-labelledby="nebraska-review-tab">
-                                        @if(count($organization->nebraska_reviews_paginator))
+                                        @if(count($organization->own_reviews_paginator))
                                             <div class="block-card-body">
                                                 <div class="comments-list">
-                                                    @foreach($organization->nebraska_reviews_paginator as $nebraska_review)
+                                                    @foreach($organization->own_reviews_paginator as $own_review)
                                                         <div class="comment">
-                                                            @if($nebraska_review->reviewer_name)
+                                                            @if($own_review->reviewer_name)
                                                                 <div class="user-thumb user-thumb-lg flex-shrink-0">
                                                                     <img
-                                                                        src="{{ Avatar::create($nebraska_review->reviewer_name)->toBase64() }}"
+                                                                        src="{{ Avatar::create($own_review->reviewer_name)->toBase64() }}"
                                                                         alt="author-img">
                                                                 </div>
                                                             @else
@@ -517,25 +420,25 @@
                                                                 <div
                                                                     class="meta-data d-flex align-items-center justify-content-between">
                                                                     <div>
-                                                                        <h4 class="comment__title">{{ $nebraska_review->reviewer_name }}</h4>
+                                                                        <h4 class="comment__title">{{ $own_review->reviewer_name }}</h4>
                                                                     </div>
                                                                     <div class="star-rating-wrap text-center">
                                                                         <div class="users_review_ratings"
-                                                                             data-rating="{{ $nebraska_review->review_rate_stars }}">
+                                                                             data-rating="{{ $own_review->review_rate_stars }}">
                                                                         </div>
-                                                                        @if($nebraska_review->review_date)
-                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($nebraska_review->review_specified_date)->diffForHumans() }}</p>
+                                                                        @if($own_review->review_date)
+                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($own_review->review_specified_date)->diffForHumans() }}</p>
                                                                         @else
-                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($nebraska_review->created_at)->diffForHumans() }}</p>
+                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($own_review->created_at)->diffForHumans() }}</p>
                                                                         @endif
                                                                     </div>
                                                                 </div>
-                                                                <p class="comment-desc">{{ $nebraska_review->review_text_original }}</p>
+                                                                <p class="comment-desc">{{ $own_review->review_text_original }}</p>
 
-                                                                @if($nebraska_review->review_photos_files)
+                                                                @if($own_review->review_photos_files)
                                                                     <div
                                                                         class="review-photos d-flex flex-wrap align-items-center ml-n1 mb-3">
-                                                                        @foreach(explode(',', $nebraska_review->review_photos_files) as $photo_file)
+                                                                        @foreach(explode(',', $own_review->review_photos_files) as $photo_file)
                                                                             <a href="{{ asset('images/business/' . $photo_file) }}"
                                                                                class="d-inline-block"
                                                                                data-fancybox="gallery">
@@ -547,7 +450,7 @@
                                                                         @endforeach
                                                                     </div>
                                                                 @endif
-                                                                @if($nebraska_review->review_thumbs_up_value)
+                                                                @if($own_review->review_thumbs_up_value)
                                                                     <div
                                                                         class="comment-action d-flex align-items-center justify-content-between float-right">
                                                                         <p class="feedback-box ">
@@ -555,7 +458,7 @@
                                                                                     class="btn-gray btn-gray-sm mr-1">
                                                                                 <i class="fa-solid fa-thumbs-up"></i>
                                                                                 <span
-                                                                                    class="text-color font-weight-semi-bold">{{ $nebraska_review->review_thumbs_up_value }}</span>
+                                                                                    class="text-color font-weight-semi-bold">{{ $own_review->review_thumbs_up_value }}</span>
                                                                             </button>
                                                                         </p>
                                                                     </div>
@@ -564,122 +467,19 @@
                                                         </div>
                                                     @endforeach
                                                 </div>
-                                                @if ($organization->nebraska_reviews_paginator->hasPages())
+                                                @if ($organization->own_reviews_paginator->hasPages())
                                                     <div class="text-center">
                                                         <div class="pagination-wrapper d-inline-block">
                                                             <div class="section-pagination">
                                                                 <nav aria-label="Page navigation">
-                                                                    <ul class="pagination flex-wrap justify-content-center">
-                                                                        {{-- First Page Link --}}
-                                                                        @if ($organization->nebraska_reviews_paginator->onFirstPage())
-                                                                            <li class="page-item disabled"
-                                                                                aria-disabled="true">
-                                                                                <a class="page-link page-link-first"
-                                                                                   href="#"
-                                                                                   aria-hidden="true"><i
-                                                                                        class="la la-long-arrow-left mr-1"
-                                                                                        aria-hidden="true"></i>
-                                                                                    First</a>
-                                                                            </li>
-                                                                        @else
-                                                                            <li class="page-item">
-                                                                                <a class="page-link page-link-first"
-                                                                                   href="{{ $organization->nebraska_reviews_paginator->url(1) }}"
-                                                                                   rel="first"><i
-                                                                                        class="la la-long-arrow-left mr-1"></i>
-                                                                                    First</a>
-                                                                            </li>
-                                                                        @endif
-                                                                        {{-- Previous Page Link --}}
-                                                                        @if ($organization->nebraska_reviews_paginator->onFirstPage())
-                                                                            <li class="page-item disabled"
-                                                                                aria-disabled="true">
-                                                                                <a class="page-link" href="#"
-                                                                                   aria-label="Previous">
-                                                            <span aria-hidden="true"><i
-                                                                    class="la la-angle-left"></i></span>
-                                                                                    <span class="sr-only"
-                                                                                          aria-hidden="true">Previous</span>
-                                                                                </a>
-                                                                            </li>
-                                                                        @else
-                                                                            <li class="page-item">
-                                                                                <a class="page-link"
-                                                                                   href="{{ $organization->nebraska_reviews_paginator->previousPageUrl() }}"
-                                                                                   aria-label="Previous" rel="prev">
-                                                            <span aria-hidden="true"><i
-                                                                    class="la la-angle-left"></i></span>
-                                                                                    <span
-                                                                                        class="sr-only">Previous</span>
-                                                                                </a>
-                                                                            </li>
-                                                                        @endif
-                                                                        {{-- Pagination Elements --}}
-                                                                        @foreach ($organization->nebraska_reviews_paginator->links()->elements as $element)
-                                                                            {{-- "Three Dots" Separator --}}
-                                                                            @if (is_string($element))
-                                                                                <li class="page-item disabled"
-                                                                                    aria-disabled="true"><span
-                                                                                        class="page-link">{{ $element }}</span>
-                                                                                </li>
-                                                                            @endif
-                                                                            {{-- Array Of Links --}}
-                                                                            @if (is_array($element))
-                                                                                @foreach ($element as $page => $url)
-                                                                                    @if ($page == $organization->nebraska_reviews_paginator->currentPage())
-                                                                                        <li class="page-item active"
-                                                                                            aria-current="page"><span
-                                                                                                class="page-link">{{ $page }}</span>
-                                                                                        </li>
-                                                                                    @else
-                                                                                        <li class="page-item"><a
-                                                                                                class="page-link"
-                                                                                                href="{{ $url }}">{{ $page }}</a>
-                                                                                        </li>
-                                                                                    @endif
-                                                                                @endforeach
-                                                                            @endif
-                                                                        @endforeach
-                                                                        {{-- Next Page Link --}}
-                                                                        @if ($organization->nebraska_reviews_paginator->hasMorePages())
-                                                                            <li class="page-item">
-                                                                                <a class="page-link"
-                                                                                   href="{{ $organization->nebraska_reviews_paginator->nextPageUrl() }}"
-                                                                                   aria-label="Next" rel="next">
-                                                        <span aria-hidden="true"><i
-                                                                class="la la-angle-right"></i></span>
-                                                                                    <span class="sr-only">Next</span>
-                                                                                </a>
-                                                                            </li>
-                                                                        @else
-                                                                            <li class="page-item disabled"
-                                                                                aria-disabled="true">
-                                                        <span class="page-link" aria-hidden="true"><i
-                                                                class="la la-angle-right"></i></span>
-                                                                                <span class="sr-only">Next</span>
-                                                                            </li>
-                                                                        @endif
-                                                                        {{-- Last Page Link --}}
-                                                                        @if ($organization->nebraska_reviews_paginator->hasMorePages())
-                                                                            <li class="page-item">
-                                                                                <a class="page-link page-link-last"
-                                                                                   href="{{ $organization->nebraska_reviews_paginator->url($organization->nebraska_reviews_paginator->lastPage()) }}"
-                                                                                   rel="last">Last <i
-                                                                                        class="la la-long-arrow-right ml-1"></i></a>
-                                                                            </li>
-                                                                        @else
-                                                                            <li class="page-item disabled"
-                                                                                aria-disabled="true">
-                                                                                <a class="page-link page-link-last"
-                                                                                   href="#"
-                                                                                   aria-hidden="true">Last
-                                                                                    <i
-                                                                                        class="la la-long-arrow-right ml-1"
-                                                                                        aria-hidden="true"></i></a>
-                                                                            </li>
-                                                                        @endif
-
-                                                                    </ul>
+                                                                    <nav aria-label="Page navigation"
+                                                                         class="pagination-desktop">
+                                                                        {{ $organization->own_reviews_paginator->onEachSide(1)->links() }}
+                                                                    </nav>
+                                                                    <nav aria-label="Page navigation"
+                                                                         class="pagination-mobile">
+                                                                        {{ $organization->own_reviews_paginator->onEachSide(0)->links() }}
+                                                                    </nav>
                                                                 </nav>
                                                             </div>
                                                         </div>

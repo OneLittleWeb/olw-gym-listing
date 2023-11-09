@@ -27,10 +27,10 @@ class OrganizationController extends Controller
 {
     public function cityWiseOrganizations($state_slug, $city_slug)
     {
-        $currentPage = request()->get('page', 1);
+        $current_page = request()->get('page', 1);
 
         // Define a unique cache key based on the state and city slugs.
-        $cacheKey = 'city_wise_organization_data_' . $state_slug . '_' . $city_slug. '_' . $currentPage;
+        $cacheKey = 'city_wise_organization_data_' . $state_slug . '_' . $city_slug. '_' . $current_page;
 
         // Attempt to retrieve the view as a string from the cache.
         $cachedView = Cache::get($cacheKey);
@@ -100,8 +100,10 @@ class OrganizationController extends Controller
 
     public function cityWiseOrganization($city_slug, $organization_slug)
     {
+        $current_page = request()->get('page', 1);
+
         // Define a unique cache key based on the city and organization slugs.
-        $cacheKey = 'city_wise_organization_' . $city_slug . '_' . $organization_slug;
+        $cacheKey = 'city_wise_organization_' . $city_slug . '_' . $organization_slug . '_' . $current_page;
 
         // Attempt to retrieve the view as a string from the cache.
         $cachedView = Cache::get($cacheKey);
@@ -175,8 +177,8 @@ class OrganizationController extends Controller
 
             $organization->about3 = "<strong>$organization->organization_name</strong>" . ' has a ' . "<strong>$organization->rate_stars</strong>" . '-star rating and ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. Check out the photos and customer reviews to make an image in your mind about what to expect there.';
 
-            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10)->onEachSide(0);
-            $organization->nebraska_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10)->onEachSide(0);
+            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10);
+            $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10);
 
             Meta::setPaginationLinks($organization->reviews_paginator);
 
