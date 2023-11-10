@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', "Register - Nebraskalisting")
+@section('title', "Register - GymNearX")
 @section('meta_description', "To be added")
 @php $cities = \App\Models\City::all(); $city = null; @endphp
 @section('content')

@@ -68,7 +68,7 @@ class ReviewController extends Controller
                     return Carbon::parse($reviewDate)->diffForHumans();
                 })
                 ->addColumn('source', function ($row) {
-                    return $row->review_id ? 'Google' : 'Nebraskalisting';
+                    return $row->review_id ? 'Google' : 'GymNearX';
                 })
                 ->addIndexColumn()
                 ->rawColumns(['actions', 'organization_name'])

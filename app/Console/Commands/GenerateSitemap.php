@@ -53,7 +53,7 @@ class GenerateSitemap extends Command
             }
             $sitemap = new SitemapController();
             $sitemap->sitemapStore();
-            $message = 'Hey, NebraskaListing sitemap is updated on ' . Carbon::now()->format('d m Y.');
+            $message = 'Hey, GymNearX sitemap is updated on ' . Carbon::now()->format('d m Y.');
             Notification::send('nothing', new  SitemapUpdateNotification($message));
         } catch (\Exception $e) {
             $message = 'Hey, There is an issue please check ';

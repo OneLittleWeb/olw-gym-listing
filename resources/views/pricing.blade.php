@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', "Pricing - Nebraskalisting")
+@section('title', "Pricing - GymNearX")
 @section('meta_description', "To be added")
 @section('content')
     <section class="category-area section--padding margin-top-40px">
