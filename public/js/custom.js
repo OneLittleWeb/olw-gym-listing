@@ -267,14 +267,14 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function () {
+$(window).on('load', function() {
     // Check if the page parameter is present in the URL
     var urlParams = new URLSearchParams(window.location.search);
     var pageParam = urlParams.get('g_reviews');
 
     if (pageParam) {
         // Scroll down to the element with the ID "business-reviews-card"
-        var businessReviewsCard = $('#business-reviews-card');
+        var businessReviewsCard = $('#business_reviews_card');
 
         if (businessReviewsCard.length) {
             $('html, body').animate({

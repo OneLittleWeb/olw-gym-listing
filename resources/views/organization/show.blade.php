@@ -211,7 +211,7 @@
                             </div>
                         </div>
                         @if($organization->rate_stars && $organization->reviews_total_count)
-                            <div class="block-card mb-4" id="business-reviews-card">
+                            <div class="block-card mb-4">
                                 <div class="block-card-header">
                                     <h2 class="widget-title">Rating Stats</h2>
                                     <div class="stroke-shape"></div>
@@ -281,46 +281,133 @@
                             </div>
                         @endif
                         @if($organization->reviews->count())
-                            <div class="block-card mb-4">
-                                    <div class=" pb-4">
-                                        <h2 class="widget-title">Reviews <span class="ml-1 text-color-16">({{ $organization->reviews->whereNotNull('review_id')->count() }})</span>
-                                        </h2>
-                                        <div class="stroke-shape"></div>
-                                    </div>
+                            <div class="block-card mb-4" id="business_reviews_card">
+                                <div class=" pb-4">
+                                    <h2 class="widget-title">Reviews <span class="ml-1 text-color-16">({{ $organization->reviews->whereNotNull('review_id')->count() }})</span>
+                                    </h2>
+                                    <div class="stroke-shape"></div>
+                                </div>
 
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item google-review" role="presentation">
-                                            <button class="nav-link active" id="google-tab" data-toggle="tab"
-                                                    data-target="#google-review" type="button" role="tab"
-                                                    aria-controls="google-review" aria-selected="true"><img
-                                                    class="review-logo" src="{{asset('/images/google-logo.png')}}"
-                                                    alt="Logo"> Google
-                                                <span>({{ $organization->reviews->whereNotNull('review_id')->count() }})</span>
-                                            </button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link nebraska-review" id="nebraska-review-tab"
-                                                    data-toggle="tab"
-                                                    data-target="#nebraska-review" type="button" role="tab"
-                                                    aria-controls="nebraska-review"
-                                                    aria-selected="false"><img class="review-logo"
-                                                                               src="{{asset('/images/favicon.png')}}"
-                                                                               alt="Logo"> GymNearX
-                                                <span class="nebraska-review-count"> ({{ $organization->reviews->whereNull('review_id')->count() }})</span>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="reviewTabContent">
-                                        <div class="tab-pane fade show active" id="google-review" role="tabpanel"
-                                             aria-labelledby="google-tab">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item google-review" role="presentation">
+                                        <button class="nav-link active" id="google-tab" data-toggle="tab"
+                                                data-target="#google-review" type="button" role="tab"
+                                                aria-controls="google-review" aria-selected="true"><img
+                                                class="review-logo" src="{{asset('/images/google-logo.png')}}"
+                                                alt="Logo"> Google
+                                            <span>({{ $organization->reviews->whereNotNull('review_id')->count() }})</span>
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link nebraska-review" id="nebraska-review-tab"
+                                                data-toggle="tab"
+                                                data-target="#nebraska-review" type="button" role="tab"
+                                                aria-controls="nebraska-review"
+                                                aria-selected="false"><img class="review-logo"
+                                                                           src="{{asset('/images/favicon.png')}}"
+                                                                           alt="Logo"> GymNearX
+                                            <span class="nebraska-review-count"> ({{ $organization->reviews->whereNull('review_id')->count() }})</span>
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="reviewTabContent">
+                                    <div class="tab-pane fade show active" id="google-review" role="tabpanel"
+                                         aria-labelledby="google-tab">
+                                        <div class="block-card-body">
+                                            <div class="comments-list">
+                                                @foreach($organization->reviews_paginator as $review)
+                                                    <div class="comment">
+                                                        @if($review->reviewer_name)
+                                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
+                                                                <img
+                                                                    src="{{ Avatar::create($review->reviewer_name)->toBase64() }}"
+                                                                    alt="author-img">
+                                                            </div>
+                                                        @else
+                                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
+                                                                <img src="{{ asset('images/bb.png') }}"
+                                                                     alt="author-img">
+                                                            </div>
+                                                        @endif
+                                                        <div class="comment-body">
+                                                            <div
+                                                                class="meta-data d-flex align-items-center justify-content-between">
+                                                                <div>
+                                                                    <h4 class="comment__title">{{ $review->reviewer_name }}</h4>
+                                                                </div>
+                                                                <div class="star-rating-wrap text-center">
+                                                                    <div class="users_review_ratings"
+                                                                         data-rating="{{ $review->review_rate_stars }}">
+                                                                    </div>
+                                                                    @if($review->review_date)
+                                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->review_specified_date)->diffForHumans() }}</p>
+                                                                    @else
+                                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->created_at)->diffForHumans() }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                            <p class="comment-desc">{{ $review->review_text_original }}</p>
+
+                                                            @if($review->review_photos_files)
+                                                                <div
+                                                                    class="review-photos d-flex flex-wrap align-items-center ml-n1 mb-3">
+                                                                    @foreach(explode(',', $review->review_photos_files) as $photo_file)
+                                                                        <a href="{{ asset('images/business/' . $photo_file) }}"
+                                                                           class="d-inline-block"
+                                                                           data-fancybox="gallery">
+                                                                            <img class="lazy"
+                                                                                 src="{{ asset('images/business/' . $photo_file) }}"
+                                                                                 data-src="{{ asset('images/business/' . $photo_file) }}"
+                                                                                 alt="review image" loading="lazy">
+                                                                        </a>
+                                                                    @endforeach
+                                                                </div>
+                                                            @endif
+                                                            @if($review->review_thumbs_up_value)
+                                                                <div
+                                                                    class="comment-action d-flex align-items-center justify-content-between float-right">
+                                                                    <p class="feedback-box ">
+                                                                        <button type="button"
+                                                                                class="btn-gray btn-gray-sm mr-1">
+                                                                            <i class="fa-solid fa-thumbs-up"></i> <span
+                                                                                class="text-color font-weight-semi-bold">{{ $review->review_thumbs_up_value }}</span>
+                                                                        </button>
+                                                                    </p>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            @if ($organization->reviews_paginator->hasPages())
+                                                <div class="text-center padding-bottom-10px">
+                                                    <div class="pagination-wrapper d-inline-block">
+                                                        <div class="section-pagination">
+                                                            <nav aria-label="Page navigation"
+                                                                 class="pagination-desktop">
+                                                                {{ $organization->reviews_paginator->onEachSide(1)->links() }}
+                                                            </nav>
+                                                            <nav aria-label="Page navigation"
+                                                                 class="pagination-mobile">
+                                                                {{ $organization->reviews_paginator->onEachSide(0)->links() }}
+                                                            </nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nebraska-review" role="tabpanel"
+                                         aria-labelledby="nebraska-review-tab">
+                                        @if(count($organization->own_reviews_paginator))
                                             <div class="block-card-body">
                                                 <div class="comments-list">
-                                                    @foreach($organization->reviews_paginator as $review)
+                                                    @foreach($organization->own_reviews_paginator as $own_review)
                                                         <div class="comment">
-                                                            @if($review->reviewer_name)
+                                                            @if($own_review->reviewer_name)
                                                                 <div class="user-thumb user-thumb-lg flex-shrink-0">
                                                                     <img
-                                                                        src="{{ Avatar::create($review->reviewer_name)->toBase64() }}"
+                                                                        src="{{ Avatar::create($own_review->reviewer_name)->toBase64() }}"
                                                                         alt="author-img">
                                                                 </div>
                                                             @else
@@ -333,25 +420,25 @@
                                                                 <div
                                                                     class="meta-data d-flex align-items-center justify-content-between">
                                                                     <div>
-                                                                        <h4 class="comment__title">{{ $review->reviewer_name }}</h4>
+                                                                        <h4 class="comment__title">{{ $own_review->reviewer_name }}</h4>
                                                                     </div>
                                                                     <div class="star-rating-wrap text-center">
                                                                         <div class="users_review_ratings"
-                                                                             data-rating="{{ $review->review_rate_stars }}">
+                                                                             data-rating="{{ $own_review->review_rate_stars }}">
                                                                         </div>
-                                                                        @if($review->review_date)
-                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->review_specified_date)->diffForHumans() }}</p>
+                                                                        @if($own_review->review_date)
+                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($own_review->review_specified_date)->diffForHumans() }}</p>
                                                                         @else
-                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->created_at)->diffForHumans() }}</p>
+                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($own_review->created_at)->diffForHumans() }}</p>
                                                                         @endif
                                                                     </div>
                                                                 </div>
-                                                                <p class="comment-desc">{{ $review->review_text_original }}</p>
+                                                                <p class="comment-desc">{{ $own_review->review_text_original }}</p>
 
-                                                                @if($review->review_photos_files)
+                                                                @if($own_review->review_photos_files)
                                                                     <div
                                                                         class="review-photos d-flex flex-wrap align-items-center ml-n1 mb-3">
-                                                                        @foreach(explode(',', $review->review_photos_files) as $photo_file)
+                                                                        @foreach(explode(',', $own_review->review_photos_files) as $photo_file)
                                                                             <a href="{{ asset('images/business/' . $photo_file) }}"
                                                                                class="d-inline-block"
                                                                                data-fancybox="gallery">
@@ -363,14 +450,15 @@
                                                                         @endforeach
                                                                     </div>
                                                                 @endif
-                                                                @if($review->review_thumbs_up_value)
+                                                                @if($own_review->review_thumbs_up_value)
                                                                     <div
                                                                         class="comment-action d-flex align-items-center justify-content-between float-right">
                                                                         <p class="feedback-box ">
                                                                             <button type="button"
                                                                                     class="btn-gray btn-gray-sm mr-1">
-                                                                                <i class="fa-solid fa-thumbs-up"></i> <span
-                                                                                    class="text-color font-weight-semi-bold">{{ $review->review_thumbs_up_value }}</span>
+                                                                                <i class="fa-solid fa-thumbs-up"></i>
+                                                                                <span
+                                                                                    class="text-color font-weight-semi-bold">{{ $own_review->review_thumbs_up_value }}</span>
                                                                             </button>
                                                                         </p>
                                                                     </div>
@@ -379,126 +467,38 @@
                                                         </div>
                                                     @endforeach
                                                 </div>
-                                                @if ($organization->reviews_paginator->hasPages())
-                                                    <div class="text-center padding-bottom-10px">
+                                                @if ($organization->own_reviews_paginator->hasPages())
+                                                    <div class="text-center">
                                                         <div class="pagination-wrapper d-inline-block">
                                                             <div class="section-pagination">
-                                                                <nav aria-label="Page navigation"
-                                                                     class="pagination-desktop">
-                                                                    {{ $organization->reviews_paginator->onEachSide(1)->links() }}
-                                                                </nav>
-                                                                <nav aria-label="Page navigation"
-                                                                     class="pagination-mobile">
-                                                                    {{ $organization->reviews_paginator->onEachSide(0)->links() }}
+                                                                <nav aria-label="Page navigation">
+                                                                    <nav aria-label="Page navigation"
+                                                                         class="pagination-desktop">
+                                                                        {{ $organization->own_reviews_paginator->onEachSide(1)->links() }}
+                                                                    </nav>
+                                                                    <nav aria-label="Page navigation"
+                                                                         class="pagination-mobile">
+                                                                        {{ $organization->own_reviews_paginator->onEachSide(0)->links() }}
+                                                                    </nav>
                                                                 </nav>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 @endif
                                             </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="nebraska-review" role="tabpanel"
-                                             aria-labelledby="nebraska-review-tab">
-                                            @if(count($organization->own_reviews_paginator))
-                                                <div class="block-card-body">
-                                                    <div class="comments-list">
-                                                        @foreach($organization->own_reviews_paginator as $own_review)
-                                                            <div class="comment">
-                                                                @if($own_review->reviewer_name)
-                                                                    <div class="user-thumb user-thumb-lg flex-shrink-0">
-                                                                        <img
-                                                                            src="{{ Avatar::create($own_review->reviewer_name)->toBase64() }}"
-                                                                            alt="author-img">
-                                                                    </div>
-                                                                @else
-                                                                    <div class="user-thumb user-thumb-lg flex-shrink-0">
-                                                                        <img src="{{ asset('images/bb.png') }}"
-                                                                             alt="author-img">
-                                                                    </div>
-                                                                @endif
-                                                                <div class="comment-body">
-                                                                    <div
-                                                                        class="meta-data d-flex align-items-center justify-content-between">
-                                                                        <div>
-                                                                            <h4 class="comment__title">{{ $own_review->reviewer_name }}</h4>
-                                                                        </div>
-                                                                        <div class="star-rating-wrap text-center">
-                                                                            <div class="users_review_ratings"
-                                                                                 data-rating="{{ $own_review->review_rate_stars }}">
-                                                                            </div>
-                                                                            @if($own_review->review_date)
-                                                                                <p class="font-size-13 font-weight-medium">{{ Carbon::parse($own_review->review_specified_date)->diffForHumans() }}</p>
-                                                                            @else
-                                                                                <p class="font-size-13 font-weight-medium">{{ Carbon::parse($own_review->created_at)->diffForHumans() }}</p>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                    <p class="comment-desc">{{ $own_review->review_text_original }}</p>
-
-                                                                    @if($own_review->review_photos_files)
-                                                                        <div
-                                                                            class="review-photos d-flex flex-wrap align-items-center ml-n1 mb-3">
-                                                                            @foreach(explode(',', $own_review->review_photos_files) as $photo_file)
-                                                                                <a href="{{ asset('images/business/' . $photo_file) }}"
-                                                                                   class="d-inline-block"
-                                                                                   data-fancybox="gallery">
-                                                                                    <img class="lazy"
-                                                                                         src="{{ asset('images/business/' . $photo_file) }}"
-                                                                                         data-src="{{ asset('images/business/' . $photo_file) }}"
-                                                                                         alt="review image" loading="lazy">
-                                                                                </a>
-                                                                            @endforeach
-                                                                        </div>
-                                                                    @endif
-                                                                    @if($own_review->review_thumbs_up_value)
-                                                                        <div
-                                                                            class="comment-action d-flex align-items-center justify-content-between float-right">
-                                                                            <p class="feedback-box ">
-                                                                                <button type="button"
-                                                                                        class="btn-gray btn-gray-sm mr-1">
-                                                                                    <i class="fa-solid fa-thumbs-up"></i>
-                                                                                    <span
-                                                                                        class="text-color font-weight-semi-bold">{{ $own_review->review_thumbs_up_value }}</span>
-                                                                                </button>
-                                                                            </p>
-                                                                        </div>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                    @if ($organization->own_reviews_paginator->hasPages())
-                                                        <div class="text-center">
-                                                            <div class="pagination-wrapper d-inline-block">
-                                                                <div class="section-pagination">
-                                                                    <nav aria-label="Page navigation">
-                                                                        <nav aria-label="Page navigation"
-                                                                             class="pagination-desktop">
-                                                                            {{ $organization->own_reviews_paginator->onEachSide(1)->links() }}
-                                                                        </nav>
-                                                                        <nav aria-label="Page navigation"
-                                                                             class="pagination-mobile">
-                                                                            {{ $organization->own_reviews_paginator->onEachSide(0)->links() }}
-                                                                        </nav>
-                                                                    </nav>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endif
+                                        @else
+                                            <div class="block-card-body">
+                                                <div class="comments-list">
+                                                    <p class="text-dark">No reviews yet</p>
                                                 </div>
-                                            @else
-                                                <div class="block-card-body">
-                                                    <div class="comments-list">
-                                                        <p class="text-dark">No reviews yet</p>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <div class="text-center">
-                                            <a rel="nofollow" href="{{ $organization->gmaps_link }}"
-                                               class="more-review-link" target="_blank">For more reviews</a>
-                                        </div>
+                                            </div>
+                                        @endif
                                     </div>
+                                    <div class="text-center">
+                                        <a rel="nofollow" href="{{ $organization->gmaps_link }}"
+                                           class="more-review-link" target="_blank">For more reviews</a>
+                                    </div>
+                                </div>
                             </div>
                         @endif
 
