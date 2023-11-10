@@ -107,7 +107,7 @@ class HomeController extends Controller
                     ->orWhere('organization_website', 'like', '%' . $looking_for . '%')
                     ->orWhere('organization_short_description', 'like', '%' . $looking_for . '%')
                     ->orWhere('organization_category', 'like', '%' . $looking_for . '%');
-            })->paginate(12)->withQueryString();
+            })->paginate(15)->withQueryString();
 
             return view('organization.search-result', compact('organizations', 'looking_for'));
         }
