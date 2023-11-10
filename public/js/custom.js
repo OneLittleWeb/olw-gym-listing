@@ -209,6 +209,37 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    // When the toggle icon is clicked
+    $('.toggle-icon').on('click', function () {
+        // Find the target element to toggle based on the data-target attribute
+        var targetSelector = $(this).data('target');
+        var targetElement = $('#' + targetSelector);
+
+        // Toggle the visibility of the target element
+        targetElement.slideToggle();
+    });
+});
+
+$(document).ready(function () {
+    // When the search input changes
+    $('#all_state_search').on('input', function () {
+        var searchText = $(this).val().toLowerCase();
+
+        // Iterate over each state container
+        $('.all-state-container').each(function () {
+            var stateName = $(this).find('.widget-title a').text().toLowerCase();
+
+            // Show or hide based on the search text
+            if (stateName.includes(searchText)) {
+                $(this).removeClass('hidden');
+            } else {
+                $(this).addClass('hidden');
+            }
+        });
+    });
+});
+
 // $(document).ready(function() {
 //     $('#all_state_search').on('input', function() {
 //         var searchText = $(this).val().toLowerCase();
@@ -229,43 +260,43 @@ $(document).ready(function () {
 //     });
 // });
 
-$(document).ready(function() {
-    $('#all_state_search').on('input', function() {
-        var searchText = $(this).val().toLowerCase();
-        $('.search-repeated-div').each(function() {
-            var stateName = $(this).find('.widget-title a');
-            var cityNames = $(this).find('.info-list a');
-
-            // Remove previous highlighting for city names
-            cityNames.each(function() {
-                $(this).html($(this).text());
-            });
-
-            // Reset state name text content
-            var stateText = stateName.text();
-            stateName.html(stateText);
-
-            if (stateText.toLowerCase().includes(searchText)) {
-                // Apply the yellow color to matched text
-                stateName.html(stateText.replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
-            }
-
-            cityNames.each(function() {
-                var cityText = $(this).text().toLowerCase();
-                if (cityText.includes(searchText)) {
-                    // Apply the yellow color to text content
-                    $(this).html(cityText.replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
-                }
-            });
-
-            if (stateText.toLowerCase().includes(searchText) || cityNames.toArray().some(city => $(city).text().toLowerCase().includes(searchText))) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    });
-});
+// $(document).ready(function() {
+//     $('#all_state_search').on('input', function() {
+//         var searchText = $(this).val().toLowerCase();
+//         $('.search-repeated-div').each(function() {
+//             var stateName = $(this).find('.widget-title a');
+//             var cityNames = $(this).find('.info-list a');
+//
+//             // Remove previous highlighting for city names
+//             cityNames.each(function() {
+//                 $(this).html($(this).text());
+//             });
+//
+//             // Reset state name text content
+//             var stateText = stateName.text();
+//             stateName.html(stateText);
+//
+//             if (stateText.toLowerCase().includes(searchText)) {
+//                 // Apply the yellow color to matched text
+//                 stateName.html(stateText.replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
+//             }
+//
+//             cityNames.each(function() {
+//                 var cityText = $(this).text().toLowerCase();
+//                 if (cityText.includes(searchText)) {
+//                     // Apply the yellow color to text content
+//                     $(this).html(cityText.replace(new RegExp(searchText, 'gi'), '<span class="highlighted-text">$&</span>'));
+//                 }
+//             });
+//
+//             if (stateText.toLowerCase().includes(searchText) || cityNames.toArray().some(city => $(city).text().toLowerCase().includes(searchText))) {
+//                 $(this).show();
+//             } else {
+//                 $(this).hide();
+//             }
+//         });
+//     });
+// });
 
 $(window).on('load', function() {
     // Check if the page parameter is present in the URL

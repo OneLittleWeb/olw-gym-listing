@@ -219,7 +219,7 @@
 }
 
 .state-block-card-body {
-    padding-top: 10px;
+    padding: 0 0 10px 0;
     border-bottom: 1px solid rgba(128, 137, 150, 0.1);
 }
 
@@ -296,6 +296,19 @@
 .pagination-mobile {
     display: none;
 }
+
+.all-state-info-list-box {
+    display: none;
+}
+
+.all-state-container {
+    display: block;
+}
+
+.all-state-container.hidden {
+    display: none;
+}
+
 
 @media screen and (max-width: 767px) {
     /* Hide the desktop div on mobile */
