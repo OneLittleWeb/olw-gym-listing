@@ -590,7 +590,7 @@
                                                  data-parent="#accordion">
                                                 <div class="card-body">
                                                     <p>The address
-                                                        is: {{ $organization->organization_address }}.</p>
+                                                        is: {{ str_replace('Address: ', '', $organization->organization_address) }}.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -666,10 +666,19 @@
                                                 @if($organization->organization_website)
                                                     <a rel="nofollow"
                                                        href="{{ 'https://' . $organization->organization_website }}"
-                                                       target="_blank">{{ $organization->organization_website }}</a>.
+                                                       target="_blank">Website</a>.
                                                 @elseif($organization->organization_facebook)
-                                                    <a rel="nofollow" href="{{ $organization->organization_facebook }}"
+                                                    <a rel="nofollow"
+                                                       href="{{ $organization->exploded_organization_facebook[0] }}"
                                                        target="_blank">Facebook</a>.
+                                                @elseif($organization->organization_twitter)
+                                                    <a rel="nofollow"
+                                                       href="{{ $organization->exploded_organization_twitter[0] }}"
+                                                       target="_blank">Twitter</a>.
+                                                @elseif($organization->organization_instagram)
+                                                    <a rel="nofollow"
+                                                       href="{{ $organization->exploded_organization_instagram[0] }}"
+                                                       target="_blank">Instagram</a>.
                                                 @endif
                                             </p>
                                         @endif
@@ -862,5 +871,5 @@
             "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
     }
-</script>
+    </script>
 @endsection
