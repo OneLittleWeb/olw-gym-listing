@@ -104,50 +104,7 @@ $(document).ready(function () {
     });
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const input = document.getElementById('search_from_header');
-//     const placeholders = [
-//         'Looking for? Business',
-//         'Looking for? State',
-//         'Looking for? City',
-//     ];
-//     let currentIndex = 0;
-//
-//     function showNextPlaceholder() {
-//         input.placeholder = placeholders[currentIndex];
-//         currentIndex = (currentIndex + 1) % placeholders.length;
-//
-//         setTimeout(showNextPlaceholder, 2000); // 2000 milliseconds (2 seconds)
-//     }
-//
-//     showNextPlaceholder();
-// });
-
-document.addEventListener('DOMContentLoaded', function () {
-    const title = document.getElementById('hero_title_animation');
-    const titles = [
-        'Find The Best GymNear California',
-        'Find The Best GymNear Florida',
-        'Find The Best GymNear Georgia',
-        'Find The Best GymNear Illinois',
-        'Find The Best GymNear Michigan',
-        'Find The Best GymNear New York',
-        'Find The Best GymNear Ohio',
-        'Find The Best GymNear Texas',
-    ];
-    let currentIndex = 0;
-
-    function showNextTitle() {
-        if (title) {
-            title.textContent = titles[currentIndex];
-            currentIndex = (currentIndex + 1) % titles.length;
-
-            setTimeout(showNextTitle, 2000); // 2000 milliseconds (2 seconds)
-        }
-    }
-
-    showNextTitle();
-});
+//Organization review star script
 
 $(document).ready(function () {
     if ($.fn.starRating) {
@@ -209,13 +166,24 @@ $(document).ready(function () {
     });
 });
 
+//State toggle script
+
 $(document).ready(function () {
     // Hide city information for all states except the first one after the page loads
     $('.all-state-info-list-box').not(':first').hide();
 
     // Handle toggling of the first state's information after the page loads
     var firstStateTarget = $('.all-state-info-list-box:first').attr('id');
-    $('#' + firstStateTarget).slideDown();
+    var firstStateTargetUpdated = $('#' + firstStateTarget);
+    firstStateTargetUpdated.slideDown();
+
+    // Set the initial icon state for the first state
+    var firstStateIcon = $('.single-state-block-card-div:first').find('.toggle-icon i');
+    if (firstStateTargetUpdated.is(':hidden')) {
+        firstStateIcon.removeClass('fa-caret-up').addClass('fa-caret-down');
+    } else {
+        firstStateIcon.removeClass('fa-caret-down').addClass('fa-caret-up');
+    }
 
     // Use event delegation for dynamically added elements
     $(document).on('click', '.single-state-block-card-div', function () {
@@ -231,6 +199,8 @@ $(document).ready(function () {
         iconElement.toggleClass('fa-caret-down fa-caret-up');
     });
 });
+
+//state search script
 
 $(document).ready(function () {
     // When the search input changes
@@ -250,6 +220,8 @@ $(document).ready(function () {
         });
     });
 });
+
+// Review scroll to top script
 
 $(window).on('load', function() {
     // Check if the page parameter is present in the URL
