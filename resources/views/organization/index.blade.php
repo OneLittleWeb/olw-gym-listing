@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center pb-4 text-capitalize">
-                            <h1 class="sec__title mb-0">Top 10 Best Gym as near {{ $city->name }},
+                            <h1 class="sec__title mb-0">Top 10 Best Gyms Near {{ $city->name }},
                                 {{ $s_state->name }}</h1>
                         </div>
                     </div>
