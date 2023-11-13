@@ -55,9 +55,9 @@ class StateController extends Controller
             $organization_count = Organization::where('state_id', $s_state->id)->count();
 
             if ($organizations->onFirstPage()) {
-                $s_state->meta_title = 'Top 10 Best Gym Near ' . Str::title($s_state->name);
+                $s_state->meta_title = 'Top 10 Best Gyms Near ' . Str::title($s_state->name);
             } else {
-                $s_state->meta_title = 'Gym Near ' . Str::title($s_state->name);
+                $s_state->meta_title = 'Gyms Near ' . Str::title($s_state->name);
             }
 
             Meta::setPaginationLinks($organizations);
