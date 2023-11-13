@@ -39,28 +39,31 @@
                     <div class="col-lg-12">
                         <div class="listing-detail-wrap">
                             @foreach($states as $state)
-                                <div class="state-block-card mb-4">
-                                    <div class="all-state-container">
-                                        <div class="d-flex pt-3 justify-content-between whole-state-div">
-                                            <div>
-                                                <h2 class="widget-title city-state-title">
-                                                    <a class="state-wise-link"
-                                                       href="{{ route('state.wise.organizations', $state->slug) }}">{{ $state->name }}</a>
-                                                </h2>
+                                <div class="single-state-block-card-div" data-target="{{ $state->slug }}">
+                                    <div class="state-block-card mb-4">
+                                        <div class="all-state-container">
+                                            <div class="d-flex justify-content-between single-state-block-card">
+                                                <a class="text-capitalize all-state-widget-title"
+                                                   href="{{ route('state.wise.organizations', $state->slug) }}">
+                                                    <img src="{{asset('images/state/' . $state->background_image)}}"
+                                                         data-src="{{asset('images/state/' . $state->background_image)}}"
+                                                         alt="country-image"
+                                                         class="lazy state-icon-element states-flag">
+                                                    <span class="pl-2">{{ $state->name }}</span>
+                                                </a>
+                                                <div class="toggle-icon">
+                                                    <i class="fa-solid fa-caret-down"></i>
+                                                </div>
                                             </div>
-                                            <div class="toggle-icon" data-target="{{ $state->slug }}">
-                                                <i class="fa-solid fa-caret-down"></i>
+                                            <div class="all-state-info-list-box" id="{{ $state->slug }}">
+                                                <ul class="row info-list pl-1">
+                                                    @foreach($state->cities as $city)
+                                                        <li class="col-lg-3 city-state-title">
+                                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $city->name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
-                                        </div>
-                                        <div class="state-block-card-body all-state-info-list-box"
-                                             id="{{ $state->slug }}">
-                                            <ul class="row info-list">
-                                                @foreach($state->cities as $city)
-                                                    <li class="col-lg-3 city-state-title">
-                                                        <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $city->name }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>

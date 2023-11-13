@@ -218,17 +218,17 @@
     padding-bottom: 180px !important;
 }
 
-.state-block-card-body {
-    padding: 0 0 10px 0;
-    border-bottom: 1px solid rgba(128, 137, 150, 0.1);
-}
+/*.state-block-card-body {*/
+/*    padding: 0 0 10px 0;*/
+/*    border-bottom: 1px solid rgba(128, 137, 150, 0.1);*/
+/*}*/
 
 .state-block-card {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
     border: 1px solid rgba(128, 137, 150, 0.1);
-    padding: 10px 30px 30px 30px;
+    padding: 20px 20px 20px 20px;
 }
 
 .highlighted-text {
@@ -244,6 +244,17 @@
 }
 
 .state-wise-link:hover {
+    color: #f8c401;
+}
+
+.all-state-widget-title {
+    font-size: 18px;
+    color: #131443;
+    font-weight: 600;
+    position: relative;
+}
+
+.all-state-widget-title:hover {
     color: #f8c401;
 }
 
@@ -264,6 +275,11 @@
     transition: all .3s;
     color: #fff;
     margin-right: 5px;
+}
+
+.states-flag {
+    width: 40px !important;
+    height: 35px !important;
 }
 
 .state-info-list li {
@@ -299,6 +315,7 @@
 
 .all-state-info-list-box {
     display: none;
+    padding-top: 15px;
 }
 
 .all-state-container {

@@ -210,14 +210,18 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    // When the toggle icon is clicked
-    $('.toggle-icon').on('click', function () {
+    // Use event delegation for dynamically added elements
+    $(document).on('click', '.single-state-block-card-div', function () {
         // Find the target element to toggle based on the data-target attribute
         var targetSelector = $(this).data('target');
         var targetElement = $('#' + targetSelector);
 
         // Toggle the visibility of the target element
         targetElement.slideToggle();
+
+        // Toggle the caret icon
+        var iconElement = $(this).find('.toggle-icon i');
+        iconElement.toggleClass('fa-caret-down fa-caret-up');
     });
 });
 
