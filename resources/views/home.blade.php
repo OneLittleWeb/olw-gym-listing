@@ -58,51 +58,6 @@
             </div><!-- end row -->
         </div><!-- end container -->
 
-
-        {{--        <div class="container">--}}
-        {{--            <div class="row align-items-center hero-container">--}}
-        {{--                <div class="col-lg-5 mr-auto">--}}
-        {{--                    <form action="{{ route('search') }}" class="form-box">--}}
-        {{--                        @csrf--}}
-        {{--                        <div class="main-search-input flex-column mt-0">--}}
-        {{--                            <div class="main-search-input-item w-100">--}}
-        {{--                                <div class="input-box">--}}
-        {{--                                    <label class="label-text">What are you <span--}}
-        {{--                                            class="required">*</span></label>--}}
-        {{--                                    <div class="form-group">--}}
-        {{--                                        <span class="la la-search form-icon"></span>--}}
-        {{--                                        <input class="form-control" type="search" id="search_from_header"--}}
-        {{--                                               name="looking_for"--}}
-        {{--                                               placeholder="Looking for?" autocomplete="off"--}}
-        {{--                                               required>--}}
-        {{--                                    </div>--}}
-        {{--                                    <input type="hidden" name="source_value" id="source_value">--}}
-        {{--                                    <input type="hidden" name="source_id" id="source_id">--}}
-        {{--                                </div>--}}
-        {{--                            </div>--}}
-        {{--                            <div class="main-search-input-item w-100 ml-0">--}}
-        {{--                                <label class="label-text">Search Activities</label>--}}
-        {{--                                <button class="theme-btn gradient-btn border-0 w-100 hover-scale-2" type="submit"><i--}}
-        {{--                                        class="la la-search mr-2"></i>Search Now--}}
-        {{--                                </button>--}}
-        {{--                            </div>--}}
-        {{--                        </div>--}}
-        {{--                    </form>--}}
-        {{--                </div>--}}
-        {{--                <div class="col-lg-6">--}}
-        {{--                    <div class="hero-heading">--}}
-        {{--                        <div class="section-heading">--}}
-        {{--                            <h1 class="sec__title font-size-35" id="hero_title_animation">Find the best gyms in the--}}
-        {{--                                USA</h1>--}}
-        {{--                            <p class="sec__desc">{{ config('app.name') }} helps you find out what's happening in your--}}
-        {{--                                city. Let’s--}}
-        {{--                                explore!</p>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
-
         <!-- =======START Major States AREA======= -->
         <section class="category-area position-relative bg-gray section--padding category-section">
             <div class="container">
