@@ -71,6 +71,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-12 no-state-found-message" style="display: none;">
+                        <div class="filter-bar d-flex flex-wrap">
+                            <p class="result-text font-weight-medium">No State Found</p>
+                        </div>
+                    </div>
+                </div>
             @else
                 <div class="row">
                     <div class="col-lg-12">

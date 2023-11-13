@@ -202,22 +202,50 @@ $(document).ready(function () {
 
 //state search script
 
+// $(document).ready(function () {
+//     // When the search input changes
+//     $('#all_state_search').on('input', function () {
+//         var searchText = $(this).val().toLowerCase();
+//
+//         // Iterate over each state container
+//         $('.single-state-block-card-div').each(function () {
+//             var stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
+//
+//             // Show or hide based on the search text
+//             if (stateName.includes(searchText)) {
+//                 $(this).show();
+//             } else {
+//                 $(this).hide();
+//             }
+//         });
+//     });
+// });
+
 $(document).ready(function () {
     // When the search input changes
     $('#all_state_search').on('input', function () {
         var searchText = $(this).val().toLowerCase();
+        var foundStates = false;
 
         // Iterate over each state container
-        $('.all-state-container').each(function () {
-            var stateName = $(this).find('.widget-title a').text().toLowerCase();
+        $('.single-state-block-card-div').each(function () {
+            var stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
 
             // Show or hide based on the search text
             if (stateName.includes(searchText)) {
-                $(this).removeClass('hidden');
+                $(this).show();
+                foundStates = true;
             } else {
-                $(this).addClass('hidden');
+                $(this).hide();
             }
         });
+
+        // Show the "No State Found" message if no states are found
+        if (!foundStates) {
+            $('.no-state-found-message').show();
+        } else {
+            $('.no-state-found-message').hide();
+        }
     });
 });
 
