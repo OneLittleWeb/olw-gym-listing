@@ -38,68 +38,36 @@
                 <div class="row organization-state-list">
                     <div class="col-lg-12">
                         <div class="listing-detail-wrap">
-                            <div class="state-block-card mb-4">
-                                <div>
-                                    @foreach($states as $state)
-                                        <div class="all-state-container">
-                                            <div class="d-flex pt-3 justify-content-between whole-state-div">
-                                                <div>
-                                                    <h2 class="widget-title city-state-title">
-                                                        <a class="state-wise-link"
-                                                           href="{{ route('state.wise.organizations', $state->slug) }}">{{ $state->name }}</a>
-                                                    </h2>
-                                                </div>
-                                                <div class="toggle-icon" data-target="{{ $state->slug }}">
-                                                    <i class="fa-solid fa-caret-down"></i>
-                                                </div>
+                            @foreach($states as $state)
+                                <div class="state-block-card mb-4">
+                                    <div class="all-state-container">
+                                        <div class="d-flex pt-3 justify-content-between whole-state-div">
+                                            <div>
+                                                <h2 class="widget-title city-state-title">
+                                                    <a class="state-wise-link"
+                                                       href="{{ route('state.wise.organizations', $state->slug) }}">{{ $state->name }}</a>
+                                                </h2>
                                             </div>
-                                            <div class="state-block-card-body all-state-info-list-box" id="{{ $state->slug }}">
-                                                <ul class="row info-list">
-                                                    @foreach($state->cities as $city)
-                                                        <li class="col-lg-3 city-state-title">
-                                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $city->name }}</a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
+                                            <div class="toggle-icon" data-target="{{ $state->slug }}">
+                                                <i class="fa-solid fa-caret-down"></i>
                                             </div>
                                         </div>
-                                    @endforeach
+                                        <div class="state-block-card-body all-state-info-list-box"
+                                             id="{{ $state->slug }}">
+                                            <ul class="row info-list">
+                                                @foreach($state->cities as $city)
+                                                    <li class="col-lg-3 city-state-title">
+                                                        <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $city->name }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-
-                {{--            @if(count($states))--}}
-                {{--                <div class="row organization-state-list">--}}
-                {{--                    <div class="col-lg-12">--}}
-                {{--                        <div class="listing-detail-wrap">--}}
-                {{--                            <div class="state-block-card mb-4">--}}
-                {{--                                @foreach($states as $state)--}}
-                {{--                                    <div class="search-repeated-div">--}}
-                {{--                                        <div>--}}
-                {{--                                            <h2 class="widget-title text-center pt-3 city-state-title">--}}
-                {{--                                                <a class="state-wise-link"--}}
-                {{--                                                   href="{{ route('state.wise.organizations', $state->slug) }}">{{ $state->name }}</a>--}}
-                {{--                                            </h2>--}}
-                {{--                                        </div>--}}
-                {{--                                        <div class="state-block-card-body">--}}
-                {{--                                            <div class="info-list-box pb-4">--}}
-                {{--                                                <ul class="row info-list">--}}
-                {{--                                                    @foreach($state->cities as $city)--}}
-                {{--                                                        <li class="col-lg-3 city-state-title">--}}
-                {{--                                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $city->name }}</a>--}}
-                {{--                                                        </li>--}}
-                {{--                                                    @endforeach--}}
-                {{--                                                </ul>--}}
-                {{--                                            </div>--}}
-                {{--                                        </div>--}}
-                {{--                                    </div>--}}
-                {{--                                @endforeach--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
             @else
                 <div class="row">
                     <div class="col-lg-12">
