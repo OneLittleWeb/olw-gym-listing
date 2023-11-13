@@ -851,16 +851,16 @@
 @section('json-ld')
     <!-- =======Schema======= -->
     <script type="application/ld+json">
-        {
-          "@context": "https://schema.org/",
-          "@type": "Organization",
-          "name": "{{$organization->organization_name}}",
-          "description": "{{ $organization->organization_short_description }}",
-          "aggregateRating": {
+    {
+        "@context": "https://schema.org/",
+        "@type": "Organization",
+        "name": "{{ $organization->organization_name ?? '' }}",
+        "description": "{{ $organization->organization_short_description ?? '' }}",
+        "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": "{{ $organization->rate_stars }}",
-            "reviewCount": "{{ $organization->reviews->count() ?? 0}}"
-          }
+            "ratingValue": "{{ $organization->rate_stars ?? 0 }}",
+            "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
-    </script>
+    }
+</script>
 @endsection
