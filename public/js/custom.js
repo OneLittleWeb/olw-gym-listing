@@ -210,6 +210,13 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    // Hide city information for all states except the first one after the page loads
+    $('.all-state-info-list-box').not(':first').hide();
+
+    // Handle toggling of the first state's information after the page loads
+    var firstStateTarget = $('.all-state-info-list-box:first').attr('id');
+    $('#' + firstStateTarget).slideDown();
+
     // Use event delegation for dynamically added elements
     $(document).on('click', '.single-state-block-card-div', function () {
         // Find the target element to toggle based on the data-target attribute
