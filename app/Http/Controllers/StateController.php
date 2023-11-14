@@ -8,6 +8,7 @@ use App\Models\State;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -38,7 +39,7 @@ class StateController extends Controller
         return response($cachedView);
     }
 
-    private function generateStateWiseOrganizationView($slug)
+    public function generateStateWiseOrganizationView($slug)
     {
         $s_state = State::where('slug', $slug)->first();
 
@@ -47,6 +48,13 @@ class StateController extends Controller
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
                 ->paginate(10);
+
+            $organization_categories = Organization::select('organization_category', 'state_id', DB::raw('COUNT(*) as category_count'))
+                ->where('state_id', $s_state->id)
+                ->with('state:id,slug')
+                ->groupBy('organization_category', 'state_id')
+                ->get();
+
 
             $states = State::all();
             $cities = City::where('state_id', $s_state->id)->get();
@@ -63,7 +71,7 @@ class StateController extends Controller
             Meta::setPaginationLinks($organizations);
 
             // Render the view as a string.
-            return view('state.state-wise-organization', compact('organizations', 'organization_count', 's_state', 'states', 'cities', 'city'))->render();
+            return view('state.state-wise-organization', compact('organizations', 'organization_categories', 'organization_count', 's_state', 'states', 'cities', 'city'))->render();
         }
 
         abort(404);

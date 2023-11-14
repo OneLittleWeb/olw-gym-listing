@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StateController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -61,6 +62,9 @@ Route::get('/states', [StateController::class, 'index'])->name('states.index');
 Route::get('/cities', [CityController::class, 'index'])->name('city.index');
 Route::get('/gym-near-me', [OrganizationController::class, 'gymNearMe'])->name('gym.near.me');
 
+//category
+Route::get('/{state_slug}/category/{category_name}', [CategoryController::class, 'categoryWiseBusiness'])->name('category.wise.business');
+
 //search routes
 Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');
 
@@ -107,6 +111,6 @@ Route::get('/copy-paste', [OrganizationController::class, 'imageCopyPasteFromOne
 //review date diff from human to date route
 Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDiffFromHumanToDate'])->name('get.original.review.date');
 
-Route::get('/{slug}', [StateController::class, 'stateWiseOrganizations'])->name('state.wise.organizations');
+Route::get('/{slug}', [StateController::class, 'generateStateWiseOrganizationView'])->name('state.wise.organizations');
 
 

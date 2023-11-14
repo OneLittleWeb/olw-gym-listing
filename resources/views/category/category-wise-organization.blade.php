@@ -17,13 +17,16 @@
                             class="breadcrumb-content breadcrumb-content-2 d-flex flex-wrap align-items-end justify-content-between margin-bottom-30px">
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li>{{ $s_state->name }}</li>
+                                <li>
+                                    <a href="{{ route('state.wise.organizations', $s_state->slug) }}">{{ $s_state->name }}</a>
+                                </li>
+                                <li>{{ $category_name }}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center pb-4 text-capitalize">
-                            <h1 class="sec__title mb-0">Top 10 Best Gyms Near {{ $s_state->name }}</h1>
+                            <h1 class="sec__title mb-0">{{ $category_name }} Near {{ $s_state->name }}</h1>
                         </div>
                     </div>
                     <div class="col-lg-8">
@@ -68,20 +71,19 @@
                                                     <li class="d-flex align-items-center">
                                                         <span
                                                             class="rate flex-shrink-0">{{ $organization->rate_stars }}</span>
-                                                        <span class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
+                                                        <span
+                                                            class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
+                                                    </li>
+                                                @else
+                                                    <li class="d-flex align-items-center">
+                                                        <span class="rate flex-shrink-0">0.0</span>
+                                                        <span class="rate-text">0 Reviews</span>
                                                     </li>
                                                 @endif
-                                                <li>
-                                                    <span class="price-range" data-toggle="tooltip" data-placement="top"
-                                                          title="Pricey">
-                                                        <strong
-                                                            class="font-weight-medium">{{ $organization->price_policy ?? '$' }}</strong>
-                                                    </span>
-                                                </li>
-                                                <li class="d-flex align-items-center">
-                                                    <i class="{{ $organization->category->icon }} listing-icon"></i>&nbsp;&nbsp;
+                                                <li class="d-flex align-items-center padding-left-20px">
+                                                    <i class="{{ $organization->category->icon }} mr-2 listing-icon"></i>
                                                     <a href="#"
-                                                       class="listing-cat-link text-capitalize">{{ $organization->organization_category ?? $organization->category->name }}</a>
+                                                       class="listing-cat-link">{{ $organization->organization_category ?? $organization->category->name }}</a>
                                                 </li>
                                             </ul>
                                             <ul class="info-list padding-top-20px">
@@ -107,16 +109,18 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12 pt-3 text-center">
-                                <div class="pagination-wrapper d-inline-block">
-                                    <div class="section-pagination">
-                                        <nav aria-label="Page navigation" class="pagination-desktop">
-                                            {{ $organizations->onEachSide(1)->links() }}
-                                        </nav>
-                                        <nav aria-label="Page navigation" class="pagination-mobile">
-                                            {{ $organizations->onEachSide(0)->links() }}
-                                        </nav>
+                                @if ($organizations->hasPages())
+                                    <div class="pagination-wrapper d-inline-block">
+                                        <div class="section-pagination">
+                                            <nav aria-label="Page navigation" class="pagination-desktop">
+                                                {{ $organizations->onEachSide(1)->links() }}
+                                            </nav>
+                                            <nav aria-label="Page navigation" class="pagination-mobile">
+                                                {{ $organizations->onEachSide(0)->links() }}
+                                            </nav>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -127,25 +131,27 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
-                                        <li><a href="{{ route('category.wise.business',['state_slug' => $category->state->slug , 'category_name' => $category->organization_category]) }}">{{ $category->organization_category }} ({{ $category->category_count }})</a></li>
-{{--                                        <li>--}}
-{{--                                            <a href="#"--}}
-{{--                                               class="d-flex justify-content-between align-items-center">--}}
-{{--                                                <span class="d-flex align-items-center">--}}
-{{--                                                    {{ $category->organization_category }}--}}
-{{--                                                </span>--}}
-{{--                                            </a>--}}
+                                        <li>
+                                            <a href="{{ route('category.wise.business',['state_slug' => $category->state->slug , 'category_name' => $category->organization_category]) }}">{{ $category->organization_category }}
+                                                ({{ $category->category_count }})</a></li>
+                                        {{--                                        <li>--}}
+                                        {{--                                            <a href="#"--}}
+                                        {{--                                               class="d-flex justify-content-between align-items-center">--}}
+                                        {{--                                                <span class="d-flex align-items-center">--}}
+                                        {{--                                                    {{ $category->organization_category }}--}}
+                                        {{--                                                </span>--}}
+                                        {{--                                            </a>--}}
 
-{{--                                            <a href="{{ route('category.wise.organization', ['category_slug' => $organization_category->slug]) }}"--}}
-{{--                                               class="d-flex justify-content-between align-items-center">--}}
-{{--                                                <span class="d-flex align-items-center">--}}
-{{--                                                    <i class="{{ $organization_category->icon }} mr-1"></i>--}}
-{{--                                                    {{ $organization_category->name }}--}}
-{{--                                                </span>--}}
-{{--                                                <span--}}
-{{--                                                    class="badge badge-pill">{{ $organization_category->organizations_count }}</span>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
+                                        {{--                                            <a href="{{ route('category.wise.organization', ['category_slug' => $organization_category->slug]) }}"--}}
+                                        {{--                                               class="d-flex justify-content-between align-items-center">--}}
+                                        {{--                                                <span class="d-flex align-items-center">--}}
+                                        {{--                                                    <i class="{{ $organization_category->icon }} mr-1"></i>--}}
+                                        {{--                                                    {{ $organization_category->name }}--}}
+                                        {{--                                                </span>--}}
+                                        {{--                                                <span--}}
+                                        {{--                                                    class="badge badge-pill">{{ $organization_category->organizations_count }}</span>--}}
+                                        {{--                                            </a>--}}
+                                        {{--                                        </li>--}}
                                     @endforeach
                                 </ul>
                             </div><!-- end sidebar-widget -->
