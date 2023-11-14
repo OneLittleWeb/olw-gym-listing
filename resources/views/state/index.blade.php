@@ -54,6 +54,19 @@
                                                 <div class="toggle-icon">
                                                     <i class="fa-solid fa-caret-down"></i>
                                                 </div>
+{{--                                                <div class="d-flex align-items-center">--}}
+{{--                                                    <div class="toggle-icon">--}}
+{{--                                                        <i class="fa-solid fa-caret-down"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <a class="text-capitalize all-state-widget-title pl-3" href="{{ route('state.wise.organizations', $state->slug) }}">--}}
+{{--                                                        <img src="{{asset('images/state/' . $state->background_image)}}" data-src="{{asset('images/state/' . $state->background_image)}}"--}}
+{{--                                                             alt="country-image" class="lazy state-icon-element states-flag">--}}
+{{--                                                        <span class="pl-2">{{ $state->name }}</span>--}}
+{{--                                                    </a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="toggle-icon">--}}
+{{--                                                    <i class="fa-solid fa-caret-down"></i>--}}
+{{--                                                </div>--}}
                                             </div>
                                             <div class="all-state-info-list-box" id="{{ $state->slug }}">
                                                 <ul class="row info-list pl-1">
