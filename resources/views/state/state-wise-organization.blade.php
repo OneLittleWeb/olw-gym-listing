@@ -128,24 +128,6 @@
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
                                         <li><a href="{{ route('category.wise.business',['state_slug' => $category->state->slug , 'category_name' => $category->organization_category]) }}">{{ $category->organization_category }} ({{ $category->category_count }})</a></li>
-{{--                                        <li>--}}
-{{--                                            <a href="#"--}}
-{{--                                               class="d-flex justify-content-between align-items-center">--}}
-{{--                                                <span class="d-flex align-items-center">--}}
-{{--                                                    {{ $category->organization_category }}--}}
-{{--                                                </span>--}}
-{{--                                            </a>--}}
-
-{{--                                            <a href="{{ route('category.wise.organization', ['category_slug' => $organization_category->slug]) }}"--}}
-{{--                                               class="d-flex justify-content-between align-items-center">--}}
-{{--                                                <span class="d-flex align-items-center">--}}
-{{--                                                    <i class="{{ $organization_category->icon }} mr-1"></i>--}}
-{{--                                                    {{ $organization_category->name }}--}}
-{{--                                                </span>--}}
-{{--                                                <span--}}
-{{--                                                    class="badge badge-pill">{{ $organization_category->organizations_count }}</span>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
                                     @endforeach
                                 </ul>
                             </div><!-- end sidebar-widget -->
