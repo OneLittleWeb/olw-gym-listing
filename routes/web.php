@@ -84,7 +84,7 @@ Route::post('/suggest-an-edit/store/{slug}', [OrganizationController::class, 'st
 
 //city wise organization
 Route::get('/{city_slug}/gnx/{organization_slug}', [OrganizationController::class, 'cityWiseOrganization'])->name('city.wise.organization');
-Route::get('/{state_slug}/{city_slug}', [CityController::class, 'cityWiseOrganizations'])->name('city.wise.organizations');
+Route::get('/{state_slug}/city/{city_slug}', [CityController::class, 'cityWiseOrganizations'])->name('city.wise.organizations');
 
 Route::post('/store-review', [ReviewController::class, 'store'])->name('review.store');
 

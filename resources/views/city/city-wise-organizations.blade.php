@@ -17,7 +17,7 @@
                             class="breadcrumb-content breadcrumb-content-2 d-flex flex-wrap align-items-end justify-content-between margin-bottom-30px">
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="{{ route('state.wise.organizations', $s_state->slug) }}">{{ $s_state->name }}</a></li>
+                                <li><a href="{{ route('category.wise.business',['state_slug' => $s_state->slug , 'organization_category_slug' => 'gym']) }}">{{ $s_state->name }}</a></li>
                                 <li>
                                     {{ $city->name }}
                                 </li>
@@ -209,7 +209,7 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <div class="state-list">
                                     @foreach($states->take(5) as $state)
-                                        <a href="{{ route('state.wise.organizations', $state->slug) }}"
+                                        <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                             <img src="{{ asset('images/sm-bg.jpg') }}"
                                                  data-src="{{ asset('images/sm-bg.jpg') }}"
@@ -225,7 +225,7 @@
                                     @endforeach
                                     <div class="collapse collapse-content" id="showMoreCategory">
                                         @foreach($states->skip(5) as $state)
-                                            <a href="{{ route('state.wise.organizations', $state->slug) }}"
+                                            <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                 <img
                                                     src="{{ asset('images/sm-bg.jpg') }}"
@@ -270,7 +270,7 @@
 @section('js')
     <script>
         let searchStatesRoute = '{{ route('search-states') }}';
-        let stateWiseOrganizationsRoute = '{{ route('state.wise.organizations', '') }}';
+        let stateWiseOrganizationsRoute = "{{ route('category.wise.business', ['','']) }}";
         let assetPath = '{{ asset('images/sm-bg.jpg') }}';
     </script>
 @endsection
