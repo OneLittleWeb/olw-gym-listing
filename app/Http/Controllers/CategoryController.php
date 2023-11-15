@@ -14,41 +14,61 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
 
-    public function categoryWiseBusiness($state_slug, $category_name)
+    public function categoryWiseBusiness($state_slug, $organization_category_slug)
     {
         $s_state = State::where('slug', $state_slug)->first();
 
         if ($s_state) {
-            $organizations = Organization::where('organization_category', $category_name)
+            $organizations = Organization::where('organization_category_slug', $organization_category_slug)
                 ->where('state_id', $s_state->id)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
                 ->paginate(10);
 
-            $organization_categories = Organization::select('organization_category', 'state_id', DB::raw('COUNT(*) as category_count'))
+            $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', DB::raw('COUNT(*) as category_count'))
                 ->where('state_id', $s_state->id)
                 ->with('state:id,slug')
-                ->groupBy('organization_category', 'state_id')
+                ->groupBy('organization_category', 'state_id', 'organization_category_slug')
                 ->get();
 
             $states = State::all();
             $cities = City::where('state_id', $s_state->id)->get();
 
-            $organization_count = Organization::where('state_id', $s_state->id)->count();
+            $organization_category_count = Organization::where('state_id', $s_state->id)
+                ->where('organization_category_slug', $organization_category_slug)->count();
 
-            if ($organizations->onFirstPage()) {
-                $s_state->meta_title = 'Top 10 Best Gyms Near ' . Str::title($s_state->name);
-            } else {
-                $s_state->meta_title = 'Gyms Near ' . Str::title($s_state->name);
-            }
+            //For meta title
+            $metaTitlePrefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
+            $metaTitleSuffix = 'Near ' . Str::title($s_state->name);
+
+            $s_state->meta_title = $metaTitlePrefix . ' ' . $organizations[0]->organization_category . ' ' . $metaTitleSuffix;
 
             Meta::setPaginationLinks($organizations);
 
             // Render the view as a string.
-            return view('category.category-wise-organization', compact('organizations', 'organization_categories', 'category_name', 'organization_count', 's_state', 'states', 'cities'))->render();
+            return view('category.category-wise-organization', compact('organizations', 'organization_categories', 'organization_category_count', 's_state', 'states', 'cities'))->render();
         }
 
         abort(404);
+    }
+
+    public function organizationCategorySlugFromOrganizationCategory()
+    {
+        return redirect()->back();
+
+        $chunkSize = 1000;
+
+        Organization::query()
+            ->chunk($chunkSize, function ($organization_categories) {
+                foreach ($organization_categories as $category) {
+                    $category->organization_category_slug = Str::slug($category->organization_category);
+                    $category->save();
+                }
+            });
+
+        alert()->success('Success', 'Organization category slug added successfully.');
+
+        return redirect()->back();
     }
 
 //    public function categoryWiseBusiness()

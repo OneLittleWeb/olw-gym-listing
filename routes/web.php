@@ -63,7 +63,8 @@ Route::get('/cities', [CityController::class, 'index'])->name('city.index');
 Route::get('/gym-near-me', [OrganizationController::class, 'gymNearMe'])->name('gym.near.me');
 
 //category
-Route::get('/{state_slug}/category/{category_name}', [CategoryController::class, 'categoryWiseBusiness'])->name('category.wise.business');
+Route::get('/{state_slug}/category/{organization_category_slug}', [CategoryController::class, 'categoryWiseBusiness'])->name('category.wise.business');
+//Route::get('/organization-category-slug-from-organization-category', [CategoryController::class, 'organizationCategorySlugFromOrganizationCategory']);
 
 //search routes
 Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');

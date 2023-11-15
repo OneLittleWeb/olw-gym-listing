@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Organization;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
@@ -40,6 +41,7 @@ class FirstSheetImporter implements ToCollection, WithStartRow
                 'reviews_total_count' => (!empty($row[5])) ? $row[5] : null,
                 'price_policy' => (!empty($row[6])) ? $row[6] : null,
                 'organization_category' => (!empty($row[7])) ? $row[7] : null,
+                'organization_category_slug' => (!empty($row[7])) ? Str::slug($row[7]) : null,
                 'organization_address' => (!empty($row[8])) ? $row[8] : null,
                 'located_in' => (!empty($row[9])) ? $row[9] : null,
                 'organization_website' => (!empty($row[10])) ? $row[10] : null,

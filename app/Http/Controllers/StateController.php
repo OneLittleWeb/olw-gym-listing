@@ -49,12 +49,11 @@ class StateController extends Controller
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
                 ->paginate(10);
 
-            $organization_categories = Organization::select('organization_category', 'state_id', DB::raw('COUNT(*) as category_count'))
+            $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', DB::raw('COUNT(*) as category_count'))
                 ->where('state_id', $s_state->id)
                 ->with('state:id,slug')
-                ->groupBy('organization_category', 'state_id')
+                ->groupBy('organization_category', 'state_id', 'organization_category_slug')
                 ->get();
-
 
             $states = State::all();
             $cities = City::where('state_id', $s_state->id)->get();
@@ -71,7 +70,7 @@ class StateController extends Controller
             Meta::setPaginationLinks($organizations);
 
             // Render the view as a string.
-            return view('state.state-wise-organization', compact('organizations', 'organization_categories', 'organization_count', 's_state', 'states', 'cities', 'city'))->render();
+            return view('state.state-wise-organization', compact('organizations', 'organization_categories', 'organization_count', 's_state', 'states', 'cities', 'city'));
         }
 
         abort(404);

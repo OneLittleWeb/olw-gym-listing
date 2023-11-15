@@ -20,13 +20,16 @@
                                 <li>
                                     <a href="{{ route('state.wise.organizations', $s_state->slug) }}">{{ $s_state->name }}</a>
                                 </li>
-                                <li>{{ $category_name }}</li>
+                                <li>{{ $organizations[0]->organization_category }}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center pb-4 text-capitalize">
-                            <h1 class="sec__title mb-0">{{ $category_name }} Near {{ $s_state->name }}</h1>
+                            <h1 class="sec__title mb-0">
+                                {{ ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best' }}
+                                {{ $organizations[0]->organization_category }} Near {{ $s_state->name }}
+                            </h1>
                         </div>
                     </div>
                     <div class="col-lg-8">
@@ -132,26 +135,8 @@
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
                                         <li>
-                                            <a href="{{ route('category.wise.business',['state_slug' => $category->state->slug , 'category_name' => $category->organization_category]) }}">{{ $category->organization_category }}
+                                            <a href="{{ route('category.wise.business',['state_slug' => $category->state->slug , 'organization_category_slug' => $category->organization_category_slug]) }}">{{ $category->organization_category }}
                                                 ({{ $category->category_count }})</a></li>
-                                        {{--                                        <li>--}}
-                                        {{--                                            <a href="#"--}}
-                                        {{--                                               class="d-flex justify-content-between align-items-center">--}}
-                                        {{--                                                <span class="d-flex align-items-center">--}}
-                                        {{--                                                    {{ $category->organization_category }}--}}
-                                        {{--                                                </span>--}}
-                                        {{--                                            </a>--}}
-
-                                        {{--                                            <a href="{{ route('category.wise.organization', ['category_slug' => $organization_category->slug]) }}"--}}
-                                        {{--                                               class="d-flex justify-content-between align-items-center">--}}
-                                        {{--                                                <span class="d-flex align-items-center">--}}
-                                        {{--                                                    <i class="{{ $organization_category->icon }} mr-1"></i>--}}
-                                        {{--                                                    {{ $organization_category->name }}--}}
-                                        {{--                                                </span>--}}
-                                        {{--                                                <span--}}
-                                        {{--                                                    class="badge badge-pill">{{ $organization_category->organizations_count }}</span>--}}
-                                        {{--                                            </a>--}}
-                                        {{--                                        </li>--}}
                                     @endforeach
                                 </ul>
                             </div><!-- end sidebar-widget -->
