@@ -64,7 +64,7 @@ Route::get('/gym-near-me', [OrganizationController::class, 'gymNearMe'])->name('
 
 //category
 Route::get('/{state_slug}/category/{organization_category_slug}', [CategoryController::class, 'categoryWiseBusiness'])->name('category.wise.business');
-//Route::get('/organization-category-slug-from-organization-category', [CategoryController::class, 'organizationCategorySlugFromOrganizationCategory']);
+Route::get('/organization-category-slug-from-organization-category', [CategoryController::class, 'organizationCategorySlugFromOrganizationCategory']);
 
 //search routes
 Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');
@@ -83,7 +83,7 @@ Route::post('/get-your-award-certificate/{slug}', [OrganizationController::class
 Route::post('/suggest-an-edit/store/{slug}', [OrganizationController::class, 'storeSuggestAnEdit'])->name('store.suggest.edit');
 
 //city wise organization
-Route::get('/{state_slug}/{city_slug}', [OrganizationController::class, 'cityWiseOrganizations'])->name('city.wise.organizations');
+Route::get('/{state_slug}/{city_slug}', [CityController::class, 'cityWiseOrganizations'])->name('city.wise.organizations');
 Route::get('/{city_slug}/gnx/{organization_slug}', [OrganizationController::class, 'cityWiseOrganization'])->name('city.wise.organization');
 
 Route::post('/store-review', [ReviewController::class, 'store'])->name('review.store');
