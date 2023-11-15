@@ -27,8 +27,8 @@ class CategoryController extends Controller
 
             $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', DB::raw('COUNT(*) as category_count'))
                 ->where('state_id', $s_state->id)
-                ->with('state:id,slug')
                 ->groupBy('organization_category', 'state_id', 'organization_category_slug')
+                ->orderBy('category_count', 'desc')
                 ->get();
 
             $states = State::all();
