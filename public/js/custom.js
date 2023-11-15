@@ -39,7 +39,7 @@ $(document).ready(function () {
             stateList.append('<p>No State Found</p>');
         } else {
             states.forEach(function (state) {
-                let stateWiseOrganizationsURL = stateWiseOrganizationsRoute + '/' + state.slug + '/' + 'gym';
+                let stateWiseOrganizationsURL = stateWiseOrganizationsRoute + '/' + state.slug + '/gym';
 
                 let stateCard = '<a href="' + stateWiseOrganizationsURL + '" class="generic-img-card d-block hover-y overflow-hidden mb-3">' +
                     '<img src="' + assetPath + '" data-src="' + assetPath + '" ' +

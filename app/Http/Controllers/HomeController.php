@@ -87,13 +87,13 @@ class HomeController extends Controller
             } elseif ($source == 'states') {
 
                 $state = State::find($search_source_id);
-                $sourceController = new StateController();
+                $sourceController = new CategoryController();
 
-                return $sourceController->stateWiseOrganizations($state->slug);
+                return $sourceController->categoryWiseBusiness($state->slug, 'gym');
             } elseif ($source == 'cities') {
 
                 $city = City::find($search_source_id);
-                $sourceController = new OrganizationController();
+                $sourceController = new CityController();
 
                 return $sourceController->cityWiseOrganizations($city->state->slug, $city->slug);
             }

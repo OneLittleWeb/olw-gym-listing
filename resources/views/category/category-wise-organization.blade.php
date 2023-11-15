@@ -263,7 +263,7 @@
 @section('js')
     <script>
         let searchStatesRoute = '{{ route('search-states') }}';
-        let stateWiseOrganizationsRoute = '{{ route('state.wise.organizations', '') }}';
+        let stateWiseOrganizationsRoute = "{{ route('category.wise.business', ['','']) }}";
         let assetPath = '{{ asset('images/sm-bg.jpg') }}';
     </script>
 @endsection

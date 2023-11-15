@@ -112,6 +112,6 @@ Route::get('/copy-paste', [OrganizationController::class, 'imageCopyPasteFromOne
 //review date diff from human to date route
 Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDiffFromHumanToDate'])->name('get.original.review.date');
 
-Route::get('/{slug}', [StateController::class, 'generateStateWiseOrganizationView'])->name('state.wise.organizations');
+//Route::get('/{slug}', [StateController::class, 'generateStateWiseOrganizationView'])->name('state.wise.organizations');
 
 
