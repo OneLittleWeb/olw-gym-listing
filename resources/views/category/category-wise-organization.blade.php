@@ -134,9 +134,12 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
-                                        <li>
-                                            <a href="{{ route('category.wise.business',['state_slug' => $category->state->slug , 'organization_category_slug' => $category->organization_category_slug]) }}">{{ $category->organization_category }}
-                                                ({{ $category->category_count }})</a></li>
+                                        @if($category->organization_category_slug != $organization_category_slug)
+                                            <li>
+                                                <a href="{{ route('category.wise.business',['state_slug' => $category->state->slug , 'organization_category_slug' => $category->organization_category_slug]) }}">{{ $category->organization_category }}
+                                                    ({{ $category->category_count }})</a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div><!-- end sidebar-widget -->

@@ -46,7 +46,7 @@ class CategoryController extends Controller
             Meta::setPaginationLinks($organizations);
 
             // Render the view as a string.
-            return view('category.category-wise-organization', compact('organizations', 'organization_categories', 'organization_category_count', 's_state', 'states', 'cities'))->render();
+            return view('category.category-wise-organization', compact('organizations', 'organization_categories','organization_category_slug', 'organization_category_count', 's_state', 'states', 'cities'))->render();
         }
 
         abort(404);

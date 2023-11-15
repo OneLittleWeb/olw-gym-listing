@@ -70,7 +70,7 @@ class StateController extends Controller
             Meta::setPaginationLinks($organizations);
 
             // Render the view as a string.
-            return view('state.state-wise-organization', compact('organizations', 'organization_categories', 'organization_count', 's_state', 'states', 'cities', 'city'));
+            return view('state.state-wise-organization', compact('organizations', 'organization_categories', 'organization_count', 's_state', 'states', 'cities', 'city'))->render();
         }
 
         abort(404);
