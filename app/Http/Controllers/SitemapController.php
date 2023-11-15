@@ -27,7 +27,7 @@ class SitemapController extends Controller
         $sitemap_state_business = App::make("sitemap");
         $business_states = State::all();
         foreach ($business_states as $business_state) {
-            $sitemap_state_business->add(route('state.wise.organizations', $business_state->slug), $now, '0.8', 'monthly');
+            $sitemap_state_business->add(route('category.wise.business',['state_slug' => $business_state->slug , 'organization_category_slug' => 'gym']), $now, '0.8', 'monthly');
         }
         $sitemap_state_business->store('xml', 'sitemap_state_business');
 

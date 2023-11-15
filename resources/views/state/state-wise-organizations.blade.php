@@ -195,7 +195,7 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <div class="state-list">
                                     @foreach($states->take(5) as $state)
-                                        <a href="{{ route('state.wise.organizations', $state->slug) }}"
+                                        <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3 state-card"
                                            data-organization-count="{{ $state->organizations->count() }}">
                                             <img src="{{ asset('images/sm-bg.jpg') }}"
@@ -212,7 +212,7 @@
                                     @endforeach
                                     <div class="collapse collapse-content" id="showMoreCategory">
                                         @foreach($states->skip(5) as $state)
-                                            <a href="{{ route('state.wise.organizations', $state->slug) }}"
+                                            <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3"
                                                data-organization-count="{{ $state->organizations->count() }}">
                                                 <img

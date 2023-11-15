@@ -39,7 +39,7 @@ $(document).ready(function () {
             stateList.append('<p>No State Found</p>');
         } else {
             states.forEach(function (state) {
-                let stateWiseOrganizationsURL = stateWiseOrganizationsRoute + '/' + state.slug;
+                let stateWiseOrganizationsURL = stateWiseOrganizationsRoute + '/' + state.slug + '/' + 'gym';
 
                 let stateCard = '<a href="' + stateWiseOrganizationsURL + '" class="generic-img-card d-block hover-y overflow-hidden mb-3">' +
                     '<img src="' + assetPath + '" data-src="' + assetPath + '" ' +
@@ -201,25 +201,6 @@ $(document).ready(function () {
 });
 
 //state search script
-
-// $(document).ready(function () {
-//     // When the search input changes
-//     $('#all_state_search').on('input', function () {
-//         var searchText = $(this).val().toLowerCase();
-//
-//         // Iterate over each state container
-//         $('.single-state-block-card-div').each(function () {
-//             var stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
-//
-//             // Show or hide based on the search text
-//             if (stateName.includes(searchText)) {
-//                 $(this).show();
-//             } else {
-//                 $(this).hide();
-//             }
-//         });
-//     });
-// });
 
 $(document).ready(function () {
     // When the search input changes

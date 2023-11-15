@@ -18,7 +18,7 @@
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
                                 <li>
-                                    <a href="{{ route('state.wise.organizations', $s_state->slug) }}">{{ $s_state->name }}</a>
+                                    <a href="{{ route('category.wise.business',['state_slug' => $s_state->slug , 'organization_category_slug' => 'gym']) }}">{{ $s_state->name }}</a>
                                 </li>
                                 <li>{{ $organizations[0]->organization_category }}</li>
                             </ul>
@@ -134,7 +134,7 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
-                                        @if($category->organization_category_slug != $organization_category_slug)
+                                        @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
                                             <li>
                                                 <a href="{{ route('category.wise.business',['state_slug' => $category->state->slug , 'organization_category_slug' => $category->organization_category_slug]) }}">{{ $category->organization_category }}
                                                     ({{ $category->category_count }})</a>
@@ -200,7 +200,7 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <div class="state-list">
                                     @foreach($states->take(5) as $state)
-                                        <a href="{{ route('state.wise.organizations', $state->slug) }}"
+                                        <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3 state-card"
                                            data-organization-count="{{ $state->organizations->count() }}">
                                             <img src="{{ asset('images/sm-bg.jpg') }}"
@@ -217,7 +217,7 @@
                                     @endforeach
                                     <div class="collapse collapse-content" id="showMoreCategory">
                                         @foreach($states->skip(5) as $state)
-                                            <a href="{{ route('state.wise.organizations', $state->slug) }}"
+                                            <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3"
                                                data-organization-count="{{ $state->organizations->count() }}">
                                                 <img
