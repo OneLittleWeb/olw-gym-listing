@@ -6714,6 +6714,10 @@ div.datedropper .picker .pick-lg-b li {
         padding-top: 15px;
         margin-left: 0;
     }
+
+    .main-search-input-item-hero {
+        width: 100%;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -6726,6 +6730,10 @@ div.datedropper .picker .pick-lg-b li {
         padding-top: 15px;
         margin-left: 0;
     }
+
+    .main-search-input-item-hero {
+        width: 100%;
+    }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
@@ -6737,6 +6745,10 @@ div.datedropper .picker .pick-lg-b li {
         width: 100%;
         padding-top: 15px;
         margin-left: 0;
+    }
+
+    .main-search-input-item-hero {
+        width: 100%;
     }
 }
 
