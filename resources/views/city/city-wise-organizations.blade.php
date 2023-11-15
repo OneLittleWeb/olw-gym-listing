@@ -33,7 +33,7 @@
                     @if($organizations->onFirstPage() && $organization_badge)
                         <div class="col-lg-12 nebraska-badge-div mobile">
                             <img class="nebraska-badge-image" src="{{ asset('images/badges/' . $organization_badge) }}"
-                                 data-src="{{ asset('images/badges/' . $organization_badge) }}" alt="Gymnearx Badge">
+                                 data-src="{{ asset('images/badges/' . $organization_badge) }}" alt="GymNearX Badge">
                             <p class="text-justify">We considered
                                 all {{ $organization_count }} {{ $organizations[0]->category->name }} Companies in the
                                 {{ $organizations[0]->city->name }} area. We looked at
