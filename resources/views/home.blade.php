@@ -83,7 +83,7 @@
                                 <ul class="row state-info-list">
                                     @foreach($all_states as $state)
                                         <li class="col-lg-3 col-md-6 col-6 text-capitalize">
-                                            <a href="{{ route('state.wise.organizations', $state->slug) }}">
+                                            <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}">
                                                 <img src="{{asset('images/state/' . $state->background_image)}}"
                                                      data-src="{{asset('images/state/' . $state->background_image)}}"
                                                      alt="country-image" class="lazy state-icon-element">
