@@ -56,10 +56,10 @@
                                                 </div>
                                             </div>
                                             <div class="all-state-info-list-box" id="{{ $state->slug }}">
-                                                <ul class="row info-list pl-1">
+                                                <ul class="row pl-1">
                                                     @foreach($state->cities as $city)
                                                         <li class="col-lg-3 city-state-title">
-                                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
+                                                            <a class="text-decoration-underline" href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
                                                         </li>
                                                     @endforeach
                                                 </ul>
