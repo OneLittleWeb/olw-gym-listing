@@ -50,9 +50,9 @@
                                     <li>
                                         <a href="{{ route('states.index') }}">states</a>
                                     </li>
-                                    <li>
-                                        <a href="{{ route('city.index') }}">cities</a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="{{ route('city.index') }}">cities</a>--}}
+{{--                                    </li>--}}
                                     <li>
                                         <a href="/blog">blog</a>
                                     </li>
