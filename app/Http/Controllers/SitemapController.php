@@ -20,7 +20,6 @@ class SitemapController extends Controller
         // add item to the sitemap (url, date, priority, freq)
         $sitemap_pages->add(route('home'), $now, '1.0', 'daily');
         $sitemap_pages->add(route('states.index'), $now, '1.0', 'daily');
-        $sitemap_pages->add(route('city.index'), $now, '1.0', 'daily');
         $sitemap_pages->store('xml', 'sitemap-pages');
 
         //For state business

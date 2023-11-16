@@ -13,14 +13,6 @@ use Illuminate\Support\Str;
 
 class CityController extends Controller
 {
-    public function index()
-    {
-        $cities = City::orderBy('name')->get();
-        $city = null;
-        $category = null;
-        return view('city.index', compact('cities', 'city', 'category'));
-    }
-
     public function cityWiseOrganizations($state_slug, $city_slug)
     {
         $current_page = request()->get('page', 1);
