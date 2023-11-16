@@ -330,6 +330,11 @@
     text-decoration: underline;
 }
 
+.listing-business-category{
+    color: #808996;
+    font-weight: 500;
+}
+
 @media screen and (max-width: 767px) {
     /* Hide the desktop div on mobile */
     .nebraska-badge-div.desktop {

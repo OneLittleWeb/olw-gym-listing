@@ -85,8 +85,7 @@
                                                 @endif
                                                 <li class="d-flex align-items-center padding-left-20px">
                                                     <i class="{{ $organization->category->icon }} mr-2 listing-icon"></i>
-                                                    <a href="#"
-                                                       class="listing-cat-link">{{ $organization->organization_category ?? $organization->category->name }}</a>
+                                                    <p class="listing-business-category">{{ $organization->organization_category ?? $organization->category->name }}</p>
                                                 </li>
                                             </ul>
                                             <ul class="info-list padding-top-20px">

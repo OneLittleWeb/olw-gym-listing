@@ -82,10 +82,11 @@ class CityController extends Controller
                 ->where('organization_category_slug', $organization_category_slug)->count();
 
             //For meta title
-            $metaTitlePrefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
-            $metaTitleSuffix = 'Near ' . Str::title($s_state->name . ' ' . $city->name);
+            $meta_title_prefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
+            $organization_category = Str::plural($organizations[0]->organization_category, $organization_category_count);
+            $meta_title_suffix = 'Near ' . Str::title($s_state->name . ' ' . $city->name);
 
-            $s_state->meta_title = $metaTitlePrefix . ' ' . $organizations[0]->organization_category . ' ' . $metaTitleSuffix;
+            $s_state->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
 
             Meta::setPaginationLinks($organizations);
 
