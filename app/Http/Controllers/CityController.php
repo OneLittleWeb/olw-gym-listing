@@ -7,6 +7,7 @@ use App\Models\Organization;
 use App\Models\State;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -25,7 +26,7 @@ class CityController extends Controller
         $current_page = request()->get('page', 1);
 
         // Define a unique cache key based on the state and city slugs.
-        $cacheKey = 'city_wise_organization_data_' . $state_slug . '_' . $city_slug. '_' . $current_page;
+        $cacheKey = 'city_wise_organization_data_' . $state_slug . '_' . $city_slug . '_' . $current_page;
 
         // Attempt to retrieve the view as a string from the cache.
         $cachedView = Cache::get($cacheKey);
@@ -39,7 +40,7 @@ class CityController extends Controller
         return response($cachedView);
     }
 
-    private function generateCityWiseOrganizationsView($state_slug, $city_slug)
+    public function generateCityWiseOrganizationsView($state_slug, $city_slug, $organization_category_slug)
     {
         $state_check = State::where('slug', $state_slug)->exists();
         $city_check = City::where('slug', $city_slug)->exists();
@@ -51,12 +52,20 @@ class CityController extends Controller
             $states = State::all();
             $cities = City::where('state_id', $s_state->id)->get();
 
-            $organizations = Organization::where('city_id', $city->id)
+            $organizations = Organization::where('organization_category_slug', $organization_category_slug)
+                ->where('city_id', $city->id)
                 ->where('state_id', $s_state->id)
                 ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->paginate(10);
+
+            $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
+                ->where('state_id', $s_state->id)
+                ->where('city_id', $city->id)
+                ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
+                ->orderBy('category_count', 'desc')
+                ->get();
 
             $organization_badge = '';
 
@@ -77,17 +86,19 @@ class CityController extends Controller
 
             $organization_count = Organization::where('city_id', $city->id)
                 ->where('state_id', $s_state->id)->count();
+            $organization_category_count = Organization::where('state_id', $s_state->id)->where('city_id', $city->id)
+                ->where('organization_category_slug', $organization_category_slug)->count();
 
-            if ($organizations->onFirstPage()) {
-                $s_state->meta_title = 'Top 10 Best Gyms Near ' . Str::title($city->name) . ', ' . Str::title($s_state->name);
-            } else {
-                $s_state->meta_title = 'Gyms Near ' . Str::title($city->name) . ', ' . Str::title($s_state->name);
-            }
+            //For meta title
+            $metaTitlePrefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
+            $metaTitleSuffix = 'Near ' . Str::title($s_state->name . ' ' . $city->name);
+
+            $s_state->meta_title = $metaTitlePrefix . ' ' . $organizations[0]->organization_category . ' ' . $metaTitleSuffix;
 
             Meta::setPaginationLinks($organizations);
 
             // Render the view as a string.
-            return view('city.city-wise-organizations', compact('organizations', 'cities', 'city', 's_state', 'states', 'organization_badge', 'organization_count'))->render();
+            return view('city.city-wise-organizations', compact('organizations', 'organization_categories', 'organization_category_slug', 'organization_category_count', 'cities', 'city', 's_state', 'states', 'organization_badge', 'organization_count'))->render();
         }
 
         abort(404);

@@ -59,7 +59,7 @@
                                                 <ul class="row info-list pl-1">
                                                     @foreach($state->cities as $city)
                                                         <li class="col-lg-3 city-state-title">
-                                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $city->name }}</a>
+                                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
                                                         </li>
                                                     @endforeach
                                                 </ul>

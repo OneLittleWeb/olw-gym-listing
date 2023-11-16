@@ -21,6 +21,7 @@ class CategoryController extends Controller
         if ($s_state) {
             $organizations = Organization::where('organization_category_slug', $organization_category_slug)
                 ->where('state_id', $s_state->id)
+                ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
                 ->paginate(10);

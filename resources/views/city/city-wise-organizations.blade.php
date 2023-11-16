@@ -17,17 +17,22 @@
                             class="breadcrumb-content breadcrumb-content-2 d-flex flex-wrap align-items-end justify-content-between margin-bottom-30px">
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="{{ route('category.wise.business',['state_slug' => $s_state->slug , 'organization_category_slug' => 'gym']) }}">{{ $s_state->name }}</a></li>
                                 <li>
-                                    {{ $city->name }}
+                                    <a href="{{ route('category.wise.business',['state_slug' => $s_state->slug , 'organization_category_slug' => 'gym']) }}">{{ $s_state->name }}</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
+                                </li>
+                                <li>{{ $organizations[0]->organization_category }}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center pb-4 text-capitalize">
-                            <h1 class="sec__title mb-0">Top 10 Best Gyms Near {{ $city->name }},
-                                {{ $s_state->name }}</h1>
+                            <h1 class="sec__title mb-0">
+                                {{ ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best' }}
+                                {{ $organizations[0]->organization_category }} Near {{ $s_state->name }}, {{ $city->name }}
+                            </h1>
                         </div>
                     </div>
                     @if($organizations->onFirstPage() && $organization_badge)
@@ -153,12 +158,31 @@
                                         and experience to identify the top 10.</p>
                                 </div>
                             @endif
+
+                            <div class="sidebar-widget">
+                                <h3 class="widget-title">Categories</h3>
+                                <div class="stroke-shape mb-4"></div>
+                                <ul class="tag-list">
+                                    @foreach($organization_categories as $category)
+                                        @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
+                                            <li>
+                                                <a href="{{ route('city.wise.organizations', ['state_slug' => $category->state->slug, 'city_slug' => $category->city->slug, 'organization_category_slug' => $category->organization_category_slug]) }}">
+                                                    {{ $category->organization_category }}
+                                                    ({{ $category->category_count }})
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+
+
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Filter by City</h3>
                                 <div class="stroke-shape mb-4"></div>
                                 <div class="category-list">
                                     @foreach($cities->take(6) as $f_city)
-                                        <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug]) }}"
+                                        <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug, 'organization_category_slug' => 'gym']) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                             <img src="{{ asset('images/cta-sm.jpg') }}"
                                                  data-src="{{ asset('images/cta-sm.jpg') }}"
@@ -172,7 +196,7 @@
                                     @endforeach
                                     <div class="collapse collapse-content" id="showMoreCity">
                                         @foreach($cities->skip(6) as $f_city)
-                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug]) }}"
+                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug, 'organization_category_slug' => 'gym']) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                 <img src="{{ asset('images/cta-sm.jpg') }}"
                                                      data-src="{{ asset('images/cta-sm.jpg') }}"

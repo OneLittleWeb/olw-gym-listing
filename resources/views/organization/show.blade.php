@@ -40,7 +40,7 @@
                                     <a href="{{ route('category.wise.business',['state_slug' => $organization->state->slug , 'organization_category_slug' => 'gym']) }}">{{ $organization->state->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug]) }}">{{ $organization->city->name }}</a>
+                                    <a href="{{ route('city.wise.organizations', ['state_slug' => $organization->state->slug, 'city_slug' => $organization->city->slug, 'organization_category_slug' => 'gym']) }}">{{ $organization->city->name }}</a>
                                 </li>
                                 <li>{{ $organization->organization_name }}</li>
                             </ul>
