@@ -28,7 +28,7 @@
                         <div class="d-flex align-items-center pb-4 text-capitalize">
                             <h1 class="sec__title mb-0">
                                 {{ ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best' }}
-                                {{ $organizations[0]->organization_category }} Near {{ $s_state->name }}
+                                {{ Str::plural($organizations[0]->organization_category, $organization_category_count) }} Near {{ $s_state->name }}
                             </h1>
                         </div>
                     </div>
