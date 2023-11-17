@@ -100,6 +100,91 @@
         </section>
         <!-- =======END CATEGORY AREA========= -->
     </section><!-- end hero-wrapper -->
+
+    <section class="cat-area position-relative section--padding overflow-hidden">
+        <span class="circle-bg position-absolute circle-bg-1"></span>
+        <span class="circle-bg position-absolute circle-bg-2"></span>
+        <span class="circle-bg position-absolute circle-bg-3"></span>
+        <div class="svg-bg svg-bg-3 gradient-bg-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 118" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="svg-gradient-4">
+                        <stop offset="15%" stop-color="#F8F9FA"></stop>
+                        <stop offset="95%" stop-color="#b9caf1"></stop>
+                    </linearGradient>
+                </defs>
+                <path opacity="0.2"
+                      d="M0,112 C400.666667,36 800.666667,-0.666666667 1200,2 C1200,41.3333333 1200,80 1200,118 L0,118 L0,112 Z"></path>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="card-heading-content mt-0">
+                        <div class="section-heading">
+                            <div class="section-badge pb-3">
+                                <span class="ribbon ribbon-lg">Destinations</span>
+                            </div>
+                            <h2 class="sec__title">Explore Our Top Gym <span
+                                    class="text-color-16">Destinations.</span></h2>
+                            <p class="sec__desc">
+                                Discover premier gym destinations loved by fitness enthusiasts. Explore top-rated gyms
+                                offering exceptional workout experiences.
+                            </p>
+                        </div><!-- end section-heading -->
+                        <div class="more-btn-box pt-4">
+                            <a href="{{ route('states.index') }}" class="theme-btn gradient-btn">View All Destination <i
+                                    class="la la-arrow-right ml-2"></i></a>
+                        </div><!-- end more-btn-box -->
+                    </div>
+                </div><!-- end col-lg-5 -->
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-lg-6 responsive-column">
+                            @foreach($most_viewed_states->take(2) as $most_viewed_state)
+                                <div class="category-item category-item-layout-2 category-item-layout--2 js-tilt-2">
+                                    <img src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}" data-src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}" alt="category-image"
+                                         class="cat-img lazy {{ !$loop->first ? 'cat-img-height' : '' }}">
+                                    <div class="category-content">
+                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->state->slug , 'organization_category_slug' => 'gym']) }}" class="category-link d-flex align-items-end w-100 h-100 text-left">
+                                            <div
+                                                class="category-content-inner d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <h4 class="cat__title mb-1">{{ $most_viewed_state->state->name }}</h4>
+                                                    <span class="font-weight-medium font-size-15">{{ $most_viewed_state->distinct_organizations }} Listings</span>
+                                                </div>
+                                                <i class="la la-arrow-right"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div><!-- end category-item -->
+                            @endforeach
+                        </div><!-- end col-lg-6 -->
+                        <div class="col-lg-6 responsive-column">
+                            @foreach($most_viewed_states->skip(2)->take(2) as $most_viewed_state)
+                                <div class="category-item category-item-layout-2 category-item-layout--2 js-tilt-2">
+                                    <img src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}" data-src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}" alt="category-image"
+                                         class="cat-img lazy {{ $loop->first ? 'cat-img-height' : '' }}">
+                                    <div class="category-content">
+                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->state->slug , 'organization_category_slug' => 'gym']) }}" class="category-link d-flex align-items-end w-100 h-100 text-left">
+                                            <div
+                                                class="category-content-inner d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <h4 class="cat__title mb-1">{{ $most_viewed_state->state->name }}</h4>
+                                                    <span class="font-weight-medium font-size-15">{{ $most_viewed_state->distinct_organizations }} Listings</span>
+                                                </div>
+                                                <i class="la la-arrow-right"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div><!-- end category-item -->
+                            @endforeach
+                        </div><!-- end col-lg-6 -->
+                    </div><!-- end row -->
+                </div><!-- end col-lg-7 -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section><!-- end cat-area -->
     <!-- ====START MAJOR CITY AREA==== -->
     <section class="category-area bg-white position-relative section-padding">
         <div class="container">
