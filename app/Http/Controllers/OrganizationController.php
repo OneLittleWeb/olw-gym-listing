@@ -40,6 +40,12 @@ class OrganizationController extends Controller
             Cache::forever($cacheKey, $cachedView);
         }
 
+        $organization = Organization::where('slug', $organization_slug)->where('permanently_closed', 0)->first();
+
+        if ($organization) {
+            $organization->incrementViewCount();
+        }
+
         return response($cachedView);
     }
 
@@ -49,10 +55,8 @@ class OrganizationController extends Controller
         $organization = Organization::where('slug', $organization_slug)->where('permanently_closed', 0)->first();
 
         if ($city && $organization) {
-
             $cities = City::all();
 
-            $organization->incrementViewCount();
             $five_star_reviews = $organization->reviews()->where('review_rate_stars', 5)->count();
             $four_star_reviews = $organization->reviews()->where('review_rate_stars', 4)->count();
             $three_star_reviews = $organization->reviews()->where('review_rate_stars', 3)->count();
