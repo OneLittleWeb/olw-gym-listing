@@ -28,7 +28,8 @@
                         <div class="d-flex align-items-center pb-4 text-capitalize">
                             <h1 class="sec__title mb-0">
                                 {{ ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best' }}
-                                {{ Str::plural($organizations[0]->organization_category, $organization_category_count) }} Near {{ $s_state->name }}
+                                {{ Str::plural($organizations[0]->organization_category, $organization_category_count) }}
+                                Near {{ $s_state->name }}
                             </h1>
                         </div>
                     </div>
@@ -129,7 +130,7 @@
                     <div class="col-lg-4">
                         <div class="sidebar mb-0">
                             <div class="sidebar-widget">
-                                <h3 class="widget-title">Categories</h3>
+                                <h3 class="widget-title text-capitalize">Other fitness centers near {{ $s_state->name }}</h3>
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
