@@ -175,8 +175,6 @@
                                     @endforeach
                                 </ul>
                             </div>
-
-
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Filter by City</h3>
                                 <div class="stroke-shape mb-4"></div>
