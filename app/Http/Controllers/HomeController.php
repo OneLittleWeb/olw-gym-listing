@@ -14,7 +14,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-//        $businessIndex = Cache::remember('business_index', now()->addHours(10), function () {
         $major_states = State::where('is_major', 1)->get();
         $all_states = State::all();
         $states = State::take(8)->get();
@@ -23,19 +22,11 @@ class HomeController extends Controller
         $five_star_ratings = Organization::where('rate_stars', 5)->count();
         $company_joined = Organization::select('organization_name')->distinct()->count();
 
-
-//        $most_viewed_states = Organization::select('state_id', DB::raw('SUM(views) as total_views'))
-//            ->groupBy('state_id')
-//            ->orderBy('total_views', 'desc')
-//            ->take(4)
-//            ->get();
-        $most_viewed_states = Organization::select('state_id', DB::raw('SUM(views) as total_views'), DB::raw('(SELECT COUNT(DISTINCT organization_name) FROM organizations AS org WHERE org.state_id = organizations.state_id) as distinct_organizations'))
+        $most_viewed_states = Organization::select('state_id', DB::raw('SUM(views) as total_views'), DB::raw('COUNT(*) as total_business'))
             ->groupBy('state_id')
-            ->orderBy('total_views', 'desc')
+            ->orderByDesc('total_views')
             ->take(4)
             ->get();
-
-//        dd($most_viewed_states);
 
         try {
             $posts = Post::taxonomy('category', 'uncategorized')->newest()->take(6)->get();
@@ -43,25 +34,7 @@ class HomeController extends Controller
             $posts = null;
         }
 
-//            return [
-//                'major_states' => $major_states,
-//                'all_states' => $all_states,
-//                'states' => $states,
-//                'cities' => $cities,
-//                'total_pages' => $total_pages,
-//                'five_star_ratings' => $five_star_ratings,
-//                'company_joined' => $company_joined,
-//                'posts' => $posts,
-//            ];
-//        });
-
-        // Use Cache::forever to cache the data forever
-//        Cache::forever('business_index', $businessIndex);
-
-        // Extract the data if needed.
-//        extract($businessIndex);
-
-        return view('home', compact('major_states', 'all_states', 'states', 'most_viewed_states' ,'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
+        return view('home', compact('major_states', 'all_states', 'states', 'most_viewed_states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
     }
 
     public function autocomplete(Request $request)

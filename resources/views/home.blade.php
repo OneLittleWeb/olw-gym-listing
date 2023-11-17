@@ -151,7 +151,7 @@
                                                 class="category-content-inner d-flex align-items-center justify-content-between">
                                                 <div>
                                                     <h4 class="cat__title mb-1">{{ $most_viewed_state->state->name }}</h4>
-                                                    <span class="font-weight-medium font-size-15">{{ $most_viewed_state->distinct_organizations }} Listings</span>
+                                                    <span class="font-weight-medium font-size-15">{{ $most_viewed_state->total_business }} Listings</span>
                                                 </div>
                                                 <i class="la la-arrow-right"></i>
                                             </div>
@@ -171,7 +171,7 @@
                                                 class="category-content-inner d-flex align-items-center justify-content-between">
                                                 <div>
                                                     <h4 class="cat__title mb-1">{{ $most_viewed_state->state->name }}</h4>
-                                                    <span class="font-weight-medium font-size-15">{{ $most_viewed_state->distinct_organizations }} Listings</span>
+                                                    <span class="font-weight-medium font-size-15">{{ $most_viewed_state->total_states }} Listings</span>
                                                 </div>
                                                 <i class="la la-arrow-right"></i>
                                             </div>
