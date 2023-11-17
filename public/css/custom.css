@@ -335,6 +335,14 @@
     font-weight: 500;
 }
 
+.state_sec_desc {
+    font-size: 18px;
+    color: #808996;
+    font-weight: 500;
+    line-height: 30px;
+    font-family: 'Be Vietnam', 'sans-serif' !important;
+}
+
 @media screen and (max-width: 767px) {
     /* Hide the desktop div on mobile */
     .nebraska-badge-div.desktop {

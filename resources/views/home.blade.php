@@ -57,7 +57,7 @@
             </div><!-- end row -->
         </div><!-- end container -->
 
-        <!-- =======START Major States AREA======= -->
+        <!-- =======START State-by-State AREA======= -->
         <section class="category-area position-relative bg-gray section--padding category-section">
             <div class="container">
                 <div class="row pb-2">
@@ -66,12 +66,11 @@
                             <div class="section-badge pb-3">
                                 <span class="ribbon ribbon-2">State</span>
                             </div>
-                            <h2 class="sec__title">Browse By States</h2>
-                            <p class="sec__desc">
-                                Discover the best workouts near you with GymNearX. Find nearby gyms, fitness classes,
-                                and personal trainers <br>
-                                for your fitness journey.
-                            </p>
+                            <h1 class="sec__title"><span>{{ $total_pages - 1 }}+</span> Gyms Across America: State-by-State Fitness Directory!</h1>
+                            <h2 class="state_sec_desc">
+                                Explore nearby gyms, fitness classes, workout programs, and dedicated personal trainers <br>
+                                to meet your wellness goals. Start today!
+                            </h2>
                         </div>
                     </div>
                 </div>
