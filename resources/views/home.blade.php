@@ -11,23 +11,22 @@
                 <div class="col-lg-12">
                     <div class="hero-heading text-center">
                         <div class="section-heading">
-                            <h2 class="sec__title cd-headline slide">
-                                Find The Best GymNear
+                            <h1 class="sec__title cd-headline slide">
+                                Find America’s Best GymNear
                                 <span class="cd-words-wrapper py-0 header-text-decoration">
-                            <b class="is-visible">California</b>
-                            <b>Florida</b>
-                            <b>Georgia</b>
-                            <b>Illinois</b>
-                            <b>Michigan</b>
-                            <b>New York</b>
-                            <b>Ohio</b>
-                            <b>Texas</b>
-                        </span>
+                                    <b class="is-visible">California</b>
+                                    <b>Florida</b>
+                                    <b>Georgia</b>
+                                    <b>Illinois</b>
+                                    <b>Michigan</b>
+                                    <b>New York</b>
+                                    <b>Ohio</b>
+                                    <b>Texas</b>
+                                </span>
+                            </h1>
+                            <h2 class="sec__desc">
+                                Navigating you to the nearest health and fitness center for a healthier you.
                             </h2>
-                            <p class="sec__desc">
-                                {{ config('app.name') }} helps you find out what's happening in your city. Let’s
-                                explore!
-                            </p>
                         </div>
                     </div><!-- end hero-heading -->
                 </div><!-- end col-lg-12 -->
@@ -143,10 +142,13 @@
                         <div class="col-lg-6 responsive-column">
                             @foreach($most_viewed_states->take(2) as $most_viewed_state)
                                 <div class="category-item category-item-layout-2 category-item-layout--2 js-tilt-2">
-                                    <img src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}" data-src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}" alt="category-image"
+                                    <img src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}"
+                                         data-src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}"
+                                         alt="category-image"
                                          class="cat-img lazy {{ !$loop->first ? 'cat-img-height' : '' }}">
                                     <div class="category-content">
-                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->state->slug , 'organization_category_slug' => 'gym']) }}" class="category-link d-flex align-items-end w-100 h-100 text-left">
+                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->state->slug , 'organization_category_slug' => 'gym']) }}"
+                                           class="category-link d-flex align-items-end w-100 h-100 text-left">
                                             <div
                                                 class="category-content-inner d-flex align-items-center justify-content-between">
                                                 <div>
@@ -163,10 +165,13 @@
                         <div class="col-lg-6 responsive-column">
                             @foreach($most_viewed_states->skip(2)->take(2) as $most_viewed_state)
                                 <div class="category-item category-item-layout-2 category-item-layout--2 js-tilt-2">
-                                    <img src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}" data-src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}" alt="category-image"
+                                    <img src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}"
+                                         data-src="{{asset('images/state/' . $most_viewed_state->state->background_image)}}"
+                                         alt="category-image"
                                          class="cat-img lazy {{ $loop->first ? 'cat-img-height' : '' }}">
                                     <div class="category-content">
-                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->state->slug , 'organization_category_slug' => 'gym']) }}" class="category-link d-flex align-items-end w-100 h-100 text-left">
+                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->state->slug , 'organization_category_slug' => 'gym']) }}"
+                                           class="category-link d-flex align-items-end w-100 h-100 text-left">
                                             <div
                                                 class="category-content-inner d-flex align-items-center justify-content-between">
                                                 <div>
