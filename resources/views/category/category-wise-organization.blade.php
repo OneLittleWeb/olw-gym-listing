@@ -142,7 +142,7 @@
                                         @endif
                                     @endforeach
                                 </ul>
-                            </div><!-- end sidebar-widget -->
+                            </div>
 
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Filter by City</h3>
