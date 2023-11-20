@@ -93,9 +93,9 @@ return [
         'wordpress' => [ // for WordPress database (used by Corcel)
             'driver' => 'mysql',
             'host' => 'localhost',
-            'database' => 'jRNoH8w7kRY4G3',
-            'username' => 'CDH9aon5GxQeFg',
-            'password' => 'eS9DPpSR7Xqvb4',
+            'database' => 'VvWvA6MUSRH6jP',
+            'username' => 'VvWvA6MUSRH6jP',
+            'password' => 'jVtSbSq5chCmBX',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => 'wp_',
