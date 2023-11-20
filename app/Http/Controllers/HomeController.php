@@ -28,9 +28,9 @@ class HomeController extends Controller
             ->orderByDesc('total_views')
             ->take(4)
             ->get();
-//        $post = Post::taxonomy('category', 'things-to-do')->newest()->published()->take(6)->get();
-//
-//        dd($post);
+        $posts = Post::taxonomy('category', 'things-to-do')->newest()->published()->take(6)->get();
+
+        dd($posts);
 
         try {
             $posts = Post::taxonomy('category', 'things-to-do')->newest()->published()->take(6)->get();
