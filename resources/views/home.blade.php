@@ -592,11 +592,14 @@
                         <div class="col-lg-4 responsive-column">
                             <div class="card-item card-item-layout-5 js-tilt">
                                 <div class="card-image">
-                                    <img src="{{$post->thumbnail}}" data-src="{{$post->thumbnail}}"
-                                         class="card__img lazy"
-                                         alt="blog image">
-                                    <span
-                                        class="badge">{{\Carbon\Carbon::parse($post->post_modified)->format('F d, Y')}}</span>
+                                    @if($post->thumbnail)
+                                        <img src="{{$post->thumbnail}}" data-src="{{$post->thumbnail}}"
+                                             class="card__img lazy"
+                                             alt="blog image">
+                                    @else
+                                        <p>No thumbnail image</p>
+                                    @endif
+                                    <span class="badge">{{\Carbon\Carbon::parse($post->post_modified)->format('F d, Y')}}</span>
                                 </div>
                                 <div class="card-content">
                                     <h4 class="card-title pt-2">
