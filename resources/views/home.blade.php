@@ -588,24 +588,24 @@
                     </div>
                 </div>
                 <div class="row padding-top-60px">
-{{--                    @foreach($posts as $post)--}}
-{{--                        <div class="col-lg-4 responsive-column">--}}
-{{--                            <div class="card-item card-item-layout-5 js-tilt">--}}
-{{--                                <div class="card-image">--}}
-{{--                                    <img src="{{$post->thumbnail}}" data-src="{{$post->thumbnail}}"--}}
-{{--                                         class="card__img lazy"--}}
-{{--                                         alt="blog image">--}}
-{{--                                    <span--}}
-{{--                                        class="badge">{{\Carbon\Carbon::parse($post->post_modified)->format('F d, Y')}}</span>--}}
-{{--                                </div>--}}
-{{--                                <div class="card-content">--}}
-{{--                                    <h4 class="card-title pt-2">--}}
-{{--                                        <a href="{{url('/blog').'/'.$post->post_name}}">{{$post->post_title}}</a>--}}
-{{--                                    </h4>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
+                    @foreach($posts as $post)
+                        <div class="col-lg-4 responsive-column">
+                            <div class="card-item card-item-layout-5 js-tilt">
+                                <div class="card-image">
+                                    <img src="{{$post->thumbnail}}" data-src="{{$post->thumbnail}}"
+                                         class="card__img lazy"
+                                         alt="blog image">
+                                    <span
+                                        class="badge">{{Carbon::parse($post->post_modified)->format('F d, Y')}}</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title pt-2">
+                                        <a href="{{url('/blog').'/'.$post->post_name}}">{{$post->post_title}}</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="more-btn-box d-flex flex-wrap align-items-center justify-content-between pt-4">
                     <div>
