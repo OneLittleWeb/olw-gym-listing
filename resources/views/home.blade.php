@@ -572,7 +572,7 @@
     <!-- ====END FUN-FACT AREA======= -->
 
     <!-- ====START BLOG AREA===== -->
-    @if(config('app.APP_ENV') == 'production' && !is_null($posts))
+    @if(config('app.env') == 'production' && !is_null($posts))
         <section class="blog-area section-padding">
             <div class="container">
                 <div class="row">
