@@ -50,7 +50,7 @@ class HomeController extends Controller
         $cities = City::all();
         $total_pages = Organization::count();
         $five_star_ratings = Organization::where('rate_stars', 5)->count();
-        $company_joined = Organization::select('organization_name')->distinct()->count();
+        $company_joined = Organization::distinct('organization_name')->count('organization_name');
         $most_viewed_states = Organization::select('state_id', DB::raw('SUM(views) as total_views'), DB::raw('COUNT(*) as total_business'))
             ->groupBy('state_id')
             ->orderByDesc('total_views')
