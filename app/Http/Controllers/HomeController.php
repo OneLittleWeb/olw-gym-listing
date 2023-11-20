@@ -67,7 +67,7 @@ class HomeController extends Controller
             ->with('company_joined', $company_joined)
             ->with('most_viewed_states', $most_viewed_states);
 
-        if (config('app.APP_ENV') == 'production') {
+        if (config('app.env') == 'production') {
             try {
                 $posts = Post::taxonomy('category', 'things-to-do')->newest()->published()->take(6)->get();
                 $view = $view->with('posts', $posts);
