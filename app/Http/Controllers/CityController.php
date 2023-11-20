@@ -25,7 +25,7 @@ class CityController extends Controller
 
         if ($cachedView === null) {
             // If the view is not found in the cache, retrieve and store it.
-            $cachedView = $this->generateCityWiseOrganizationsView($state_slug, $city_slug);
+            $cachedView = $this->generateCityWiseOrganizationsView($state_slug, $city_slug, 'gym');
             Cache::forever($cacheKey, $cachedView);
         }
 
