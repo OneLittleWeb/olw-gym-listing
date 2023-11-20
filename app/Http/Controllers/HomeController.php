@@ -38,8 +38,6 @@ class HomeController extends Controller
             $posts = null;
         }
 
-        dd($posts);
-
         return view('home', compact('major_states', 'all_states', 'states', 'most_viewed_states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
     }
 
