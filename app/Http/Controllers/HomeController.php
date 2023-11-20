@@ -29,7 +29,7 @@ class HomeController extends Controller
             ->get();
 
         try {
-            $posts = Post::taxonomy('category', 'uncategorized')->newest()->published()->take(6)->get();
+            $posts = Post::taxonomy()->newest()->published()->take(6)->get();
         } catch (\Exception $e) {
             $posts = null;
         }
