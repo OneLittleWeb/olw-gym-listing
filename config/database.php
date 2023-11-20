@@ -92,7 +92,7 @@ return [
         ],
         'wordpress' => [ // for WordPress database (used by Corcel)
             'driver' => 'mysql',
-            'host' => 'localhost',
+            'host' => '149.28.64.29',
             'database' => 'VvWvA6MUSRH6jP',
             'username' => 'VvWvA6MUSRH6jP',
             'password' => 'jVtSbSq5chCmBX',
