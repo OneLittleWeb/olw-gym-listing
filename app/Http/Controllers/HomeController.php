@@ -28,7 +28,7 @@ class HomeController extends Controller
             ->orderByDesc('total_views')
             ->take(4)
             ->get();
-        $cat = Post::slug('uncategorized')->posts->first();
+        $cat = Post::taxonomy('category', 'uncategorized')->posts->first();
 
         dd($cat);
 
