@@ -29,7 +29,7 @@ class HomeController extends Controller
             ->take(4)
             ->get();
 //        $posts = Post::taxonomy('category', 'uncategorized')->newest()->published()->take(6)->get();
-        $cat = Taxonomy::where('category', 'uncategorized')->with('posts')->get();
+        $cat = Taxonomy::where('term', 'uncategorized')->with('posts')->get();
 
         dd($cat);
 
