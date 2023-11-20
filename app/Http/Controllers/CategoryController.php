@@ -24,7 +24,8 @@ class CategoryController extends Controller
                 ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
-                ->paginate(10);
+                ->paginate(10)
+                ->withQueryString();
 
             $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', DB::raw('COUNT(*) as category_count'))
                 ->where('state_id', $s_state->id)

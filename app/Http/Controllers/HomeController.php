@@ -82,7 +82,7 @@ class HomeController extends Controller
                 $city = City::find($search_source_id);
                 $sourceController = new CityController();
 
-                return $sourceController->cityWiseOrganizations($city->state->slug, $city->slug);
+                return $sourceController->generateCityWiseOrganizationsView($city->state->slug, $city->slug, 'gym');
             }
         } elseif ($looking_for) {
 
