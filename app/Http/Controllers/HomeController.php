@@ -28,14 +28,12 @@ class HomeController extends Controller
             ->orderByDesc('total_views')
             ->take(4)
             ->get();
-//        $posts = Post::taxonomy('category', 'uncategorized')->newest()->published()->take(6)->get();
-        $cat = Taxonomy::where('term', 'uncategorized')->with('posts')->get();
+        $post = Post::taxonomy('category', 'things-to-do')->get();
 
-        dd($cat);
+        dd($post);
 
         try {
             $posts = Post::taxonomy('category', 'uncategorized')->newest()->published()->take(6)->get();
-            $cat = Taxonomy::where('category', 'uncategorized')->with('posts')->get();
         } catch (\Exception $e) {
             $posts = null;
         }
