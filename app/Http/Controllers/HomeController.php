@@ -28,8 +28,6 @@ class HomeController extends Controller
             ->take(4)
             ->get();
 
-        dd($posts = Post::taxonomy('category', 'uncategorized')->newest()->take(6)->get());
-
         try {
             $posts = Post::taxonomy('category', 'uncategorized')->newest()->take(6)->get();
         } catch (\Exception $e) {
