@@ -131,7 +131,7 @@
                             </p>
                         </div><!-- end section-heading -->
                         <div class="more-btn-box pt-4">
-                            <a href="{{ route('states.index') }}" class="theme-btn gradient-btn">View All Destination <i
+                            <a href="{{ route('states.index') }}" class="theme-btn gradient-btn">View All Gyms <i
                                     class="la la-arrow-right ml-2"></i></a>
                         </div><!-- end more-btn-box -->
                     </div>
@@ -618,40 +618,4 @@
             </div>
         </section>
     @endif
-    <!-- ================================
-           START BLOG AREA
-    ================================= -->
-
-    <!-- ======START CTA AREA======= -->
-    <section class="cta-area cta-bg bg-fixed section-padding text-center">
-        <div class="overlay opacity-9"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="cta-content p-0">
-                        <div class="section-heading">
-                            <div class="section-badge pb-3">
-                                <span class="ribbon ribbon-lg">Join Us</span>
-                            </div>
-                            <h2 class="sec__title mb-4 font-size-45 line-height-60 text-white">
-                                Expand Your Visibility with <span class="text-color-16">{{ config('app.name') }}</span>
-                                and <br>
-                                See Your Business Scale Up!
-                            </h2>
-                            <p class="sec__desc text-white line-height-35 mb-3">
-                                Why not take advantage of the extra visibility we are offering! Your competitors are
-                                present in every possible channel.
-                                <br>Step up and join us.
-                            </p>
-                        </div>
-                        <div class="btn-box pt-4">
-                            <a href="{{ route('login') }}" class="theme-btn gradient-btn"><i
-                                    class="la la-user-plus mr-2"></i>Start Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ===END CTA AREA====== -->
 @endsection
