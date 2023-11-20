@@ -28,7 +28,8 @@ class HomeController extends Controller
             ->orderByDesc('total_views')
             ->take(4)
             ->get();
-        $cat = Post::taxonomy('category', 'uncategorized')->posts->first();
+//        $posts = Post::taxonomy('category', 'uncategorized')->newest()->published()->take(6)->get();
+        $cat = Taxonomy::where('taxonomy', 'category')->with('posts')->get();
 
         dd($cat);
 
