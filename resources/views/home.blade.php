@@ -66,9 +66,11 @@
                             <div class="section-badge pb-3">
                                 <span class="ribbon ribbon-2">State</span>
                             </div>
-                            <h1 class="sec__title"><span>{{ $total_pages - 1 }}+</span> Gyms Across America: State-by-State Fitness Directory!</h1>
+                            <h1 class="sec__title"><span>{{ $total_pages - 1 }}+</span> Gyms Across America:
+                                State-by-State Fitness Directory!</h1>
                             <h2 class="state_sec_desc">
-                                Explore nearby gyms, fitness classes, workout programs, and dedicated personal trainers <br>
+                                Explore nearby gyms, fitness classes, workout programs, and dedicated personal trainers
+                                <br>
                                 to meet your wellness goals. Start today!
                             </h2>
                         </div>
@@ -126,8 +128,8 @@
                             <h2 class="sec__title">Explore Our Top Gym <span
                                     class="text-color-16">Destinations.</span></h2>
                             <p class="sec__desc">
-                                Discover premier gym destinations loved by fitness enthusiasts. Explore top-rated gyms
-                                offering exceptional workout experiences.
+                                GymNearX blog inspires fitness enthusiasts with engaging articles on workouts,
+                                nutrition, and wellness, providing valuable insights for a healthier lifestyle
                             </p>
                         </div><!-- end section-heading -->
                         <div class="more-btn-box pt-4">
@@ -152,7 +154,7 @@
                                                 class="category-content-inner d-flex align-items-center justify-content-between">
                                                 <div>
                                                     <h4 class="cat__title mb-1">{{ $most_viewed_state->state->name }}</h4>
-                                                    <span class="font-weight-medium font-size-15">{{ $most_viewed_state->total_business }} Listings</span>
+                                                    <span class="font-weight-medium font-size-15">{{ $most_viewed_state->total_business }} Gyms</span>
                                                 </div>
                                                 <i class="la la-arrow-right"></i>
                                             </div>
@@ -570,7 +572,7 @@
     <!-- ====END FUN-FACT AREA======= -->
 
     <!-- ====START BLOG AREA===== -->
-    @if(!is_null($posts))
+    @if(config('app.APP_ENV') == 'production' && !is_null($posts))
         <section class="blog-area section-padding">
             <div class="container">
                 <div class="row">
@@ -593,7 +595,8 @@
                             <div class="card-item card-item-layout-5 js-tilt">
                                 <div class="card-image">
                                     @if($post->thumbnail && $post->thumbnail->attachment)
-                                        <img src="{{$post->thumbnail->attachment->guid}}" data-src="{{$post->thumbnail->attachment->guid}}"
+                                        <img src="{{$post->thumbnail->attachment->guid}}"
+                                             data-src="{{$post->thumbnail->attachment->guid}}"
                                              class="card__img lazy"
                                              alt="blog image">
                                     @else
