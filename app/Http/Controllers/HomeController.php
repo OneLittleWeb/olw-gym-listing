@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Organization;
 use App\Models\State;
 use Corcel\Model\Post;
+use Corcel\Model\Taxonomy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,9 @@ class HomeController extends Controller
             ->get();
 
         try {
-            $posts = Post::taxonomy()->newest()->published()->take(6)->get();
+//            $posts = Post::taxonomy('category', 'uncategorized')->newest()->published()->take(6)->get();
+            $cat = Taxonomy::where('category', 'uncategorized')->with('posts')->get();
+            dd($cat);
         } catch (\Exception $e) {
             $posts = null;
         }
