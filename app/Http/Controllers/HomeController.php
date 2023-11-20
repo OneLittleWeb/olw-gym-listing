@@ -31,8 +31,8 @@ class HomeController extends Controller
 
         try {
 //            $posts = Post::taxonomy('category', 'uncategorized')->newest()->published()->take(6)->get();
-            $cat = Taxonomy::where('category', 'uncategorized')->with('posts')->get();
-            dd($cat);
+            $posts = Taxonomy::where('category', 'uncategorized')->with('posts')->get();
+            dd($posts);
         } catch (\Exception $e) {
             $posts = null;
         }
