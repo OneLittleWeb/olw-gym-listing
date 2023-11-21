@@ -825,7 +825,7 @@
                                 </li>
                             </ul>
                         </div>
-                        @if($organization->organization_work_time)
+                        @if($organization->organization_work_time && $organization->organization_work_time != ". Hide open hours for the week")
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Opening Hours</h3>
                                 @if($organization->temporarily_closed)

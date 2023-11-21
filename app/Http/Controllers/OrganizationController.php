@@ -129,7 +129,7 @@ class OrganizationController extends Controller
                 }
             }
 
-            if ($organization->organization_work_time) {
+            if ($organization->organization_work_time && $organization->organization_work_time != ". Hide open hours for the week") {
                 $organization_work_time_exploded = explode(';', $organization->organization_work_time);
                 $organization_work_time_exploded = str_replace('. Hide open hours for the week', '', $organization_work_time_exploded);
                 $organization_work_time_exploded = str_ireplace(' (Washington\'s Birthday)', '', $organization_work_time_exploded);

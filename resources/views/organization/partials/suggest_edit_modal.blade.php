@@ -126,7 +126,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if($organization->organization_work_time)
+                                        @if($organization->organization_work_time && $organization->organization_work_time != ". Hide open hours for the week")
                                             <tr class="business-opening-wrap">
                                                 <td class="business-day">{{ $first_day }}</td>
                                                 <input type="hidden" name="first_day" value="{{ $first_day }}">
