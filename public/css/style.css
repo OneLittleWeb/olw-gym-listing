@@ -988,6 +988,10 @@ body {
     background-color: rgba(11, 11, 11, 0.1) !important
 }
 
+.bg-white-opacity {
+    background-color: rgb(201 201 201 / 10%) !important
+}
+
 .bg-fixed {
     background-attachment: fixed !important
 }

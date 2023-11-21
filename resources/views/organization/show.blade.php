@@ -590,7 +590,8 @@
                                                  data-parent="#accordion">
                                                 <div class="card-body">
                                                     <p>The address
-                                                        is: {{ str_replace('Address: ', '', $organization->organization_address) }}.</p>
+                                                        is: {{ str_replace('Address: ', '', $organization->organization_address) }}
+                                                        .</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -853,6 +854,112 @@
         </div>
     </section>
     <!-- ======END LISTING DETAIL  AREA======= -->
+    <div class="section-block"></div>
+    <!-- ================================
+    START CARD AREA
+================================= -->
+    @if($also_viewed->count() > 0)
+        <section class="cta-area bg-white-opacity section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading">
+                            <h2 class="sec__title font-size-24 line-height-30">People Also Viewed</h2>
+                        </div><!-- end section-heading -->
+                    </div><!-- end col-lg-8 -->
+                </div><!-- end row -->
+                <div class="row pt-1">
+                    <div class="col-lg-12">
+                        <div class="card-carousel owl-trigger-action">
+                            @foreach($also_viewed as $also_viewed_organization)
+                                <div class="card-item border border-color">
+                                    <div class="card-image">
+                                        <a href="{{ route('city.wise.organization', ['city_slug' => $also_viewed_organization->city->slug, 'organization_slug' => $also_viewed_organization->slug]) }}"
+                                           class="d-block">
+                                            @if($also_viewed_organization->organization_head_photo_file)
+                                                <img
+                                                    src="{{ asset('images/business/' . $also_viewed_organization->organization_head_photo_file) }}"
+                                                    data-src="{{ asset('images/business/' . $also_viewed_organization->organization_head_photo_file) }}"
+                                                    class="also_viewed_image card__img lazy"
+                                                    alt="{{ $also_viewed_organization->organization_name }}"
+                                                    loading="lazy">
+                                            @else
+                                                <img src="{{ asset('images/default.jpg') }}"
+                                                     data-src="{{ asset('images/default.jpg') }}"
+                                                     class="also_viewed_image card__img lazy"
+                                                     alt="{{ $also_viewed_organization->organization_name }}"
+                                                     loading="lazy">
+                                            @endif
+                                        </a>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="card-title pt-3">
+                                            <a href="{{ route('city.wise.organization', ['city_slug' => $also_viewed_organization->city->slug, 'organization_slug' => $also_viewed_organization->slug]) }}">{{ $also_viewed_organization->organization_name }}</a>
+                                        </h4>
+                                        <p class="card-sub">
+                                            <a href="{{ route('city.wise.organization', ['city_slug' => $also_viewed_organization->city->slug, 'organization_slug' => $also_viewed_organization->slug]) }}">
+                                                <i class="la la-map-marker mr-1 text-color-2"></i>
+                                                @if($also_viewed_organization->organization_address)
+                                                    {{ str_replace('Address: ', '', $also_viewed_organization->organization_address) }}
+                                                @else
+                                                    {{ ucfirst($also_viewed_organization->city->name) }}
+                                                    , {{ ucfirst($also_viewed_organization->state->name) }}, US
+                                                @endif
+                                            </a>
+                                        </p>
+                                        <ul class="listing-meta d-flex align-items-center">
+                                            @if($also_viewed_organization->rate_stars && $also_viewed_organization->reviews_total_count)
+                                                <li class="d-flex align-items-center">
+                                                        <span
+                                                            class="rate flex-shrink-0">{{ $also_viewed_organization->rate_stars }}</span>
+                                                    <span
+                                                        class="rate-text">{{ $also_viewed_organization->reviews_total_count }} Reviews</span>
+                                                </li>
+                                            @else
+                                                <li class="d-flex align-items-center">
+                                                    <span class="rate flex-shrink-0">0.0</span>
+                                                    <span class="rate-text">0 Reviews</span>
+                                                </li>
+                                            @endif
+                                            <li class="d-flex align-items-center padding-left-20px">
+                                                <i class="{{ $also_viewed_organization->category->icon }} mr-2 listing-icon"></i>
+                                                <p class="listing-business-category">{{ $also_viewed_organization->organization_category ?? $also_viewed_organization->category->name }}</p>
+                                            </li>
+                                        </ul>
+                                        <ul class="info-list padding-top-20px">
+                                            @if($also_viewed_organization->organization_website)
+                                                <li>
+                                                    <span class="la la-link icon"></span>
+                                                    <a rel="nofollow"
+                                                       href="{{ 'https://' . $also_viewed_organization->organization_website }}"
+                                                       target="_blank"> {{ $also_viewed_organization->organization_website }}</a>
+                                                </li>
+                                            @endif
+                                            @if($also_viewed_organization->organization_phone_number)
+                                                <li>
+                                                    <span class="la la-phone icon"></span>
+                                                    <a href="tel:{{ $also_viewed_organization->organization_phone_number }}">{{ $also_viewed_organization->organization_phone_number }}</a>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                </div><!-- end card-item -->
+                            @endforeach
+                        </div><!-- end card-carousel -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+            <div class="svg-bg svg-bg-3 z-index-negative">
+                <svg class="h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#F5F7FC" fill-opacity="1"
+                          d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>
+        </section><!-- end card-area -->
+    @endif
+    <!-- ================================
+        END CARD AREA
+    ================================= -->
 @endsection
 @section('js')
     <script src="{{asset('plugins/ratings/src/jquery.star-rating-svg.js')}}"></script>

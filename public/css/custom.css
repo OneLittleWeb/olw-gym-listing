@@ -330,7 +330,7 @@
     text-decoration: underline;
 }
 
-.listing-business-category{
+.listing-business-category {
     color: #808996;
     font-weight: 500;
 }
@@ -341,6 +341,10 @@
     font-weight: 500;
     line-height: 30px;
     font-family: 'Be Vietnam', 'sans-serif' !important;
+}
+
+.also_viewed_image {
+    height: 206px;
 }
 
 @media screen and (max-width: 767px) {
