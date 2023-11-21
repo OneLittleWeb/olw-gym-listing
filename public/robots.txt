@@ -1,5 +1,5 @@
 User-agent: *
 Disallow: /admin/
 
-Sitemap: https://gymnearx.com/sitemap_index.xml
+Sitemap: https://gymnearx.com/sitemap.xml
 Sitemap: https://gymnearx.com/blog/sitemap_index.xml

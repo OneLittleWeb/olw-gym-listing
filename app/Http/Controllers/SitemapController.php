@@ -81,8 +81,8 @@ class SitemapController extends Controller
             $sitemap->model->resetItems();
         }
 
-        $sitemap->store('sitemapindex', 'sitemap_index');
+        $sitemap->store('sitemapindex', 'sitemap');
 
-        return redirect(url('sitemap_index.xml'));
+        return redirect(url('sitemap.xml'));
     }
 }
