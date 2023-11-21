@@ -107,8 +107,8 @@ class OrganizationController extends Controller
 
             $organization->about3 = "<strong>$organization->organization_name</strong>" . ' has a ' . "<strong>$organization->rate_stars</strong>" . '-star rating and ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. Check out the photos and customer reviews to make an image in your mind about what to expect there.';
 
-            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'g_reviews');
-            $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'own_reviews');
+            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'g_reviews')->withQueryString();;
+            $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'own_reviews')->withQueryString();;
 
             Meta::setPaginationLinks($organization->reviews_paginator);
 
