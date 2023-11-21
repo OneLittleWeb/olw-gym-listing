@@ -47,7 +47,19 @@ class SitemapController extends Controller
         $states = State::all();
         foreach ($states as $state) {
             foreach ($state->cities as $city) {
-                $sitemap_state_city_business->add(route('city.wise.organizations', ['state_slug' => $state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']), $now, '0.8', 'monthly');
+
+                $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
+                    ->where('state_id', $state->id)
+                    ->where('city_id', $city->id)
+                    ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
+                    ->orderBy('category_count', 'desc')
+                    ->get();
+
+                foreach ($organization_categories as $organization_category) {
+                    if ($organization_category->organization_category_slug) {
+                        $sitemap_state_city_business->add(route('city.wise.organizations', ['state_slug' => $state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => $organization_category->organization_category_slug]), $now, '0.8', 'monthly');
+                    }
+                }
             }
         }
         $sitemap_state_city_business->store('xml', 'sitemap_state_city_business');
