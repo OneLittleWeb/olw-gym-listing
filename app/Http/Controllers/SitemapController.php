@@ -8,6 +8,7 @@ use App\Models\Organization;
 use App\Models\State;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 
 class SitemapController extends Controller
@@ -25,8 +26,19 @@ class SitemapController extends Controller
         //For state business
         $sitemap_state_business = App::make("sitemap");
         $business_states = State::all();
+
         foreach ($business_states as $business_state) {
-            $sitemap_state_business->add(route('category.wise.business',['state_slug' => $business_state->slug , 'organization_category_slug' => 'gym']), $now, '0.8', 'monthly');
+            $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', DB::raw('COUNT(*) as category_count'))
+                ->where('state_id', $business_state->id)
+                ->groupBy('organization_category', 'state_id', 'organization_category_slug')
+                ->orderBy('category_count', 'desc')
+                ->get();
+
+            foreach ($organization_categories as $organization_category) {
+                if ($organization_category->organization_category_slug) {
+                    $sitemap_state_business->add(route('category.wise.business', ['state_slug' => $business_state->slug, 'organization_category_slug' => $organization_category->organization_category_slug]), $now, '0.8', 'monthly');
+                }
+            }
         }
         $sitemap_state_business->store('xml', 'sitemap_state_business');
 
