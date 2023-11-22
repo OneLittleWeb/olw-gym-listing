@@ -128,8 +128,7 @@
                             <h2 class="sec__title">Explore Our Top Gym <span
                                     class="text-color-16">Destinations.</span></h2>
                             <p class="sec__desc">
-                                GymNearX blog inspires fitness enthusiasts with engaging articles on workouts,
-                                nutrition, and wellness, providing valuable insights for a healthier lifestyle
+                                Discover premier gym destinations on GymNearX. Find top fitness centers for your workout needs, offering diverse facilities and expert training. Start exploring today!
                             </p>
                         </div><!-- end section-heading -->
                         <div class="more-btn-box pt-4">
@@ -583,8 +582,8 @@
                             </div>
                             <h2 class="sec__title">Articles You Might <span class="text-color-16">Like.</span></h2>
                             <p class="sec__desc">
-                                The USA's cities offer a wide range of attractions, from NYC's Times Square to LA's
-                                Hollywood. Gyms abound, catering to all fitness needs.
+                                GymNearX blog inspires fitness enthusiasts with engaging articles on workouts,
+                                nutrition, and wellness, providing valuable insights for a healthier lifestyle
                             </p>
                         </div>
                     </div>
