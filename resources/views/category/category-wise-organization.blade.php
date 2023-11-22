@@ -5,7 +5,7 @@
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', "Explore the best gyms in the $s_state->name , " . "Get photos, business hours, phone numbers, ratings, reviews and service details.")
+@section('meta_description', "Explore the best gyms in $s_state->name. " . "Get photos, business hours, phone numbers, ratings, reviews and service details.")
 @section('meta_keywords', "$s_state->name, $s_state->name near me")
 @section('content')
     <section class="card-area section-padding">
