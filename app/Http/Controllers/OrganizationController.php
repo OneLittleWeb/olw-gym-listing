@@ -72,12 +72,12 @@ class OrganizationController extends Controller
 
             if ($organization->organization_address && $organization->located_in) {
                 $address_line = explode(',', $organization->organization_address);
-                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . $organization->located_in . ',' . $address_line[1] . ',' . $address_line[2] . '.';
+                $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located at the ' . $organization->located_in . ',' . $address_line[1] . ',' . $address_line[2] . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             } elseif ($organization->organization_address) {
                 $address_line = explode(',', $organization->organization_address);
-                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . $address_line[1] . ',' . $address_line[2] . '.';
+                $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located in ' . $address_line[1] . ',' . $address_line[2] . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             } else {
-                $organization->about1 = 'Sitting at the bustling city-center of ' . Str::title($organization->city->name) . ', ' . "<strong>$organization->organization_name</strong>" . ' is located at ' . Str::title($organization->city->name) . ', ' . Str::title($organization->city->state->name) . '.';
+                $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located in ' . Str::title($organization->state->name) . ', ' . Str::title($organization->city->name) . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             }
 
             if ($organization->organization_phone_number) {
@@ -92,11 +92,11 @@ class OrganizationController extends Controller
                 $contactInfo = null;
             }
 
-            $organization->about2 = $contactInfo
-                ? 'Get a reservation or know necessary information by contacting them at ' . $contactInfo . '.'
+            $organization_contact_info = $contactInfo
+                ? 'You can contact them at ' . $contactInfo . ' for more information.'
                 : null;
 
-            $organization->about3 = "<strong>$organization->organization_name</strong>" . ' has a ' . "<strong>$organization->rate_stars</strong>" . '-star rating and ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. Check out the photos and customer reviews to make an image in your mind about what to expect there.';
+            $organization->about2 = "<strong>$organization->organization_name</strong>" . ' has earned a ' . "<strong>$organization->rate_stars</strong>" . '-star rating with ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. ' . $organization_contact_info;
 
             $organization->exploded_organization_email = explode(',', $organization->organization_email);
             $organization->exploded_organization_facebook = explode(',', $organization->organization_facebook);

@@ -122,7 +122,6 @@
                             <div class="block-card-body">
                                 <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about1 !!}</p>
                                 <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about2 !!}</p>
-                                <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about3 !!}</p>
                             </div>
                         </div>
 
