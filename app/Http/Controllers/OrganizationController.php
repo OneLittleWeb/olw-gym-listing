@@ -96,6 +96,8 @@ class OrganizationController extends Controller
                 ? 'Get a reservation or know necessary information by contacting them at ' . $contactInfo . '.'
                 : null;
 
+            $organization->about3 = "<strong>$organization->organization_name</strong>" . ' has a ' . "<strong>$organization->rate_stars</strong>" . '-star rating and ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. Check out the photos and customer reviews to make an image in your mind about what to expect there.';
+
             $organization->exploded_organization_email = explode(',', $organization->organization_email);
             $organization->exploded_organization_facebook = explode(',', $organization->organization_facebook);
             $organization->exploded_organization_twitter = explode(',', $organization->organization_twitter);
@@ -104,8 +106,6 @@ class OrganizationController extends Controller
 
             $organization->rate_stars = $organization->rate_stars ?? 0;
             $organization->reviews_total_count = $organization->reviews_total_count ?? 0;
-
-            $organization->about3 = "<strong>$organization->organization_name</strong>" . ' has a ' . "<strong>$organization->rate_stars</strong>" . '-star rating and ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. Check out the photos and customer reviews to make an image in your mind about what to expect there.';
 
             $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'g_reviews')->withQueryString();;
             $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'own_reviews')->withQueryString();;
