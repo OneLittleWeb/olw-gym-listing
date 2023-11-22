@@ -84,19 +84,15 @@ class OrganizationController extends Controller
                 $contactInfo = "<a href='tel:$organization->organization_phone_number'>$organization->organization_phone_number</a>";
             } elseif ($organization->organization_email) {
                 $contactInfo = "<strong>$organization->organization_email</strong>";
-            } elseif ($organization->organization_address) {
-                $contactInfo = "<strong>$organization->organization_address</strong>";
             } elseif ($organization->organization_website) {
                 $contactInfo = "<strong>$organization->organization_website</strong>";
+            } elseif ($organization->organization_address) {
+                $contactInfo = "<strong>$organization->organization_address</strong>";
             } else {
                 $contactInfo = null;
             }
 
-            $organization_contact_info = $contactInfo
-                ? 'You can contact them at ' . $contactInfo . ' for more information.'
-                : null;
-
-            $organization->about2 = "<strong>$organization->organization_name</strong>" . ' has earned a ' . "<strong>$organization->rate_stars</strong>" . '-star rating with ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. ' . $organization_contact_info;
+            $organization->about2 = "<strong>$organization->organization_name</strong>" . ' has earned a ' . "<strong>$organization->rate_stars</strong>" . '-star rating with ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. ' . 'You can contact them at ' . $contactInfo . ' for more information.';
 
             $organization->exploded_organization_email = explode(',', $organization->organization_email);
             $organization->exploded_organization_facebook = explode(',', $organization->organization_facebook);
