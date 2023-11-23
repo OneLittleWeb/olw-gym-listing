@@ -59,7 +59,7 @@
                     <form action="#" class="form-box">
                         <div class="form-group mb-0">
                             <span class="la la-envelope-o form-icon"></span>
-                            <input class="form-control form-control-styled form-control-long" type="email"
+                            <input class="form-control form-control-styled form-control-long" type="email" name="subscribe_email"
                                    placeholder="Enter your email">
                             <p class="font-size-12 font-weight-medium pt-1"><i class="la la-lock mr-1"></i>Your are 100%
                                 protected</p>
