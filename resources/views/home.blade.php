@@ -5,7 +5,6 @@
 @section('content')
     <section class="hero-wrapper hero-bg pb-0 overflow-hidden">
         <div class="overlay"></div>
-
         <div class="container hero-container">
             <div class="row">
                 <div class="col-lg-12">
@@ -28,8 +27,8 @@
                                 Navigating you to the nearest health and fitness center for a healthier you.
                             </h2>
                         </div>
-                    </div><!-- end hero-heading -->
-                </div><!-- end col-lg-12 -->
+                    </div>
+                </div>
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8">
                     <form action="{{ route('search') }}" class="form-box">
@@ -44,7 +43,7 @@
                                 </div>
                                 <input type="hidden" name="source_value" id="source_value">
                                 <input type="hidden" name="source_id" id="source_id">
-                            </div><!-- end main-search-input-item -->
+                            </div>
                             <div class="main-search-now-button">
                                 <button class="theme-btn gradient-btn border-0 w-100" type="submit"><i
                                         class="la la-search mr-2"></i>Search Now
