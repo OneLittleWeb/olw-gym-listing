@@ -163,7 +163,7 @@
                                     @if($organization->organization_email)
                                         <li><span class="text-color"><i
                                                     class="la la-envelope mr-2 text-color-16 font-size-18"></i>Email:</span><a
-                                                href="mailto:{{$organization->exploded_organization_email[0]}}">{{ $organization->exploded_organization_email[0] }}</a>
+                                                href="mailto:{{$organization->exploded_organization_email[0]}}">{{ strtolower($organization->exploded_organization_email[0]) }}</a>
                                         </li>
                                     @endif
                                     @if($organization->organization_website)
