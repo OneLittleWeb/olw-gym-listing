@@ -48,13 +48,13 @@
                                 <button class="theme-btn gradient-btn border-0 w-100" type="submit"><i
                                         class="la la-search mr-2"></i>Search Now
                                 </button>
-                            </div><!-- end main-search-input-item -->
-                        </div><!-- end main-search-input -->
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="col-lg-2"></div>
-            </div><!-- end row -->
-        </div><!-- end container -->
+            </div>
+        </div>
 
         <!-- =======START State-by-State AREA======= -->
         <section class="category-area position-relative bg-gray section--padding category-section">
@@ -127,7 +127,8 @@
                             <h2 class="sec__title">Explore Our Top Gym <span
                                     class="text-color-16">Destinations.</span></h2>
                             <p class="sec__desc">
-                                Discover premier gym destinations on GymNearX. Find top fitness centers for your workout needs, offering diverse facilities and expert training. Start exploring today!
+                                Discover premier gym destinations on GymNearX. Find top fitness centers for your workout
+                                needs, offering diverse facilities and expert training. Start exploring today!
                             </p>
                         </div><!-- end section-heading -->
                         <div class="more-btn-box pt-4">
