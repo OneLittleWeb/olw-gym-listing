@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>GymNearX Sitemap</title>
+<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
 <script	type="text/javascript"><![CDATA[
