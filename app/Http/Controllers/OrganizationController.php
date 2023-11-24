@@ -261,7 +261,7 @@ class OrganizationController extends Controller
 
             try {
                 Mail::to($organization->claimed_mail)->send(new ClaimedBusiness($organization));
-                Mail::to(env('SUPPORT_MAIL_ADDRESS'))->send(new ClaimedNotificationToAdmin($organization));
+                Mail::to(config('app.support_mail'))->send(new ClaimedNotificationToAdmin($organization));
                 alert()->success('success', 'Your business has been claimed successfully. You may now sign up using the same email associated with your business and log in to your account.');
 
                 return redirect()->route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]);
@@ -326,7 +326,7 @@ class OrganizationController extends Controller
 
             try {
                 Mail::to($request->contact_email)->send(new ContactForClaimToUser($organization));
-                Mail::to(env('SUPPORT_MAIL_ADDRESS'))->send(new ContactForClaimToAdmin($organization));
+                Mail::to(config('app.support_mail'))->send(new ContactForClaimToAdmin($organization));
             } catch (\Exception $e) {
                 alert()->error('error', 'Something went wrong. Please try again later.');
                 return redirect()->back();
