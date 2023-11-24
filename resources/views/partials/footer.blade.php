@@ -11,7 +11,8 @@
                     </div>
                     <ul class="list-items contact-links pt-3">
                         <li><span class="d-block text-color mb-1"><i
-                                    class="la la-phone mr-1 text-color-16"></i>Phone:</span><a href="tel:{{ config('app.support_phone') }}">{{ config('app.support_phone') }}</a></li>
+                                    class="la la-phone mr-1 text-color-16"></i>Phone:</span><a
+                                href="tel:{{ config('app.support_phone') }}">{{ config('app.support_phone') }}</a></li>
                         <li><span class="d-block text-color mb-1"><i class="la la-envelope mr-1 text-color-16"></i>Email:</span><a
                                 href="mailto:{{ config('app.support_mail') }}">{{ config('app.support_mail') }}</a></li>
                     </ul>
@@ -56,10 +57,12 @@
                         <h2 class="sec__title mb-0 font-size-24 line-height-30">Don't miss any update!</h2>
                         <p class="sec__desc font-size-16">Subscribe to get latest updates and information.</p>
                     </div>
-                    <form action="#" class="form-box">
+                    <form method="POST" action="{{ route('subscriber.store') }}" class="form-box">
+                        @csrf
                         <div class="form-group mb-0">
                             <span class="la la-envelope-o form-icon"></span>
-                            <input class="form-control form-control-styled form-control-long" type="email" name="subscribe_email"
+                            <input class="form-control form-control-styled form-control-long" type="email"
+                                   name="email"
                                    placeholder="Enter your email">
                             <p class="font-size-12 font-weight-medium pt-1"><i class="la la-lock mr-1"></i>Your are 100%
                                 protected</p>
@@ -75,7 +78,9 @@
             <div class="col-lg-12">
                 <div class="copy-right text-center">
                     <p class="copy__desc">
-                        &copy; <script> document.write(new Date().getFullYear()); </script> Copyright {{ config('app.name') }}. All Rights Reserved
+                        &copy;
+                        <script> document.write(new Date().getFullYear()); </script>
+                        Copyright {{ config('app.name') }}. All Rights Reserved
                     </p>
                 </div>
             </div>

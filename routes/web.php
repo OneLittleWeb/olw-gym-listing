@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\SubscribeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -110,6 +111,9 @@ Route::get('/copy-paste', [OrganizationController::class, 'imageCopyPasteFromOne
 
 //review date diff from human to date route
 Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDiffFromHumanToDate'])->name('get.original.review.date');
+
+//route for subscriber store
+Route::post('/subscriber-store', [SubscribeController::class, 'subscriberStore'])->name('subscriber.store');
 
 //Route::get('/{slug}', [StateController::class, 'generateStateWiseOrganizationView'])->name('state.wise.organizations');
 
