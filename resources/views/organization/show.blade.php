@@ -864,9 +864,9 @@
                     <div class="col-lg-12">
                         <div class="section-heading">
                             <h2 class="sec__title font-size-24 line-height-30">People Also Viewed</h2>
-                        </div><!-- end section-heading -->
-                    </div><!-- end col-lg-8 -->
-                </div><!-- end row -->
+                        </div>
+                    </div>
+                </div>
                 <div class="row pt-1">
                     <div class="col-lg-12">
                         <div class="card-carousel owl-trigger-action">
