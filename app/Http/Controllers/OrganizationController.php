@@ -57,6 +57,7 @@ class OrganizationController extends Controller
         if ($city && $organization) {
             $cities = City::all();
 
+            $organization->incrementViewCount();
             $five_star_reviews = $organization->reviews()->where('review_rate_stars', 5)->count();
             $four_star_reviews = $organization->reviews()->where('review_rate_stars', 4)->count();
             $three_star_reviews = $organization->reviews()->where('review_rate_stars', 3)->count();
