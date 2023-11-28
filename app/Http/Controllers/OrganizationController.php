@@ -125,7 +125,13 @@ class OrganizationController extends Controller
                 }
             }
 
-            $also_viewed = Organization::where('id', '!=', $organization->id)->where('state_id', $organization->state_id)->where('city_id', $organization->city_id)->where('permanently_closed', 0)->orderByDesc('views')->limit(4)->get();
+            $also_viewed = Organization::where('id', '!=', $organization->id)
+                ->where('state_id', $organization->state_id)
+                ->where('city_id', $organization->city_id)
+                ->where('permanently_closed', 0)
+                ->orderByDesc('views')
+                ->limit(4)
+                ->get();
 
             if ($organization->organization_work_time && $organization->organization_work_time != ". Hide open hours for the week") {
                 $organization_work_time_exploded = explode(';', $organization->organization_work_time);
