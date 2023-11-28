@@ -83,7 +83,7 @@ Route::get('/{state_slug}/{organization_category_slug}', [CategoryController::cl
 Route::get('/organization-category-slug-from-organization-category', [CategoryController::class, 'organizationCategorySlugFromOrganizationCategory']);
 
 //city wise organization
-Route::get('/{city_slug}/gnx/{organization_slug}', [OrganizationController::class, 'cityWiseOrganization'])->name('city.wise.organization');
+Route::get('/{city_slug}/gnx/{organization_slug}', [OrganizationController::class, 'generateCityWiseOrganizationView'])->name('city.wise.organization');
 Route::get('/{state_slug}/{city_slug}/{organization_category_slug}', [CityController::class, 'generateCityWiseOrganizationsView'])->name('city.wise.organizations');
 
 Route::post('/store-review', [ReviewController::class, 'store'])->name('review.store');
