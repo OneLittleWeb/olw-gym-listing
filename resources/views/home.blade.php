@@ -203,14 +203,12 @@
                             </div>
                             <h2 class="sec__title line-height-50 text-white">
                                 Get Started With <span class="text-color-16">{{ config('app.name') }}</span> It's Very
-                                Easy to
-                                Start.
+                                Easy to Start.
                             </h2>
                             <p class="sec__desc text-white-50">
                                 {{ config('app.name') }} is an online platform in the USA that lets users create
-                                listings for
-                                businesses or search for services. Sign up, create your listing, or search for services
-                                today.
+                                listings for businesses or search for services. Sign up, create your listing, or search
+                                for services today.
                             </p>
                         </div>
                     </div>
@@ -599,7 +597,6 @@
                                              class="card__img lazy"
                                              alt="blog image">
                                     @else
-                                        <!-- Placeholder image or alternate content if thumbnail is not available -->
                                         <p>No thumbnail available</p>
                                     @endif
                                     <span class="badge">{{Carbon::parse($post->post_modified)->format('F d, Y')}}</span>
