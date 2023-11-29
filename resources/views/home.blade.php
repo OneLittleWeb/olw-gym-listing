@@ -130,13 +130,13 @@
                                 Discover premier gym destinations on GymNearX. Find top fitness centers for your workout
                                 needs, offering diverse facilities and expert training. Start exploring today!
                             </p>
-                        </div><!-- end section-heading -->
+                        </div>
                         <div class="more-btn-box pt-4">
                             <a href="{{ route('states.index') }}" class="theme-btn gradient-btn">View All Gyms <i
                                     class="la la-arrow-right ml-2"></i></a>
-                        </div><!-- end more-btn-box -->
+                        </div>
                     </div>
-                </div><!-- end col-lg-5 -->
+                </div>
                 <div class="col-lg-7">
                     <div class="row">
                         <div class="col-lg-6 responsive-column">
@@ -159,9 +159,9 @@
                                             </div>
                                         </a>
                                     </div>
-                                </div><!-- end category-item -->
+                                </div>
                             @endforeach
-                        </div><!-- end col-lg-6 -->
+                        </div>
                         <div class="col-lg-6 responsive-column">
                             @foreach($most_viewed_states->skip(2)->take(2) as $most_viewed_state)
                                 <div class="category-item category-item-layout-2 category-item-layout--2 js-tilt-2">
@@ -182,7 +182,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                </div><!-- end category-item -->
+                                </div>
                             @endforeach
                         </div><!-- end col-lg-6 -->
                     </div><!-- end row -->
