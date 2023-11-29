@@ -502,7 +502,7 @@
                         </div>
                         <div class="counter-content pl-3">
                             <h3 class="counter__number text-color-17 mb-2">
-                                <span class="counter">3500</span>
+                                <span class="counter">2500</span>
                                 <span class="count-symbol">+</span>
                             </h3>
                             <p class="counter__title">Happy Clients</p>
