@@ -125,8 +125,8 @@
                                 href="{{ route('city.wise.organization', ['city_slug' => $award_certificate->organization->city->slug, 'organization_slug' => $award_certificate->organization->slug]) }}"
                                 target="_blank">{{ $award_certificate->organization->organization_name }}</a>.
                         </p>
-                        <p>If you didn't expect an email from <a href="{{ env('APP_URL') }}">{{ env('APP_URL') }}</a>,
-                            you
+                        <p>If you didn't expect to
+                            receive an email from <a href="{{ config('app.url') }}">{{ config('app.name') }}</a>, you
                             can safely delete this email.</p>
                     </td>
                 </tr>
