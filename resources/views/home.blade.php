@@ -97,8 +97,8 @@
                 </div>
             </div>
         </section>
-        <!-- =======END CATEGORY AREA========= -->
-    </section><!-- end hero-wrapper -->
+        <!-- =======END State-by-State AREA========= -->
+    </section>
 
     <section class="cat-area position-relative section--padding overflow-hidden">
         <span class="circle-bg position-absolute circle-bg-1"></span>
