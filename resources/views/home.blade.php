@@ -184,14 +184,14 @@
                                     </div>
                                 </div>
                             @endforeach
-                        </div><!-- end col-lg-6 -->
-                    </div><!-- end row -->
-                </div><!-- end col-lg-7 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cat-area -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="section-block"></div>
-    <!-- ==START HIW AREA==== -->
+    <!-- ==START Working Process AREA==== -->
     <section class="hiw-area bg-gradient-6 pattern-bg padding-top-100px pb-0">
         <div class="container">
             <div class="row align-items-center">
@@ -410,7 +410,7 @@
             </div>
         </div>
     </section>
-    <!-- ====END HIW AREA==== -->
+    <!-- ====END Working Process AREA==== -->
 
     <!-- ====START FUN-FACT AREA===== -->
     <section class="funfact-area bg-gradient-gray padding-top-150px padding-bottom-70px hiw-bottom-right-round">
