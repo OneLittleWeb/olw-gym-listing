@@ -412,7 +412,6 @@ class OrganizationController extends Controller
             $suggest_an_edit->message = $request->message;
             $suggest_an_edit->edit_status = 0;
 
-
             if ($request->first_day_open == 'Closed' || $request->first_day_open == 'Open 24 Hours') {
                 $first_day = $request->first_day . ', ' . $request->first_day_open;
             } else {
