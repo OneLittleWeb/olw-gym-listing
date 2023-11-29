@@ -85,8 +85,8 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td align="center" valign="top" style="padding: 20px 24px;">
-                        <a href="https://nebraskalisting.com/" target="_blank" style="display: inline-block;">
-                            <img src="{{ asset('/images/nebraskalisting-logo.png') }}" alt="Logo" border="0" width="48"
+                        <a href="{{ config('app.url') }}" target="_blank" style="display: inline-block;">
+                            <img src="{{asset('/images/logo-black.png')}}" alt="Logo" border="0" width="48"
                                  style="display: block; width: 135px; max-width: 135px; min-width: 135px; max-height: 37px;">
                         </a>
                     </td>
@@ -102,7 +102,7 @@
                     <td align="center" bgcolor="#ffffff"
                         style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
                         <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">
-                            Award Certificate Rejected!
+                            Successfully Approved Your Edit Request.
                         </h1>
                     </td>
                 </tr>
