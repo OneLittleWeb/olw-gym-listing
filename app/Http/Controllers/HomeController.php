@@ -112,7 +112,7 @@ class HomeController extends Controller
                 $organization = Organization::find($search_source_id);
                 $sourceController = new OrganizationController();
 
-                return $sourceController->cityWiseOrganization($organization->city->slug, $organization->slug);
+                return $sourceController->generateCityWiseOrganizationView($organization->city->slug, $organization->slug);
             } elseif ($source == 'states') {
 
                 $state = State::find($search_source_id);
