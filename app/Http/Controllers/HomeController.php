@@ -6,9 +6,7 @@ use App\Models\City;
 use App\Models\Organization;
 use App\Models\State;
 use Corcel\Model\Post;
-use Corcel\Model\Taxonomy;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
