@@ -9,7 +9,6 @@ use App\Models\Contact;
 use App\Models\ContactForClaimBusiness;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 
 class ContactUsController extends Controller
