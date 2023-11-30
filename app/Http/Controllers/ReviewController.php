@@ -26,6 +26,7 @@ class ReviewController extends Controller
             $review->reviewer_name = $request->reviewer_name;
             $review->review_rate_stars = $request->review_rate_stars;
             $review->reviewer_email = $request->reviewer_email;
+            $review->review_specified_date = Carbon::now()->toDateTimeString();
             $review->review_text_original = $request->review_text_original;
 
             if ($request->hasFile('review_photos_files')) {
