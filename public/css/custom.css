@@ -347,6 +347,10 @@
     height: 206px;
 }
 
+.pros-cons-list li a{
+    color: #28a745!important;
+}
+
 @media screen and (max-width: 767px) {
     /* Hide the desktop div on mobile */
     .nebraska-badge-div.desktop {

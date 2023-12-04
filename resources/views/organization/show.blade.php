@@ -279,6 +279,19 @@
                                 </div>
                             </div>
                         @endif
+
+                        @if(count($pros_and_cons))
+                            <div class="sidebar-widget">
+                                <h3 class="widget-title">Pros & Cons</h3>
+                                <div class="stroke-shape mb-4"></div>
+                                <ul class="tag-list pros-cons-list">
+                                    @foreach ($pros_and_cons as $keyword => $count)
+                                        <li><a href="#">{{ $keyword }} ({{ $count }})</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         @if($organization->reviews->count())
                             <div class="block-card mb-4" id="business_reviews_card">
                                 <div class=" pb-4">
@@ -977,5 +990,7 @@
             "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
     }
+
+
     </script>
 @endsection
