@@ -587,28 +587,28 @@
                     </div>
                 </div>
                 <div class="row padding-top-60px">
-{{--                    @foreach($posts as $post)--}}
-{{--                        <div class="col-lg-4 responsive-column">--}}
-{{--                            <div class="card-item card-item-layout-5 js-tilt">--}}
-{{--                                <div class="card-image">--}}
-{{--                                    @if($post->thumbnail && $post->thumbnail->attachment)--}}
-{{--                                        <img src="{{$post->thumbnail->attachment->guid}}"--}}
-{{--                                             data-src="{{$post->thumbnail->attachment->guid}}"--}}
-{{--                                             class="card__img lazy"--}}
-{{--                                             alt="blog image">--}}
-{{--                                    @else--}}
-{{--                                        <p>No thumbnail available</p>--}}
-{{--                                    @endif--}}
-{{--                                    <span class="badge">{{$post->post_category}}</span>--}}
-{{--                                </div>--}}
-{{--                                <div class="card-content">--}}
-{{--                                    <h4 class="card-title pt-2">--}}
-{{--                                        <a href="{{url('/blog').'/'.$post->post_name}}">{{$post->post_title}}</a>--}}
-{{--                                    </h4>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
+                    {{--                    @foreach($posts as $post)--}}
+                    {{--                        <div class="col-lg-4 responsive-column">--}}
+                    {{--                            <div class="card-item card-item-layout-5 js-tilt">--}}
+                    {{--                                <div class="card-image">--}}
+                    {{--                                    @if($post->thumbnail && $post->thumbnail->attachment)--}}
+                    {{--                                        <img src="{{$post->thumbnail->attachment->guid}}"--}}
+                    {{--                                             data-src="{{$post->thumbnail->attachment->guid}}"--}}
+                    {{--                                             class="card__img lazy"--}}
+                    {{--                                             alt="blog image">--}}
+                    {{--                                    @else--}}
+                    {{--                                        <p>No thumbnail available</p>--}}
+                    {{--                                    @endif--}}
+                    {{--                                    <span class="badge">{{$post->post_category}}</span>--}}
+                    {{--                                </div>--}}
+                    {{--                                <div class="card-content">--}}
+                    {{--                                    <h4 class="card-title pt-2">--}}
+                    {{--                                        <a href="{{url('/blog').'/'.$post->post_name}}">{{$post->post_title}}</a>--}}
+                    {{--                                    </h4>--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    @endforeach--}}
                     @foreach($posts as $post)
                         <div class="col-lg-4 responsive-column">
                             <div class="card-item card-item-layout-5 js-tilt">
@@ -621,14 +621,7 @@
                                     @else
                                         <p>No thumbnail available</p>
                                     @endif
-                                    @php
-                                        $categories = $post->taxonomies->where('taxonomy', 'category'); // Retrieve categories associated with the post
-                                    @endphp
-                                    @if($categories->isNotEmpty())
-                                        @foreach($categories as $category)
-                                            <span class="badge post-category-badge">{{$category->term->name}}</span> <!-- Display each category name -->
-                                        @endforeach
-                                    @endif
+                                    <span class="badge post-category-badge">GUIDES</span>
                                 </div>
                                 <div class="card-content">
                                     <h4 class="card-title pt-2">
