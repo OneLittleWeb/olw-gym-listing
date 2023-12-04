@@ -599,7 +599,7 @@
                                     @else
                                         <p>No thumbnail available</p>
                                     @endif
-                                    <span class="badge">{{Carbon::parse($post->post_modified)->format('F d, Y')}}</span>
+                                    <span class="badge">{{$post->category}}</span>
                                 </div>
                                 <div class="card-content">
                                     <h4 class="card-title pt-2">

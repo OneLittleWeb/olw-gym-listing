@@ -68,7 +68,6 @@ class HomeController extends Controller
         if (config('app.env') == 'production') {
             try {
                 $posts = Post::taxonomy('category', 'guides')->newest()->published()->take(6)->get();
-                dd($posts);
                 $view = $view->with('posts', $posts);
             } catch (\Exception $e) {
                 $posts = null;
