@@ -621,6 +621,14 @@
                                     @else
                                         <p>No thumbnail available</p>
                                     @endif
+                                    {{--                                    @php--}}
+                                    {{--                                        $categories = $post->taxonomies->where('taxonomy', 'category'); // Retrieve categories associated with the post--}}
+                                    {{--                                    @endphp--}}
+                                    {{--                                    @if($categories->isNotEmpty())--}}
+                                    {{--                                        @foreach($categories as $category)--}}
+                                    {{--                                            <span class="badge post-category-badge">{{$category->term->name}}</span> <!-- Display each category name -->--}}
+                                    {{--                                        @endforeach--}}
+                                    {{--                                    @endif--}}
                                     <span class="badge post-category-badge">GUIDES</span>
                                 </div>
                                 <div class="card-content">
