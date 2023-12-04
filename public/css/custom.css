@@ -347,14 +347,15 @@
     height: 206px;
 }
 
-.pros-cons-list li a{
-    color: #28a745!important;
+.pros-cons-list li a {
+    color: #28a745 !important;
 }
 
 .post-category-badge {
     background-color: #f8c401 !important;
     border-radius: 999px !important;
     text-transform: uppercase !important;
+    padding: 0.6em 1.2em !important;
 }
 
 @media screen and (max-width: 767px) {
