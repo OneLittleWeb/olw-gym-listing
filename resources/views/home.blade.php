@@ -622,11 +622,11 @@
                                         <p>No thumbnail available</p>
                                     @endif
                                     @php
-                                        $categories = $post->terms('category'); // Retrieve categories associated with the post
+                                        $categories = $post->taxonomies->where('taxonomy', 'category'); // Retrieve categories associated with the post
                                     @endphp
                                     @if($categories->isNotEmpty())
                                         @foreach($categories as $category)
-                                            <span class="badge">{{$category->name}}</span> <!-- Display each category name -->
+                                            <span class="badge">{{$category->term->name}}</span> <!-- Display each category name -->
                                         @endforeach
                                     @endif
                                 </div>
