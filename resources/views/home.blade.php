@@ -626,7 +626,7 @@
                                     @endphp
                                     @if($categories->isNotEmpty())
                                         @foreach($categories as $category)
-                                            <span class="badge">{{$category->term->name}}</span> <!-- Display each category name -->
+                                            <span class="badge post-category-badge">{{$category->term->name}}</span> <!-- Display each category name -->
                                         @endforeach
                                     @endif
                                 </div>
