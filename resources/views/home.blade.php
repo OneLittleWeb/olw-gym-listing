@@ -599,7 +599,7 @@
                                     @else
                                         <p>No thumbnail available</p>
                                     @endif
-                                    <span class="badge">{{$post->category}}</span>
+                                    <span class="badge">{{$post->post_category}}</span>
                                 </div>
                                 <div class="card-content">
                                     <h4 class="card-title pt-2">
