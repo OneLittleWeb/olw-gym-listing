@@ -353,6 +353,8 @@
 
 .post-category-badge {
     background-color: #f8c401 !important;
+    border-radius: 999px !important;
+    text-transform: uppercase !important;
 }
 
 @media screen and (max-width: 767px) {
