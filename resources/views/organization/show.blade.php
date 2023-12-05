@@ -1022,7 +1022,6 @@
         function displayModalContent(event, keyword, count, slug) {
             event.preventDefault();
 
-            // Show the loader
             $('#pros_cons_loader').show();
 
             $.ajax({
@@ -1082,8 +1081,7 @@
                     $('#pros_cons_loader').hide();
                 },
                 error: function (xhr, status, error) {
-                    console.error(error); // Log any errors
-                    // Hide the loader in case of an error
+                    console.error(error);
                     $('#pros_cons_loader').hide();
                 }
             });
