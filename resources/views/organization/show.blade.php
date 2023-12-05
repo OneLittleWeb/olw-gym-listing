@@ -284,12 +284,21 @@
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Pros & Cons</h3>
                                 <div class="stroke-shape mb-4"></div>
+{{--                                <ul class="tag-list pros-cons-list">--}}
+{{--                                    @foreach ($pros_and_cons as $keyword => $count)--}}
+{{--                                        <li><a href="#" data-toggle="modal"--}}
+{{--                                               data-target="#getProsConsModal">{{ $keyword }} ({{ $count }})</a></li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+
                                 <ul class="tag-list pros-cons-list">
                                     @foreach ($pros_and_cons as $keyword => $count)
-                                        <li><a href="#">{{ $keyword }} ({{ $count }})</a></li>
+                                        <li><a href="#" onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }} ({{ $count }})</a></li>
                                     @endforeach
                                 </ul>
                             </div>
+
+{{--                            @include('organization.partials.pros_cons_modal')--}}
                         @endif
 
                         @if($organization->reviews->count())
@@ -972,9 +981,53 @@
     <!-- ================================
         END CARD AREA
     ================================= -->
+
+    <div class="modal fade" id="getProsConsModal" tabindex="-1" role="dialog" aria-labelledby="getProsConsTitle" aria-hidden="true">
+        <!-- Modal content will be populated dynamically -->
+    </div>
 @endsection
 @section('js')
     <script src="{{asset('plugins/ratings/src/jquery.star-rating-svg.js')}}"></script>
+    <script>
+        function displayModalContent(event, keyword, count ,slug) {
+            event.preventDefault();
+
+            let modalContent = `
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <!-- Your modal content here -->
+                <div class="modal-header suggest-edit-modal-header">
+                    <!-- Header content -->
+                    <div class="row">
+                        <div class="col-10">
+                            <h5 class="modal-title">Review Keywords Analysis</h5>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="close suggest-edit-close-button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="review-keyword text-capitalize pt-2">
+                        <span class="la la-circle-thin mr-2 green-circle"></span>${keyword} (${count})
+                    </p>
+                </div>
+                <div class="block-card mb-4">
+                    <div class="tab-content review-tab-content">
+                        <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="google-tab">
+                            <!-- Your reviews content -->
+                            <!-- Add content from your reviews here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+            $('#getProsConsModal').html(modalContent);
+            $('#getProsConsModal').modal('show');
+        }
+    </script>
 @endsection
 @section('json-ld')
     <!-- =======Schema======= -->

@@ -270,6 +270,58 @@ class OrganizationController extends Controller
         return $matched_pros_cons; // Return the sorted array of pros and cons
     }
 
+//    public function prosCons($organization)
+//    {
+//        $all_pros_cons = [
+//            'great gym', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly', 'great environment',
+//            'friendly staff', 'love this place', 'great staff', 'love this gym', 'very friendly',
+//            'great atmosphere', 'absolutely fantastic', 'definitely come back', 'nice staff', 'love the place', 'recommended',
+//            'friendly and professional', 'helpful and knowledgeable', 'very helpful', 'friendly and welcoming', 'great experience',
+//            'so convenient', 'great people', 'great place', 'price was very reasonable', '24 hours',
+//            'well organized', 'great management', 'helped me', 'affordable', 'good people', 'will be back',
+//            'very welcoming', 'highly recommend', 'wonderful staff', 'best place', 'feel comfortable', 'reasonable price', 'fair price'
+//        ];
+//
+//        $matched_pros_cons = [];
+//
+//        // Initialize count for each keyword and create an array to store associated reviews
+//        foreach ($all_pros_cons as $keyword) {
+//            $matched_pros_cons[$keyword] = [
+//                'count' => 0,
+//                'reviews' => [],
+//            ];
+//        }
+//
+//        $reviews = $organization->reviews()->get();
+//
+//        foreach ($reviews as $review) {
+//            $review_text = strtolower($review->review_text_original);
+//
+//            // Check if any of the words in $all_pros_cons exist in the review text
+//            foreach ($all_pros_cons as $keyword) {
+//                if (stripos($review_text, strtolower($keyword)) !== false) {
+//                    // Increment count for the matched keyword
+//                    $matched_pros_cons[$keyword]['count']++;
+//
+//                    // Store the review text for the matched keyword
+//                    $matched_pros_cons[$keyword]['reviews'][] = $review->review_text_original;
+//                }
+//            }
+//        }
+//
+//        // Remove keywords with zero matches
+//        $matched_pros_cons = array_filter($matched_pros_cons, function ($item) {
+//            return $item['count'] > 0;
+//        });
+//
+//        // Sort by count in descending order
+//        arsort($matched_pros_cons);
+//
+//        dd($matched_pros_cons);
+//
+//        return $matched_pros_cons;
+//    }
+
     public function claimBusiness($slug)
     {
         $cities = City::all();

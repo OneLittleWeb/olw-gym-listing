@@ -348,7 +348,7 @@
 }
 
 .pros-cons-list li a {
-    color: #28a745 !important;
+    color: #198754 !important;
 }
 
 .post-category-badge {
@@ -356,6 +356,30 @@
     border-radius: 999px !important;
     text-transform: uppercase !important;
     padding: 0.6em 1.2em !important;
+}
+
+.green-circle {
+    color: #198754;
+    background-color: #198754;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+
+.block-card {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.review-tab-content{
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.review-keyword {
+    font-size: 16px;
+    color: #131443;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 767px) {
