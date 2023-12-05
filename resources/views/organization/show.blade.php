@@ -284,13 +284,6 @@
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Pros & Cons</h3>
                                 <div class="stroke-shape mb-4"></div>
-{{--                                <ul class="tag-list pros-cons-list">--}}
-{{--                                    @foreach ($pros_and_cons as $keyword => $count)--}}
-{{--                                        <li><a href="#" data-toggle="modal"--}}
-{{--                                               data-target="#getProsConsModal">{{ $keyword }} ({{ $count }})</a></li>--}}
-{{--                                    @endforeach--}}
-{{--                                </ul>--}}
-
                                 <ul class="tag-list pros-cons-list">
                                     @foreach ($pros_and_cons as $keyword => $count)
                                         <li><a href="#" onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }} ({{ $count }})</a></li>
