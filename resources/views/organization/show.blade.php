@@ -981,6 +981,9 @@
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
+                <!-- pros_cons_loader -->
+                <div id="pros_cons_loader" class="pros_cons_loader"></div>
+
                 <div class="modal-header suggest-edit-modal-header">
                     <div class="row">
                         <div class="col-10">
@@ -1004,41 +1007,7 @@
                         <div class="tab-pane fade show active" role="tabpanel"
                              aria-labelledby="google-tab">
                             <div class="comments-list" id="review_pros_cons_list">
-                                @foreach($organization->reviews_paginator as $review)
-                                    <div class="comment">
-                                        @if($review->reviewer_name)
-                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
-                                                <img
-                                                    src="{{ Avatar::create($review->reviewer_name)->toBase64() }}"
-                                                    alt="author-img">
-                                            </div>
-                                        @else
-                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
-                                                <img src="{{ asset('images/bb.png') }}"
-                                                     alt="author-img">
-                                            </div>
-                                        @endif
-                                        <div class="comment-body">
-                                            <div
-                                                class="meta-data d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <h4 class="comment__title">{{ $review->reviewer_name }}</h4>
-                                                </div>
-                                                <div class="star-rating-wrap text-center">
-                                                    <div class="users_review_ratings"
-                                                         data-rating="{{ $review->review_rate_stars }}">
-                                                    </div>
-                                                    @if($review->review_date)
-                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->review_specified_date)->diffForHumans() }}</p>
-                                                    @else
-                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->created_at)->diffForHumans() }}</p>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <p class="comment-desc">{{ $review->review_text_original }}</p>
-                                        </div>
-                                    </div>
-                                @endforeach
+
                             </div>
                         </div>
                     </div>
@@ -1053,11 +1022,13 @@
         function displayModalContent(event, keyword, count, slug) {
             event.preventDefault();
 
+            // Show the loader
+            $('#pros_cons_loader').show();
+
             $.ajax({
                 url: `/get-pros-cons/${slug}/${keyword}`,
                 method: 'GET',
                 success: function (response) {
-                    console.log(response);
                     document.getElementById('keyword_count').innerHTML = `${keyword} (${count})`;
 
                     let modalContent = '';
@@ -1107,27 +1078,16 @@
                             useGradient: false
                         });
                     }
+
+                    $('#pros_cons_loader').hide();
                 },
                 error: function (xhr, status, error) {
                     console.error(error); // Log any errors
+                    // Hide the loader in case of an error
+                    $('#pros_cons_loader').hide();
                 }
             });
         }
-    </script>
-    <script>
-        $(document).ready(function() {
-            if ($.fn.starRating) {
-                $('.pros_cons_review_ratings').starRating({
-                    totalStars: 5,
-                    starSize: 18,
-                    starShape: 'rounded',
-                    emptyColor: 'lightgray',
-                    activeColor: '#FFA718',
-                    readOnly: true,
-                    useGradient: false
-                });
-            }
-        });
     </script>
 @endsection
 @section('json-ld')
