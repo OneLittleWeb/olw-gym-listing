@@ -35,10 +35,10 @@ return [
     'height' => 100,
 
     // Number of characters used as initials. If name consists of single word, the first N character will be used
-    'chars' => 1,
+    'chars' => 2,
 
     // font size
-    'fontSize' => 48,
+    'fontSize' => 40,
 
     // convert initial letter in uppercase
     'uppercase' => false,
