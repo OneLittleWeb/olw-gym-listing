@@ -1046,7 +1046,7 @@
                         modalContent += `
                     <div class="comment">
                         <div class="user-thumb user-thumb-lg flex-shrink-0">
-                            <img src="${review.reviewer_name ? `https://ui-avatars.com/api/?name=${review.reviewer_name}&background=random` : '{{ asset('images/bb.png') }}'}" alt="author-img" loading="lazy">
+                            <img src="${review.reviewer_name ? `https://ui-avatars.com/api/?name=${review.reviewer_name}&background=random` : '{{ asset('images/bb.png') }}'}" alt="author-img">
                         </div>
                         <div class="comment-body">
                             <div class="meta-data d-flex align-items-center justify-content-between">
