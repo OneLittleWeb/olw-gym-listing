@@ -226,7 +226,7 @@ class OrganizationController extends Controller
     public function prosCons($organization)
     {
         $all_pros_cons = [
-            'great gym', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly', 'great environment',
+            'great gym', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly environment', 'great environment',
             'friendly staff', 'love this place', 'great staff', 'love this gym', 'very friendly',
             'great atmosphere', 'absolutely fantastic', 'definitely come back', 'nice staff', 'love the place', 'recommended',
             'friendly and professional', 'helpful and knowledgeable', 'very helpful', 'friendly and welcoming', 'great experience',

@@ -286,12 +286,14 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list pros-cons-list">
                                     @foreach ($pros_and_cons as $keyword => $count)
-                                        <li><a href="#" onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }} ({{ $count }})</a></li>
+                                        <li><a href="#"
+                                               onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}
+                                                ({{ $count }})</a></li>
                                     @endforeach
                                 </ul>
                             </div>
 
-{{--                            @include('organization.partials.pros_cons_modal')--}}
+                            {{--                            @include('organization.partials.pros_cons_modal')--}}
                         @endif
 
                         @if($organization->reviews->count())
@@ -975,8 +977,74 @@
         END CARD AREA
     ================================= -->
 
-    <div class="modal fade" id="getProsConsModal" tabindex="-1" role="dialog" aria-labelledby="getProsConsTitle" aria-hidden="true">
-        <!-- Modal content will be populated dynamically -->
+    <div class="modal fade" id="getProsConsModal" tabindex="-1" role="dialog" aria-labelledby="getProsConsTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header suggest-edit-modal-header">
+                    <div class="row">
+                        <div class="col-10">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Review Keywords Analysis</h5>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="close suggest-edit-close-button" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <p class="review-keyword text-capitalize pt-2">
+                        <span class="la la-circle-thin mr-2 green-circle"></span><span id="keyword_count"></span>
+                    </p>
+
+                </div>
+                <div class="block-card pros-cons-block-card mb-4">
+                    <div class="tab-content review-tab-content">
+                        <div class="tab-pane fade show active" role="tabpanel"
+                             aria-labelledby="google-tab">
+                            <div class="comments-list" id="review_pros_cons_list">
+                                @foreach($organization->reviews_paginator as $review)
+                                    <div class="comment">
+                                        @if($review->reviewer_name)
+                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
+                                                <img
+                                                    src="{{ Avatar::create($review->reviewer_name)->toBase64() }}"
+                                                    alt="author-img">
+                                            </div>
+                                        @else
+                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
+                                                <img src="{{ asset('images/bb.png') }}"
+                                                     alt="author-img">
+                                            </div>
+                                        @endif
+                                        <div class="comment-body">
+                                            <div
+                                                class="meta-data d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <h4 class="comment__title">{{ $review->reviewer_name }}</h4>
+                                                </div>
+                                                <div class="star-rating-wrap text-center">
+                                                    <div class="users_review_ratings"
+                                                         data-rating="{{ $review->review_rate_stars }}">
+                                                    </div>
+                                                    @if($review->review_date)
+                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->review_specified_date)->diffForHumans() }}</p>
+                                                    @else
+                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->created_at)->diffForHumans() }}</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <p class="comment-desc">{{ $review->review_text_original }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('js')
@@ -986,47 +1054,80 @@
             event.preventDefault();
 
             $.ajax({
-                url: `/get-pros-cons/${slug}/${keyword}`, // Using the specified route
+                url: `/get-pros-cons/${slug}/${keyword}`,
                 method: 'GET',
-                success: function(response) {
-                    console.log(response.reviews);
-                    let modalContent = `
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header suggest-edit-modal-header">
-                            <div class="row">
-                                <div class="col-10">
-                                    <h5 class="modal-title">Review Keywords Analysis</h5>
-                                </div>
-                                <div class="col-2">
-                                    <button type="button" class="close suggest-edit-close-button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <p class="review-keyword text-capitalize pt-2">
-                                <span class="la la-circle-thin mr-2 green-circle"></span>${keyword} (${count})
-                            </p>
-                        </div>
-                        <div class="block-card mb-4">
-                            <div class="tab-content review-tab-content">
-                                <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="google-tab">
-                                    ${response} <!-- Content received from AJAX response -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+                success: function (response) {
+                    console.log(response);
+                    document.getElementById('keyword_count').innerHTML = `${keyword} (${count})`;
 
-                    $('#getProsConsModal').html(modalContent);
+                    let modalContent = '';
+                    response.reviews.forEach(review => {
+                        let reviewDate = review.review_specified_date ? review.review_specified_date : review.created_at;
+                        let formattedDate = moment(reviewDate).fromNow();
+
+                        // Function to replace matched keyword with highlighted keyword
+                        function highlightKeyword(text, keyword) {
+                            return text.replace(new RegExp(keyword, 'gi'), match => `<span class="pros-highlight">${match}</span>`);
+                        }
+
+                        let highlightedReviewText = highlightKeyword(review.review_text_original, keyword);
+
+                        modalContent += `
+                    <div class="comment">
+                        <div class="user-thumb user-thumb-lg flex-shrink-0">
+                            <img src="${review.reviewer_name ? `https://ui-avatars.com/api/?name=${review.reviewer_name}&background=fff&color=007bff` : '{{ asset('images/bb.png') }}'}" alt="author-img">
+                        </div>
+                        <div class="comment-body">
+                            <div class="meta-data d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h4 class="comment__title">${review.reviewer_name}</h4>
+                                </div>
+                                <div class="star-rating-wrap text-center">
+                                    <div class="pros_cons_review_ratings" data-rating="${review.review_rate_stars}"></div>
+                                    <p class="font-size-13 font-weight-medium">${formattedDate}</p>
+                                </div>
+                            </div>
+                            <p class="comment-desc">${highlightedReviewText}</p>
+                        </div>
+                    </div>`;
+                    });
+
+                    $('#getProsConsModal #review_pros_cons_list').html(modalContent);
                     $('#getProsConsModal').modal('show');
+
+                    // Initialize starRating after adding content to the DOM
+                    if ($.fn.starRating) {
+                        $('.pros_cons_review_ratings').starRating({
+                            totalStars: 5,
+                            starSize: 18,
+                            starShape: 'rounded',
+                            emptyColor: 'lightgray',
+                            activeColor: '#FFA718',
+                            readOnly: true,
+                            useGradient: false
+                        });
+                    }
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error(error); // Log any errors
                 }
             });
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            if ($.fn.starRating) {
+                $('.pros_cons_review_ratings').starRating({
+                    totalStars: 5,
+                    starSize: 18,
+                    starShape: 'rounded',
+                    emptyColor: 'lightgray',
+                    activeColor: '#FFA718',
+                    readOnly: true,
+                    useGradient: false
+                });
+            }
+        });
     </script>
 @endsection
 @section('json-ld')
@@ -1043,7 +1144,5 @@
             "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
     }
-
-
     </script>
 @endsection

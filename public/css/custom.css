@@ -366,12 +366,12 @@
     border-radius: 50%;
 }
 
-.block-card {
+.pros-cons-block-card {
     max-height: 600px;
     overflow-y: auto;
 }
 
-.review-tab-content{
+.review-tab-content {
     padding: 20px;
     background-color: #f8f8f8;
 }
@@ -380,6 +380,11 @@
     font-size: 16px;
     color: #131443;
     font-weight: 600;
+}
+
+.pros-highlight {
+    color: #36cc7b;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 767px) {
