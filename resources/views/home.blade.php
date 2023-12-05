@@ -580,8 +580,8 @@
                             </div>
                             <h2 class="sec__title">Articles You Might <span class="text-color-16">Like.</span></h2>
                             <p class="sec__desc">
-                                GymNearX blog inspires fitness enthusiasts with engaging articles on workouts,
-                                nutrition, and wellness, providing valuable insights for a healthier lifestyle
+                                We want to inspire you with articles on workouts, nutrition, and wellness, providing
+                                valuable insights for a healthier lifestyle crafted by experts
                             </p>
                         </div>
                     </div>
