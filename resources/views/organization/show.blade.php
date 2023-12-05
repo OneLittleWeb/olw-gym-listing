@@ -982,43 +982,50 @@
 @section('js')
     <script src="{{asset('plugins/ratings/src/jquery.star-rating-svg.js')}}"></script>
     <script>
-        function displayModalContent(event, keyword, count ,slug) {
+        function displayModalContent(event, keyword, count, slug) {
             event.preventDefault();
 
-            let modalContent = `
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <!-- Your modal content here -->
-                <div class="modal-header suggest-edit-modal-header">
-                    <!-- Header content -->
-                    <div class="row">
-                        <div class="col-10">
-                            <h5 class="modal-title">Review Keywords Analysis</h5>
+            $.ajax({
+                url: `/get-pros-cons/${slug}/${keyword}`, // Using the specified route
+                method: 'GET',
+                success: function(response) {
+                    console.log(response.reviews);
+                    let modalContent = `
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header suggest-edit-modal-header">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h5 class="modal-title">Review Keywords Analysis</h5>
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="close suggest-edit-close-button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="review-keyword text-capitalize pt-2">
+                                <span class="la la-circle-thin mr-2 green-circle"></span>${keyword} (${count})
+                            </p>
                         </div>
-                        <div class="col-2">
-                            <button type="button" class="close suggest-edit-close-button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="block-card mb-4">
+                            <div class="tab-content review-tab-content">
+                                <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="google-tab">
+                                    ${response} <!-- Content received from AJAX response -->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class="review-keyword text-capitalize pt-2">
-                        <span class="la la-circle-thin mr-2 green-circle"></span>${keyword} (${count})
-                    </p>
                 </div>
-                <div class="block-card mb-4">
-                    <div class="tab-content review-tab-content">
-                        <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="google-tab">
-                            <!-- Your reviews content -->
-                            <!-- Add content from your reviews here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+            `;
 
-            $('#getProsConsModal').html(modalContent);
-            $('#getProsConsModal').modal('show');
+                    $('#getProsConsModal').html(modalContent);
+                    $('#getProsConsModal').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // Log any errors
+                }
+            });
         }
     </script>
 @endsection
