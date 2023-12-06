@@ -48,11 +48,11 @@ class SitemapController extends Controller
         foreach ($states as $state) {
             foreach ($state->cities as $city) {
 
-                $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
+                $organization_categories = Organization::select('organization_category', 'organization_category_slug', DB::raw('COUNT(*) as category_count'))
                     ->where('state_id', $state->id)
                     ->where('city_id', $city->id)
-                    ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
-                    ->orderBy('category_count', 'desc')
+                    ->groupBy('organization_category', 'organization_category_slug')
+                    ->orderByDesc('category_count')
                     ->get();
 
                 foreach ($organization_categories as $organization_category) {
