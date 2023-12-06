@@ -70,39 +70,33 @@ class SitemapController extends Controller
         $sitemap->addSitemap(URL::to('sitemap_state_business.xml'), $now);
         $sitemap->addSitemap(URL::to('sitemap_state_city_business.xml'), $now);
 
-        // fetch records in batches of 2000
-        Organization::chunk(2000, function ($businesses) use ($sitemap, &$counter, &$sitemapCounter, $now) {
-            // add every record to multiple sitemaps with one sitemap index
-            foreach ($businesses as $business) {
-                if ($counter == 2000) {
-                    // generate new sitemap file
-                    $sitemap->store('xml', 'sitemap_state_city_business_0' . $sitemapCounter);
-                    // add the file to the sitemaps array
-                    $sitemap->addSitemap(secure_url('sitemap_state_city_business_0' . $sitemapCounter . '.xml'), $now);
-                    // reset items array (clear memory)
-                    $sitemap->model->resetItems();
-                    // reset the counter
-                    $counter = 0;
-                    // count generated sitemap
-                    $sitemapCounter++;
+
+        //fetch state wise all businesses
+        $states = State::all();
+
+        // Create a main sitemap instance
+        $sitemap = App::make("sitemap");
+
+        // Array to store sitemap instances for each state
+        $sitemapStates = [];
+
+        foreach ($states as $state) {
+            // Create an empty sitemap instance for the current state
+            $sitemapStates[$state->name] = App::make("sitemap");
+
+            // Fetch organizations for the current state in batches of 2000 using chunk
+            $state->organizations()->chunk(2000, function ($organizations) use ($now, $state, &$sitemapStates) {
+                foreach ($organizations as $organization) {
+                    // Add organization routes to the sitemap for the current state
+                    $sitemapStates[$state->name]->add(route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
                 }
+            });
 
-                // add record to items array
-                $sitemap->add(route('city.wise.organization', ['city_slug' => $business->city->slug, 'organization_slug' => $business->slug]), $now, '0.8', 'daily');
+            // Store sitemap file for each state after adding all organizations
+            $sitemapStates[$state->name]->store('xml', 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business');
 
-                // count number of elements
-                $counter++;
-            }
-        });
-
-// you need to check for unused items
-        if (!empty($sitemap->model->getItems())) {
-            // generate sitemap with last items
-            $sitemap->store('xml', 'sitemap_state_city_business_0' . $sitemapCounter);
-            // add sitemap to sitemaps array
-            $sitemap->addSitemap(secure_url('sitemap_state_city_business_0' . $sitemapCounter . '.xml'), $now);
-            // reset items array
-            $sitemap->model->resetItems();
+            // Add sitemap to the main sitemap index
+            $sitemap->addSitemap(secure_url('sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business.xml'), $now);
         }
 
         $sitemap->store('sitemapindex', 'sitemap');
