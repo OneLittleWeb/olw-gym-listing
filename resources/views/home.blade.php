@@ -607,7 +607,7 @@
                                     {{--                                            <span class="badge post-category-badge">{{$category->term->name}}</span> <!-- Display each category name -->--}}
                                     {{--                                        @endforeach--}}
                                     {{--                                    @endif--}}
-                                    <span class="badge post-category-badge">GUIDES</span>
+                                    <a href="blog/category/guides" class="badge post-category-badge">GUIDES</a>
                                 </div>
                                 <div class="card-content">
                                     <h4 class="card-title pt-2">
