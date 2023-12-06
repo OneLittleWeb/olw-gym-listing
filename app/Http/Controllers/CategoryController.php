@@ -44,6 +44,9 @@ class CategoryController extends Controller
 
             $s_state->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
 
+            $category_name = Str::lower(Str::plural($organizations[0]->organization_category, $organization_category_count));
+            $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $s_state->name . ', ' . $category_name .' in '  . $s_state->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $s_state->name;
+
             Meta::setPaginationLinks($organizations);
 
             // Render the view as a string.
