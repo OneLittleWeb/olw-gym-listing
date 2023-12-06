@@ -9,7 +9,6 @@
             ->setCanonical(request()->fullUrl())
             }}
     <title>@yield('title')</title>
-    <meta name="robots" content="noindex,nofollow"/>
     <meta name="description" content="@yield('meta_description')"/>
     <meta name="keywords" content="@yield('meta_keywords')">
     <meta property="og:image" content="@yield('sharingimg')">
