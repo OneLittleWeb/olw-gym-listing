@@ -26,7 +26,7 @@
     <meta data-rh="true" name="twitter:image:src" content="@yield('sharingimg')"/>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@100;300;400;500;600;700;800&display=swap"
           rel="stylesheet">
-{{--    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap' rel='stylesheet'>--}}
+    {{--    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap' rel='stylesheet'>--}}
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/line-awesome.min.css')}}">
@@ -47,9 +47,8 @@
     @yield('css')
     @yield('json-ld')
     @production
-        <!-- Clarity tracking -->
-        <script>
-            (function (c, l, a, r, i, t, y) {
+        <!-- Clarity tracking code for https://gymnearx.com/ -->
+        <script> (function (c, l, a, r, i, t, y) {
                 c[a] = c[a] || function () {
                     (c[a].q = c[a].q || []).push(arguments)
                 };
@@ -58,14 +57,17 @@
                 t.src = "https://www.clarity.ms/tag/" + i + "?ref=bwt";
                 y = l.getElementsByTagName(r)[0];
                 y.parentNode.insertBefore(t, y);
-            })(window, document, "clarity", "script", "gisv7cfnth");
-        </script>
+            })(window, document, "clarity", "script", "k1oa839p2j");</script>
 
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6GMWZHSYY"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
             gtag('js', new Date());
 
             gtag('config', 'G-S6GMWZHSYY');
