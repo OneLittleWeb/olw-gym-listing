@@ -981,9 +981,6 @@
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
-                <!-- pros_cons_loader -->
-                <div id="pros_cons_loader" class="pros_cons_loader"></div>
-
                 <div class="modal-header suggest-edit-modal-header">
                     <div class="row">
                         <div class="col-10">
@@ -1006,6 +1003,7 @@
                     <div class="tab-content review-tab-content">
                         <div class="tab-pane fade show active" role="tabpanel"
                              aria-labelledby="google-tab">
+                            <div id="pros_cons_loader" class="pros_cons_loader"></div>
                             <div class="comments-list" id="review_pros_cons_list">
 
                             </div>
@@ -1021,6 +1019,10 @@
     <script>
         function displayModalContent(event, keyword, count, slug) {
             event.preventDefault();
+
+            $('#getProsConsModal').modal('show');
+
+            $('#getProsConsModal #review_pros_cons_list').empty();
 
             $('#pros_cons_loader').show();
 
@@ -1063,7 +1065,6 @@
                     });
 
                     $('#getProsConsModal #review_pros_cons_list').html(modalContent);
-                    $('#getProsConsModal').modal('show');
 
                     // Initialize starRating after adding content to the DOM
                     if ($.fn.starRating) {
