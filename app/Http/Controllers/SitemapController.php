@@ -9,6 +9,7 @@ use App\Models\State;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 class SitemapController extends Controller
@@ -16,14 +17,14 @@ class SitemapController extends Controller
     public function sitemapStore()
     {
         $now = Carbon::now()->format('Y-m-d\T00:00:00+06:00');
-        // create new sitemap object
+
+        // Create sitemap for pages
         $sitemap_pages = App::make("sitemap");
-        // add item to the sitemap (url, date, priority, freq)
         $sitemap_pages->add(route('home'), $now, '1.0', 'daily');
         $sitemap_pages->add(route('states.index'), $now, '1.0', 'daily');
         $sitemap_pages->store('xml', 'sitemap-pages');
 
-        //For state business
+        // Generate sitemap for state business
         $sitemap_state_business = App::make("sitemap");
         $business_states = State::all();
 
@@ -42,7 +43,7 @@ class SitemapController extends Controller
         }
         $sitemap_state_business->store('xml', 'sitemap_state_business');
 
-        //state and city wise businesses
+        // Generate sitemap for state and city wise businesses
         $sitemap_state_city_business = App::make("sitemap");
         $states = State::all();
         foreach ($states as $state) {
@@ -64,38 +65,24 @@ class SitemapController extends Controller
         }
         $sitemap_state_city_business->store('xml', 'sitemap_state_city_business');
 
-        // create sitemap index
+        // Create the main sitemap index
         $sitemap = App::make("sitemap");
         $sitemap->addSitemap(URL::to('sitemap-pages.xml'), $now);
         $sitemap->addSitemap(URL::to('sitemap_state_business.xml'), $now);
         $sitemap->addSitemap(URL::to('sitemap_state_city_business.xml'), $now);
 
-
-        //fetch state wise all businesses
+        // Fetch state-wise organizations and create sitemap instances
         $states = State::all();
-
-        // Create a main sitemap instance
-        $sitemap = App::make("sitemap");
-
-        // Array to store sitemap instances for each state
-        $sitemapStates = [];
-
         foreach ($states as $state) {
-            // Create an empty sitemap instance for the current state
-            $sitemapStates[$state->name] = App::make("sitemap");
+            $sitemap_state_wise_business = App::make("sitemap");
 
-            // Fetch organizations for the current state in batches of 2000 using chunk
-            $state->organizations()->chunk(2000, function ($organizations) use ($now, $state, &$sitemapStates) {
+            $state->organizations()->chunk(2000, function ($organizations) use ($now, $state, &$sitemap_state_wise_business) {
                 foreach ($organizations as $organization) {
-                    // Add organization routes to the sitemap for the current state
-                    $sitemapStates[$state->name]->add(route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
+                    $sitemap_state_wise_business->add(route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
                 }
             });
 
-            // Store sitemap file for each state after adding all organizations
-            $sitemapStates[$state->name]->store('xml', 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business');
-
-            // Add sitemap to the main sitemap index
+            $sitemap_state_wise_business->store('xml', 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business');
             $sitemap->addSitemap(secure_url('sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business.xml'), $now);
         }
 
