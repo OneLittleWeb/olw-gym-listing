@@ -1023,6 +1023,7 @@
             $('#getProsConsModal').modal('show');
 
             $('#getProsConsModal #review_pros_cons_list').empty();
+            $('#keyword_count').text(`${keyword} (${count})`);
 
             $('#pros_cons_loader').show();
 
@@ -1030,8 +1031,6 @@
                 url: `/get-pros-cons/${slug}/${keyword}`,
                 method: 'GET',
                 success: function (response) {
-                    document.getElementById('keyword_count').innerHTML = `${keyword} (${count})`;
-
                     let modalContent = '';
                     response.reviews.forEach(review => {
                         let reviewDate = review.review_specified_date ? review.review_specified_date : review.created_at;
