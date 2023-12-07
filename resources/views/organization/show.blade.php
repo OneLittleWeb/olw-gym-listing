@@ -1036,7 +1036,7 @@
             $('#pros_cons_loader').show();
 
             $.ajax({
-                url: `/get-pros-cons/${slug}/${keyword}`,
+                url: `/get-pros-reviews/${slug}/${keyword}`,
                 method: 'GET',
                 success: function (response) {
                     let modalContent = '';
