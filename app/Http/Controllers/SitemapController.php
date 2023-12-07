@@ -70,17 +70,28 @@ class SitemapController extends Controller
 
         // Fetch state-wise organizations and create sitemap instances
         $states = State::all();
+
         foreach ($states as $state) {
-            $sitemap_state_wise_business = App::make("sitemap");
+            $chunkNumber = 1;
 
-            $state->organizations()->chunk(2000, function ($organizations) use ($now, $state, &$sitemap_state_wise_business) {
+            $state->organizations()->chunk(10000, function ($organizations) use ($now, $state, &$sitemap, &$chunkNumber) {
+                $sitemap_state_wise_business = App::make("sitemap");
+
                 foreach ($organizations as $organization) {
-                    $sitemap_state_wise_business->add(route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
+                    $sitemap_state_wise_business->add(
+                        route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
                 }
-            });
 
-            $sitemap_state_wise_business->store('xml', 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business');
-            $sitemap->addSitemap(secure_url('sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business.xml'), $now);
+                $sitemapFilename = 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business';
+                if ($chunkNumber > 1) {
+                    $sitemapFilename .= sprintf("%02d", $chunkNumber);
+                }
+
+                $sitemap_state_wise_business->store('xml', $sitemapFilename);
+                $sitemap->addSitemap(secure_url($sitemapFilename . '.xml'), $now);
+
+                $chunkNumber++;
+            });
         }
 
         $sitemap->store('sitemapindex', 'sitemap');

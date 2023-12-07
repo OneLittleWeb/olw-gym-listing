@@ -351,6 +351,11 @@
     color: #198754 !important;
 }
 
+.review-cons-list li a {
+    color: #131443 !important;
+    background-color: #feeeed !important;
+}
+
 .post-category-badge {
     background-color: #f8c401 !important;
     border-radius: 999px !important;

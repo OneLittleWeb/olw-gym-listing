@@ -286,11 +286,21 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list pros-cons-list">
                                     @foreach ($pros_and_cons as $keyword => $count)
-                                        <li><a href="#"
-                                               onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}
-                                                ({{ $count }})</a></li>
+                                        <li><a href="#" onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}
+                                                ({{ $count }})</a>
+                                        </li>
                                     @endforeach
                                 </ul>
+
+{{--                                <hr>--}}
+
+{{--                                <ul class="tag-list review-cons-list">--}}
+{{--                                    @foreach ($pros_and_cons as $keyword => $count)--}}
+{{--                                        <li><a href="#"--}}
+{{--                                               onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}--}}
+{{--                                                ({{ $count }})</a></li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
                             </div>
                         @endif
 
