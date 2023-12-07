@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', config('app.name') . " THE Local Gym Directory")
+@section('title', config('app.name') . " THE Local Gyms Directory")
 @section('meta_description', "Explore every best place and service nearby or anywhere in the USA. Photos-business hours-phone numbers-ratings-reviews-service details- all in one place.")
 @section('meta_keywords',"USA, gymnearx, best gyms in the USA")
 @section('content')
