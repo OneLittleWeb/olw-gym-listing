@@ -280,13 +280,13 @@
                             </div>
                         @endif
 
-                        @if(count($pros_and_cons))
+                        @if(count($all_review_pros))
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Pros & Cons</h3>
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list pros-cons-list">
-                                    @foreach ($pros_and_cons as $keyword => $count)
-                                        <li><a href="#" onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}
+                                    @foreach ($all_review_pros as $keyword => $count)
+                                        <li><a href="#" onclick="displayReviewPros(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}
                                                 ({{ $count }})</a>
                                         </li>
                                     @endforeach
@@ -297,7 +297,7 @@
 {{--                                <ul class="tag-list review-cons-list">--}}
 {{--                                    @foreach ($pros_and_cons as $keyword => $count)--}}
 {{--                                        <li><a href="#"--}}
-{{--                                               onclick="displayModalContent(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}--}}
+{{--                                               onclick="displayReviewPros(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}--}}
 {{--                                                ({{ $count }})</a></li>--}}
 {{--                                    @endforeach--}}
 {{--                                </ul>--}}
@@ -1025,7 +1025,7 @@
 @section('js')
     <script src="{{asset('plugins/ratings/src/jquery.star-rating-svg.js')}}"></script>
     <script>
-        function displayModalContent(event, keyword, count, slug) {
+        function displayReviewPros(event, keyword, count, slug) {
             event.preventDefault();
 
             $('#getProsConsModal').modal('show');

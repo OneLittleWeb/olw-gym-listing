@@ -134,7 +134,7 @@ class OrganizationController extends Controller
                 ->limit(4)
                 ->get();
 
-            $pros_and_cons = $this->getReviewPros($organization);
+            $all_review_pros = $this->getReviewPros($organization);
 
             if ($organization->organization_work_time && $organization->organization_work_time != ". Hide open hours for the week") {
                 $organization_work_time_exploded = explode(';', $organization->organization_work_time);
@@ -214,9 +214,9 @@ class OrganizationController extends Controller
                 $seventh_day_opening_hours = ltrim($seventh_day_work_hours[0]);
                 $seventh_day_closing_hours = ltrim($seventh_day_work_hours[1]);
 
-                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours', 'pros_and_cons'))->render();
+                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours', 'all_review_pros'))->render();
             } else {
-                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'pros_and_cons'))->render();
+                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'all_review_pros'))->render();
             }
         }
 
@@ -225,7 +225,7 @@ class OrganizationController extends Controller
 
     public function getReviewPros($organization)
     {
-        $all_pros_cons = [
+        $all_pros = [
             'great gym', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly environment', 'friendly' ,'great environment',
             'friendly staff', 'love this place', 'great staff', 'love this gym', 'very friendly',
             'great atmosphere', 'absolutely fantastic', 'definitely come back', 'nice staff', 'love the place', 'recommended',
@@ -235,11 +235,11 @@ class OrganizationController extends Controller
             'very welcoming', 'highly recommend', 'wonderful staff', 'best place', 'feel comfortable', 'reasonable price', 'fair price'
         ];
 
-        $matched_count = [];
+        $matched_pros_count = [];
 
         // Initialize count for each keyword to 0
-        foreach ($all_pros_cons as $keyword) {
-            $matched_count[$keyword] = 0;
+        foreach ($all_pros as $keyword) {
+            $matched_pros_count[$keyword] = 0;
         }
 
         // Assuming $organization->reviews() retrieves all reviews related to the organization
@@ -252,26 +252,77 @@ class OrganizationController extends Controller
             // Check if review stars are greater than 2
             if ($review_stars > 2) {
                 // Loop through the keywords array to find matches in the review text
-                foreach ($all_pros_cons as $keyword) {
+                foreach ($all_pros as $keyword) {
                     if (stripos($review_text, strtolower($keyword)) !== false) {
                         // Increment count for the matched keyword
-                        $matched_count[$keyword]++;
+                        $matched_pros_count[$keyword]++;
                     }
                 }
             }
         }
 
         // Remove duplicate keywords and create a single array containing keywords and their respective counts
-        $matched_pros_cons = [];
-        foreach ($matched_count as $keyword => $count) {
-            if ($count > 0 && !in_array($keyword, array_keys($matched_pros_cons))) {
-                $matched_pros_cons[$keyword] = $count;
+        $matched_pros = [];
+        foreach ($matched_pros_count as $keyword => $count) {
+            if ($count > 0 && !in_array($keyword, array_keys($matched_pros))) {
+                $matched_pros[$keyword] = $count;
             }
         }
 
-        arsort($matched_pros_cons);
+        arsort($matched_pros);
 
-        return $matched_pros_cons; // Return the sorted array of pros and cons
+        return $matched_pros; // Return the sorted array of pros and cons
+    }
+
+    public function getReviewCons($organization)
+    {
+        $all_cons = [
+            'great', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly environment', 'friendly' ,'great environment',
+            'friendly staff', 'love this place', 'great staff', 'love this gym', 'very friendly',
+            'great atmosphere', 'absolutely fantastic', 'definitely come back', 'nice staff', 'love the place', 'recommended',
+            'friendly and professional', 'helpful and knowledgeable', 'very helpful', 'friendly and welcoming', 'great experience',
+            'so convenient', 'great people', 'great place', 'price was very reasonable', '24 hours',
+            'well organized', 'great management', 'helped me', 'affordable', 'good people', 'will be back',
+            'very welcoming', 'highly recommend', 'wonderful staff', 'best place', 'feel comfortable', 'reasonable price', 'fair price'
+        ];
+
+        $matched_cons_count = [];
+
+        // Initialize count for each keyword to 0
+        foreach ($all_cons as $keyword) {
+            $matched_cons_count[$keyword] = 0;
+        }
+
+        // Assuming $organization->reviews() retrieves all reviews related to the organization
+        $reviews = $organization->reviews()->get();
+
+        foreach ($reviews as $review) {
+            $review_text = strtolower($review->review_text_original); // Convert text to lowercase for case-insensitive comparison
+            $review_stars = $review->review_rate_stars; // Retrieve review stars
+
+            // Check if review stars are greater than 2
+            if ($review_stars > 2) {
+                // Loop through the keywords array to find matches in the review text
+                foreach ($all_cons as $keyword) {
+                    if (stripos($review_text, strtolower($keyword)) !== false) {
+                        // Increment count for the matched keyword
+                        $matched_cons_count[$keyword]++;
+                    }
+                }
+            }
+        }
+
+        // Remove duplicate keywords and create a single array containing keywords and their respective counts
+        $matched_cons = [];
+        foreach ($matched_cons_count as $keyword => $count) {
+            if ($count > 0 && !in_array($keyword, array_keys($matched_cons))) {
+                $matched_cons[$keyword] = $count;
+            }
+        }
+
+        arsort($matched_cons);
+
+        return $matched_cons; // Return the sorted array of pros and cons
     }
 
     public function getProsReviews($slug, $keyword)
