@@ -292,8 +292,6 @@
                                     @endforeach
                                 </ul>
                             </div>
-
-                            {{--                            @include('organization.partials.pros_cons_modal')--}}
                         @endif
 
                         @if($organization->reviews->count())
