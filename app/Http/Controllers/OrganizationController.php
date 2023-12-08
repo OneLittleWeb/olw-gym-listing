@@ -278,7 +278,11 @@ class OrganizationController extends Controller
     public function getReviewCons($organization)
     {
         $all_cons = [
-            'not a safe environment', 'not a good gym', 'not a good place', 'not a good experience', 'not a good deal', 'not a good value', 'negative star',
+            'not a safe environment', 'not a good gym', 'not a good place', 'not a good experience', 'not a good deal', 'not a good value', 'forced us to pay',
+            'poor customer service', 'horrible', 'horrible place', 'stay away', 'bad business', 'frustrating', 'not friendly', 'not helpful', 'poor communication',
+            'disappointed', 'not happy', 'not satisfied', 'not worth it', 'not worth the money', 'not worth the price', 'not worth the cost', 'not worth the membership',
+            'no response', 'rude', 'overcharged', 'not impressed', 'overpriced', 'very sad', ' take my business elsewhere', 'not recommend', 'go elsewhere', 'disrespectful', 'not great',
+            'unprofessional', 'slow', 'horrible customer service', 'will not return'
         ];
 
         $matched_cons_count = [];
