@@ -289,7 +289,7 @@
                                         @foreach ($review_pros as $keyword => $count)
                                             <li>
                                                 <a href="#"
-                                                   onclick="displayReviewPros(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}', 'pros')">
+                                                   onclick="displayReviewProsCons(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}', 'pros')">
                                                     {{ $keyword }}({{ $count }})
                                                 </a>
                                             </li>
@@ -304,7 +304,7 @@
                                         @foreach ($review_cons as $keyword => $count)
                                             <li>
                                                 <a href="#"
-                                                   onclick="displayReviewPros(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}', 'cons')">
+                                                   onclick="displayReviewProsCons(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}', 'cons')">
                                                     {{ $keyword }} ({{ $count }})
                                                 </a>
                                             </li>
@@ -1035,7 +1035,7 @@
 @section('js')
     <script src="{{asset('plugins/ratings/src/jquery.star-rating-svg.js')}}"></script>
     <script>
-        function displayReviewPros(event, keyword, count, slug, type) {
+        function displayReviewProsCons(event, keyword, count, slug, type) {
             event.preventDefault();
 
             $('#getProsConsModal').modal('show');

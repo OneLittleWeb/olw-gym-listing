@@ -316,22 +316,6 @@ class OrganizationController extends Controller
         return $matched_cons; // Return the sorted array of pros and cons
     }
 
-//    public function getProsReviews($slug, $keyword, $type)
-//    {
-//        $organization = Organization::where('slug', $slug)->where('permanently_closed', 0)->first();
-//
-//        $reviews = $organization->reviews()
-//            ->select('reviewer_name', 'review_rate_stars', 'review_specified_date', 'created_at', 'review_text_original')
-//            ->where('review_rate_stars', '>', "2")
-//            ->where('review_text_original', 'LIKE', "%{$keyword}%")
-//            ->orderBy('created_at', 'desc')
-//            ->get();
-//
-//        return response()->json([
-//            'reviews' => $reviews
-//        ]);
-//    }
-
     public function getProsReviews($slug, $keyword, $type)
     {
         $organization = Organization::where('slug', $slug)->where('permanently_closed', 0)->first();
