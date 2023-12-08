@@ -283,8 +283,9 @@
                         @if(count($review_pros) > 0 || count($review_cons) > 0)
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Pros & Cons</h3>
-                                <div class="stroke-shape mb-4"></div>
+                                <div class="stroke-shape mb-2"></div>
                                 @if(count($review_pros) > 0)
+                                    <p class="text-center pb-3 font-size-11">PROS</p>
                                     <ul class="tag-list pros-cons-list">
                                         @foreach ($review_pros as $keyword => $count)
                                             <li>
@@ -298,7 +299,7 @@
                                 @endif
 
                                 @if(count($review_cons) > 0)
-                                    <hr>
+                                    <p class="text-center pt-2 pb-3 font-size-11">CONS</p>
                                     <ul class="tag-list review-cons-list">
                                         @foreach ($review_cons as $keyword => $count)
                                             <li>
