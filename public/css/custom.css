@@ -352,8 +352,7 @@
 }
 
 .review-cons-list li a {
-    color: #131443 !important;
-    background-color: #feeeed !important;
+    color: #ff0000 !important;
 }
 
 .post-category-badge {
@@ -366,6 +365,14 @@
 .green-circle {
     color: #198754;
     background-color: #198754;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+
+.red-circle {
+    color: #ff0000;
+    background-color: #ff0000 !important;
     height: 15px;
     width: 15px;
     border-radius: 50%;

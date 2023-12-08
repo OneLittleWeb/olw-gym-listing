@@ -1012,8 +1012,8 @@
                         </div>
                     </div>
 
-                    <p class="review-keyword text-capitalize pt-2">
-                        <span class="la la-circle-thin mr-2 green-circle"></span><span id="keyword_count"></span>
+                    <p class="review-keyword review-pros-cons-keyword text-capitalize pt-2">
+                        <span class="la la-circle-thin mr-2"></span><span id="keyword_count"></span>
                     </p>
 
                 </div>
@@ -1044,6 +1044,18 @@
             $('#keyword_count').text(`${keyword} (${count})`);
 
             $('#pros_cons_loader').show();
+
+            if (type === 'pros') {
+                $('#getProsConsModal .review-pros-cons-keyword').removeClass('text-danger');
+                $('#getProsConsModal .review-pros-cons-keyword').addClass('text-success');
+                $('#getProsConsModal .review-pros-cons-keyword .la-circle-thin').removeClass('red-circle');
+                $('#getProsConsModal .review-pros-cons-keyword .la-circle-thin').addClass('green-circle');
+            } else {
+                $('#getProsConsModal .review-pros-cons-keyword').removeClass('text-success');
+                $('#getProsConsModal .review-pros-cons-keyword').addClass('text-danger');
+                $('#getProsConsModal .review-pros-cons-keyword .la-circle-thin').removeClass('green-circle');
+                $('#getProsConsModal .review-pros-cons-keyword .la-circle-thin').addClass('red-circle');
+            }
 
             $.ajax({
                 url: `/get-pros-cons-reviews/${slug}/${keyword}/${type}`,
@@ -1124,10 +1136,5 @@
             "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
     }
-
-
-
-
-
     </script>
 @endsection
