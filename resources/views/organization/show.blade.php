@@ -280,33 +280,43 @@
                             </div>
                         @endif
 
-                        @if(count($all_review_pros))
+                        @if(count($review_pros) > 0 || count($review_cons) > 0)
                             <div class="sidebar-widget">
                                 <h3 class="widget-title">Pros & Cons</h3>
                                 <div class="stroke-shape mb-4"></div>
-                                <ul class="tag-list pros-cons-list">
-                                    @foreach ($all_review_pros as $keyword => $count)
-                                        <li><a href="#" onclick="displayReviewPros(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}
-                                                ({{ $count }})</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                @if(count($review_pros) > 0)
+                                    <ul class="tag-list pros-cons-list">
+                                        @foreach ($review_pros as $keyword => $count)
+                                            <li>
+                                                <a href="#"
+                                                   onclick="displayReviewPros(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}', 'pros')">
+                                                    {{ $keyword }}({{ $count }})
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
 
-{{--                                <hr>--}}
+                                <hr>
 
-{{--                                <ul class="tag-list review-cons-list">--}}
-{{--                                    @foreach ($pros_and_cons as $keyword => $count)--}}
-{{--                                        <li><a href="#"--}}
-{{--                                               onclick="displayReviewPros(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}')">{{ $keyword }}--}}
-{{--                                                ({{ $count }})</a></li>--}}
-{{--                                    @endforeach--}}
-{{--                                </ul>--}}
+                                @if(count($review_cons) > 0)
+                                    <ul class="tag-list review-cons-list">
+                                        @foreach ($review_cons as $keyword => $count)
+                                            <li>
+                                                <a href="#"
+                                                   onclick="displayReviewPros(event, '{{ $keyword }}', '{{ $count }}' ,'{{ $organization->slug }}', 'cons')">
+                                                    {{ $keyword }} ({{ $count }})
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </div>
                         @endif
 
                         @if($organization->reviews->count())
                             <div class="block-card mb-4" id="business_reviews_card">
-                                <div class=" pb-4">
+                                <div class="pb-4">
                                     <h2 class="widget-title">Reviews <span class="ml-1 text-color-16">({{ $organization->reviews->whereNotNull('review_id')->count() }})</span>
                                     </h2>
                                     <div class="stroke-shape"></div>
@@ -1025,7 +1035,7 @@
 @section('js')
     <script src="{{asset('plugins/ratings/src/jquery.star-rating-svg.js')}}"></script>
     <script>
-        function displayReviewPros(event, keyword, count, slug) {
+        function displayReviewPros(event, keyword, count, slug, type) {
             event.preventDefault();
 
             $('#getProsConsModal').modal('show');
@@ -1036,7 +1046,7 @@
             $('#pros_cons_loader').show();
 
             $.ajax({
-                url: `/get-pros-reviews/${slug}/${keyword}`,
+                url: `/get-pros-reviews/${slug}/${keyword}/${type}`,
                 method: 'GET',
                 success: function (response) {
                     let modalContent = '';
@@ -1046,7 +1056,11 @@
 
                         // Function to replace matched keyword with highlighted keyword
                         function highlightKeyword(text, keyword) {
-                            return text.replace(new RegExp(keyword, 'gi'), match => `<span class="pros-highlight">${match}</span>`);
+                            if (type === 'pros') {
+                                return text.replace(new RegExp(keyword, 'gi'), match => `<span class="pros-highlight">${match}</span>`);
+                            } else {
+                                return text.replace(new RegExp(keyword, 'gi'), match => `<span class="cons-highlight">${match}</span>`);
+                            }
                         }
 
                         let highlightedReviewText = highlightKeyword(review.review_text_original, keyword);
@@ -1110,5 +1124,10 @@
             "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
     }
+
+
+
+
+
     </script>
 @endsection

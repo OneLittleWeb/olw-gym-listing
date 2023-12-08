@@ -392,6 +392,11 @@
     font-weight: bold;
 }
 
+.cons-highlight {
+    color: #ff0000;
+    font-weight: bold;
+}
+
 .pros_cons_loader {
     border: 6px solid #f3f3f3;
     border-top: 6px solid #3498db;
@@ -407,8 +412,12 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media screen and (max-width: 767px) {

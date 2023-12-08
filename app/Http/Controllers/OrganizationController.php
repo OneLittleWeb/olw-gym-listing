@@ -134,7 +134,8 @@ class OrganizationController extends Controller
                 ->limit(4)
                 ->get();
 
-            $all_review_pros = $this->getReviewPros($organization);
+            $review_pros = $this->getReviewPros($organization);
+            $review_cons = $this->getReviewCons($organization);
 
             if ($organization->organization_work_time && $organization->organization_work_time != ". Hide open hours for the week") {
                 $organization_work_time_exploded = explode(';', $organization->organization_work_time);
@@ -214,9 +215,9 @@ class OrganizationController extends Controller
                 $seventh_day_opening_hours = ltrim($seventh_day_work_hours[0]);
                 $seventh_day_closing_hours = ltrim($seventh_day_work_hours[1]);
 
-                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours', 'all_review_pros'))->render();
+                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours', 'review_pros', 'review_cons'))->render();
             } else {
-                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'all_review_pros'))->render();
+                return view('organization.show', compact('organization', 'city', 'cities', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'review_pros', 'review_cons'))->render();
             }
         }
 
@@ -226,7 +227,7 @@ class OrganizationController extends Controller
     public function getReviewPros($organization)
     {
         $all_pros = [
-            'great gym', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly environment', 'friendly' ,'great environment',
+            'great gym', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly environment', 'friendly', 'great environment',
             'friendly staff', 'love this place', 'great staff', 'love this gym', 'very friendly',
             'great atmosphere', 'absolutely fantastic', 'definitely come back', 'nice staff', 'love the place', 'recommended',
             'friendly and professional', 'helpful and knowledgeable', 'very helpful', 'friendly and welcoming', 'great experience',
@@ -277,13 +278,7 @@ class OrganizationController extends Controller
     public function getReviewCons($organization)
     {
         $all_cons = [
-            'great', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly environment', 'friendly' ,'great environment',
-            'friendly staff', 'love this place', 'great staff', 'love this gym', 'very friendly',
-            'great atmosphere', 'absolutely fantastic', 'definitely come back', 'nice staff', 'love the place', 'recommended',
-            'friendly and professional', 'helpful and knowledgeable', 'very helpful', 'friendly and welcoming', 'great experience',
-            'so convenient', 'great people', 'great place', 'price was very reasonable', '24 hours',
-            'well organized', 'great management', 'helped me', 'affordable', 'good people', 'will be back',
-            'very welcoming', 'highly recommend', 'wonderful staff', 'best place', 'feel comfortable', 'reasonable price', 'fair price'
+            'not a safe environment', 'not a good gym', 'not a good place', 'not a good experience', 'not a good deal', 'not a good value', 'negative star',
         ];
 
         $matched_cons_count = [];
@@ -298,16 +293,12 @@ class OrganizationController extends Controller
 
         foreach ($reviews as $review) {
             $review_text = strtolower($review->review_text_original); // Convert text to lowercase for case-insensitive comparison
-            $review_stars = $review->review_rate_stars; // Retrieve review stars
 
-            // Check if review stars are greater than 2
-            if ($review_stars > 2) {
-                // Loop through the keywords array to find matches in the review text
-                foreach ($all_cons as $keyword) {
-                    if (stripos($review_text, strtolower($keyword)) !== false) {
-                        // Increment count for the matched keyword
-                        $matched_cons_count[$keyword]++;
-                    }
+            // Loop through the keywords array to find matches in the review text
+            foreach ($all_cons as $keyword) {
+                if (stripos($review_text, strtolower($keyword)) !== false) {
+                    // Increment count for the matched keyword
+                    $matched_cons_count[$keyword]++;
                 }
             }
         }
@@ -325,16 +316,36 @@ class OrganizationController extends Controller
         return $matched_cons; // Return the sorted array of pros and cons
     }
 
-    public function getProsReviews($slug, $keyword)
+//    public function getProsReviews($slug, $keyword, $type)
+//    {
+//        $organization = Organization::where('slug', $slug)->where('permanently_closed', 0)->first();
+//
+//        $reviews = $organization->reviews()
+//            ->select('reviewer_name', 'review_rate_stars', 'review_specified_date', 'created_at', 'review_text_original')
+//            ->where('review_rate_stars', '>', "2")
+//            ->where('review_text_original', 'LIKE', "%{$keyword}%")
+//            ->orderBy('created_at', 'desc')
+//            ->get();
+//
+//        return response()->json([
+//            'reviews' => $reviews
+//        ]);
+//    }
+
+    public function getProsReviews($slug, $keyword, $type)
     {
         $organization = Organization::where('slug', $slug)->where('permanently_closed', 0)->first();
 
-        $reviews = $organization->reviews()
+        $reviewsQuery = $organization->reviews()
             ->select('reviewer_name', 'review_rate_stars', 'review_specified_date', 'created_at', 'review_text_original')
-            ->where('review_rate_stars', '>', "2")
             ->where('review_text_original', 'LIKE', "%{$keyword}%")
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->orderBy('created_at', 'desc');
+
+        if ($type === 'pros') {
+            $reviewsQuery->where('review_rate_stars', '>', 2);
+        }
+
+        $reviews = $reviewsQuery->get();
 
         return response()->json([
             'reviews' => $reviews
