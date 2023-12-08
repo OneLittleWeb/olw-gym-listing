@@ -297,12 +297,16 @@ class OrganizationController extends Controller
 
         foreach ($reviews as $review) {
             $review_text = strtolower($review->review_text_original); // Convert text to lowercase for case-insensitive comparison
+            $review_stars = $review->review_rate_stars; // Retrieve review stars
 
-            // Loop through the keywords array to find matches in the review text
-            foreach ($all_cons as $keyword) {
-                if (stripos($review_text, strtolower($keyword)) !== false) {
-                    // Increment count for the matched keyword
-                    $matched_cons_count[$keyword]++;
+            // Check if review stars are greater than 2
+            if ($review_stars < 4) {
+                // Loop through the keywords array to find matches in the review text
+                foreach ($all_cons as $keyword) {
+                    if (stripos($review_text, strtolower($keyword)) !== false) {
+                        // Increment count for the matched keyword
+                        $matched_cons_count[$keyword]++;
+                    }
                 }
             }
         }
@@ -332,6 +336,10 @@ class OrganizationController extends Controller
 
             if ($type === 'pros') {
                 $reviewsQuery->where('review_rate_stars', '>', 2);
+            }
+            
+            if ($type === 'cons') {
+                $reviewsQuery->where('review_rate_stars', '<', 4);
             }
 
             $reviews = $reviewsQuery->get();
