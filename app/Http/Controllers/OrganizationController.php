@@ -316,24 +316,29 @@ class OrganizationController extends Controller
         return $matched_cons; // Return the sorted array of pros and cons
     }
 
-    public function getProsReviews($slug, $keyword, $type)
+    public function getProsConsReviews($slug, $keyword, $type)
     {
-        $organization = Organization::where('slug', $slug)->where('permanently_closed', 0)->first();
+        try {
+            $organization = Organization::where('slug', $slug)->where('permanently_closed', 0)->first();
 
-        $reviewsQuery = $organization->reviews()
-            ->select('reviewer_name', 'review_rate_stars', 'review_specified_date', 'created_at', 'review_text_original')
-            ->where('review_text_original', 'LIKE', "%{$keyword}%")
-            ->orderBy('created_at', 'desc');
+            $reviewsQuery = $organization->reviews()
+                ->select('reviewer_name', 'review_rate_stars', 'review_specified_date', 'created_at', 'review_text_original')
+                ->where('review_text_original', 'LIKE', "%{$keyword}%")
+                ->orderBy('created_at', 'desc');
 
-        if ($type === 'pros') {
-            $reviewsQuery->where('review_rate_stars', '>', 2);
+            if ($type === 'pros') {
+                $reviewsQuery->where('review_rate_stars', '>', 2);
+            }
+
+            $reviews = $reviewsQuery->get();
+
+            return response()->json([
+                'reviews' => $reviews
+            ]);
+        } catch (\Exception $e) {
+            // Handle the exception here
+            return response()->json(['error' => 'An error occurred while fetching reviews.'], 500);
         }
-
-        $reviews = $reviewsQuery->get();
-
-        return response()->json([
-            'reviews' => $reviews
-        ]);
     }
 
     public function claimBusiness($slug)

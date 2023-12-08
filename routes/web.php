@@ -66,7 +66,7 @@ Route::get('/gym-near-me', [OrganizationController::class, 'gymNearMe'])->name('
 Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');
 
 //Ajax request for get pros and cons
-Route::get('/get-pros-reviews/{slug}/{keyword}/{type}', [OrganizationController::class, 'getProsReviews'])->name('get.pros.cons');
+Route::get('/get-pros-cons-reviews/{slug}/{keyword}/{type}', [OrganizationController::class, 'getProsConsReviews'])->name('get.pros.cons.reviews');
 
 //claim business
 Route::get('/claim-your-business/{slug}', [OrganizationController::class, 'claimBusiness'])->name('claim.business');
