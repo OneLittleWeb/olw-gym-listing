@@ -297,9 +297,8 @@
                                     </ul>
                                 @endif
 
-                                <hr>
-
                                 @if(count($review_cons) > 0)
+                                    <hr>
                                     <ul class="tag-list review-cons-list">
                                         @foreach ($review_cons as $keyword => $count)
                                             <li>
