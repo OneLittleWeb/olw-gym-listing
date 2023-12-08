@@ -336,9 +336,7 @@ class OrganizationController extends Controller
 
             if ($type === 'pros') {
                 $reviewsQuery->where('review_rate_stars', '>', 2);
-            }
-            
-            if ($type === 'cons') {
+            } else {
                 $reviewsQuery->where('review_rate_stars', '<', 4);
             }
 
