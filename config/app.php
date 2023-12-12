@@ -175,6 +175,8 @@ return [
         App\Providers\MetaTagsServiceProvider::class,
         Corcel\Laravel\CorcelServiceProvider::class,
 
+        Stevebauman\Location\LocationServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -242,6 +244,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Carbon' => Illuminate\Support\Carbon::class,
+        'Location' => 'Stevebauman\Location\Facades\Location',
     ],
 
 ];

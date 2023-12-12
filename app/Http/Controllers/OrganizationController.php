@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Stevebauman\Location\Facades\Location;
 
 class OrganizationController extends Controller
 {
@@ -604,6 +605,12 @@ class OrganizationController extends Controller
 
     public function gymNearMe()
     {
+        $ip = '162.159.24.227'; /* Static IP address */
+
+        $currentUserInfo = Location::get($ip);
+
+        dd($currentUserInfo);
+
         return view('organization.gym-near-me');
     }
 
