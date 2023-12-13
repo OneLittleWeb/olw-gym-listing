@@ -606,19 +606,19 @@ class OrganizationController extends Controller
     public function gymNearMe(Request $request)
     {
         // Retrieve the IP address from the request (e.g., user's IP)
-        $ip = $request->ip();
+//        $ip = $request->ip();
+//
+//        // Retrieve location data based on the IP address
+//        $locationInfo = Location::get($ip);
+//
+//        // Process the location information as needed
+//        // Example: Retrieve country, city, latitude, longitude
+//        $country = $locationInfo->country ?? 'N/A';
+//        $city = $locationInfo->city ?? 'N/A';
+//        $latitude = $locationInfo->latitude ?? 'N/A';
+//        $longitude = $locationInfo->longitude ?? 'N/A';
 
-        // Retrieve location data based on the IP address
-        $locationInfo = Location::get($ip);
-
-        // Process the location information as needed
-        // Example: Retrieve country, city, latitude, longitude
-        $country = $locationInfo->country ?? 'N/A';
-        $city = $locationInfo->city ?? 'N/A';
-        $latitude = $locationInfo->latitude ?? 'N/A';
-        $longitude = $locationInfo->longitude ?? 'N/A';
-
-        return view('organization.gym-near-me', compact('country', 'city', 'latitude', 'longitude'));
+        return view('organization.gym-near-me');
     }
 
     public function import()

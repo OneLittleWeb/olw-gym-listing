@@ -6,7 +6,6 @@
     <section class="category-area section--padding margin-top-40px">
         <div class="card">
             <div class="card-body">
-                {{ $country }}
             </div>
         </div>
     </section>

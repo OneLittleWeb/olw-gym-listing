@@ -164,7 +164,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Stevebauman\Location\LocationServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -243,7 +242,6 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Carbon' => Illuminate\Support\Carbon::class,
-        'Location' => 'Stevebauman\Location\Facades\Location',
     ],
 
 ];
