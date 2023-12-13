@@ -609,11 +609,11 @@ class OrganizationController extends Controller
 
         $userIp = $_SERVER['REMOTE_ADDR'];
 
-        dd($userIp);
+//        dd($userIp);
 
 //        $userIp = '203.76.119.210';
 
-        $location = Location::get('203.76.119.210');
+        $location = Location::get($userIp);
 
         dd($location);
 
