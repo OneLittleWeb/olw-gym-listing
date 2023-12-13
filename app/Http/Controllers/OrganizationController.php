@@ -611,7 +611,7 @@ class OrganizationController extends Controller
 
 //        $userIp = '203.76.119.210';
 
-        $location = Location::get('160.39.200.218');
+        $location = Location::get('203.76.119.210');
 
         dd($location);
 
