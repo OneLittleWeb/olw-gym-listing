@@ -605,8 +605,6 @@ class OrganizationController extends Controller
 
     public function gymNearMe(Request $request)
     {
-//        $position = Location::get('192.168.1.1');
-
 //        $userIp = $_SERVER['REMOTE_ADDR'];
 
         $userIp = '203.76.119.210';
