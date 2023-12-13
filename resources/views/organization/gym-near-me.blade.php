@@ -4,7 +4,20 @@
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
     <section class="category-area section--padding margin-top-40px">
-        <p>Address: 3159 Green Valley Rd, Birmingham, AL 35243, United States</p>
-        <p>Address: 2301 Old Columbiana Rd, Birmingham, AL 35216, United States</p>
+        <div class="card">
+            <div class="card-body">
+                @if($currentUserInfo)
+                    <h4>IP: {{ $currentUserInfo->ip }}</h4>
+                    <h4>Country Name: {{ $currentUserInfo->countryName }}</h4>
+                    <h4>Country Code: {{ $currentUserInfo->countryCode }}</h4>
+                    <h4>Region Code: {{ $currentUserInfo->regionCode }}</h4>
+                    <h4>Region Name: {{ $currentUserInfo->regionName }}</h4>
+                    <h4>City Name: {{ $currentUserInfo->cityName }}</h4>
+                    <h4>Zip Code: {{ $currentUserInfo->zipCode }}</h4>
+                    <h4>Latitude: {{ $currentUserInfo->latitude }}</h4>
+                    <h4>Longitude: {{ $currentUserInfo->longitude }}</h4>
+                @endif
+            </div>
+        </div>
     </section>
 @endsection

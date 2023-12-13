@@ -164,6 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -174,8 +175,6 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         App\Providers\MetaTagsServiceProvider::class,
         Corcel\Laravel\CorcelServiceProvider::class,
-
-        Stevebauman\Location\LocationServiceProvider::class,
 
         /*
          * Application Service Providers...

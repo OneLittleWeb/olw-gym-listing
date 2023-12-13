@@ -605,13 +605,16 @@ class OrganizationController extends Controller
 
     public function gymNearMe()
     {
-        $ip = '162.159.24.227'; /* Static IP address */
-
+        /* $ip = $request->ip(); Dynamic IP address */
+        $ip = '100.64.0.0'; /* Static IP address */
         $currentUserInfo = Location::get($ip);
 
-        dd($currentUserInfo);
+//        $position = Location::get('192.168.1.1');
+//
+//        dd($position);
+//        dd($currentUserInfo);
 
-        return view('organization.gym-near-me');
+        return view('organization.gym-near-me', compact('currentUserInfo'));
     }
 
     public function import()
