@@ -611,31 +611,39 @@ class OrganizationController extends Controller
 //        $illinois_chicago_ip = '172.69.59.14';
 
         $user_location = Location::get($client_ip_address);
-        if ($user_location !== false) {
-            $state_id = State::where('name', Str::lower($user_location->regionName))->first()->id;
-            $city_id = City::where('name', Str::lower($user_location->cityName))->first()->id;
+        if ($user_location) {
+            $state = State::where('name', Str::lower($user_location->regionName))->first();
+            $city = City::where('name', Str::lower($user_location->cityName))->first();
 
-            $userLatitude = $user_location->latitude;
-            $userLongitude = $user_location->longitude;
+            if ($state && $city) {
+                $state_id = $state->id;
+                $city_id = $city->id;
 
-            $organizations = Organization::where('state_id', $state_id)
-                ->where('city_id', $city_id)
-                ->where('permanently_closed', 0)
-                ->get();
+                $userLatitude = $user_location->latitude;
+                $userLongitude = $user_location->longitude;
 
-            $organizations = $organizations->map(function ($organization) use ($userLatitude, $userLongitude) {
-                $orgLatitude = $organization->organization_latitude;
-                $orgLongitude = $organization->organization_longitude;
+                $organizations = Organization::where('state_id', $state_id)
+                    ->where('city_id', $city_id)
+                    ->where('permanently_closed', 0)
+                    ->get();
 
-                $distance = $this->calculateDistance($userLatitude, $userLongitude, $orgLatitude, $orgLongitude);
-                $organization->distance = $distance;
+                $organizations = $organizations->map(function ($organization) use ($userLatitude, $userLongitude) {
+                    $orgLatitude = $organization->organization_latitude;
+                    $orgLongitude = $organization->organization_longitude;
 
-                return $organization;
-            });
+                    $distance = $this->calculateDistance($userLatitude, $userLongitude, $orgLatitude, $orgLongitude);
+                    $organization->distance = $distance;
 
-            $organizations = $organizations->sortBy('distance');
+                    return $organization;
+                });
 
+                $organizations = $organizations->sortBy('distance');
+            } else {
+                // Handle the case where state or city is not found
+                $organizations = [];
+            }
         } else {
+            // Handle the case where user_location is null
             $organizations = [];
         }
         return view('organization.gym-near-me', compact('organizations'));
