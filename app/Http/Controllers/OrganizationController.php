@@ -644,6 +644,7 @@ class OrganizationController extends Controller
         } else {
             $organizations = [];
         }
+        
         return view('organization.gym-near-me', compact('organizations'));
     }
 
