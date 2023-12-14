@@ -7,7 +7,7 @@
         <div class="card">
             <div class="card-body">
                 @forelse($organizations as $organization)
-                    <p>{{ $organization->organization_name }} - {{ $organization->city->name }}
+                    <p>{{ $organization->organization_name }} - {{ $organization->state->name }} - {{ $organization->city->name }}
                         - {{ $organization->distance }}</p>
                 @empty
                     <p>No gyms found.</p>
