@@ -611,7 +611,7 @@ class OrganizationController extends Controller
 //        $illinois_chicago_ip = '172.69.59.14';
 
         $user_location = Location::get($client_ip_address);
-        if ($user_location) {
+        if ($user_location !== false) {
             $state_id = State::where('name', Str::lower($user_location->regionName))->first()->id;
             $city_id = City::where('name', Str::lower($user_location->cityName))->first()->id;
 
