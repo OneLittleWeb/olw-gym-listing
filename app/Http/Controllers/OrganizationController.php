@@ -639,11 +639,9 @@ class OrganizationController extends Controller
 
                 $organizations = $organizations->sortBy('distance');
             } else {
-                // Handle the case where state or city is not found
                 $organizations = [];
             }
         } else {
-            // Handle the case where user_location is null
             $organizations = [];
         }
         return view('organization.gym-near-me', compact('organizations'));
