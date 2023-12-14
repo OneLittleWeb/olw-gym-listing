@@ -6,7 +6,12 @@
     <section class="category-area section--padding margin-top-40px">
         <div class="card">
             <div class="card-body">
-                {{ $location }}
+                @forelse($organizations as $organization)
+                    <p>{{ $organization->organization_name }} - {{ $organization->city->name }}
+                        - {{ $organization->distance }}</p>
+                @empty
+                    <p>No gyms found.</p>
+                @endforelse
             </div>
         </div>
     </section>

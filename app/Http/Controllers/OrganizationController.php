@@ -16,6 +16,7 @@ use App\Models\Organization;
 use App\Models\State;
 use App\Models\SuggestAnEdit;
 use Butschster\Head\Facades\Meta;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
@@ -605,14 +606,74 @@ class OrganizationController extends Controller
 
     public function gymNearMe(Request $request)
     {
-        $clientIpAddress = $request->ip();
+        $client_ip_address = $request->ip();
 
-        $location = Location::get($clientIpAddress);
+//        $illinois_chicago_ip = '172.69.59.14';
 
-        dd($location);
+        $user_location = Location::get($client_ip_address);
+        if ($user_location) {
+            $state_id = State::where('name', Str::lower($user_location->regionName))->first()->id;
+            $city_id = City::where('name', Str::lower($user_location->cityName))->first()->id;
 
-        return view('organization.gym-near-me', compact('location'));
+            $userLatitude = $user_location->latitude;
+            $userLongitude = $user_location->longitude;
+
+            $organizations = Organization::where('state_id', $state_id)
+                ->where('city_id', $city_id)
+                ->where('permanently_closed', 0)
+                ->get();
+
+            $organizations = $organizations->map(function ($organization) use ($userLatitude, $userLongitude) {
+                $orgLatitude = $organization->organization_latitude;
+                $orgLongitude = $organization->organization_longitude;
+
+                $distance = $this->calculateDistance($userLatitude, $userLongitude, $orgLatitude, $orgLongitude);
+                $organization->distance = $distance;
+
+                return $organization;
+            });
+
+            $organizations = $organizations->sortBy('distance');
+
+        } else {
+            $organizations = [];
+        }
+        return view('organization.gym-near-me', compact('organizations'));
     }
+
+    private function calculateDistance($lat1, $lon1, $lat2, $lon2)
+    {
+        $earthRadius = 6371;
+
+        $deltaLat = deg2rad($lat2 - $lat1);
+        $deltaLon = deg2rad($lon2 - $lon1);
+
+        $a = sin($deltaLat / 2) * sin($deltaLat / 2) +
+            cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
+            sin($deltaLon / 2) * sin($deltaLon / 2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+        $distance = $earthRadius * $c;
+
+        return $distance;
+    }
+
+//    public function gymNearMe(Request $request)
+//    {
+//
+//        $latitude = '43.0593041';
+//        $longitude = '-87.8848785';
+//
+//        $url = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={$latitude}&lon={$longitude}";
+//
+//        $client = new Client();
+//        $response = $client->get($url);
+//        $data = json_decode($response->getBody(), true);
+//
+//        dd($data);
+//
+//        return view('organization.gym-near-me', compact('location'));
+//    }
 
     public function import()
     {
