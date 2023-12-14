@@ -60,7 +60,7 @@ Route::get('/payments/approval', [StripePaymentController::class, 'approval'])->
 Route::get('/payments/cancelled', [StripePaymentController::class, 'cancelled'])->name('payment.cancelled');
 
 Route::get('/states', [StateController::class, 'index'])->name('states.index');
-Route::get('/gym-near-me', [OrganizationController::class, 'gymNearMe'])->name('gym.near.me');
+Route::get('/{category}-near-me', [OrganizationController::class, 'gymNearMe'])->name('gym.near.me');
 
 //search routes
 Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');
