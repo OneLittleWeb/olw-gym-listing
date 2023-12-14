@@ -659,9 +659,7 @@ class OrganizationController extends Controller
             sin($deltaLon / 2) * sin($deltaLon / 2);
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
-        $distance = $earthRadius * $c;
-
-        return $distance;
+        return $earthRadius * $c;
     }
 
 //    public function gymNearMe(Request $request)
