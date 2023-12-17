@@ -418,6 +418,11 @@
     transform: translate(-50%, -50%);
 }
 
+#map {
+    height: 450px;
+    width: 100%;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

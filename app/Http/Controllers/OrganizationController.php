@@ -608,7 +608,7 @@ class OrganizationController extends Controller
     {
         $client_ip_address = $request->ip();
 
-//        $illinois_chicago_ip = '172.69.59.14';
+        $client_ip_address = '172.69.59.14';
 
         $user_location = Location::get($client_ip_address);
         if ($user_location) {
@@ -644,8 +644,21 @@ class OrganizationController extends Controller
         } else {
             $organizations = [];
         }
-        
-        return view('organization.gym-near-me', compact('organizations'));
+
+        $locationData = [];
+        foreach ($organizations->take(20) as $organization) {
+            $locationData[] = [
+                'name' => $organization->organization_name,
+                'lat' => $organization->organization_latitude,
+                'lng' => $organization->organization_longitude,
+                'city_slug' => $organization->city->slug,
+                'slug' => $organization->slug,
+                'distance' => $organization->distance,
+                'head_photo' => $organization->organization_head_photo_file ? $organization->organization_head_photo_file : 'default.jpg',
+            ];
+        }
+
+        return view('organization.gym-near-me', ['locations' => json_encode($locationData), 'organizations' => $organizations]);
     }
 
     private function calculateDistance($lat1, $lon1, $lat2, $lon2)

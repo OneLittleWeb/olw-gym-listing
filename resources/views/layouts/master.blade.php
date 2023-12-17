@@ -24,6 +24,7 @@
     <meta data-rh="true" name="twitter:title" content="@yield('title')"/>
     <meta data-rh="true" name="twitter:description" content="@yield('meta_description')"/>
     <meta data-rh="true" name="twitter:image:src" content="@yield('sharingimg')"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@100;300;400;500;600;700;800&display=swap"
           rel="stylesheet">
     {{--    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap' rel='stylesheet'>--}}
