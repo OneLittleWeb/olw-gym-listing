@@ -60,7 +60,7 @@ Route::get('/payments/approval', [StripePaymentController::class, 'approval'])->
 Route::get('/payments/cancelled', [StripePaymentController::class, 'cancelled'])->name('payment.cancelled');
 
 Route::get('/states', [StateController::class, 'index'])->name('states.index');
-Route::get('/gym-near-me', [OrganizationController::class, 'gymNearMe'])->name('gym.near.me');
+//Route::get('/{category_slug}-near-me', [OrganizationController::class, 'gymNearMe'])->name('gym.near.me');
 
 //search routes
 Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');
@@ -117,6 +117,10 @@ Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDif
 
 //route for subscriber store
 Route::post('/subscriber-store', [SubscribeController::class, 'subscriberStore'])->name('subscriber.store');
+
+Route::get('/near-me', [OrganizationController::class, 'gymNearMe'])->name('gym.near.me.general');
+// The wildcard route
+Route::get('/{category_slug}-{suffix}', [OrganizationController::class, 'gymNearMe'])->where(['category_slug' => '.*', 'suffix' => 'near-me'])->name('gym.near.me');
 
 //Route::get('/{slug}', [StateController::class, 'generateStateWiseOrganizationView'])->name('state.wise.organizations');
 

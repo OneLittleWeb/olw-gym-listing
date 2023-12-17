@@ -604,13 +604,17 @@ class OrganizationController extends Controller
         abort(404);
     }
 
-    public function gymNearMe(Request $request)
+    public function gymNearMe(Request $request, $organization_category_slug = null, $suffix = null)
     {
-        $client_ip_address = $request->ip();
+//        $client_ip_address = $request->ip();
 
-//        $client_ip_address = '172.69.59.14';
+        $client_ip_address = '172.69.59.14';
 
         $user_location = Location::get($client_ip_address);
+
+        $organizations = [];
+        $locationData = [];
+
         if ($user_location) {
             $state = State::where('name', Str::lower($user_location->regionName))->first();
             $city = City::where('name', Str::lower($user_location->cityName))->first();
@@ -619,19 +623,24 @@ class OrganizationController extends Controller
                 $state_id = $state->id;
                 $city_id = $city->id;
 
-                $userLatitude = $user_location->latitude;
-                $userLongitude = $user_location->longitude;
+                $user_latitude = $user_location->latitude;
+                $user_longitude = $user_location->longitude;
 
-                $organizations = Organization::where('state_id', $state_id)
+                $organizations_query = Organization::where('state_id', $state_id)
                     ->where('city_id', $city_id)
-                    ->where('permanently_closed', 0)
-                    ->get();
+                    ->where('permanently_closed', 0);
 
-                $organizations = $organizations->map(function ($organization) use ($userLatitude, $userLongitude) {
-                    $orgLatitude = $organization->organization_latitude;
-                    $orgLongitude = $organization->organization_longitude;
+                if ($organization_category_slug !== null && $suffix !== null) {
+                    $organizations_query = $organizations_query->where('organization_category_slug', $organization_category_slug);
+                }
 
-                    $distance = $this->calculateDistance($userLatitude, $userLongitude, $orgLatitude, $orgLongitude);
+                $organizations = $organizations_query->get();
+
+                $organizations = $organizations->map(function ($organization) use ($user_latitude, $user_longitude) {
+                    $org_latitude = $organization->organization_latitude;
+                    $org_longitude = $organization->organization_longitude;
+
+                    $distance = $this->calculateDistance($user_latitude, $user_longitude, $org_latitude, $org_longitude);
                     $organization->distance = $distance;
 
                     return $organization;
@@ -639,8 +648,7 @@ class OrganizationController extends Controller
 
                 $organizations = $organizations->sortBy('distance');
 
-                $locationData = [];
-                foreach ($organizations->take(20) as $organization) {
+                foreach ($organizations as $organization) {
                     $locationData[] = [
                         'name' => $organization->organization_name,
                         'lat' => $organization->organization_latitude,
@@ -651,13 +659,7 @@ class OrganizationController extends Controller
                         'head_photo' => $organization->organization_head_photo_file ? $organization->organization_head_photo_file : 'default.jpg',
                     ];
                 }
-            } else {
-                $organizations = [];
-                $locationData = [];
             }
-        } else {
-            $organizations = [];
-            $locationData = [];
         }
 
         return view('organization.gym-near-me', ['locations' => json_encode($locationData), 'organizations' => $organizations]);
@@ -665,7 +667,7 @@ class OrganizationController extends Controller
 
     private function calculateDistance($lat1, $lon1, $lat2, $lon2)
     {
-        $earthRadius = 6371;
+        $earth_radius = 6371;
 
         $deltaLat = deg2rad($lat2 - $lat1);
         $deltaLon = deg2rad($lon2 - $lon1);
@@ -675,7 +677,7 @@ class OrganizationController extends Controller
             sin($deltaLon / 2) * sin($deltaLon / 2);
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
-        return $earthRadius * $c;
+        return $earth_radius * $c;
     }
 
 //    public function gymNearMe(Request $request)
@@ -697,6 +699,8 @@ class OrganizationController extends Controller
 
     public function import()
     {
+        alert()->error('Error', "This function is not working now, need to remove this alert from the organization controller.");
+        return redirect()->back();
         try {
             $state_directories = File::directories('H:\gym');
 
