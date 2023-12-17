@@ -59,7 +59,7 @@
                         let distanceDisplay = '';
                         if (location.distance < 1) {
                             // Display distance in meters if less than 1 km
-                            const distanceInMeters = (location.distance * 1000).toFixed(0); // Convert km to meters
+                            const distanceInMeters = (location.distance * 1000).toFixed(2); // Convert km to meters
                             distanceDisplay = `${distanceInMeters} meters`;
                         } else {
                             // Display distance in kilometers with two decimal places
