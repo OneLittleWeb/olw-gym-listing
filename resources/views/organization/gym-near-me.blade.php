@@ -4,6 +4,11 @@
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
     <section class="category-area section--padding margin-top-40px">
+        <div class="card organization-map">
+            <div class="card-body">
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-body">
                 @forelse($organizations as $organization)
@@ -13,11 +18,6 @@
                 @empty
                     <p>No gyms found.</p>
                 @endforelse
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div id="map" style="height: 500px;"></div>
             </div>
         </div>
     </section>
