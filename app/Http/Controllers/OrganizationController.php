@@ -638,24 +638,26 @@ class OrganizationController extends Controller
                 });
 
                 $organizations = $organizations->sortBy('distance');
+
+                $locationData = [];
+                foreach ($organizations->take(20) as $organization) {
+                    $locationData[] = [
+                        'name' => $organization->organization_name,
+                        'lat' => $organization->organization_latitude,
+                        'lng' => $organization->organization_longitude,
+                        'city_slug' => $organization->city->slug,
+                        'slug' => $organization->slug,
+                        'distance' => $organization->distance,
+                        'head_photo' => $organization->organization_head_photo_file ? $organization->organization_head_photo_file : 'default.jpg',
+                    ];
+                }
             } else {
                 $organizations = [];
+                $locationData = [];
             }
         } else {
             $organizations = [];
-        }
-
-        $locationData = [];
-        foreach ($organizations->take(20) as $organization) {
-            $locationData[] = [
-                'name' => $organization->organization_name,
-                'lat' => $organization->organization_latitude,
-                'lng' => $organization->organization_longitude,
-                'city_slug' => $organization->city->slug,
-                'slug' => $organization->slug,
-                'distance' => $organization->distance,
-                'head_photo' => $organization->organization_head_photo_file ? $organization->organization_head_photo_file : 'default.jpg',
-            ];
+            $locationData = [];
         }
 
         return view('organization.gym-near-me', ['locations' => json_encode($locationData), 'organizations' => $organizations]);
