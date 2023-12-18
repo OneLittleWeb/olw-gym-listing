@@ -6,7 +6,7 @@
     <section class="category-area section--padding margin-top-40px">
         <div class="card organization-map">
             <div class="card-body">
-                <div id="map" style="height: 500px;"></div>
+                <div id="near_me_map" style="height: 500px;"></div>
             </div>
         </div>
         <div class="card">
@@ -26,7 +26,7 @@
 @section('js')
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const locations = {!! $locations ?? '[]' !!};
 
             console.log('Locations:', locations); // Log locations data
@@ -36,11 +36,11 @@
             } else if (locations.length === 0) {
                 console.error('Locations array is empty.');
             } else {
-                const mapElement = document.getElementById('map');
+                const mapElement = document.getElementById('near_me_map');
                 if (!mapElement) {
                     console.error('Map element not found.');
                 } else {
-                    const map = L.map('map').setView([0, 0], 2); // Initialize map and set the view
+                    const map = L.map('near_me_map').setView([0, 0], 2); // Initialize map and set the view
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         maxZoom: 19,
@@ -108,7 +108,5 @@
                 }
             }
         });
-
-
     </script>
 @endsection
