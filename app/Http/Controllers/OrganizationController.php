@@ -628,12 +628,10 @@ class OrganizationController extends Controller
                 $user_latitude = $user_location->latitude;
                 $user_longitude = $user_location->longitude;
 
-                $organizations_query = Organization::where('state_id', $state_id)
-                    ->where('city_id', $city_id)
-                    ->where('permanently_closed', 0);
+                $organizations_query = Organization::where('permanently_closed', 0);
 
                 if ($organization_category_slug !== null && $suffix !== null) {
-                    $organizations_query = $organizations_query->where('organization_category_slug', $organization_category_slug);
+                    $organizations_query = $organizations_query->where('state_id', $state_id)->where('city_id', $city_id)->where('organization_category_slug', $organization_category_slug);
                 }
 
                 $organizations = $organizations_query->get();
