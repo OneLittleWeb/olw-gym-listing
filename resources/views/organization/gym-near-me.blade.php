@@ -33,7 +33,7 @@
         END BREADCRUMB AREA
     ================================= -->
 
-    <section class="category-area section--padding">
+    <section class="category-area">
         <div class="card organization-map">
             <div class="card-body">
                 <div id="near_me_map" style="height: 500px;"></div>
