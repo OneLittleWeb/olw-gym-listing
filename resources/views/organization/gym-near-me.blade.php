@@ -13,7 +13,12 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
                         <div class="section-heading">
-                            <h2 class="sec__title font-size-26 mb-0">Category near Location</h2>
+                            @if($organizations->count() > 0)
+                                <h2 class="sec__title font-size-26 mb-0">{{ $organizations[0]->organization_category }}
+                                    near {{ $organizations[0]->city->name }}</h2>
+                            @else
+                                <h2 class="sec__title font-size-26 mb-0">Find a gym near you</h2>
+                            @endif
                         </div>
                         <ul class="list-items bread-list bread-list-2">
                             <li><a href="#">Home</a></li>
@@ -28,7 +33,7 @@
         END BREADCRUMB AREA
     ================================= -->
 
-    <section class="category-area section--padding margin-top-40px">
+    <section class="category-area section--padding">
         <div class="card organization-map">
             <div class="card-body">
                 <div id="near_me_map" style="height: 500px;"></div>
