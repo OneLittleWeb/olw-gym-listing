@@ -606,16 +606,16 @@ class OrganizationController extends Controller
 
     public function gymNearMe(Request $request, $organization_category_slug = null, $suffix = null)
     {
-//        $client_ip_address = $request->ip();
+        $client_ip_address = $request->ip();
 
 //        $client_ip_address = '172.69.59.14';
 
-        $client_ip_address = '198.255.72.231';
+//        $client_ip_address = '198.255.72.231';
 
         $user_location = Location::get($client_ip_address);
 
         $organizations = [];
-        $locationData = [];
+        $location_data = [];
 
         if ($user_location) {
             $state = State::where('name', Str::lower($user_location->regionName))->first();
@@ -651,7 +651,7 @@ class OrganizationController extends Controller
                 $organizations = $organizations->sortBy('distance');
 
                 foreach ($organizations as $organization) {
-                    $locationData[] = [
+                    $location_data[] = [
                         'name' => $organization->organization_name,
                         'lat' => $organization->organization_latitude,
                         'lng' => $organization->organization_longitude,
@@ -664,19 +664,19 @@ class OrganizationController extends Controller
             }
         }
 
-        return view('organization.gym-near-me', ['locations' => json_encode($locationData), 'organizations' => $organizations]);
+        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations]);
     }
 
     private function calculateDistance($lat1, $lon1, $lat2, $lon2)
     {
         $earth_radius = 6371;
 
-        $deltaLat = deg2rad($lat2 - $lat1);
-        $deltaLon = deg2rad($lon2 - $lon1);
+        $delta_lat = deg2rad($lat2 - $lat1);
+        $delta_lon = deg2rad($lon2 - $lon1);
 
-        $a = sin($deltaLat / 2) * sin($deltaLat / 2) +
+        $a = sin($delta_lat / 2) * sin($delta_lat / 2) +
             cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
-            sin($deltaLon / 2) * sin($deltaLon / 2);
+            sin($delta_lon / 2) * sin($delta_lon / 2);
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
         return $earth_radius * $c;

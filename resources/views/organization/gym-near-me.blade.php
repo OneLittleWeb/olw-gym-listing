@@ -3,6 +3,31 @@
 @section('meta_description', "Browse near by all gyms.")
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
+
+    <!-- ================================
+    START BREADCRUMB AREA
+================================= -->
+    <section class="breadcrumb-area bg-gradient-gray py-4">
+        <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
+                        <div class="section-heading">
+                            <h2 class="sec__title font-size-26 mb-0">Category near Location</h2>
+                        </div>
+                        <ul class="list-items bread-list bread-list-2">
+                            <li><a href="#">Home</a></li>
+                            <li>Category near Location</li>
+                        </ul>
+                    </div><!-- end breadcrumb-content -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+        </div><!-- end container-fluid -->
+    </section><!-- end breadcrumb-area -->
+    <!-- ================================
+        END BREADCRUMB AREA
+    ================================= -->
+
     <section class="category-area section--padding margin-top-40px">
         <div class="card organization-map">
             <div class="card-body">
