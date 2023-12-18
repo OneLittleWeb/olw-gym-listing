@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
                         <div class="section-heading">
-                            @if(is_array($organizations) && count($organizations) > 0)
+                            @if($organizations)
                                 <h2 class="sec__title font-size-26 mb-0">{{ $organizations[0]->organization_category }}
                                     near {{ $organizations[0]->city->name }}</h2>
                             @else
