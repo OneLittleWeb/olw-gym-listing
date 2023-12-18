@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
-                        <div class="section-heading">
+                        <div class="section-heading text-capitalize">
                             @if($organizations)
                                 <h2 class="sec__title font-size-26 mb-0">{{ $organizations[0]->organization_category }}
                                     near {{ $organizations[0]->city->name }}</h2>
@@ -20,9 +20,14 @@
                                 <h2 class="sec__title font-size-26 mb-0">Find a gym near you</h2>
                             @endif
                         </div>
-                        <ul class="list-items bread-list bread-list-2">
+                        <ul class="list-items bread-list bread-list-2 text-capitalize">
                             <li><a href="#">Home</a></li>
-                            <li>Category near Location</li>
+                            @if($organizations)
+                                <li>{{ $organizations[0]->organization_category }}
+                                    near {{ $organizations[0]->city->name }}</li
+                            @else
+                                <li>Find a gym near you</li>
+                            @endif
                         </ul>
                     </div><!-- end breadcrumb-content -->
                 </div><!-- end col-lg-12 -->
