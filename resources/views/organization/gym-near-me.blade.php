@@ -42,7 +42,7 @@
        START FULL SCREEN AREA
 ================================= -->
     <section class="full-screen-container d-flex">
-        <div class="w-30 card-area">
+        <div class="w-30 card-area near-me-business-area">
             <div class="filter-bar-wrap padding-left-30px padding-right-30px">
                 <div
                     class="filter-bar d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
