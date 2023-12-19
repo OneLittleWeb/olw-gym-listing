@@ -56,21 +56,6 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
                     <p class="result-text font-weight-medium font-size-14"><i class="la la-map-marker mr-1 text-color-2"></i> We Found These Locations Near You ({{ $organizations->count() }}
                         Results)</p>
-                    <div class="filter-bar-action d-flex flex-wrap align-items-center">
-                        <div class="user-chosen-select-container ml-3">
-                            <select class="user-chosen-select">
-                                <option value="sort-by-default">Sort by default</option>
-                                <option value="high-rated">High Rated</option>
-                                <option value="most-reviewed">Most Reviewed</option>
-                                <option value="popular-Listing">Popular Listing</option>
-                                <option value="newest-Listing">Newest Listing</option>
-                                <option value="older-Listing">Older Listing</option>
-                                <option value="price-low-to-high">Price: low to high</option>
-                                <option value="price-high-to-low">Price: high to low</option>
-                                <option value="all-listings">Random</option>
-                            </select>
-                        </div>
-                    </div><!-- end filter-bar-action -->
                 </div><!-- end filter-bar -->
             </div><!-- end filter-bar-wrap -->
             <div class="row pt-4 padding-left-30px padding-right-30px">
