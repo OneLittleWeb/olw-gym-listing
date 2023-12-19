@@ -610,7 +610,7 @@ class OrganizationController extends Controller
 
 //        $client_ip_address = '172.69.59.14';
 
-//        $client_ip_address = '198.255.72.231';
+        $client_ip_address = '198.255.72.231';
 
         $user_location = Location::get($client_ip_address);
 
