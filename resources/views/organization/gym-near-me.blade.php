@@ -54,8 +54,8 @@
                     </div>
                 </form>
                 <div class="d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
-                    <p class="result-text font-weight-medium">Showing 1 to 6 of {{ $organizations->count() }}
-                        locations</p>
+                    <p class="result-text font-weight-medium font-size-14"><i class="la la-map-marker mr-1 text-color-2"></i> We Found These Locations Near You ({{ $organizations->count() }}
+                        Results)</p>
                     <div class="filter-bar-action d-flex flex-wrap align-items-center">
                         <div class="user-chosen-select-container ml-3">
                             <select class="user-chosen-select">
@@ -143,18 +143,11 @@
                         </div>
                     </div><!-- end card-item -->
                 </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-lg">
+                <div class="col-lg-12 responsive-column-lg">
                     <div class="card-item">
-                        <div class="card-image">
-                            <a href="listing-details.html" class="d-block">
-                                <img src="images/img-loading.png" data-src="images/img4.jpg" class="card__img lazy"
-                                     alt="">
-                            </a>
-                            </span>
-                        </div>
                         <div class="card-content">
                             <h4 class="card-title">
-                                <a href="listing-details.html">Hotel Govendor</a>
+                                <a href="#">Hotel Govendor</a>
                             </h4>
                             <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
                                     Avenue, New York</a></p>
@@ -184,18 +177,11 @@
                         </div>
                     </div><!-- end card-item -->
                 </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-lg">
+                <div class="col-lg-12 responsive-column-lg">
                     <div class="card-item">
-                        <div class="card-image">
-                            <a href="listing-details.html" class="d-block">
-                                <img src="images/img-loading.png" data-src="images/img4.jpg" class="card__img lazy"
-                                     alt="">
-                            </a>
-                            </span>
-                        </div>
                         <div class="card-content">
                             <h4 class="card-title">
-                                <a href="listing-details.html">Hotel Govendor</a>
+                                <a href="#">Hotel Govendor</a>
                             </h4>
                             <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
                                     Avenue, New York</a></p>
@@ -225,42 +211,6 @@
                         </div>
                     </div><!-- end card-item -->
                 </div><!-- end col-lg-6 -->
-            </div><!-- end row -->
-            <div class="row">
-                <div class="col-lg-12 pt-3 text-center pb-5">
-                    <div class="pagination-wrapper d-inline-block">
-                        <div class="section-pagination">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination flex-wrap justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link page-link-first" href="#"><i
-                                                class="la la-long-arrow-left mr-1"></i> First</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true"><i class="la la-angle-left"></i></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link page-link-active" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true"><i class="la la-angle-right"></i></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link page-link-last" href="#">Last <i
-                                                class="la la-long-arrow-right ml-1"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div><!-- end section-pagination -->
-                    </div>
-                </div><!-- end col-lg-12 -->
             </div><!-- end row -->
         </div><!-- end card-area -->
         <div class="w-70 home-map">
