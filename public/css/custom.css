@@ -384,8 +384,9 @@
 }
 
 .near-me-business-area {
-    max-height: 980px;
-    overflow-y: auto;
+    max-height: 715px;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 .review-tab-content {

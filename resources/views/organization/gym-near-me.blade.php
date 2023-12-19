@@ -53,153 +53,50 @@
                         </div>
                     </div>
                 </form>
-                <div class="d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
-                    <p class="result-text font-weight-medium font-size-14"><i class="la la-map-marker mr-1 text-color-2"></i> We Found These Locations Near You ({{ $organizations->count() }}
+                <div
+                    class="d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
+                    <p class="result-text font-weight-medium font-size-14"><i
+                            class="la la-map-marker mr-1 text-color-2"></i> We Found These Locations Near You
+                        ({{ $organizations->count() }}
                         Results)</p>
                 </div><!-- end filter-bar -->
             </div><!-- end filter-bar-wrap -->
             <div class="row pt-4 padding-left-30px padding-right-30px">
-                <div class="col-lg-12 responsive-column-lg">
-                    <div class="card-item">
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="#">Favorite Place Food Bank</a>
-                            </h4>
-                            <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
-                                    Avenue, New York</a></p>
-                            <ul class="listing-meta d-flex align-items-center">
-                                <li class="d-flex align-items-center">
-                                    <span class="rate flex-shrink-0">4.7</span>
-                                    <span class="rate-text">5 Ratings</span>
-                                </li>
-                                <li>
+                @foreach($organizations as $organization)
+                    <div class="col-lg-12 responsive-column-lg">
+                        <div class="card-item">
+                            <div class="card-content">
+                                <h4 class="card-title">
+                                    <a href="#">{{ $organization->organization_name }}</a>
+                                </h4>
+                                <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
+                                        Avenue, New York</a></p>
+                                <ul class="listing-meta d-flex align-items-center">
+                                    <li class="d-flex align-items-center">
+                                        <span class="rate flex-shrink-0">4.7</span>
+                                        <span class="rate-text">5 Ratings</span>
+                                    </li>
+                                    <li>
                                 <span class="price-range" data-toggle="tooltip" data-placement="top" title="Pricey">
                                     <strong class="font-weight-medium">$</strong>
                                     <strong class="font-weight-medium">$</strong>
                                     <strong class="font-weight-medium">$</strong>
                                 </span>
-                                </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="la la-cutlery mr-1 listing-icon"></i><a href="#" class="listing-cat-link">Restaurant</a>
-                                </li>
-                            </ul>
-                            <ul class="info-list padding-top-20px">
-                                <li><span class="la la-link icon"></span>
-                                    <a href="#"> www.gymnearx.com</a>
-                                </li>
-                                <li><span class="la la-calendar-check-o icon"></span>
-                                    Opened 1 month ago
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- end card-item -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-12 responsive-column-lg">
-                    <div class="card-item">
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="#">Beach Blue Boardwalk</a>
-                            </h4>
-                            <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
-                                    Avenue, New York</a></p>
-                            <ul class="listing-meta d-flex align-items-center">
-                                <li class="d-flex align-items-center">
-                                    <span class="rate flex-shrink-0">4.7</span>
-                                    <span class="rate-text">5 Ratings</span>
-                                </li>
-                                <li>
-                                <span class="price-range" data-toggle="tooltip" data-placement="top" title="Moderate">
-                                    <strong class="font-weight-medium">$</strong>
-                                    <strong class="font-weight-medium">$</strong>
-                                </span>
-                                </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="la la-plane mr-1 listing-icon"></i><a href="#" class="listing-cat-link">Travel</a>
-                                </li>
-                            </ul>
-                            <ul class="info-list padding-top-20px">
-                                <li><span class="la la-link icon"></span>
-                                    <a href="#"> www.gymnearx.com</a>
-                                </li>
-                                <li><span class="la la-calendar-check-o icon"></span>
-                                    Opened 1 month ago
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- end card-item -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-12 responsive-column-lg">
-                    <div class="card-item">
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="#">Hotel Govendor</a>
-                            </h4>
-                            <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
-                                    Avenue, New York</a></p>
-                            <ul class="listing-meta d-flex align-items-center">
-                                <li class="d-flex align-items-center">
-                                    <span class="rate flex-shrink-0">4.7</span>
-                                    <span class="rate-text">5 Ratings</span>
-                                </li>
-                                <li>
-                                <span class="price-range" data-toggle="tooltip" data-placement="top"
-                                      title="Inexpensive">
-                                    <strong class="font-weight-medium">$</strong>
-                                </span>
-                                </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="la la-hotel mr-1 listing-icon"></i><a href="#" class="listing-cat-link">Hotels</a>
-                                </li>
-                            </ul>
-                            <ul class="info-list padding-top-20px">
-                                <li><span class="la la-link icon"></span>
-                                    <a href="#"> www.gymnearx.com</a>
-                                </li>
-                                <li><span class="la la-calendar-check-o icon"></span>
-                                    Opened 1 month ago
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- end card-item -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-12 responsive-column-lg">
-                    <div class="card-item">
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="#">Hotel Govendor</a>
-                            </h4>
-                            <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
-                                    Avenue, New York</a></p>
-                            <ul class="listing-meta d-flex align-items-center">
-                                <li class="d-flex align-items-center">
-                                    <span class="rate flex-shrink-0">4.7</span>
-                                    <span class="rate-text">5 Ratings</span>
-                                </li>
-                                <li>
-                                <span class="price-range" data-toggle="tooltip" data-placement="top"
-                                      title="Inexpensive">
-                                    <strong class="font-weight-medium">$</strong>
-                                </span>
-                                </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="la la-hotel mr-1 listing-icon"></i><a href="#" class="listing-cat-link">Hotels</a>
-                                </li>
-                            </ul>
-                            <ul class="info-list padding-top-20px">
-                                <li><span class="la la-link icon"></span>
-                                    <a href="#"> www.gymnearx.com</a>
-                                </li>
-                                <li><span class="la la-calendar-check-o icon"></span>
-                                    Opened 1 month ago
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- end card-item -->
-                </div><!-- end col-lg-6 -->
+                                    </li>
+                                    <li class="d-flex align-items-center">
+                                        <i class="la la-route mr-1 listing-icon"></i><a href="#"
+                                                                                        class="listing-cat-link">667.02
+                                            meters</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- end card-item -->
+                    </div><!-- end col-lg-6 -->
+                @endforeach
             </div><!-- end row -->
         </div><!-- end card-area -->
         <div class="w-70 home-map">
-            <div class="map-container height-980">
+            <div class="map-container" style="height: 715px">
                 <div id="myMap"></div>
                 <a href="#" class="enable-scroll" title="Enable or disable scrolling on map">
                     <i class="la la-mouse mr-2"></i>Enable Scrolling
