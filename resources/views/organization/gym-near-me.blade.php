@@ -61,12 +61,6 @@
                                 <option value="all-listings">Random</option>
                             </select>
                         </div>
-                        <ul class="filter-nav ml-1">
-                            <li><a href="listing-grid.html" data-toggle="tooltip" data-placement="top" title="Grid View"
-                                   class="active"><span class="la la-th-large"></span></a></li>
-                            <li><a href="listing-list.html" data-toggle="tooltip" data-placement="top"
-                                   title="List View"><span class="la la-list"></span></a></li>
-                        </ul>
                     </div><!-- end filter-bar-action -->
                 </div><!-- end filter-bar -->
                 <div class="section-block"></div>
