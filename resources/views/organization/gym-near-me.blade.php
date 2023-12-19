@@ -102,7 +102,7 @@
                     <i class="la la-mouse mr-2"></i>Enable Scrolling
                 </a>
             </div>
-        </div><!-- Home Map End -->
+        </div>
     </section>
     <!-- ================================
            END FULL SCREEN AREA
