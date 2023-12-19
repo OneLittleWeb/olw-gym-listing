@@ -46,7 +46,7 @@
             <div class="filter-bar-wrap padding-left-30px padding-right-30px">
                 <div
                     class="filter-bar d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
-                    <p class="result-text font-weight-medium">Showing 1 to 6 of 98 entries</p>
+                    <p class="result-text font-weight-medium">Showing 1 to 6 of {{ $organizations->count() }} locations</p>
                     <div class="filter-bar-action d-flex flex-wrap align-items-center">
                         <div class="user-chosen-select-container ml-3">
                             <select class="user-chosen-select">
@@ -628,7 +628,6 @@
                             <a href="listing-details.html" class="d-block">
                                 <img src="images/img-loading.png" data-src="images/img4.jpg" class="card__img lazy"
                                      alt="">
-                                <span class="badge">now open</span>
                             </a>
                         </div>
                         <div class="card-content">
@@ -670,18 +669,11 @@
                             <a href="listing-details.html" class="d-block">
                                 <img src="images/img-loading.png" data-src="images/img4.jpg" class="card__img lazy"
                                      alt="">
-                                <span class="badge bg-10">closed</span>
                             </a>
-                            <span class="bookmark-btn" data-toggle="tooltip" data-placement="top" title="Save">
-                            <i class="la la-bookmark"></i>
                         </span>
                         </div>
                         <div class="card-content">
-                            <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top"
-                               title="TechyDevs">
-                                <img src="images/listing-logo.jpg" alt="author-img">
-                            </a>
-                            <h4 class="card-title pt-3">
+                            <h4 class="card-title">
                                 <a href="listing-details.html">Beach Blue Boardwalk</a>
                             </h4>
                             <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
@@ -718,18 +710,11 @@
                             <a href="listing-details.html" class="d-block">
                                 <img src="images/img-loading.png" data-src="images/img4.jpg" class="card__img lazy"
                                      alt="">
-                                <span class="badge">Now Open</span>
                             </a>
-                            <span class="bookmark-btn" data-toggle="tooltip" data-placement="top" title="Save">
-                            <i class="la la-bookmark"></i>
                         </span>
                         </div>
                         <div class="card-content">
-                            <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top"
-                               title="TechyDevs">
-                                <img src="images/listing-logo3.jpg" alt="author-img">
-                            </a>
-                            <h4 class="card-title pt-3">
+                            <h4 class="card-title">
                                 <a href="listing-details.html">Hotel Govendor</a>
                             </h4>
                             <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
@@ -766,18 +751,11 @@
                             <a href="listing-details.html" class="d-block">
                                 <img src="images/img-loading.png" data-src="images/img4.jpg" class="card__img lazy"
                                      alt="">
-                                <span class="badge">Now open</span>
                             </a>
-                            <span class="bookmark-btn" data-toggle="tooltip" data-placement="top" title="Save">
-                            <i class="la la-bookmark"></i>
                         </span>
                         </div>
                         <div class="card-content">
-                            <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top"
-                               title="TechyDevs">
-                                <img src="images/fill-sign.png" alt="author-img">
-                            </a>
-                            <h4 class="card-title pt-3">
+                            <h4 class="card-title">
                                 <a href="listing-details.html">Hotel Govendor</a>
                             </h4>
                             <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
