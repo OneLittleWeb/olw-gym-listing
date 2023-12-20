@@ -79,8 +79,6 @@
                                     <li>
                                 <span class="price-range" data-toggle="tooltip" data-placement="top" title="Pricey">
                                     <strong class="font-weight-medium">$</strong>
-                                    <strong class="font-weight-medium">$</strong>
-                                    <strong class="font-weight-medium">$</strong>
                                 </span>
                                     </li>
                                     <li class="d-flex align-items-center">
@@ -98,9 +96,9 @@
         <div class="w-70 home-map">
             <div class="map-container" style="height: 715px">
                 <div id="myMap"></div>
-                <a href="#" class="enable-scroll" title="Enable or disable scrolling on map">
-                    <i class="la la-mouse mr-2"></i>Enable Scrolling
-                </a>
+{{--                <a href="#" class="enable-scroll" title="Enable or disable scrolling on map">--}}
+{{--                    <i class="la la-mouse mr-2"></i>Enable Scrolling--}}
+{{--                </a>--}}
             </div>
         </div>
     </section>
