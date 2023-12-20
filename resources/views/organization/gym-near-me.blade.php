@@ -113,7 +113,7 @@
                 </div><!-- end row -->
             </div>
         </div><!-- end card-area -->
-        <div class="w-70 home-map">
+        <div class="w-70 main-map-area">
             <div class="map-container height-715">
                 <div id="myMap"></div>
                 {{--                <a href="#" class="enable-scroll" title="Enable or disable scrolling on map">--}}
