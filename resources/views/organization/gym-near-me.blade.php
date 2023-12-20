@@ -34,9 +34,7 @@
     </section>
     <!-- ====END BREADCRUMB AREA==== -->
 
-    <!-- ================================
-       START FULL SCREEN AREA
-================================= -->
+    <!-- ===START FULL SCREEN AREA=== -->
     <section class="full-screen-container d-flex">
         <div class="w-30 card-area">
             <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3" style="background-color: #292a74">
@@ -55,8 +53,8 @@
                             class="la la-map-marker mr-1"></i> We Found These Locations Near You
                         ({{ $organizations->count() }}
                         Results)</p>
-                </div><!-- end filter-bar -->
-            </div><!-- end filter-bar-wrap -->
+                </div>
+            </div>
             <div class="near-me-business-area">
                 <div class="row pt-4 padding-left-30px padding-right-30px">
                     @foreach($organizations as $organization)
@@ -103,24 +101,19 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div><!-- end card-item -->
-                        </div><!-- end col-lg-6 -->
+                            </div>
+                        </div>
                     @endforeach
-                </div><!-- end row -->
+                </div>
             </div>
-        </div><!-- end card-area -->
+        </div>
         <div class="w-70 main-map-area">
             <div class="map-container height-715">
                 <div id="myMap"></div>
-                {{--                <a href="#" class="enable-scroll" title="Enable or disable scrolling on map">--}}
-                {{--                    <i class="la la-mouse mr-2"></i>Enable Scrolling--}}
-                {{--                </a>--}}
             </div>
         </div>
     </section>
-    <!-- ================================
-           END FULL SCREEN AREA
-    ================================= -->
+    <!-- ===END FULL SCREEN AREA=== -->
 @endsection
 
 @section('js')
