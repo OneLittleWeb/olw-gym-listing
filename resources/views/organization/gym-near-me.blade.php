@@ -70,22 +70,40 @@
                                     <h4 class="card-title">
                                         <a href="#">{{ $organization->organization_name }}</a>
                                     </h4>
-                                    <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop
-                                            Avenue, New York</a></p>
+                                    <p class="card-sub">
+                                        <a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>
+                                            @if($organization->organization_address)
+                                                {{ str_replace('Address: ', '', $organization->organization_address) }}
+                                            @else
+                                                {{ ucfirst($organization->city->name) }}
+                                                , {{ ucfirst($organization->state->name) }}, US
+                                            @endif
+                                        </a>
+                                    </p>
                                     <ul class="listing-meta d-flex align-items-center">
-                                        <li class="d-flex align-items-center">
-                                            <span class="rate flex-shrink-0">4.7</span>
-                                            <span class="rate-text">5 Ratings</span>
-                                        </li>
-                                        <li>
-                                <span class="price-range" data-toggle="tooltip" data-placement="top" title="Pricey">
-                                    <strong class="font-weight-medium">$</strong>
-                                </span>
-                                        </li>
-                                        <li class="d-flex align-items-center">
-                                            <i class="la la-route mr-1 listing-icon"></i><a href="#"
-                                                                                            class="listing-cat-link">667.02
-                                                meters</a>
+                                        @if($organization->rate_stars && $organization->reviews_total_count)
+                                            <li class="d-flex align-items-center">
+                                                        <span
+                                                            class="rate flex-shrink-0">{{ $organization->rate_stars }}</span>
+                                                <span
+                                                    class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
+                                            </li>
+                                        @else
+                                            <li class="d-flex align-items-center">
+                                                <span class="rate flex-shrink-0">0.0</span>
+                                                <span class="rate-text">0 Reviews</span>
+                                            </li>
+                                        @endif
+
+                                        <li class="d-flex align-items-center padding-left-20px">
+                                            <i class="la la-route mr-1 listing-icon"></i>
+                                            <a href="#" class="listing-cat-link">
+                                                @if($organization->distance < 1)
+                                                    {{ number_format($organization->distance * 1000, 2)}} meters
+                                                @else
+                                                    {{ number_format($organization->distance, 2) }} km
+                                                @endif
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -96,31 +114,17 @@
             </div>
         </div><!-- end card-area -->
         <div class="w-70 home-map">
-            <div class="map-container" style="height: 715px">
+            <div class="map-container height-715">
                 <div id="myMap"></div>
-{{--                <a href="#" class="enable-scroll" title="Enable or disable scrolling on map">--}}
-{{--                    <i class="la la-mouse mr-2"></i>Enable Scrolling--}}
-{{--                </a>--}}
+                {{--                <a href="#" class="enable-scroll" title="Enable or disable scrolling on map">--}}
+                {{--                    <i class="la la-mouse mr-2"></i>Enable Scrolling--}}
+                {{--                </a>--}}
             </div>
         </div>
     </section>
     <!-- ================================
            END FULL SCREEN AREA
     ================================= -->
-
-    <section class="category-area">
-        <div class="card">
-            <div class="card-body">
-                @forelse($organizations as $organization)
-                    <p>{{ $organization->organization_name }} - {{ $organization->state->name }}
-                        - {{ $organization->city->name }}
-                        - {{ $organization->distance }}</p>
-                @empty
-                    <p>No gyms found.</p>
-                @endforelse
-            </div>
-        </div>
-    </section>
 @endsection
 
 @section('js')
