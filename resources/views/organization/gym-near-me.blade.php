@@ -60,7 +60,7 @@
                     @foreach($organizations as $organization)
                         <div class="col-lg-12 responsive-column-lg">
                             <div class="card-item">
-                                <div class="card-content">
+                                <div class="card-content" id="map_hover_id">
                                     <h4 class="card-title">
                                         <a href="#">{{ $organization->organization_name }}</a>
                                     </h4>
