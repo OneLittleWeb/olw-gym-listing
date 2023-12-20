@@ -384,7 +384,8 @@
 }
 
 .near-me-business-area {
-    max-height: 715px;
+    /*max-height: 715px;*/
+    max-height: 585px;
     overflow: auto;
     overflow-x: hidden;
 }
