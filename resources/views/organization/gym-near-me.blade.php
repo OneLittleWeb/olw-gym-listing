@@ -4,9 +4,7 @@
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
 
-    <!-- ================================
-    START BREADCRUMB AREA
-================================= -->
+    <!-- =====START BREADCRUMB AREA==== -->
     <section class="breadcrumb-area bg-gradient-gray py-4">
         <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
             <div class="row">
@@ -29,14 +27,12 @@
                                 <li>Find a gym near you</li>
                             @endif
                         </ul>
-                    </div><!-- end breadcrumb-content -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container-fluid -->
-    </section><!-- end breadcrumb-area -->
-    <!-- ================================
-        END BREADCRUMB AREA
-    ================================= -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====END BREADCRUMB AREA==== -->
 
     <!-- ================================
        START FULL SCREEN AREA
