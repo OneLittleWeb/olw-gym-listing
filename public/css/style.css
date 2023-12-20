@@ -11817,10 +11817,6 @@ div.datedropper .picker .pick-lg-b li {
     height: 980px
 }
 
-.height-715 {
-    height: 715px
-}
-
 @media (max-width: 1199px) {
     .full-screen-container {
         flex-direction: column
