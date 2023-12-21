@@ -60,7 +60,7 @@
                     @foreach($organizations as $organization)
                         <div class="col-lg-12 responsive-column-lg">
                             <div class="card-item">
-                                <div class="card-content" id="map_hover_id">
+                                <div class="card-content" id="card_content_specific_business_{{ $loop->index }}">
                                     <h4 class="card-title">
                                         <a href="#">{{ $organization->organization_name }}</a>
                                     </h4>
@@ -122,84 +122,212 @@
         document.addEventListener('DOMContentLoaded', function () {
             const locations = {!! $locations ?? '[]' !!};
 
-            console.log('Locations:', locations); // Log locations data
+            if (!Array.isArray(locations) || locations.length === 0) {
+                console.error('Locations data is invalid or empty.');
+                return;
+            }
 
-            if (!Array.isArray(locations)) {
-                console.error('Locations is not an array.');
-            } else if (locations.length === 0) {
-                console.error('Locations array is empty.');
-            } else {
-                const mapElement = document.getElementById('myMap');
-                if (!mapElement) {
-                    console.error('Map element not found.');
+            const mapElement = document.getElementById('myMap');
+
+            if (!mapElement) {
+                console.error('Map element not found.');
+                return;
+            }
+
+            const map = L.map('myMap').setView([0, 0], 2);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+
+            let firstMarker = null;
+            let hoveredMarker = null;
+
+            locations.forEach((location, index) => {
+                const marker = L.marker([location.lat, location.lng]);
+
+                const cardContentId = `#card_content_specific_business_${index}`;
+                const cardContent = document.querySelector(cardContentId);
+
+                const url = `/${location.city_slug}/gnx/${location.slug}`;
+                const imagePath = '{{ asset("images/business/") }}' + '/' + location.head_photo;
+
+                let distanceDisplay = '';
+                if (location.distance < 1) {
+                    const distanceInMeters = (location.distance * 1000).toFixed(2);
+                    distanceDisplay = `${distanceInMeters} meters`;
                 } else {
-                    const map = L.map('myMap').setView([0, 0], 2); // Initialize map and set the view
+                    const distanceInKm = location.distance.toFixed(2);
+                    distanceDisplay = `${distanceInKm} km`;
+                }
 
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 19,
-                    }).addTo(map);
+                const popupContent = `
+                <a href="${url}" target="_blank">
+                    <b>${location.name}</b>
+                </a>
+                <br>
+                <a href="${url}" target="_blank">
+                    <img src="${imagePath}" alt="Organization Image" style="max-width: 100px;">
+                </a>
+                <br>
+                <b>${distanceDisplay}</b>
+            `;
 
-                    let firstMarker = null; // To store the first marker with less distance
+                marker.bindPopup(popupContent);
 
-                    locations.forEach(location => {
-                        const marker = L.marker([location.lat, location.lng]);
+                marker.on('mouseover', function (e) {
+                    this.openPopup();
+                    hoveredMarker = this;
+                    if (cardContent) {
+                        cardContent.classList.add('active'); // Add a class to the card content
+                    }
+                });
 
-                        const url = `/${location.city_slug}/gnx/${location.slug}`;
+                marker.on('mouseout', function (e) {
+                    if (hoveredMarker !== this) {
+                        this.closePopup();
+                    }
+                    if (cardContent) {
+                        cardContent.classList.remove('active'); // Remove the class when mouse leaves
+                    }
+                });
 
-                        // Image path for the popup content
-                        const imagePath = '{{ asset("images/business/") }}' + '/' + location.head_photo;
-
-                        let distanceDisplay = '';
-                        if (location.distance < 1) {
-                            // Display distance in meters if less than 1 km
-                            const distanceInMeters = (location.distance * 1000).toFixed(2); // Convert km to meters
-                            distanceDisplay = `${distanceInMeters} meters`;
-                        } else {
-                            // Display distance in kilometers with two decimal places
-                            const distanceInKm = location.distance.toFixed(2);
-                            distanceDisplay = `${distanceInKm} km`;
-                        }
-
-                        // Construct the HTML content for the popup including the clickable image
-                        const popupContent = `
-                    <a href="${url}" target="_blank">
-                        <b>${location.name}</b>
-                    </a>
-                    <br>
-                    <a href="${url}" target="_blank">
-                        <img src="${imagePath}" alt="Organization Image" style="max-width: 100px;">
-                    </a>
-                    <br>
-                    <b>${distanceDisplay}</b>
-                `;
-
-                        marker.bindPopup(popupContent);
-
-                        // Show popup on mouseover and prevent closing on mouseout
-                        marker.on('mouseover', function (e) {
-                            this.openPopup();
-                        });
-
-                        if (!firstMarker || location.distance < firstMarker.distance) {
-                            firstMarker = {
-                                distance: location.distance,
-                                marker: marker,
-                            };
-                        }
-
-                        marker.addTo(map);
+                // Hover effect for card content
+                if (cardContent) {
+                    cardContent.addEventListener('mouseover', function () {
+                        marker.openPopup();
+                        hoveredMarker = marker;
+                        cardContent.classList.add('active');
                     });
 
-                    // Fit the map to display all markers
-                    const latlngs = locations.map(location => [location.lat, location.lng]);
-                    map.fitBounds(latlngs);
-
-                    // Automatically open popup for the marker with less distance
-                    if (firstMarker) {
-                        firstMarker.marker.openPopup();
-                    }
+                    cardContent.addEventListener('mouseout', function () {
+                        if (hoveredMarker !== marker) {
+                            marker.closePopup();
+                        }
+                        cardContent.classList.remove('active');
+                    });
                 }
+
+                marker.addTo(map);
+
+                // Store the first marker
+                if (index === 0) {
+                    firstMarker = marker;
+                }
+            });
+
+            const latlngs = locations.map(location => [location.lat, location.lng]);
+            map.fitBounds(latlngs);
+
+            // Open the popup of the first marker by default
+            if (firstMarker) {
+                firstMarker.openPopup();
             }
         });
     </script>
 @endsection
+
+
+{{--@section('js')--}}
+{{--    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>--}}
+{{--    <script>--}}
+{{--        document.addEventListener('DOMContentLoaded', function () {--}}
+{{--            const locations = {!! $locations ?? '[]' !!};--}}
+
+{{--            if (!Array.isArray(locations) || locations.length === 0) {--}}
+{{--                console.error('Locations data is invalid or empty.');--}}
+{{--                return;--}}
+{{--            }--}}
+
+{{--            const mapElement = document.getElementById('myMap');--}}
+
+{{--            if (!mapElement) {--}}
+{{--                console.error('Map element not found.');--}}
+{{--                return;--}}
+{{--            }--}}
+
+{{--            const map = L.map('myMap').setView([0, 0], 2);--}}
+
+{{--            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {--}}
+{{--                maxZoom: 19,--}}
+{{--            }).addTo(map);--}}
+
+{{--            let firstMarker = null;--}}
+
+{{--            locations.forEach((location, index) => {--}}
+{{--                const marker = L.marker([location.lat, location.lng]);--}}
+
+{{--                const cardContentId = `#card_content_specific_business_${index}`;--}}
+{{--                const cardContent = document.querySelector(cardContentId);--}}
+
+{{--                const url = `/${location.city_slug}/gnx/${location.slug}`;--}}
+{{--                const imagePath = '{{ asset("images/business/") }}' + '/' + location.head_photo;--}}
+
+{{--                let distanceDisplay = '';--}}
+{{--                if (location.distance < 1) {--}}
+{{--                    const distanceInMeters = (location.distance * 1000).toFixed(2);--}}
+{{--                    distanceDisplay = `${distanceInMeters} meters`;--}}
+{{--                } else {--}}
+{{--                    const distanceInKm = location.distance.toFixed(2);--}}
+{{--                    distanceDisplay = `${distanceInKm} km`;--}}
+{{--                }--}}
+
+{{--                const popupContent = `--}}
+{{--                    <a href="${url}" target="_blank">--}}
+{{--                        <b>${location.name}</b>--}}
+{{--                    </a>--}}
+{{--                    <br>--}}
+{{--                    <a href="${url}" target="_blank">--}}
+{{--                        <img src="${imagePath}" alt="Organization Image" style="max-width: 100px;">--}}
+{{--                    </a>--}}
+{{--                    <br>--}}
+{{--                    <b>${distanceDisplay}</b>--}}
+{{--                `;--}}
+
+{{--                marker.bindPopup(popupContent);--}}
+
+{{--                marker.on('mouseover', function (e) {--}}
+{{--                    this.openPopup();--}}
+{{--                    if (cardContent) {--}}
+{{--                        cardContent.classList.add('active'); // Add a class to the card content--}}
+{{--                    }--}}
+{{--                });--}}
+
+{{--                marker.on('mouseout', function (e) {--}}
+{{--                    this.closePopup();--}}
+{{--                    if (cardContent) {--}}
+{{--                        cardContent.classList.remove('active'); // Remove the class when mouse leaves--}}
+{{--                    }--}}
+{{--                });--}}
+
+{{--                // Hover effect for card content--}}
+{{--                if (cardContent) {--}}
+{{--                    cardContent.addEventListener('mouseover', function () {--}}
+{{--                        marker.openPopup();--}}
+{{--                        cardContent.classList.add('active');--}}
+{{--                    });--}}
+
+{{--                    cardContent.addEventListener('mouseout', function () {--}}
+{{--                        marker.closePopup();--}}
+{{--                        cardContent.classList.remove('active');--}}
+{{--                    });--}}
+{{--                }--}}
+
+{{--                marker.addTo(map);--}}
+
+{{--                // Store the first marker--}}
+{{--                if (index === 0) {--}}
+{{--                    firstMarker = marker;--}}
+{{--                }--}}
+{{--            });--}}
+
+{{--            const latlngs = locations.map(location => [location.lat, location.lng]);--}}
+{{--            map.fitBounds(latlngs);--}}
+
+{{--            // Open the popup of the first marker by default--}}
+{{--            if (firstMarker) {--}}
+{{--                firstMarker.openPopup();--}}
+{{--            }--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@endsection--}}
