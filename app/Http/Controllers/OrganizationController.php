@@ -606,15 +606,6 @@ class OrganizationController extends Controller
 
     public function gymNearMe(Request $request, $organization_category_slug = null, $suffix = null)
     {
-//        $city = 'Tustin';
-//        $client = new Client();
-//        $url = 'https://nominatim.openstreetmap.org/search?format=json&q=' . urlencode($city);
-//        $response = $client->get($url);
-//        $data = json_decode($response->getBody(), true);
-//
-//        dd($data);
-//        dd($response->getBody()->getContents());
-
         $client_ip_address = $request->ip();
 
 //        $client_ip_address = '172.69.59.14';
