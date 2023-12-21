@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', config('app.name') . " THE Local Business Directory | States")
+@section('title', config('app.name') . " THE Local Business Directory | near me")
 @section('meta_description', "Browse near by all gyms.")
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
@@ -13,7 +13,7 @@
                         <div class="section-heading text-capitalize">
                             @if($organizations)
                                 <h2 class="sec__title font-size-26 mb-0">{{ $organizations[0]->organization_category }}
-                                    near {{ $organizations[0]->city->name }}</h2>
+                                    near {{ $organizations[0]->state->name }}, {{ $organizations[0]->city->name }}</h2>
                             @else
                                 <h2 class="sec__title font-size-26 mb-0">Find a gym near you</h2>
                             @endif
@@ -22,7 +22,7 @@
                             <li><a href="#">Home</a></li>
                             @if($organizations)
                                 <li>{{ $organizations[0]->organization_category }}
-                                    near {{ $organizations[0]->city->name }}</li
+                                    near you</li
                             @else
                                 <li>Find a gym near you</li>
                             @endif
@@ -36,7 +36,7 @@
 
     <!-- ===START FULL SCREEN AREA=== -->
     <section class="full-screen-container d-flex">
-        <div class="w-30 card-area">
+        <div class="w-25 card-area">
             <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3" style="background-color: #292a74">
                 <form method="post" class="form-box row pt-4">
                     <div class="col-lg-12 input-box">
@@ -107,9 +107,24 @@
                 </div>
             </div>
         </div>
-        <div class="w-70 main-map-area">
+        <div class="w-55 main-map-area">
             <div class="map-container height-715">
                 <div id="myMap"></div>
+            </div>
+        </div>
+        <div class="w-20 category-near-me">
+            <div class="sidebar mb-0">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Other Fitness Centers Near You</h3>
+                    <div class="stroke-shape mb-4"></div>
+                    <ul class="tag-list">
+                        <li><a href="#">Gym</a></li>
+                        <li><a href="#">Boxing Gyms</a></li>
+                        <li><a href="#">Fitness Centers</a></li>
+                        <li><a href="#">Personal Trainers</a></li>
+                        <li><a href="#">Gymnastics Center</a></li>
+                    </ul>
+                </div><!-- end sidebar-widget -->
             </div>
         </div>
     </section>
