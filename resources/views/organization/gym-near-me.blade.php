@@ -19,7 +19,7 @@
                             @endif
                         </div>
                         <ul class="list-items bread-list bread-list-2 text-capitalize">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             @if($organizations)
                                 <li>{{ $organizations[0]->organization_category }}
                                     near you</li
