@@ -124,7 +124,7 @@
                         <li><a href="#">Personal Trainers</a></li>
                         <li><a href="#">Gymnastics Center</a></li>
                     </ul>
-                </div><!-- end sidebar-widget -->
+                </div>
             </div>
         </div>
     </section>
