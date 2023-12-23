@@ -667,7 +667,7 @@ class OrganizationController extends Controller
             }
         }
 
-        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations]);
+        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug]);
     }
 
     private function calculateDistance($lat1, $lon1, $lat2, $lon2)

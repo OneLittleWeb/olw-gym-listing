@@ -120,7 +120,13 @@
                     <div class="stroke-shape mb-4"></div>
                     <ul class="tag-list">
                         @foreach($organizations->organization_categories as $category)
-                            <li><a href="#">{{ $category->organization_category }} ({{ $category->category_count }})</a></li>
+                            @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
+                                <li>
+                                    <a href="#">
+                                        {{ $category->organization_category }} ({{ $category->category_count }})
+                                    </a>
+                                </li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>
