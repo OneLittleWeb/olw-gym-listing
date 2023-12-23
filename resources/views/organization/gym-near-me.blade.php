@@ -228,7 +228,7 @@
                 }
 
                 marker.addTo(map);
-                mapMarkers.push(marker); // Push marker to mapMarkers array
+                mapMarkers.push(marker);
 
                 if (index === 0) {
                     firstMarker = marker;
