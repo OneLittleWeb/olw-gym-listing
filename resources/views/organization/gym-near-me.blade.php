@@ -241,7 +241,7 @@
             if (firstMarker) {
                 setTimeout(function () {
                     firstMarker.openPopup();
-                }, 500); // Delay the opening of the popup to ensure all markers are loaded
+                }, 500);
             }
         });
 
@@ -327,7 +327,6 @@
         });
     </script>
 @endsection
-
 
 {{--@section('js')--}}
 {{--    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>--}}
