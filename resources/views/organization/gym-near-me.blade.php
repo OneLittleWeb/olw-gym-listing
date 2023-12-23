@@ -37,7 +37,7 @@
     <!-- ===START FULL SCREEN AREA=== -->
     <section class="full-screen-container d-flex">
         <div class="w-25 card-area">
-            <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3" style="background-color: #292a74">
+            <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3 bg-light-blue">
                 <form method="post" class="form-box row pt-4">
                     <div class="col-lg-12 input-box">
                         <div class="form-group">

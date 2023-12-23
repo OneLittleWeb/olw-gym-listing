@@ -444,6 +444,10 @@
     padding: 0 25px;
 }
 
+.bg-light-blue {
+    background-color: #292a74;
+}
+
 .w-20 {
     width: 20% !important;
 }
