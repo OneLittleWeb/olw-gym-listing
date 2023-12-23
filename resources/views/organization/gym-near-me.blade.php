@@ -122,7 +122,7 @@
                         @foreach($organizations->organization_categories as $category)
                             @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('gym.near.me', ['category_slug' => $category->organization_category_slug, 'suffix' => 'near-me']) }}">
                                         {{ $category->organization_category }} ({{ $category->category_count }})
                                     </a>
                                 </li>
