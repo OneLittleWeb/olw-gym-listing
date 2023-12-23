@@ -120,7 +120,7 @@
                     <div class="stroke-shape mb-4"></div>
                     <ul class="tag-list">
                         @foreach($organizations->organization_categories as $category)
-                            <li><a href="#">{{ $category->organization_category }}</a></li>
+                            <li><a href="#">{{ $category->organization_category }} ({{ $category->category_count }})</a></li>
                         @endforeach
                     </ul>
                 </div>
