@@ -300,7 +300,8 @@
                 mapMarkers.forEach(function (marker, index) {
                     var location = locations[index];
 
-                    var markerTitle = location.name.toLowerCase();
+                    // Check if the marker's name or other relevant information matches the search term
+                    var markerTitle = location.name.toLowerCase(); // Update this according to the data structure
                     var matchFound = markerTitle.includes(searchTerm);
 
                     // Show or hide map markers based on the search term match
@@ -325,6 +326,7 @@
                 }
             });
         });
+
     </script>
 @endsection
 
