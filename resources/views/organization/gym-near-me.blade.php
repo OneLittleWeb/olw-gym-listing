@@ -63,10 +63,10 @@
                             <div class="card-item">
                                 <div class="card-content" id="card_content_specific_business_{{ $loop->index }}">
                                     <h4 class="card-title">
-                                        <a href="#">{{ $organization->organization_name }}</a>
+                                        <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}" target="_blank">{{ $organization->organization_name }}</a>
                                     </h4>
                                     <p class="card-sub">
-                                        <a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>
+                                        <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}" target="_blank"><i class="la la-map-marker mr-1 text-color-2"></i>
                                             @if($organization->organization_address)
                                                 {{ str_replace('Address: ', '', $organization->organization_address) }}
                                             @else
