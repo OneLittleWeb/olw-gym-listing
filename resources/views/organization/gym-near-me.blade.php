@@ -294,7 +294,7 @@
                 });
 
                 // Update the organization count text
-                $('.organization-count').text('(' + visibleOrganizations + ' Results)');
+                $('.organization-count').text('(' + visibleOrganizations);
 
                 // Filter map markers based on the search term
                 mapMarkers.forEach(function (marker, index) {
