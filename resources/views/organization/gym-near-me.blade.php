@@ -22,7 +22,8 @@
                             <li><a href="/">Home</a></li>
                             @if($organizations)
                                 <li>{{ $organizations[0]->organization_category }}
-                                    near you</li
+                                    near you
+                                </li
                             @else
                                 <li>Find a gym near you</li>
                             @endif
@@ -118,11 +119,9 @@
                     <h3 class="widget-title">Other Fitness Centers Near You</h3>
                     <div class="stroke-shape mb-4"></div>
                     <ul class="tag-list">
-                        <li><a href="#">Gym</a></li>
-                        <li><a href="#">Boxing Gyms</a></li>
-                        <li><a href="#">Fitness Centers</a></li>
-                        <li><a href="#">Personal Trainers</a></li>
-                        <li><a href="#">Gymnastics Center</a></li>
+                        @foreach($organizations->organization_categories as $category)
+                            <li><a href="#">{{ $category->organization_category }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

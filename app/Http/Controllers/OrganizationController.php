@@ -19,6 +19,7 @@ use Butschster\Head\Facades\Meta;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -650,6 +651,8 @@ class OrganizationController extends Controller
 
                 $organizations = $organizations->sortBy('distance');
 
+                $organizations->organization_categories = $this->organizationCategories($state_id, $city_id);
+
                 foreach ($organizations as $organization) {
                     $location_data[] = [
                         'name' => $organization->organization_name,
@@ -680,6 +683,16 @@ class OrganizationController extends Controller
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
         return $earth_radius * $c;
+    }
+
+    private function organizationCategories($state_id, $city_id)
+    {
+        return Organization::select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
+            ->where('state_id', $state_id)
+            ->where('city_id', $city_id)
+            ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
+            ->orderBy('category_count', 'desc')
+            ->get();
     }
 
 //    public function gymNearMe(Request $request)
