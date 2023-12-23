@@ -43,8 +43,8 @@
                     <div class="col-lg-12 input-box">
                         <div class="form-group">
                             <span class="la la-search form-icon"></span>
-                            <input class="form-control" type="search" name="text"
-                                   placeholder="Search by City & State or Zip Code">
+                            <input class="form-control" type="search" name="gym_near_me" id="gym_near_me"
+                                   placeholder="Search by Name or Zip Code">
                         </div>
                     </div>
                 </form>
@@ -52,7 +52,7 @@
                     class="d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
                     <p class="result-text font-weight-medium font-size-14 text-color-18"><i
                             class="la la-map-marker mr-1"></i> We Found These Locations Near You
-                        ({{ $organizations->count() }}
+                        <span class="organization-count">({{ $organizations->count() }}</span>
                         Results)</p>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="row pt-4 padding-left-30px padding-right-30px">
                     @foreach($organizations as $organization)
                         <div class="col-lg-12 responsive-column-lg">
-                            <div class="card-item">
+                            <div class="card-item near_me_organizations-card-item">
                                 <div class="card-content" id="card_content_specific_business_{{ $loop->index }}">
                                     <h4 class="card-title">
                                         <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}" target="_blank">{{ $organization->organization_name }}</a>
@@ -139,16 +139,17 @@
 @section('js')
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const locations = {!! $locations ?? '[]' !!};
+        const locations = {!! $locations ?? '[]' !!};
+        const mapMarkers = []; // Array to store map markers
+        let firstMarker = null;
 
+        document.addEventListener('DOMContentLoaded', function () {
             if (!Array.isArray(locations) || locations.length === 0) {
                 console.error('Locations data is invalid or empty.');
                 return;
             }
 
             const mapElement = document.getElementById('myMap');
-
             if (!mapElement) {
                 console.error('Map element not found.');
                 return;
@@ -160,7 +161,6 @@
                 maxZoom: 19,
             }).addTo(map);
 
-            let firstMarker = null;
             let hoveredMarker = null;
 
             locations.forEach((location, index) => {
@@ -182,16 +182,16 @@
                 }
 
                 const popupContent = `
-                <a href="${url}" target="_blank">
-                    <b>${location.name}</b>
-                </a>
-                <br>
-                <a href="${url}" target="_blank">
-                    <img src="${imagePath}" alt="Organization Image" style="max-width: 100px;">
-                </a>
-                <br>
-                <b>${distanceDisplay}</b>
-            `;
+            <a href="${url}" target="_blank">
+                <b>${location.name}</b>
+            </a>
+            <br>
+            <a href="${url}" target="_blank">
+                <img src="${imagePath}" alt="Organization Image" style="width: 100px; height: 70px">
+            </a>
+            <br>
+            <b>${distanceDisplay}</b>
+        `;
 
                 marker.bindPopup(popupContent);
 
@@ -212,7 +212,6 @@
                     }
                 });
 
-                // Hover effect for card content
                 if (cardContent) {
                     cardContent.addEventListener('mouseover', function () {
                         marker.openPopup();
@@ -229,8 +228,8 @@
                 }
 
                 marker.addTo(map);
+                mapMarkers.push(marker); // Push marker to mapMarkers array
 
-                // Store the first marker
                 if (index === 0) {
                     firstMarker = marker;
                 }
@@ -239,10 +238,92 @@
             const latlngs = locations.map(location => [location.lat, location.lng]);
             map.fitBounds(latlngs);
 
-            // Open the popup of the first marker by default
             if (firstMarker) {
-                firstMarker.openPopup();
+                setTimeout(function () {
+                    firstMarker.openPopup();
+                }, 500); // Delay the opening of the popup to ensure all markers are loaded
             }
+        });
+
+        function updatePopupContent(marker, location) {
+            const url = `/${location.city_slug}/gnx/${location.slug}`;
+            const imagePath = '{{ asset("images/business/") }}' + '/' + location.head_photo;
+
+            let distanceDisplay = '';
+            if (location.distance < 1) {
+                const distanceInMeters = (location.distance * 1000).toFixed(2);
+                distanceDisplay = `${distanceInMeters} meters`;
+            } else {
+                const distanceInKm = location.distance.toFixed(2);
+                distanceDisplay = `${distanceInKm} km`;
+            }
+
+            const popupContent = `
+        <a href="${url}" target="_blank">
+            <b>${location.name}</b>
+        </a>
+        <br>
+        <a href="${url}" target="_blank">
+            <img src="${imagePath}" alt="Organization Image" style="width: 100px; height: 70px">
+        </a>
+        <br>
+        <b>${distanceDisplay}</b>
+    `;
+
+            marker.setPopupContent(popupContent);
+        }
+
+        $(document).ready(function () {
+            $('#gym_near_me').on('keyup', function () {
+                var searchTerm = $(this).val().toLowerCase().trim(); // Get the search term
+
+                var visibleOrganizations = 0; // Variable to count visible organization cards
+
+                // Iterate through each gym location card and filter based on the search term
+                $('.near_me_organizations-card-item').each(function () {
+                    var cardText = $(this).text().toLowerCase(); // Get the text content of the card
+                    var matchFound = cardText.indexOf(searchTerm) !== -1; // Check for match
+
+                    // Show or hide the gym location card based on the search term match
+                    $(this).toggle(matchFound);
+
+                    // Increment the count of visible organization cards if it's matched
+                    if (matchFound) {
+                        visibleOrganizations++;
+                    }
+                });
+
+                // Update the organization count text
+                $('.organization-count').text('(' + visibleOrganizations + ' Results)');
+
+                // Filter map markers based on the search term
+                mapMarkers.forEach(function (marker, index) {
+                    var location = locations[index];
+
+                    var markerTitle = location.name.toLowerCase();
+                    var matchFound = markerTitle.includes(searchTerm);
+
+                    // Show or hide map markers based on the search term match
+                    if (matchFound) {
+                        marker.setOpacity(1); // Show the marker
+                        updatePopupContent(marker, location); // Update popup content
+                        marker.openPopup(); // Open the popup for the matched marker
+                    } else {
+                        marker.setOpacity(0); // Hide the marker
+                        marker.closePopup(); // Close the popup for non-matching markers
+                    }
+
+                    // Set first marker if it's the first marker or search is empty
+                    if ((searchTerm === '' || searchTerm.length === 0) && index === 0) {
+                        firstMarker = marker;
+                    }
+                });
+
+                // Open the popup of the first marker when the search is cleared or empty
+                if (searchTerm === '' || searchTerm.length === 0) {
+                    firstMarker.openPopup();
+                }
+            });
         });
     </script>
 @endsection
