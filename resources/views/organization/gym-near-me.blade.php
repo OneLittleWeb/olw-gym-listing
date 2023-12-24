@@ -306,10 +306,10 @@
 
                     // Check if the location exists and has the required properties
                     if (location && (location.name || location.address)) {
-                        var markerTitle = (location.name || '').toLowerCase(); // Update this according to your data structure
-                        var markerAddress = (location.address || '').toLowerCase(); // Update this according to your data structure
-                        var markerRateStars = (location.rate_stars || '').toLowerCase(); // Update this according to your data structure
-                        var markerReviewsTotalCount = (location.reviews_total_count || '').toLowerCase(); // Update this according to your data structure
+                        var markerTitle = (location.name || '').toLowerCase();
+                        var markerAddress = (location.address || '').toLowerCase();
+                        var markerRateStars = (location.rate_stars || '').toLowerCase();
+                        var markerReviewsTotalCount = (location.reviews_total_count || '').toLowerCase();
 
                         // Add other relevant marker information for searching
                         var matchFound =
