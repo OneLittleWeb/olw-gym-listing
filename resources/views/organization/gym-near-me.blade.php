@@ -181,7 +181,7 @@
                         </a>
                     </div>
                     <div class="pb-2 near-me-popup-header text-center">
-                        <a class="font-size-15" href="${url}" target="_blank">
+                        <a class="font-size-15 line-height-15" href="${url}" target="_blank">
                             <b>${location.name}</b>
                         </a>
                     </div>
@@ -253,7 +253,7 @@
                     </a>
                 </div>
                 <div class="pb-2 near-me-popup-header text-center">
-                    <a class="font-size-15" href="${url}" target="_blank">
+                    <a class="font-size-15 line-height-15" href="${url}" target="_blank">
                         <b>${location.name}</b>
                     </a>
                 </div>
@@ -342,107 +342,3 @@
 
     </script>
 @endsection
-
-{{--@section('js')--}}
-{{--    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>--}}
-{{--    <script>--}}
-{{--        document.addEventListener('DOMContentLoaded', function () {--}}
-{{--            const locations = {!! $locations ?? '[]' !!};--}}
-
-{{--            if (!Array.isArray(locations) || locations.length === 0) {--}}
-{{--                console.error('Locations data is invalid or empty.');--}}
-{{--                return;--}}
-{{--            }--}}
-
-{{--            const mapElement = document.getElementById('myMap');--}}
-
-{{--            if (!mapElement) {--}}
-{{--                console.error('Map element not found.');--}}
-{{--                return;--}}
-{{--            }--}}
-
-{{--            const map = L.map('myMap').setView([0, 0], 2);--}}
-
-{{--            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {--}}
-{{--                maxZoom: 19,--}}
-{{--            }).addTo(map);--}}
-
-{{--            let firstMarker = null;--}}
-
-{{--            locations.forEach((location, index) => {--}}
-{{--                const marker = L.marker([location.lat, location.lng]);--}}
-
-{{--                const cardContentId = `#card_content_specific_business_${index}`;--}}
-{{--                const cardContent = document.querySelector(cardContentId);--}}
-
-{{--                const url = `/${location.city_slug}/gnx/${location.slug}`;--}}
-{{--                const imagePath = '{{ asset("images/business/") }}' + '/' + location.head_photo;--}}
-
-{{--                let distanceDisplay = '';--}}
-{{--                if (location.distance < 1) {--}}
-{{--                    const distanceInMeters = (location.distance * 1000).toFixed(2);--}}
-{{--                    distanceDisplay = `${distanceInMeters} meters`;--}}
-{{--                } else {--}}
-{{--                    const distanceInKm = location.distance.toFixed(2);--}}
-{{--                    distanceDisplay = `${distanceInKm} km`;--}}
-{{--                }--}}
-
-{{--                const popupContent = `--}}
-{{--                    <a href="${url}" target="_blank">--}}
-{{--                        <b>${location.name}</b>--}}
-{{--                    </a>--}}
-{{--                    <br>--}}
-{{--                    <a href="${url}" target="_blank">--}}
-{{--                        <img src="${imagePath}" alt="Organization Image" style="max-width: 100px;">--}}
-{{--                    </a>--}}
-{{--                    <br>--}}
-{{--                    <b>${distanceDisplay}</b>--}}
-{{--                `;--}}
-
-{{--                marker.bindPopup(popupContent);--}}
-
-{{--                marker.on('mouseover', function (e) {--}}
-{{--                    this.openPopup();--}}
-{{--                    if (cardContent) {--}}
-{{--                        cardContent.classList.add('active'); // Add a class to the card content--}}
-{{--                    }--}}
-{{--                });--}}
-
-{{--                marker.on('mouseout', function (e) {--}}
-{{--                    this.closePopup();--}}
-{{--                    if (cardContent) {--}}
-{{--                        cardContent.classList.remove('active'); // Remove the class when mouse leaves--}}
-{{--                    }--}}
-{{--                });--}}
-
-{{--                // Hover effect for card content--}}
-{{--                if (cardContent) {--}}
-{{--                    cardContent.addEventListener('mouseover', function () {--}}
-{{--                        marker.openPopup();--}}
-{{--                        cardContent.classList.add('active');--}}
-{{--                    });--}}
-
-{{--                    cardContent.addEventListener('mouseout', function () {--}}
-{{--                        marker.closePopup();--}}
-{{--                        cardContent.classList.remove('active');--}}
-{{--                    });--}}
-{{--                }--}}
-
-{{--                marker.addTo(map);--}}
-
-{{--                // Store the first marker--}}
-{{--                if (index === 0) {--}}
-{{--                    firstMarker = marker;--}}
-{{--                }--}}
-{{--            });--}}
-
-{{--            const latlngs = locations.map(location => [location.lat, location.lng]);--}}
-{{--            map.fitBounds(latlngs);--}}
-
-{{--            // Open the popup of the first marker by default--}}
-{{--            if (firstMarker) {--}}
-{{--                firstMarker.openPopup();--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@endsection--}}
