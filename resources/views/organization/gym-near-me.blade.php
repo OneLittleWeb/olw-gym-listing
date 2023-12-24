@@ -174,15 +174,6 @@
                 const url = `/${location.city_slug}/gnx/${location.slug}`;
                 const imagePath = '{{ asset("images/business/") }}' + '/' + location.head_photo;
 
-                let distanceDisplay = '';
-                if (location.distance < 1) {
-                    const distanceInMeters = (location.distance * 1000).toFixed(2);
-                    distanceDisplay = `${distanceInMeters} meters`;
-                } else {
-                    const distanceInKm = location.distance.toFixed(2);
-                    distanceDisplay = `${distanceInKm} km`;
-                }
-
                 const popupContent = `
                     <div class="pb-2">
                         <a href="${url}" target="_blank">
@@ -190,7 +181,7 @@
                         </a>
                     </div>
                     <div class="pb-2 near-me-popup-header text-center">
-                        <a href="${url}" target="_blank">
+                        <a class="font-size-15" href="${url}" target="_blank">
                             <b>${location.name}</b>
                         </a>
                     </div>
@@ -255,15 +246,6 @@
             const url = `/${location.city_slug}/gnx/${location.slug}`;
             const imagePath = '{{ asset("images/business/") }}' + '/' + location.head_photo;
 
-            let distanceDisplay = '';
-            if (location.distance < 1) {
-                const distanceInMeters = (location.distance * 1000).toFixed(2);
-                distanceDisplay = `${distanceInMeters} meters`;
-            } else {
-                const distanceInKm = location.distance.toFixed(2);
-                distanceDisplay = `${distanceInKm} km`;
-            }
-
             const popupContent = `
                 <div class="pb-2">
                     <a href="${url}" target="_blank">
@@ -271,7 +253,7 @@
                     </a>
                 </div>
                 <div class="pb-2 near-me-popup-header text-center">
-                    <a href="${url}" target="_blank">
+                    <a class="font-size-15" href="${url}" target="_blank">
                         <b>${location.name}</b>
                     </a>
                 </div>
