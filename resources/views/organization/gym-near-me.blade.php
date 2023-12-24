@@ -289,7 +289,7 @@
                 });
 
                 // Update the organization count text
-                $('.organization-count').text('(' + visibleOrganizations + ' Results)');
+                $('.organization-count').text('(' + visibleOrganizations);
 
                 var anyMarkerVisible = false; // Variable to track if any marker is visible
 
