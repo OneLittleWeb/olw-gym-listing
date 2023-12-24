@@ -607,11 +607,11 @@ class OrganizationController extends Controller
 
     public function gymNearMe(Request $request, $organization_category_slug = null, $suffix = null)
     {
-        $client_ip_address = $request->ip();
+        $client_ip_address = $this->getClientIP();
 
 //        $client_ip_address = '172.69.59.14';
 
-        $client_ip_address = '198.255.72.231';
+//        $client_ip_address = '198.255.72.231';
 
         $user_location = Location::get($client_ip_address);
 
@@ -672,6 +672,30 @@ class OrganizationController extends Controller
         }
 
         return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug]);
+    }
+
+    public function getClientIP()
+    {
+        $ip = request()->ip();
+
+        // Check if the request is coming through a proxy
+        $headersToCheck = ['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR', 'x-forwarded-for', 'cf-connecting-ip', 'client-ip', 'x-real-ip'];
+
+        foreach ($headersToCheck as $key) {
+            if (request()->header($key)) {
+                $ip = request()->header($key);
+                if (strpos($ip, ',') !== false) {
+                    // Multiple IPs found, taking the first one
+                    $ip = explode(',', $ip)[0];
+                }
+                $ip = trim($ip);
+                if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false) {
+                    return $ip;
+                }
+            }
+        }
+
+        return $ip;
     }
 
     private function calculateDistance($lat1, $lon1, $lat2, $lon2)

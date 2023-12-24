@@ -3,139 +3,142 @@
 @section('meta_description', "Browse near by all gyms.")
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
-
-    <!-- =====START BREADCRUMB AREA==== -->
-    <section class="breadcrumb-area bg-gradient-gray py-4">
-        <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
-                        <div class="section-heading text-capitalize">
-                            @if($organizations)
+    @if($organizations)
+        <!-- =====START BREADCRUMB AREA==== -->
+        <section class="breadcrumb-area bg-gradient-gray py-4">
+            <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="section-heading text-capitalize">
                                 <h2 class="sec__title font-size-26 mb-0">{{ $organizations[0]->organization_category }}
                                     near {{ $organizations[0]->state->name }}, {{ $organizations[0]->city->name }}</h2>
-                            @else
-                                <h2 class="sec__title font-size-26 mb-0">Find a gym near you</h2>
-                            @endif
-                        </div>
-                        <ul class="list-items bread-list bread-list-2 text-capitalize">
-                            <li><a href="/">Home</a></li>
-                            @if($organizations)
+                            </div>
+                            <ul class="list-items bread-list bread-list-2 text-capitalize">
+                                <li><a href="/">Home</a></li>
                                 <li>{{ $organizations[0]->organization_category }}
                                     near you
-                                </li
-                            @else
-                                <li>Find a gym near you</li>
-                            @endif
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ====END BREADCRUMB AREA==== -->
+
+        <!-- ===START FULL SCREEN AREA=== -->
+        <section class="full-screen-container d-flex">
+            <div class="w-25 card-area">
+                <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3 bg-light-blue">
+                    <form method="post" class="form-box row pt-4">
+                        <div class="col-lg-12 input-box">
+                            <div class="form-group">
+                                <span class="la la-search form-icon"></span>
+                                <input class="form-control" type="search" name="gym_near_me" id="gym_near_me"
+                                       placeholder="Search by Name or Zip Code">
+                            </div>
+                        </div>
+                    </form>
+                    <div
+                        class="d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
+                        <p class="result-text font-weight-medium font-size-14 text-color-18"><i
+                                class="la la-map-marker mr-1"></i> We Found These Locations Near You
+                            <span class="organization-count">({{ $organizations->count() }}</span>
+                            Results)</p>
+                    </div>
+                </div>
+                <div class="near-me-business-area">
+                    <div class="row pt-4 padding-left-30px padding-right-30px">
+                        @foreach($organizations as $organization)
+                            <div class="col-lg-12 responsive-column-lg">
+                                <div class="card-item near_me_organizations-card-item">
+                                    <div class="card-content" id="card_content_specific_business_{{ $loop->index }}">
+                                        <h4 class="card-title">
+                                            <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
+                                               target="_blank">{{ $organization->organization_name }}</a>
+                                        </h4>
+                                        <p class="card-sub">
+                                            <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
+                                               target="_blank"><i class="la la-map-marker mr-1 text-color-2"></i>
+                                                @if($organization->organization_address)
+                                                    {{ str_replace('Address: ', '', $organization->organization_address) }}
+                                                @else
+                                                    {{ ucfirst($organization->city->name) }}
+                                                    , {{ ucfirst($organization->state->name) }}, US
+                                                @endif
+                                            </a>
+                                        </p>
+                                        <ul class="listing-meta d-flex align-items-center">
+                                            @if($organization->rate_stars && $organization->reviews_total_count)
+                                                <li class="d-flex align-items-center">
+                                                        <span
+                                                            class="rate flex-shrink-0">{{ $organization->rate_stars }}</span>
+                                                    <span
+                                                        class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
+                                                </li>
+                                            @else
+                                                <li class="d-flex align-items-center">
+                                                    <span class="rate flex-shrink-0">0.0</span>
+                                                    <span class="rate-text">0 Reviews</span>
+                                                </li>
+                                            @endif
+
+                                            <li class="d-flex align-items-center padding-left-20px">
+                                                <i class="la la-route mr-1 listing-icon"></i>
+                                                <a href="#" class="listing-cat-link">
+                                                    @if($organization->distance < 1)
+                                                        {{ number_format($organization->distance * 1000, 2)}} meters
+                                                    @else
+                                                        {{ number_format($organization->distance, 2) }} km
+                                                    @endif
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="w-55 main-map-area">
+                <div class="map-container height-715">
+                    <div id="myMap"></div>
+                </div>
+            </div>
+            <div class="w-20 category-near-me">
+                <div class="sidebar mb-0">
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Other Fitness Centers Near You</h3>
+                        <div class="stroke-shape mb-4"></div>
+                        <ul class="tag-list">
+                            @foreach($organizations->organization_categories as $category)
+                                @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
+                                    <li>
+                                        <a href="{{ route('gym.near.me', ['category_slug' => $category->organization_category_slug, 'suffix' => 'near-me']) }}">
+                                            {{ $category->organization_category }} ({{ $category->category_count }})
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- ====END BREADCRUMB AREA==== -->
-
-    <!-- ===START FULL SCREEN AREA=== -->
-    <section class="full-screen-container d-flex">
-        <div class="w-25 card-area">
-            <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3 bg-light-blue">
-                <form method="post" class="form-box row pt-4">
-                    <div class="col-lg-12 input-box">
-                        <div class="form-group">
-                            <span class="la la-search form-icon"></span>
-                            <input class="form-control" type="search" name="gym_near_me" id="gym_near_me"
-                                   placeholder="Search by Name or Zip Code">
-                        </div>
+        </section>
+        <!-- ===END FULL SCREEN AREA=== -->
+    @else
+        <section class="breadcrumb-area bg-gradient-gray py-4">
+            <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
+                <div class="row">
+                    <div class="col-lg-12 p-5 text-center font-size-35">
+                        <p>No Gyms Found Near You</p>
                     </div>
-                </form>
-                <div
-                    class="d-flex flex-wrap justify-content-between align-items-center shadow-none rounded-0 border-0 px-0">
-                    <p class="result-text font-weight-medium font-size-14 text-color-18"><i
-                            class="la la-map-marker mr-1"></i> We Found These Locations Near You
-                        <span class="organization-count">({{ $organizations->count() }}</span>
-                        Results)</p>
                 </div>
             </div>
-            <div class="near-me-business-area">
-                <div class="row pt-4 padding-left-30px padding-right-30px">
-                    @foreach($organizations as $organization)
-                        <div class="col-lg-12 responsive-column-lg">
-                            <div class="card-item near_me_organizations-card-item">
-                                <div class="card-content" id="card_content_specific_business_{{ $loop->index }}">
-                                    <h4 class="card-title">
-                                        <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
-                                           target="_blank">{{ $organization->organization_name }}</a>
-                                    </h4>
-                                    <p class="card-sub">
-                                        <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
-                                           target="_blank"><i class="la la-map-marker mr-1 text-color-2"></i>
-                                            @if($organization->organization_address)
-                                                {{ str_replace('Address: ', '', $organization->organization_address) }}
-                                            @else
-                                                {{ ucfirst($organization->city->name) }}
-                                                , {{ ucfirst($organization->state->name) }}, US
-                                            @endif
-                                        </a>
-                                    </p>
-                                    <ul class="listing-meta d-flex align-items-center">
-                                        @if($organization->rate_stars && $organization->reviews_total_count)
-                                            <li class="d-flex align-items-center">
-                                                        <span
-                                                            class="rate flex-shrink-0">{{ $organization->rate_stars }}</span>
-                                                <span
-                                                    class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
-                                            </li>
-                                        @else
-                                            <li class="d-flex align-items-center">
-                                                <span class="rate flex-shrink-0">0.0</span>
-                                                <span class="rate-text">0 Reviews</span>
-                                            </li>
-                                        @endif
-
-                                        <li class="d-flex align-items-center padding-left-20px">
-                                            <i class="la la-route mr-1 listing-icon"></i>
-                                            <a href="#" class="listing-cat-link">
-                                                @if($organization->distance < 1)
-                                                    {{ number_format($organization->distance * 1000, 2)}} meters
-                                                @else
-                                                    {{ number_format($organization->distance, 2) }} km
-                                                @endif
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        <div class="w-55 main-map-area">
-            <div class="map-container height-715">
-                <div id="myMap"></div>
-            </div>
-        </div>
-        <div class="w-20 category-near-me">
-            <div class="sidebar mb-0">
-                <div class="sidebar-widget">
-                    <h3 class="widget-title">Other Fitness Centers Near You</h3>
-                    <div class="stroke-shape mb-4"></div>
-                    <ul class="tag-list">
-                        @foreach($organizations->organization_categories as $category)
-                            @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
-                                <li>
-                                    <a href="{{ route('gym.near.me', ['category_slug' => $category->organization_category_slug, 'suffix' => 'near-me']) }}">
-                                        {{ $category->organization_category }} ({{ $category->category_count }})
-                                    </a>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ===END FULL SCREEN AREA=== -->
+        </section>
+    @endif
 @endsection
 
 @section('js')
