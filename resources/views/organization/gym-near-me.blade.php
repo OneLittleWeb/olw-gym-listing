@@ -184,7 +184,7 @@
                         </a>
                     </div>
                     <div class="pb-2 near-me-popup-header text-center">
-                        <a class="font-size-15 line-height-15" href="${url}" target="_blank">
+                        <a class="font-size-15 line-height-15 text-capitalize" href="${url}" target="_blank">
                             <b>${location.name}</b>
                         </a>
                     </div>
@@ -256,7 +256,7 @@
                     </a>
                 </div>
                 <div class="pb-2 near-me-popup-header text-center">
-                    <a class="font-size-15 line-height-15" href="${url}" target="_blank">
+                    <a class="font-size-15 line-height-15 text-capitalize" href="${url}" target="_blank">
                         <b>${location.name}</b>
                     </a>
                 </div>
