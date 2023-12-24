@@ -699,23 +699,6 @@ class OrganizationController extends Controller
             ->get();
     }
 
-//    public function gymNearMe(Request $request)
-//    {
-//
-//        $latitude = '43.0593041';
-//        $longitude = '-87.8848785';
-//
-//        $url = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={$latitude}&lon={$longitude}";
-//
-//        $client = new Client();
-//        $response = $client->get($url);
-//        $data = json_decode($response->getBody(), true);
-//
-//        dd($data);
-//
-//        return view('organization.gym-near-me', compact('location'));
-//    }
-
     public function import()
     {
         alert()->error('Error', "This function is not working now, need to remove this alert from the organization controller.");

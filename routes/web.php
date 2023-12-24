@@ -118,7 +118,7 @@ Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDif
 //route for subscriber store
 Route::post('/subscriber-store', [SubscribeController::class, 'subscriberStore'])->name('subscriber.store');
 
-Route::get('/near-me', [OrganizationController::class, 'gymNearMe'])->name('gym.near.me.general');
+
 // The wildcard route
 Route::get('/{category_slug}-{suffix}', [OrganizationController::class, 'gymNearMe'])->where(['category_slug' => '.*', 'suffix' => 'near-me'])->name('gym.near.me');
 
