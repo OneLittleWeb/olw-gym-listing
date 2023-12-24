@@ -63,10 +63,12 @@
                             <div class="card-item near_me_organizations-card-item">
                                 <div class="card-content" id="card_content_specific_business_{{ $loop->index }}">
                                     <h4 class="card-title">
-                                        <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}" target="_blank">{{ $organization->organization_name }}</a>
+                                        <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
+                                           target="_blank">{{ $organization->organization_name }}</a>
                                     </h4>
                                     <p class="card-sub">
-                                        <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}" target="_blank"><i class="la la-map-marker mr-1 text-color-2"></i>
+                                        <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
+                                           target="_blank"><i class="la la-map-marker mr-1 text-color-2"></i>
                                             @if($organization->organization_address)
                                                 {{ str_replace('Address: ', '', $organization->organization_address) }}
                                             @else
@@ -282,7 +284,7 @@
                 // Iterate through each gym location card and filter based on the search term
                 $('.near_me_organizations-card-item').each(function () {
                     var cardText = $(this).text().toLowerCase(); // Get the text content of the card
-                    var matchFound = cardText.indexOf(searchTerm) !== -1; // Check for match
+                    var matchFound = cardText.includes(searchTerm); // Check for match
 
                     // Show or hide the gym location card based on the search term match
                     $(this).toggle(matchFound);
@@ -294,35 +296,52 @@
                 });
 
                 // Update the organization count text
-                $('.organization-count').text('(' + visibleOrganizations);
+                $('.organization-count').text('(' + visibleOrganizations + ' Results)');
+
+                var anyMarkerVisible = false; // Variable to track if any marker is visible
 
                 // Filter map markers based on the search term
                 mapMarkers.forEach(function (marker, index) {
                     var location = locations[index];
 
-                    // Check if the marker's name or other relevant information matches the search term
-                    var markerTitle = location.name.toLowerCase(); // Update this according to the data structure
-                    var matchFound = markerTitle.includes(searchTerm);
+                    // Check if the location exists and has the required properties
+                    if (location && (location.name || location.address)) {
+                        var markerTitle = (location.name || '').toLowerCase(); // Update this according to your data structure
+                        var markerAddress = (location.address || '').toLowerCase(); // Update this according to your data structure
 
-                    // Show or hide map markers based on the search term match
-                    if (matchFound) {
-                        marker.setOpacity(1); // Show the marker
-                        updatePopupContent(marker, location); // Update popup content
-                        marker.openPopup(); // Open the popup for the matched marker
-                    } else {
-                        marker.setOpacity(0); // Hide the marker
-                        marker.closePopup(); // Close the popup for non-matching markers
-                    }
+                        // Add other relevant marker information for searching
+                        var matchFound =
+                            markerTitle.includes(searchTerm) ||
+                            markerAddress.includes(searchTerm);
 
-                    // Set first marker if it's the first marker or search is empty
-                    if ((searchTerm === '' || searchTerm.length === 0) && index === 0) {
-                        firstMarker = marker;
+                        // Show or hide map markers based on the search term match
+                        if (matchFound) {
+                            marker.setOpacity(1); // Show the marker
+                            updatePopupContent(marker, location); // Update popup content
+                            marker.openPopup(); // Open the popup for the matched marker
+                            anyMarkerVisible = true; // Set flag indicating at least one marker is visible
+                        } else {
+                            marker.setOpacity(0); // Hide the marker
+                            marker.closePopup(); // Close the popup for non-matching markers
+                        }
+
+                        // Set first marker if it's the first marker or search is empty
+                        if ((searchTerm === '' || searchTerm.length === 0) && index === 0) {
+                            firstMarker = marker;
+                        }
                     }
                 });
 
                 // Open the popup of the first marker when the search is cleared or empty
                 if (searchTerm === '' || searchTerm.length === 0) {
                     firstMarker.openPopup();
+                }
+
+                // If no marker is visible, show all markers
+                if (!anyMarkerVisible) {
+                    mapMarkers.forEach(function (marker) {
+                        marker.setOpacity(1); // Show all markers
+                    });
                 }
             });
         });

@@ -661,6 +661,7 @@ class OrganizationController extends Controller
                         'city_slug' => $organization->city->slug,
                         'slug' => $organization->slug,
                         'distance' => $organization->distance,
+                        'address' => $organization->organization_address,
                         'head_photo' => $organization->organization_head_photo_file ? $organization->organization_head_photo_file : 'default.jpg',
                     ];
                 }
