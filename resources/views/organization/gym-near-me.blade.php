@@ -196,7 +196,7 @@
                     this.openPopup();
                     hoveredMarker = this;
                     if (cardContent) {
-                        cardContent.classList.add('active'); // Add a class to the card content
+                        cardContent.classList.add('active');
                     }
                 });
 
@@ -205,7 +205,7 @@
                         this.closePopup();
                     }
                     if (cardContent) {
-                        cardContent.classList.remove('active'); // Remove the class when mouse leaves
+                        cardContent.classList.remove('active');
                     }
                 });
 
