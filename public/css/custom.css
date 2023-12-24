@@ -448,6 +448,11 @@
     border-bottom: 1px solid rgba(128, 137, 150, 0.1);
 }
 
+.near-me-popup-img {
+    width: 170px;
+    height: 100px
+}
+
 .category-near-me {
     padding: 0 25px;
 }

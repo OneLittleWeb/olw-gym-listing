@@ -184,21 +184,20 @@
                 }
 
                 const popupContent = `
-            <div class="pb-2">
-                <a href="${url}" target="_blank">
-                    <img src="${imagePath}" alt="Organization Image" style="width: 170px; height: 100px">
-                </a>
-            </div>
-            <div class="pb-2 near-me-popup-header">
-                <a href="${url}" target="_blank">
-                    <b>${location.name}</b>
-                </a>
-            </div>
-
-            <div class="pt-2 font-size-11">
-                <a rel="nofollow" href="${location.direction}" target="_blank">GET DIRECTION</a> | <a href="${url}" target="_blank">VISIT WEBSITE</a>
-            </div>
-        `;
+                    <div class="pb-2">
+                        <a href="${url}" target="_blank">
+                            <img class="near-me-popup-img" src="${imagePath}" alt="Organization Image">
+                        </a>
+                    </div>
+                    <div class="pb-2 near-me-popup-header text-center">
+                        <a href="${url}" target="_blank">
+                            <b>${location.name}</b>
+                        </a>
+                    </div>
+                    <div class="pt-2 font-size-11">
+                        <a rel="nofollow" href="${location.direction}" target="_blank">GET DIRECTION</a> | <a href="${url}" target="_blank">VISIT WEBSITE</a>
+                    </div>
+                    `;
 
                 marker.bindPopup(popupContent);
 
@@ -266,16 +265,20 @@
             }
 
             const popupContent = `
-        <a href="${url}" target="_blank">
-            <b>${location.name}</b>
-        </a>
-        <br>
-        <a href="${url}" target="_blank">
-            <img src="${imagePath}" alt="Organization Image" style="width: 100px; height: 70px">
-        </a>
-        <br>
-        <b>${distanceDisplay}</b>
-    `;
+                <div class="pb-2">
+                    <a href="${url}" target="_blank">
+                        <img class="near-me-popup-img" src="${imagePath}" alt="Organization Image">
+                    </a>
+                </div>
+                <div class="pb-2 near-me-popup-header text-center">
+                    <a href="${url}" target="_blank">
+                        <b>${location.name}</b>
+                    </a>
+                </div>
+                <div class="pt-2 font-size-11">
+                    <a rel="nofollow" href="${location.direction}" target="_blank">GET DIRECTION</a> | <a href="${url}" target="_blank">VISIT WEBSITE</a>
+                </div>
+                `;
 
             marker.setPopupContent(popupContent);
         }
