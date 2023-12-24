@@ -440,6 +440,14 @@
     width: 100%;
 }
 
+.leaflet-popup-content-wrapper {
+    width: 215px !important;
+}
+
+.near-me-popup-header {
+    border-bottom: 1px solid rgba(128, 137, 150, 0.1);
+}
+
 .category-near-me {
     padding: 0 25px;
 }
