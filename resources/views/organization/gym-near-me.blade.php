@@ -339,6 +339,5 @@
                 }
             });
         });
-
     </script>
 @endsection
