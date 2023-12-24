@@ -308,11 +308,15 @@
                     if (location && (location.name || location.address)) {
                         var markerTitle = (location.name || '').toLowerCase(); // Update this according to your data structure
                         var markerAddress = (location.address || '').toLowerCase(); // Update this according to your data structure
+                        var markerRateStars = (location.rate_stars || '').toLowerCase(); // Update this according to your data structure
+                        var markerReviewsTotalCount = (location.reviews_total_count || '').toLowerCase(); // Update this according to your data structure
 
                         // Add other relevant marker information for searching
                         var matchFound =
                             markerTitle.includes(searchTerm) ||
-                            markerAddress.includes(searchTerm);
+                            markerAddress.includes(searchTerm) ||
+                            markerRateStars.includes(searchTerm) ||
+                            markerReviewsTotalCount.includes(searchTerm);
 
                         // Show or hide map markers based on the search term match
                         if (matchFound) {

@@ -662,6 +662,8 @@ class OrganizationController extends Controller
                         'slug' => $organization->slug,
                         'distance' => $organization->distance,
                         'address' => $organization->organization_address,
+                        'rate_stars' => $organization->rate_stars,
+                        'reviews_total_count' => $organization->reviews_total_count,
                         'head_photo' => $organization->organization_head_photo_file ? $organization->organization_head_photo_file : 'default.jpg',
                     ];
                 }
