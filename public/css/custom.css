@@ -477,6 +477,10 @@
     background-color: #292a74;
 }
 
+.margin-top--62 {
+    margin-top: -62px;
+}
+
 .leaflet-container .leaflet-control-attribution a {
     display: none;
 }

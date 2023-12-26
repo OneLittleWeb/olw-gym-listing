@@ -3,30 +3,40 @@
 @section('meta_description', "Browse near by all gyms.")
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
-    @if($organizations)
-        <!-- =====START BREADCRUMB AREA==== -->
-        <section class="breadcrumb-area bg-gradient-gray py-4">
-            <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
-                            <div class="section-heading text-capitalize">
-                                <h2 class="sec__title font-size-26 mb-0">{{ $organizations[0]->organization_category }}
-                                    near {{ $organizations[0]->state->name }}, {{ $organizations[0]->city->name }}</h2>
-                            </div>
-                            <ul class="list-items bread-list bread-list-2 text-capitalize">
-                                <li><a href="/">Home</a></li>
-                                <li>{{ $organizations[0]->organization_category }}
-                                    near you
-                                </li>
-                            </ul>
+    <!-- =====START BREADCRUMB AREA==== -->
+    <section class="breadcrumb-area bg-gradient-gray near-me-popup-header py-4">
+        <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
+                        <div class="section-heading text-capitalize">
+                            <h2 class="sec__title font-size-26 mb-0">
+                                @if($organizations)
+                                    {{ $organizations[0]->organization_category }}
+                                    near {{ $organizations[0]->state->name }}
+                                    , {{ $organizations[0]->city->name }}
+                                @else
+                                    Gym Near You
+                                @endif
+                            </h2>
                         </div>
+                        <ul class="list-items bread-list bread-list-2 text-capitalize">
+                            <li><a href="/">Home</a></li>
+                            <li>
+                                @if($organizations)
+                                    {{ $organizations[0]->organization_category }} near you
+                                @else
+                                    Gym Near You
+                                @endif
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- ====END BREADCRUMB AREA==== -->
-
+        </div>
+    </section>
+    <!-- ====END BREADCRUMB AREA==== -->
+    @if($organizations)
         <!-- ===START FULL SCREEN AREA=== -->
         <section class="full-screen-container d-flex">
             <div class="near-me-organization-section card-area">
@@ -129,10 +139,10 @@
         </section>
         <!-- ===END FULL SCREEN AREA=== -->
     @else
-        <section class="breadcrumb-area bg-gradient-gray py-4">
+        <section class="bg-gradient-gray py-4">
             <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
                 <div class="row">
-                    <div class="col-lg-12 p-5 text-center font-size-35">
+                    <div class="col-lg-12 text-center font-size-35 margin-top--62">
                         <p>No Gyms Found Near You</p>
                     </div>
                 </div>
