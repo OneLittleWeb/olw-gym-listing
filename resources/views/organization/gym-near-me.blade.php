@@ -161,11 +161,13 @@
             }
 
             const map = L.map('myMap', {
+                zoomControl: false, // Disable the default zoom control
                 touchZoom: false, // Disable zooming with touch
+                scrollWheelZoom: false, // Disable scroll wheel zoom
+                doubleClickZoom: false, // Disable double click zoom
+                boxZoom: false, // Disable box zoom
                 tap: false // Disable tap and hold for mobile zooming
             }).setView([0, 0], 2);
-
-            map.scrollWheelZoom.disable(); // Disable scroll wheel zoom
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
