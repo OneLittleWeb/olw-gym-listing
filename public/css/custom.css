@@ -557,6 +557,26 @@
     }
 }
 
+@media only screen and (max-width: 992px) {
+    .near-me-organization-section {
+        width: 100%;
+    }
+
+    .near-me-map-section {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .near-me-category-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .near-me-map-container {
+        height: 550px;
+    }
+}
+
 @media screen and (max-width: 1450px) {
     .logo img {
         width: 12rem;
