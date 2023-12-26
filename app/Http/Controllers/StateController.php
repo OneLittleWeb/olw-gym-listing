@@ -18,10 +18,8 @@ class StateController extends Controller
     {
         $states = State::with('cities')->get();
         $cities = City::orderByDesc('id')->get();
-        $city = null;
-        $category = null;
 
-        return view('state.index', compact('states', 'cities', 'city', 'category'));
+        return view('state.index', compact('states', 'cities'));
     }
 
     public function stateWiseOrganizations($slug)
