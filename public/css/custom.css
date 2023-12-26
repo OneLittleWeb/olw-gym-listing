@@ -391,7 +391,7 @@
 }
 
 .main-map-area {
-    position: sticky;
+    position: relative;
     top: 0;
 }
 
