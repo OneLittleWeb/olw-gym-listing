@@ -162,6 +162,11 @@
 
             const map = L.map('myMap').setView([0, 0], 2);
 
+            // Disable zooming on touch devices
+            if ('ontouchstart' in window || navigator.maxTouchPoints) {
+                map.options.touchZoom = false;
+            }
+
             map.scrollWheelZoom.disable(); // Disable scroll wheel zoom
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
