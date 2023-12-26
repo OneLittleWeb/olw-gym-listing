@@ -160,14 +160,18 @@
                 return;
             }
 
-            const map = L.map('myMap').setView([0, 0], 2);
-
-            // Disable zooming on touch devices
-            if ('ontouchstart' in window || navigator.maxTouchPoints) {
-                map.options.touchZoom = false;
-            }
+            const map = L.map('myMap', {
+                tap: false // Disable tap and hold for mobile zooming
+            }).setView([0, 0], 2);
 
             map.scrollWheelZoom.disable(); // Disable scroll wheel zoom
+
+// Disable tap and hold on mobile devices
+            map.on('click', () => {
+                if (map.tap) {
+                    map.tap.disable();
+                }
+            });
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
