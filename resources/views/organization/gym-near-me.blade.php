@@ -270,7 +270,7 @@
 
         $(document).ready(function () {
             $('#gym_near_me').on('keyup', function () {
-                var searchTerm = $(this).val().toLowerCase().trim(); // Get the search term
+                var searchTerm = $(this).val().toLowerCase().trim();
 
                 var visibleOrganizations = 0; // Variable to count visible organization cards
 
