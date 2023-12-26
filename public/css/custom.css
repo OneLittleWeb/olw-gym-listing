@@ -477,6 +477,10 @@
     background-color: #292a74;
 }
 
+.leaflet-container .leaflet-control-attribution a {
+    display: none;
+}
+
 .w-20 {
     width: 20% !important;
 }
