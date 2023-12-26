@@ -395,6 +395,22 @@
     top: 0;
 }
 
+.near-me-organization-section {
+    width: 25%;
+}
+
+.near-me-map-section {
+    width: 55%;
+}
+
+.near-me-category-section {
+    width: 20%;
+}
+
+.near-me-map-container {
+    height: 715px;
+}
+
 .review-tab-content {
     padding: 20px;
     background-color: #f8f8f8;
@@ -520,6 +536,24 @@
 
     .pagination-mobile {
         display: block;
+    }
+
+    .near-me-organization-section {
+        width: 100%;
+    }
+
+    .near-me-map-section {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .near-me-category-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .near-me-map-container {
+        height: 550px;
     }
 }
 

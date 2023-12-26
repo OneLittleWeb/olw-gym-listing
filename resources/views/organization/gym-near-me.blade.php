@@ -29,7 +29,7 @@
 
         <!-- ===START FULL SCREEN AREA=== -->
         <section class="full-screen-container d-flex">
-            <div class="w-25 card-area">
+            <div class="near-me-organization-section card-area">
                 <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3 bg-light-blue">
                     <form method="post" class="form-box row pt-4">
                         <div class="col-lg-12 input-box">
@@ -102,12 +102,12 @@
                     </div>
                 </div>
             </div>
-            <div class="w-55 main-map-area">
-                <div class="map-container height-715">
+            <div class="near-me-map-section main-map-area">
+                <div class="map-container near-me-map-container">
                     <div id="myMap"></div>
                 </div>
             </div>
-            <div class="w-20 category-near-me">
+            <div class="near-me-category-section category-near-me">
                 <div class="sidebar mb-0">
                     <div class="sidebar-widget">
                         <h3 class="widget-title">Other Fitness Centers Near You</h3>
