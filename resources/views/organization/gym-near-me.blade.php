@@ -160,14 +160,14 @@
                 return;
             }
 
-            const map = L.map('myMap', {
-                zoomControl: false, // Disable the default zoom control
-                touchZoom: false, // Disable zooming with touch
-                scrollWheelZoom: false, // Disable scroll wheel zoom
-                doubleClickZoom: false, // Disable double click zoom
-                boxZoom: false, // Disable box zoom
-                tap: false // Disable tap and hold for mobile zooming
-            }).setView([0, 0], 2);
+            const map = L.map('myMap').setView([0, 0], 2);
+
+            // Disable zooming on touch devices
+            if ('ontouchstart' in window || navigator.maxTouchPoints) {
+                map.options.touchZoom = false;
+            }
+
+            map.scrollWheelZoom.disable(); // Disable scroll wheel zoom
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -277,14 +277,14 @@
 
         $(document).ready(function () {
             $('#gym_near_me').on('keyup', function () {
-                var searchTerm = $(this).val().toLowerCase().trim();
+                let searchTerm = $(this).val().toLowerCase().trim();
 
-                var visibleOrganizations = 0; // Variable to count visible organization cards
+                let visibleOrganizations = 0; // Variable to count visible organization cards
 
                 // Iterate through each gym location card and filter based on the search term
                 $('.near_me_organizations-card-item').each(function () {
-                    var cardText = $(this).text().toLowerCase(); // Get the text content of the card
-                    var matchFound = cardText.includes(searchTerm); // Check for match
+                    let cardText = $(this).text().toLowerCase(); // Get the text content of the card
+                    let matchFound = cardText.includes(searchTerm); // Check for match
 
                     // Show or hide the gym location card based on the search term match
                     $(this).toggle(matchFound);
@@ -298,21 +298,21 @@
                 // Update the organization count text
                 $('.organization-count').text('(' + visibleOrganizations);
 
-                var anyMarkerVisible = false; // Variable to track if any marker is visible
+                let anyMarkerVisible = false; // Variable to track if any marker is visible
 
                 // Filter map markers based on the search term
                 mapMarkers.forEach(function (marker, index) {
-                    var location = locations[index];
+                    let location = locations[index];
 
                     // Check if the location exists and has the required properties
                     if (location && (location.name || location.address)) {
-                        var markerTitle = (location.name || '').toLowerCase();
-                        var markerAddress = (location.address || '').toLowerCase();
-                        var markerRateStars = (location.rate_stars || '').toLowerCase();
-                        var markerReviewsTotalCount = (location.reviews_total_count || '').toLowerCase();
+                        let markerTitle = (location.name || '').toLowerCase();
+                        let markerAddress = (location.address || '').toLowerCase();
+                        let markerRateStars = (location.rate_stars || '').toLowerCase();
+                        let markerReviewsTotalCount = (location.reviews_total_count || '').toLowerCase();
 
                         // Add other relevant marker information for searching
-                        var matchFound =
+                        let matchFound =
                             markerTitle.includes(searchTerm) ||
                             markerAddress.includes(searchTerm) ||
                             markerRateStars.includes(searchTerm) ||
