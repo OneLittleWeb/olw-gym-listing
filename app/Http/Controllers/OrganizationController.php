@@ -615,6 +615,9 @@ class OrganizationController extends Controller
 
         $user_location = Location::get($client_ip_address);
 
+        $states = State::with('cities')->get();
+        $cities = City::orderByDesc('id')->get();
+
         $organizations = [];
         $location_data = [];
 
@@ -671,7 +674,7 @@ class OrganizationController extends Controller
             }
         }
 
-        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug]);
+        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug, 'states' => $states, 'cities' => $cities]);
     }
 
     public function getClientIP()

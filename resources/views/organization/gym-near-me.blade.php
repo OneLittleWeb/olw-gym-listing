@@ -38,7 +38,7 @@
     <!-- ====END BREADCRUMB AREA==== -->
     @if($organizations)
         <!-- ===START FULL SCREEN AREA=== -->
-        <section class="full-screen-container d-flex">
+        <section class="full-screen-container d-flex states-border-top">
             <div class="near-me-organization-section card-area">
                 <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3 bg-light-blue">
                     <form method="post" class="form-box row pt-4">
@@ -149,6 +149,80 @@
             </div>
         </section>
     @endif
+    <div class="container-fluid margin-top-20px p-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-md-flex flex-row justify-content-between pb-4 text-capitalize">
+                    <div>
+                        <h1 class="sec__title mb-0">All States in the USA</h1>
+
+                        <div class="stroke-shape mb-4 mb-md-0"></div>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control p-2 mt-2 mt-md-0" id="all_state_search"
+                               name="all_state_search"
+                               placeholder="Search State" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if(count($states))
+            <div class="row organization-state-list">
+                <div class="col-lg-12">
+                    <div class="listing-detail-wrap">
+                        @foreach($states as $state)
+                            <div class="single-state-block-card-div" data-target="{{ $state->slug }}">
+                                <div class="state-block-card mb-4">
+                                    <div class="all-state-container">
+                                        <div class="d-flex justify-content-between single-state-block-card">
+                                            <a class="text-capitalize all-state-widget-title"
+                                               href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}">
+                                                <img src="{{asset('images/state/' . $state->background_image)}}"
+                                                     data-src="{{asset('images/state/' . $state->background_image)}}"
+                                                     alt="country-image"
+                                                     class="lazy state-icon-element states-flag">
+                                                <span class="pl-2">{{ $state->name }}</span>
+                                            </a>
+                                            <div class="toggle-icon">
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                        <div class="all-state-info-list-box" id="{{ $state->slug }}">
+                                            <ul class="row pl-1">
+                                                @foreach($state->cities as $city)
+                                                    <li class="col-lg-3 city-state-title">
+                                                        <a class="text-decoration-underline"
+                                                           href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="row padding-bottom-30px">
+                <div class="col-lg-12 no-state-found-message" style="display: none;">
+                    <div class="filter-bar d-flex flex-wrap">
+                        <p class="result-text font-weight-medium">No State Found</p>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="row">
+                <div class="col-lg-12">
+                    <div
+                        class="filter-bar d-flex flex-wrap margin-bottom-30px">
+                        <p class="result-text font-weight-medium">No State Found</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+    </div>
+
 @endsection
 
 @section('js')

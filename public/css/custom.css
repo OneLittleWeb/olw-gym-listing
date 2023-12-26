@@ -464,6 +464,11 @@
     border-bottom: 1px solid rgba(128, 137, 150, 0.1);
 }
 
+.states-border-top {
+    border-bottom: 1px solid rgba(128, 137, 150, 0.1);
+    padding-bottom: 50px;
+}
+
 .near-me-popup-img {
     width: 170px;
     height: 100px
