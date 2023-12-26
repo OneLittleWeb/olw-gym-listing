@@ -51,7 +51,7 @@
                 <div class="near-me-business-area">
                     <div class="row pt-4 padding-left-30px padding-right-30px">
                         @foreach($organizations as $organization)
-                            <div class="col-lg-12 responsive-column-lg">
+                            <div class="col-lg-12">
                                 <div class="card-item near_me_organizations-card-item">
                                     <div class="card-content" id="card_content_specific_business_{{ $loop->index }}">
                                         <h4 class="card-title">
