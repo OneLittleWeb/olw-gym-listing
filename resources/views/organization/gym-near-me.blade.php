@@ -161,17 +161,11 @@
             }
 
             const map = L.map('myMap', {
+                touchZoom: false, // Disable zooming with touch
                 tap: false // Disable tap and hold for mobile zooming
             }).setView([0, 0], 2);
 
             map.scrollWheelZoom.disable(); // Disable scroll wheel zoom
-
-// Disable tap and hold on mobile devices
-            map.on('click', () => {
-                if (map.tap) {
-                    map.tap.disable();
-                }
-            });
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
