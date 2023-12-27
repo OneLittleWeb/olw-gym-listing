@@ -47,7 +47,8 @@
                                         <a href="/">home</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('gym.near.me', ['category_slug' => 'gym', 'suffix' => 'near-me']) }}">Gym Near You</a>
+                                        <a href="{{ route('gym.near.me', ['category_slug' => 'gym', 'suffix' => 'near-me']) }}">Gym
+                                            Near Me</a>
                                     </li>
                                     <li>
                                         <a href="/blog">blog</a>
