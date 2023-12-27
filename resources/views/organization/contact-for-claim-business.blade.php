@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('title', "Gymnearx THE Local Business Directory | Contact for Claim Your Business")
 @section('meta_description', "Gymnearx, best gym places in the USA")
+@section('meta')
+<meta name="robots" content="noindex, follow">
+@endsection
 @section('content')
     <section>
         <div class="container main_container">
