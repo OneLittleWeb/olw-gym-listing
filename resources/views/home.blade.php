@@ -1,7 +1,7 @@
 @extends('layouts.master')
-@section('title', config('app.name') . " THE Local Gyms Directory")
-@section('meta_description', "Explore nearby gyms, fitness classes, workout programs, and dedicated personal trainers to meet your wellness goals. get photos business-hours phone-numbers ratings reviews service details - all in one place.")
-@section('meta_keywords',"USA, gymnearx, best gyms in the USA")
+@section('title', "Best Gyms and Fitness Centers - Gymnearx")
+@section('meta_description', "Explore nearby gyms, fitness centers, fitness classes, workout programs, and dedicated personal trainers to meet your wellness goals. get photos business-hours phone-numbers ratings reviews service details - all in one place.")
+@section('meta_keywords',"USA, gymnearx, best gyms in the USA, best fitness centers in the USA")
 @section('content')
     <section class="hero-wrapper hero-bg pb-0 overflow-hidden">
         <div class="overlay"></div>
