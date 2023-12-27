@@ -76,7 +76,7 @@
 
                                             <li class="d-flex align-items-center padding-left-20px">
                                                 <i class="la la-route mr-1 listing-icon"></i>
-                                                <a href="#" class="listing-cat-link">
+                                                <a rel="nofollow" href="{{ $organization->gmaps_link }}" class="listing-cat-link" target="_blank">
                                                     {{ $organization->distance < 1 ? number_format($organization->distance * 1000, 2) . ' meters' : number_format($organization->distance, 2) . ' km' }}
                                                 </a>
                                             </li>
@@ -198,7 +198,6 @@
             </div>
         @endif
     </div>
-
 @endsection
 
 @section('js')
