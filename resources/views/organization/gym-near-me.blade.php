@@ -205,7 +205,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         const locations = {!! $locations ?? '[]' !!};
-        const mapMarkers = []; // Array to store map markers
+        const mapMarkers = [];
         let firstMarker = null;
 
         document.addEventListener('DOMContentLoaded', function () {
