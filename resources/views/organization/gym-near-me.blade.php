@@ -130,7 +130,7 @@
             <div class="col-lg-12">
                 <div class="d-md-flex flex-row justify-content-between pb-4 text-capitalize">
                     <div>
-                        <h1 class="sec__title mb-0">All States in the USA</h1>
+                        <h1 class="sec__title mb-0">Best Gyms and Fitness Centers by State</h1>
 
                         <div class="stroke-shape mb-4 mb-md-0"></div>
                     </div>
