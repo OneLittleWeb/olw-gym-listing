@@ -35,6 +35,7 @@ class CategoryController extends Controller
             $cities = City::where('state_id', $s_state->id)->get();
 
             $organization_category_count = Organization::where('state_id', $s_state->id)
+                ->where('permanently_closed', 0)
                 ->where('organization_category_slug', $organization_category_slug)->count();
 
             //For meta title

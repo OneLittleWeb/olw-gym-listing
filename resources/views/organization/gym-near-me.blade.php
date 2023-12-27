@@ -12,7 +12,7 @@
                         <div class="section-heading text-capitalize">
                             <h2 class="sec__title font-size-26 mb-0">
                                 @if($organizations)
-                                    {{ $organizations[0]->organization_category }}
+                                    {{ Str::plural($organizations[0]->organization_category, $organization_category_count) }}
                                     near {{ $organizations[0]->state->name }}
                                     , {{ $organizations[0]->city->name }}
                                 @else

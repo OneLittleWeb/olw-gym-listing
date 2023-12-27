@@ -652,6 +652,12 @@ class OrganizationController extends Controller
                     return $organization;
                 });
 
+                $organization_category_count = Organization::where('state_id', $state_id)
+                    ->where('city_id', $city_id)
+                    ->where('permanently_closed', 0)
+                    ->where('organization_category_slug', $organization_category_slug)->count();
+
+
                 $organizations = $organizations->sortBy('distance');
 
                 $organizations->organization_categories = $this->organizationCategories($state_id, $city_id);
@@ -674,7 +680,7 @@ class OrganizationController extends Controller
             }
         }
 
-        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug, 'states' => $states, 'cities' => $cities]);
+        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug, 'states' => $states, 'cities' => $cities, 'organization_category_count' => $organization_category_count]);
     }
 
     public function getClientIP()
