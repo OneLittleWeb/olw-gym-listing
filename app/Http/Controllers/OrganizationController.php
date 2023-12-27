@@ -620,6 +620,7 @@ class OrganizationController extends Controller
 
         $organizations = [];
         $location_data = [];
+        $organization_category_count = [];
 
         if ($user_location) {
             $state = State::where('name', Str::lower($user_location->regionName))->first();

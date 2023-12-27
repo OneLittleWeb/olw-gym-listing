@@ -16,7 +16,7 @@
                                     near {{ $organizations[0]->state->name }}
                                     , {{ $organizations[0]->city->name }}
                                 @else
-                                    Gym Near You
+                                    Gym Near Me
                                 @endif
                             </h2>
                         </div>
@@ -24,9 +24,9 @@
                             <li><a href="/">Home</a></li>
                             <li>
                                 @if($organizations)
-                                    {{ $organizations[0]->organization_category }} near you
+                                    {{ Str::plural($organizations[0]->organization_category, $organization_category_count) }} near me
                                 @else
-                                    Gym Near You
+                                    Gym Near Me
                                 @endif
                             </li>
                         </ul>
