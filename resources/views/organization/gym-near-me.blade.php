@@ -70,28 +70,19 @@
                                             </a>
                                         </p>
                                         <ul class="listing-meta d-flex align-items-center">
-                                            @if($organization->rate_stars && $organization->reviews_total_count)
-                                                <li class="d-flex align-items-center">
-                                                        <span
-                                                            class="rate flex-shrink-0">{{ $organization->rate_stars }}</span>
-                                                    <span
-                                                        class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
-                                                </li>
-                                            @else
-                                                <li class="d-flex align-items-center">
-                                                    <span class="rate flex-shrink-0">0.0</span>
-                                                    <span class="rate-text">0 Reviews</span>
-                                                </li>
-                                            @endif
+                                            <li class="d-flex align-items-center">
+                                                <span class="rate flex-shrink-0">
+                                                    {{ $organization->rate_stars ?? '0.0' }}
+                                                </span>
+                                                <span class="rate-text">
+                                                    {{ $organization->reviews_total_count ? $organization->reviews_total_count . ' Reviews' : '0 Reviews' }}
+                                                </span>
+                                            </li>
 
                                             <li class="d-flex align-items-center padding-left-20px">
                                                 <i class="la la-route mr-1 listing-icon"></i>
                                                 <a href="#" class="listing-cat-link">
-                                                    @if($organization->distance < 1)
-                                                        {{ number_format($organization->distance * 1000, 2)}} meters
-                                                    @else
-                                                        {{ number_format($organization->distance, 2) }} km
-                                                    @endif
+                                                    {{ $organization->distance < 1 ? number_format($organization->distance * 1000, 2) . ' meters' : number_format($organization->distance, 2) . ' km' }}
                                                 </a>
                                             </li>
                                         </ul>
