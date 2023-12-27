@@ -61,12 +61,7 @@
                                         <p class="card-sub">
                                             <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
                                                target="_blank"><i class="la la-map-marker mr-1 text-color-2"></i>
-                                                @if($organization->organization_address)
-                                                    {{ str_replace('Address: ', '', $organization->organization_address) }}
-                                                @else
-                                                    {{ ucfirst($organization->city->name) }}
-                                                    , {{ ucfirst($organization->state->name) }}, US
-                                                @endif
+                                                {{ $organization->organization_address ? str_replace('Address: ', '', $organization->organization_address) : ucfirst($organization->city->name) . ', ' . ucfirst($organization->state->name) . ', US' }}
                                             </a>
                                         </p>
                                         <ul class="listing-meta d-flex align-items-center">
