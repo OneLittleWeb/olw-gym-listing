@@ -11,7 +11,7 @@
                     <div class="hero-heading text-center">
                         <div class="section-heading">
                             <h1 class="sec__title cd-headline slide">
-                                Find America’s Best Gym Near
+                                Find America’s Best Fitness Center Near
                                 <span class="cd-words-wrapper py-0 header-text-decoration">
                                     <b class="is-visible">California</b>
                                     <b>Florida</b>
