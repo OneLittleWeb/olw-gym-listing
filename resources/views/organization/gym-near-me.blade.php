@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', config('app.name') . " THE Local Business Directory | near me")
+@section('title', $organizations ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near me' : 'Gym Near Me')
 @section('meta_description', "Browse near by all gyms.")
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
@@ -11,23 +11,13 @@
                     <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
                         <div class="section-heading text-capitalize">
                             <h2 class="sec__title font-size-26 mb-0">
-                                @if($organizations)
-                                    {{ Str::plural($organizations[0]->organization_category, $organization_category_count) }}
-                                    near {{ $organizations[0]->state->name }}
-                                    , {{ $organizations[0]->city->name }}
-                                @else
-                                    Gym Near Me
-                                @endif
+                                {{ $organizations ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near ' . $organizations[0]->state->name . ', ' . $organizations[0]->city->name : 'Gym Near Me' }}
                             </h2>
                         </div>
                         <ul class="list-items bread-list bread-list-2 text-capitalize">
                             <li><a href="/">Home</a></li>
                             <li>
-                                @if($organizations)
-                                    {{ Str::plural($organizations[0]->organization_category, $organization_category_count) }} near me
-                                @else
-                                    Gym Near Me
-                                @endif
+                                {{ $organizations ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near me' : 'Gym Near Me' }}
                             </li>
                         </ul>
                     </div>
