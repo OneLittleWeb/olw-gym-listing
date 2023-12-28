@@ -28,7 +28,7 @@
     <!-- ====END BREADCRUMB AREA==== -->
     @if($organizations)
         <!-- ===START FULL SCREEN AREA=== -->
-        <section class="full-screen-container d-flex states-border-top">
+        <section class="full-screen-container d-flex states-border-bottom">
             <div class="near-me-organization-section card-area">
                 <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3 bg-light-blue">
                     <form method="post" class="form-box row pt-4">
@@ -128,16 +128,15 @@
     <div class="container-fluid margin-top-20px p-4">
         <div class="row">
             <div class="col-lg-12">
-                <div class="d-md-flex flex-row justify-content-between pb-4 text-capitalize">
-                    <div>
-                        <h1 class="sec__title mb-0">Best Gyms and Fitness Centers by State</h1>
-
-                        <div class="stroke-shape mb-4 mb-md-0"></div>
+                <div class="d-md-flex align-items-center alert-content pb-5 text-capitalize">
+                    <div class="col-md-4">
                     </div>
-                    <div>
-                        <input type="text" class="form-control p-2 mt-2 mt-md-0" id="all_state_search"
-                               name="all_state_search"
-                               placeholder="Search State" autocomplete="off">
+                    <div class="col-md-4 text-center">
+                        <h1 class="sec__title mb-0 font-size-30">Best Gyms and Fitness Centers by State</h1>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-end states-search-input-div">
+                        <input type="text" class="form-control states-search-input" id="all_state_search"
+                               name="all_state_search" placeholder="Search State" autocomplete="off">
                     </div>
                 </div>
             </div>

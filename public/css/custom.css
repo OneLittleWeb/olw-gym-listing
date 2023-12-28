@@ -464,9 +464,9 @@
     border-bottom: 1px solid rgba(128, 137, 150, 0.1);
 }
 
-.states-border-top {
+.states-border-bottom {
     border-bottom: 1px solid rgba(128, 137, 150, 0.1);
-    padding-bottom: 50px;
+    padding-bottom: 60px;
 }
 
 .near-me-popup-img {
@@ -488,6 +488,11 @@
 
 .leaflet-container .leaflet-control-attribution a {
     display: none;
+}
+
+.states-search-input {
+    width: 50%;
+    padding: 20px;
 }
 
 .w-20 {
@@ -539,8 +544,8 @@
     }
 
     .state-info-list li {
-        display: block; /* Display each state on a new line */
-        text-align: left; /* Adjust text alignment to left */
+        display: block;
+        text-align: left;
     }
 
     .pagination-desktop {
@@ -567,6 +572,15 @@
 
     .near-me-map-container {
         height: 550px;
+    }
+
+    .states-search-input {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .states-search-input-div {
+        padding-top: 25px;
     }
 }
 
