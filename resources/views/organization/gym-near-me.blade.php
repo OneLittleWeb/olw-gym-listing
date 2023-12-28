@@ -119,7 +119,7 @@
         <section class="bg-gradient-gray py-4">
             <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
                 <div class="row">
-                    <div class="col-lg-12 text-center font-size-35 margin-top--62">
+                    <div class="col-lg-12 text-center font-size-30 margin-top--62">
                         <p>No Gyms Found Near You</p>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     </div>
                     <div class="col-md-4 d-flex justify-content-end states-search-input-div">
                         <input type="text" class="form-control states-search-input" id="all_state_search"
-                               name="all_state_search" placeholder="Search State" autocomplete="off">
+                               name="all_state_search" placeholder="Search by State or City" autocomplete="off">
                     </div>
                 </div>
             </div>
@@ -163,10 +163,10 @@
                                                 <i class="fa-solid fa-caret-down"></i>
                                             </div>
                                         </div>
-                                        <div class="all-state-info-list-box" id="{{ $state->slug }}">
+                                        <div class="all-state-info-list-box all-cities-from-states" id="{{ $state->slug }}">
                                             <ul class="row pl-1">
                                                 @foreach($state->cities as $city)
-                                                    <li class="col-lg-3 city-state-title">
+                                                    <li class="col-lg-3 city-state-title individual-city-from-states text-capitalize">
                                                         <i class="las la-angle-double-right"></i>
                                                         <a class="text-decoration-underline"
                                                            href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
@@ -184,7 +184,7 @@
             <div class="row padding-bottom-30px">
                 <div class="col-lg-12 no-state-found-message" style="display: none;">
                     <div class="filter-bar d-flex flex-wrap">
-                        <p class="result-text font-weight-medium">No State Found</p>
+                        <p class="result-text font-weight-medium">No State or City Found</p>
                     </div>
                 </div>
             </div>

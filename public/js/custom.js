@@ -169,7 +169,7 @@ $(document).ready(function () {
 //State toggle script
 
 $(document).ready(function () {
-    // Hide city information for all states except the first one after the page loads
+    // Initial state: Hide city information for all states except the first one after the page loads
     $('.all-state-info-list-box').not(':first').hide();
 
     // Handle toggling of the first state's information after the page loads
@@ -185,41 +185,76 @@ $(document).ready(function () {
         firstStateIcon.removeClass('fa-caret-down').addClass('fa-caret-up');
     }
 
-    // Use event delegation for dynamically added elements
-    $(document).on('click', '.single-state-block-card-div', function () {
-        // Find the target element to toggle based on the data-target attribute
-        let targetSelector = $(this).data('target');
-        let targetElement = $('#' + targetSelector);
-
+    // Function to toggle state and city information
+    function toggleStateAndCity(target) {
         // Toggle the visibility of the target element
-        targetElement.slideToggle();
+        target.slideToggle();
 
         // Toggle the caret icon
-        let iconElement = $(this).find('.toggle-icon i');
+        let iconElement = $('[data-target="' + target.attr('id') + '"]').find('.toggle-icon i');
         iconElement.toggleClass('fa-caret-down fa-caret-up');
-    });
-});
+    }
 
-//state search script
+    // Function to reapply toggle after search by city
+    function reapplyToggleForCity(cityElement) {
+        let targetState = cityElement.closest('.single-state-block-card-div').data('target');
+        let targetStateElement = $('#' + targetState);
 
-$(document).ready(function () {
+        // Expand state block if it's collapsed
+        if (targetStateElement.is(':hidden')) {
+            toggleStateAndCity(targetStateElement);
+        }
+    }
+
+    // Function to show all elements when the search input is empty
+    function showAllElements() {
+        $('.single-state-block-card-div').show();
+        $('.all-cities-from-states li').show();
+        $('.no-state-found-message').hide();
+    }
+
     // When the search input changes
     $('#all_state_search').on('input', function () {
         let searchText = $(this).val().toLowerCase();
         let foundStates = false;
 
-        // Iterate over each state container
-        $('.single-state-block-card-div').each(function () {
-            let stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
+        if (searchText === '') {
+            // Show all elements when search input is empty
+            showAllElements();
+            foundStates = true; // Set foundStates to true to indicate at least one state is found
+        } else {
+            // Iterate over each state container
+            $('.single-state-block-card-div').each(function () {
+                let stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
+                let cityList = $(this).find('.all-cities-from-states li');
 
-            // Show or hide based on the search text
-            if (stateName.includes(searchText)) {
-                $(this).show();
-                foundStates = true;
-            } else {
-                $(this).hide();
-            }
-        });
+                // Show or hide based on the search text for state name
+                if (stateName.includes(searchText)) {
+                    $(this).show();
+                    foundStates = true;
+                } else {
+                    $(this).hide();
+                }
+
+                // Iterate over each city in the state
+                cityList.each(function () {
+                    let cityName = $(this).text().toLowerCase();
+
+                    // Show or hide city based on the search text
+                    if (cityName.includes(searchText)) {
+                        $(this).show();
+                        // If a city matches, show its parent state container
+                        $(this).closest('.single-state-block-card-div').show();
+                        foundStates = true; // Set foundStates to true if a city is found
+
+                        // Expand state block associated with the city
+                        reapplyToggleForCity($(this).find('a'));
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        }
 
         // Show the "No State Found" message if no states are found
         if (!foundStates) {
@@ -228,7 +263,81 @@ $(document).ready(function () {
             $('.no-state-found-message').hide();
         }
     });
+
+    // Use event delegation for dynamically added elements
+    $(document).on('click', '.single-state-block-card-div', function () {
+        let targetSelector = $(this).data('target');
+        let targetElement = $('#' + targetSelector);
+
+        toggleStateAndCity(targetElement);
+    });
+
+    // Show all elements when the page loads or reloads
+    showAllElements();
 });
+
+
+// $(document).ready(function () {
+//     // Hide city information for all states except the first one after the page loads
+//     $('.all-state-info-list-box').not(':first').hide();
+//
+//     // Handle toggling of the first state's information after the page loads
+//     let firstStateTarget = $('.all-state-info-list-box:first').attr('id');
+//     let firstStateTargetUpdated = $('#' + firstStateTarget);
+//     firstStateTargetUpdated.slideDown();
+//
+//     // Set the initial icon state for the first state
+//     let firstStateIcon = $('.single-state-block-card-div:first').find('.toggle-icon i');
+//     if (firstStateTargetUpdated.is(':hidden')) {
+//         firstStateIcon.removeClass('fa-caret-up').addClass('fa-caret-down');
+//     } else {
+//         firstStateIcon.removeClass('fa-caret-down').addClass('fa-caret-up');
+//     }
+//
+//     // Use event delegation for dynamically added elements
+//     $(document).on('click', '.single-state-block-card-div', function () {
+//         // Find the target element to toggle based on the data-target attribute
+//         let targetSelector = $(this).data('target');
+//         let targetElement = $('#' + targetSelector);
+//
+//         // Toggle the visibility of the target element
+//         targetElement.slideToggle();
+//
+//         // Toggle the caret icon
+//         let iconElement = $(this).find('.toggle-icon i');
+//         iconElement.toggleClass('fa-caret-down fa-caret-up');
+//     });
+// });
+
+//state search script
+
+// $(document).ready(function () {
+//     // When the search input changes
+//     $('#all_state_search').on('input', function () {
+//         let searchText = $(this).val().toLowerCase();
+//         let foundStates = false;
+//
+//         // Iterate over each state container
+//         $('.single-state-block-card-div').each(function () {
+//             let stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
+//
+//             // Show or hide based on the search text
+//             if (stateName.includes(searchText)) {
+//                 $(this).show();
+//                 foundStates = true;
+//             } else {
+//                 $(this).hide();
+//             }
+//         });
+//
+//         // Show the "No State Found" message if no states are found
+//         if (!foundStates) {
+//             $('.no-state-found-message').show();
+//         } else {
+//             $('.no-state-found-message').hide();
+//         }
+//     });
+// });
 
 // Review scroll to top script
 
