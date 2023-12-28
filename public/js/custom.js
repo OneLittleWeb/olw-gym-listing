@@ -205,12 +205,12 @@ $(document).ready(function () {
 $(document).ready(function () {
     // When the search input changes
     $('#all_state_search').on('input', function () {
-        var searchText = $(this).val().toLowerCase();
-        var foundStates = false;
+        let searchText = $(this).val().toLowerCase();
+        let foundStates = false;
 
         // Iterate over each state container
         $('.single-state-block-card-div').each(function () {
-            var stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
+            let stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
 
             // Show or hide based on the search text
             if (stateName.includes(searchText)) {
@@ -233,13 +233,11 @@ $(document).ready(function () {
 // Review scroll to top script
 
 $(window).on('load', function() {
-    // Check if the page parameter is present in the URL
-    var urlParams = new URLSearchParams(window.location.search);
-    var pageParam = urlParams.get('g_reviews');
+    let urlParams = new URLSearchParams(window.location.search);
+    let pageParam = urlParams.get('g_reviews');
 
     if (pageParam) {
-        // Scroll down to the element with the ID "business-reviews-card"
-        var businessReviewsCard = $('#business_reviews_card');
+        let businessReviewsCard = $('#business_reviews_card');
 
         if (businessReviewsCard.length) {
             $('html, body').animate({
