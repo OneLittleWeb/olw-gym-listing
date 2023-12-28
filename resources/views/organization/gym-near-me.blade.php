@@ -76,7 +76,8 @@
 
                                             <li class="d-flex align-items-center padding-left-20px">
                                                 <i class="la la-route mr-1 listing-icon"></i>
-                                                <a rel="nofollow" href="{{ $organization->gmaps_link }}" class="listing-cat-link" target="_blank">
+                                                <a rel="nofollow" href="{{ $organization->gmaps_link }}"
+                                                   class="listing-cat-link" target="_blank">
                                                     {{ $organization->distance < 1 ? number_format($organization->distance * 1000, 2) . ' meters' : number_format($organization->distance, 2) . ' km' }}
                                                 </a>
                                             </li>
@@ -166,7 +167,8 @@
                                             <ul class="row pl-1">
                                                 @foreach($state->cities as $city)
                                                     <li class="col-lg-3 city-state-title">
-                                                        <i class="las la-angle-double-right"></i> <a class="text-decoration-underline"
+                                                        <i class="las la-angle-double-right"></i>
+                                                        <a class="text-decoration-underline"
                                                            href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
                                                     </li>
                                                 @endforeach

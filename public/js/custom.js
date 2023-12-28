@@ -173,12 +173,12 @@ $(document).ready(function () {
     $('.all-state-info-list-box').not(':first').hide();
 
     // Handle toggling of the first state's information after the page loads
-    var firstStateTarget = $('.all-state-info-list-box:first').attr('id');
-    var firstStateTargetUpdated = $('#' + firstStateTarget);
+    let firstStateTarget = $('.all-state-info-list-box:first').attr('id');
+    let firstStateTargetUpdated = $('#' + firstStateTarget);
     firstStateTargetUpdated.slideDown();
 
     // Set the initial icon state for the first state
-    var firstStateIcon = $('.single-state-block-card-div:first').find('.toggle-icon i');
+    let firstStateIcon = $('.single-state-block-card-div:first').find('.toggle-icon i');
     if (firstStateTargetUpdated.is(':hidden')) {
         firstStateIcon.removeClass('fa-caret-up').addClass('fa-caret-down');
     } else {
@@ -188,14 +188,14 @@ $(document).ready(function () {
     // Use event delegation for dynamically added elements
     $(document).on('click', '.single-state-block-card-div', function () {
         // Find the target element to toggle based on the data-target attribute
-        var targetSelector = $(this).data('target');
-        var targetElement = $('#' + targetSelector);
+        let targetSelector = $(this).data('target');
+        let targetElement = $('#' + targetSelector);
 
         // Toggle the visibility of the target element
         targetElement.slideToggle();
 
         // Toggle the caret icon
-        var iconElement = $(this).find('.toggle-icon i');
+        let iconElement = $(this).find('.toggle-icon i');
         iconElement.toggleClass('fa-caret-down fa-caret-up');
     });
 });
