@@ -582,6 +582,10 @@
     .states-search-input-div {
         padding-top: 25px;
     }
+
+    .individual-city-from-states{
+        padding-top: 10px;
+    }
 }
 
 @media only screen and (max-width: 992px) {
