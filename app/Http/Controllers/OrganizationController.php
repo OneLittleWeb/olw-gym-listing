@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ExcelImportJob;
-use App\Jobs\ImageCopyPasteJob;
 use App\Mail\ClaimBusinessMail;
 use App\Mail\ClaimedBusiness;
 use App\Mail\ClaimedNotificationToAdmin;
@@ -16,7 +14,6 @@ use App\Models\Organization;
 use App\Models\State;
 use App\Models\SuggestAnEdit;
 use Butschster\Head\Facades\Meta;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
