@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubscribeController;
 use Illuminate\Support\Facades\Route;
@@ -98,16 +99,16 @@ Route::post('/contact-store', [PageController::class, 'contactStore'])->name('co
 Route::get('/pricing', [PricingController::class, 'index'])->name('page.pricing');
 
 //route for import data
-Route::get('/import', [OrganizationController::class, 'import'])->name('import');
+Route::get('/import', [ImportController::class, 'import'])->name('import');
 
 //route for import states data
-Route::get('/import-states', [StateController::class, 'importStateName'])->name('import.state.name');
+Route::get('/import-states', [ImportController::class, 'importStateName'])->name('import.state.name');
 
 //route for import cities data
-Route::get('/import-cities', [CityController::class, 'importCityData'])->name('import.city.data');
+Route::get('/import-cities', [ImportController::class, 'importCityData'])->name('import.city.data');
 
 //route for image copy past from multiple folder to single folder
-Route::get('/copy-paste', [OrganizationController::class, 'imageCopyPasteFromOneFolderToAnother'])->name('copy.past');
+Route::get('/copy-paste', [ImportController::class, 'imageCopyPasteFromOneFolderToAnother'])->name('copy.past');
 
 //review date diff from human to date route
 Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDiffFromHumanToDate'])->name('get.original.review.date');

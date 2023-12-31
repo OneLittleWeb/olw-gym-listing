@@ -66,33 +66,6 @@ class StateController extends Controller
         abort(404);
     }
 
-    public function importStateName()
-    {
-        try {
-            $stateDirectories = File::directories('H:\gym');
-
-            foreach ($stateDirectories as $stateDirectory) {
-                $stateName = trim(basename($stateDirectory), " ");
-                $stateNameLower = Str::lower($stateName);
-
-                // Check if the state already exists in the database
-                $existingState = State::where('name', $stateNameLower)->first();
-
-                if (!$existingState) {
-                    $state = new State();
-                    $state->name = $stateNameLower;
-                    $state->slug = Str::slug($stateNameLower);
-                    $state->background_image = Str::slug($stateNameLower) . '.png';
-                    $state->save();
-                }
-            }
-
-            return redirect()->back()->with('success', 'States imported successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
-        }
-    }
-
     public function searchStates(Request $request)
     {
         $query = $request->input('query');
