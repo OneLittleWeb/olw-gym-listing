@@ -20,7 +20,7 @@
                             </div>
                         </div>
 
-                        @if(Route::currentRouteName() != 'home')
+                        @if(Route::currentRouteName() != 'home' && Route::currentRouteName() != 'gym.near.me')
                             <form action="{{ route('search') }}"
                                   class="main-search-input-item quick-search-form form-box d-flex align-items-center">
                                 @csrf
