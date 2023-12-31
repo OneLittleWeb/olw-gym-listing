@@ -14,13 +14,13 @@ use Illuminate\Support\Str;
 
 class StateController extends Controller
 {
-//    public function index()
-//    {
-//        $states = State::with('cities')->get();
-//        $cities = City::orderByDesc('id')->get();
-//
-//        return view('state.index', compact('states', 'cities'));
-//    }
+    public function index()
+    {
+        $states = State::with('cities')->get();
+        $cities = City::orderByDesc('id')->get();
+
+        return view('state.index', compact('states', 'cities'));
+    }
 
     public function stateWiseOrganizations($slug)
     {
