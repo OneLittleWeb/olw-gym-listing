@@ -41,7 +41,8 @@ class ImportController extends Controller
     public function importCityData()
     {
         try {
-            $baseDirectory = 'H:\gym';
+            $baseDirectory = 'H:\gym1';
+
             if (!File::exists($baseDirectory)) {
                 throw new \Exception('Base directory does not exist.');
             }
@@ -49,6 +50,7 @@ class ImportController extends Controller
             $stateDirectories = File::directories($baseDirectory);
 
             foreach ($stateDirectories as $stateDirectory) {
+
                 $stateName = trim(basename($stateDirectory), " ");
                 $state = State::where('name', Str::lower($stateName))->first();
 
@@ -61,6 +63,7 @@ class ImportController extends Controller
                 $cityDirectories = File::directories($stateDirectory);
 
                 foreach ($cityDirectories as $cityDirectory) {
+
                     $cityName = trim(basename($cityDirectory), " ");
                     $cityNameLower = Str::lower($cityName);
 
