@@ -718,7 +718,6 @@
                                             </p>
                                         @endif
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -889,9 +888,7 @@
     </section>
     <!-- ======END LISTING DETAIL  AREA======= -->
     <div class="section-block"></div>
-    <!-- ================================
-    START CARD AREA
-================================= -->
+    <!-- =======START CARD AREA========= -->
     @if($also_viewed->count() > 0)
         <section class="cta-area bg-white-opacity section-padding">
             <div class="container">
@@ -991,9 +988,7 @@
             </div>
         </section>
     @endif
-    <!-- ================================
-        END CARD AREA
-    ================================= -->
+    <!-- ======= END CARD AREA ========= -->
 
     <div class="modal fade" id="getProsConsModal" tabindex="-1" role="dialog" aria-labelledby="getProsConsTitle"
          aria-hidden="true">
