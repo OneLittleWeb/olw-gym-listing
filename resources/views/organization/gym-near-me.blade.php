@@ -27,7 +27,6 @@
     </section>
     <!-- ====END BREADCRUMB AREA==== -->
     @if($organizations)
-        <!-- ===START FULL SCREEN AREA=== -->
         <section class="full-screen-container d-flex states-border-bottom">
             <div class="near-me-organization-section card-area">
                 <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3 bg-light-blue">
@@ -114,7 +113,6 @@
                 </div>
             </div>
         </section>
-        <!-- ===END FULL SCREEN AREA=== -->
     @else
         <section class="bg-gradient-gray py-4">
             <div class="container-fluid padding-right-40px padding-left-40px slide-image-top">
@@ -163,7 +161,8 @@
                                                 <i class="fa-solid fa-caret-down"></i>
                                             </div>
                                         </div>
-                                        <div class="all-state-info-list-box all-cities-from-states" id="{{ $state->slug }}">
+                                        <div class="all-state-info-list-box all-cities-from-states"
+                                             id="{{ $state->slug }}">
                                             <ul class="row pl-1">
                                                 @foreach($state->cities as $city)
                                                     <li class="col-lg-3 city-state-title individual-city-from-states text-capitalize">
