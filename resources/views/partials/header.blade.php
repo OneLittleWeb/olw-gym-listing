@@ -44,7 +44,7 @@
                             <nav class="main-menu">
                                 <ul>
                                     <li>
-                                        <a href="/">home</a>
+                                        <a href="{{ route('home') }}">home</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('gym.near.me', ['category_slug' => 'gym', 'suffix' => 'near-me']) }}">Gym
