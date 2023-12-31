@@ -339,7 +339,7 @@
             $('#gym_near_me').on('keyup', function () {
                 let searchTerm = $(this).val().toLowerCase().trim();
 
-                let visibleOrganizations = 0; // Variable to count visible organization cards
+                let visibleOrganizations = 0;
 
                 // Iterate through each gym location card and filter based on the search term
                 $('.near_me_organizations-card-item').each(function () {
