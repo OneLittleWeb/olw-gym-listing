@@ -5,7 +5,7 @@
                 <div class="col-lg-12">
                     <div class="menu-full-width">
                         <div class="logo">
-                            <a href="/"><img src="{{asset('/images/logo-white.png')}}" alt="logo"></a>
+                            <a href="{{ route('home') }}"><img src="{{asset('/images/logo-white.png')}}" alt="logo"></a>
                             <div class="d-flex align-items-center">
                                 <a href="#"
                                    class="btn-gray add-listing-btn-show font-size-24 mr-2 flex-shrink-0"
