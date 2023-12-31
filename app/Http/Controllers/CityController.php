@@ -83,14 +83,17 @@ class CityController extends Controller
                 ->where('organization_category_slug', $organization_category_slug)->count();
 
             //For meta title
-            $meta_title_prefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
-            $organization_category = Str::plural($organizations[0]->organization_category, $organization_category_count);
-            $meta_title_suffix = 'Near ' . Str::title($s_state->name . ' ' . $city->name);
+            if ($organizations->isNotEmpty()) {
+                $meta_title_prefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
+                $organization_category = Str::plural($organizations[0]->organization_category, $organization_category_count);
+                $meta_title_suffix = 'Near ' . Str::title($s_state->name . ' ' . $city->name);
 
-            $s_state->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
+                $s_state->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
 
-            $category_name = Str::lower(Str::plural($organizations[0]->organization_category, $organization_category_count));
-            $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $city->name . ', ' . $category_name .' in '  . $city->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $city->name;
+                $category_name = Str::lower(Str::plural($organizations[0]->organization_category, $organization_category_count));
+                $s_state->meta_description = "Explore the best " . Str::plural($organizations[0]->organization_category, $organization_category_count) . " in the $s_state->name, " . $city->name . ". Get photos, business hours, phone numbers, ratings, reviews and service details.";
+                $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $city->name . ', ' . $category_name .' in '  . $city->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $city->name;
+            }
 
             Meta::setPaginationLinks($organizations);
 

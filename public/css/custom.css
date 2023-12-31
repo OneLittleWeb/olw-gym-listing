@@ -315,7 +315,6 @@
 
 .all-state-info-list-box {
     display: none;
-    padding-top: 15px;
 }
 
 .all-state-container {
@@ -581,10 +580,6 @@
 
     .states-search-input-div {
         padding-top: 25px;
-    }
-
-    .individual-city-from-states{
-        padding-top: 10px;
     }
 
     .order-md-1 {

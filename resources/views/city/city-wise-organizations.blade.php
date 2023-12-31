@@ -5,7 +5,7 @@
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', "Explore the best " . Str::plural($organizations[0]->organization_category, $organization_category_count) . " in the $s_state->name, " . Str::title($city->name) . ". Get photos, business hours, phone numbers, ratings, reviews and service details.")
+@section('meta_description', "$s_state->meta_description")
 @section('meta_keywords', "$s_state->meta_keywords")
 @section('content')
     <section class="card-area section-padding">
