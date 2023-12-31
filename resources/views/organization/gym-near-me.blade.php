@@ -88,12 +88,12 @@
                     </div>
                 </div>
             </div>
-            <div class="near-me-map-section main-map-area">
+            <div class="near-me-map-section main-map-area order-md-1">
                 <div class="map-container near-me-map-container">
                     <div id="myMap"></div>
                 </div>
             </div>
-            <div class="near-me-category-section category-near-me">
+            <div class="near-me-category-section category-near-me order-md-3">
                 <div class="sidebar mb-0">
                     <div class="sidebar-widget">
                         <h3 class="widget-title">Other Fitness Centers Near You</h3>
