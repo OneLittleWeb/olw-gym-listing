@@ -70,12 +70,7 @@
 
                             <p class="sec__desc py-2 font-size-17"><i
                                     class="la la-map-marker mr-1 text-color-16"></i>
-                                @if($organization->organization_address)
-                                    {{ str_replace('Address: ', '', $organization->organization_address) }}
-                                @else
-                                    {{ ucfirst($organization->city->name) }}, {{ ucfirst($organization->state->name) }},
-                                    US
-                                @endif
+                                {{ $organization->organization_address ? str_replace('Address: ', '', $organization->organization_address) : ucfirst($organization->city->name) . ', ' . ucfirst($organization->state->name) . ', US' }}
                             </p>
                             <p class="pb-2 font-weight-medium">
                             <span class="price-range mr-1 text-color font-size-16" data-toggle="tooltip"
@@ -351,18 +346,11 @@
                                             <div class="comments-list">
                                                 @foreach($organization->reviews_paginator as $review)
                                                     <div class="comment">
-                                                        @if($review->reviewer_name)
-                                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
-                                                                <img
-                                                                    src="{{ Avatar::create($review->reviewer_name)->toBase64() }}"
-                                                                    alt="author-img">
-                                                            </div>
-                                                        @else
-                                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
-                                                                <img src="{{ asset('images/bb.png') }}"
-                                                                     alt="author-img">
-                                                            </div>
-                                                        @endif
+                                                        <div class="user-thumb user-thumb-lg flex-shrink-0">
+                                                            <img
+                                                                src="{{ $review->reviewer_name ? Avatar::create($review->reviewer_name)->toBase64() : asset('images/bb.png') }}"
+                                                                alt="author-img">
+                                                        </div>
                                                         <div class="comment-body">
                                                             <div
                                                                 class="meta-data d-flex align-items-center justify-content-between">
@@ -373,11 +361,9 @@
                                                                     <div class="users_review_ratings"
                                                                          data-rating="{{ $review->review_rate_stars }}">
                                                                     </div>
-                                                                    @if($review->review_date)
-                                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->review_specified_date)->diffForHumans() }}</p>
-                                                                    @else
-                                                                        <p class="font-size-13 font-weight-medium">{{ Carbon::parse($review->created_at)->diffForHumans() }}</p>
-                                                                    @endif
+                                                                    <p class="font-size-13 font-weight-medium">
+                                                                        {{ $review->review_date ? Carbon::parse($review->review_specified_date)->diffForHumans() : Carbon::parse($review->created_at)->diffForHumans() }}
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                             <p class="comment-desc">{{ $review->review_text_original }}</p>
@@ -438,18 +424,11 @@
                                                 <div class="comments-list">
                                                     @foreach($organization->own_reviews_paginator as $own_review)
                                                         <div class="comment">
-                                                            @if($own_review->reviewer_name)
-                                                                <div class="user-thumb user-thumb-lg flex-shrink-0">
-                                                                    <img
-                                                                        src="{{ Avatar::create($own_review->reviewer_name)->toBase64() }}"
-                                                                        alt="author-img">
-                                                                </div>
-                                                            @else
-                                                                <div class="user-thumb user-thumb-lg flex-shrink-0">
-                                                                    <img src="{{ asset('images/bb.png') }}"
-                                                                         alt="author-img">
-                                                                </div>
-                                                            @endif
+                                                            <div class="user-thumb user-thumb-lg flex-shrink-0">
+                                                                <img
+                                                                    src="{{ $own_review->reviewer_name ? Avatar::create($own_review->reviewer_name)->toBase64() : asset('images/bb.png') }}"
+                                                                    alt="author-img">
+                                                            </div>
                                                             <div class="comment-body">
                                                                 <div
                                                                     class="meta-data d-flex align-items-center justify-content-between">
@@ -460,11 +439,9 @@
                                                                         <div class="users_review_ratings"
                                                                              data-rating="{{ $own_review->review_rate_stars }}">
                                                                         </div>
-                                                                        @if($own_review->review_date)
-                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($own_review->review_specified_date)->diffForHumans() }}</p>
-                                                                        @else
-                                                                            <p class="font-size-13 font-weight-medium">{{ Carbon::parse($own_review->created_at)->diffForHumans() }}</p>
-                                                                        @endif
+                                                                        <p class="font-size-13 font-weight-medium">
+                                                                            {{ $own_review->review_date ? Carbon::parse($own_review->review_specified_date)->diffForHumans() : Carbon::parse($own_review->created_at)->diffForHumans() }}
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <p class="comment-desc">{{ $own_review->review_text_original }}</p>
@@ -907,20 +884,12 @@
                                     <div class="card-image">
                                         <a href="{{ route('city.wise.organization', ['city_slug' => $also_viewed_organization->city->slug, 'organization_slug' => $also_viewed_organization->slug]) }}"
                                            class="d-block">
-                                            @if($also_viewed_organization->organization_head_photo_file)
-                                                <img
-                                                    src="{{ asset('images/business/' . $also_viewed_organization->organization_head_photo_file) }}"
-                                                    data-src="{{ asset('images/business/' . $also_viewed_organization->organization_head_photo_file) }}"
-                                                    class="also_viewed_image card__img lazy"
-                                                    alt="{{ $also_viewed_organization->organization_name }}"
-                                                    loading="lazy">
-                                            @else
-                                                <img src="{{ asset('images/default.jpg') }}"
-                                                     data-src="{{ asset('images/default.jpg') }}"
-                                                     class="also_viewed_image card__img lazy"
-                                                     alt="{{ $also_viewed_organization->organization_name }}"
-                                                     loading="lazy">
-                                            @endif
+                                            <img
+                                                src="{{ asset('images/business/' . ($also_viewed_organization->organization_head_photo_file ?? 'default.jpg')) }}"
+                                                data-src="{{ asset('images/business/' . ($also_viewed_organization->organization_head_photo_file ?? 'default.jpg')) }}"
+                                                class="also_viewed_image card__img lazy"
+                                                alt="{{ $also_viewed_organization->organization_name }}"
+                                                loading="lazy">
                                         </a>
                                     </div>
                                     <div class="card-content">
@@ -1131,5 +1100,8 @@
             "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
     }
+
+
+
     </script>
 @endsection
