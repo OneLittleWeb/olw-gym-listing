@@ -59,8 +59,6 @@ Route::post('/payments/pay', [StripePaymentController::class, 'checkout'])->name
 Route::get('/payments/approval', [StripePaymentController::class, 'approval'])->name('payment.approval');
 Route::get('/payments/cancelled', [StripePaymentController::class, 'cancelled'])->name('payment.cancelled');
 
-Route::get('/states', [StateController::class, 'index'])->name('states.index');
-
 //search routes
 Route::get('/search-states', [StateController::class, 'searchStates'])->name('search-states');
 

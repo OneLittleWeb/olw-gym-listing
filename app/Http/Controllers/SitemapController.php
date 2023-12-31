@@ -18,7 +18,6 @@ class SitemapController extends Controller
         // Create sitemap for pages
         $sitemap_pages = App::make("sitemap");
         $sitemap_pages->add(route('home'), $now, '1.0', 'daily');
-        $sitemap_pages->add(route('states.index'), $now, '1.0', 'daily');
         $sitemap_pages->store('xml', 'sitemap-pages');
 
         // Generate sitemap for state business

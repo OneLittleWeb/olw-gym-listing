@@ -132,7 +132,7 @@
                             </p>
                         </div>
                         <div class="more-btn-box pt-4">
-                            <a href="{{ route('states.index') }}" class="theme-btn gradient-btn">View All Gyms <i
+                            <a href="{{ route('gym.near.me', ['category_slug' => 'gym', 'suffix' => 'near-me']) }}" class="theme-btn gradient-btn">View Gyms Near Me <i
                                     class="la la-arrow-right ml-2"></i></a>
                         </div>
                     </div>
