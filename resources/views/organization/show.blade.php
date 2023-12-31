@@ -899,28 +899,18 @@
                                         <p class="card-sub">
                                             <a href="{{ route('city.wise.organization', ['city_slug' => $also_viewed_organization->city->slug, 'organization_slug' => $also_viewed_organization->slug]) }}">
                                                 <i class="la la-map-marker mr-1 text-color-2"></i>
-                                                @if($also_viewed_organization->organization_address)
-                                                    {{ str_replace('Address: ', '', $also_viewed_organization->organization_address) }}
-                                                @else
-                                                    {{ ucfirst($also_viewed_organization->city->name) }}
-                                                    , {{ ucfirst($also_viewed_organization->state->name) }}, US
-                                                @endif
+                                                {{ $also_viewed_organization->organization_address ? str_replace('Address: ', '', $also_viewed_organization->organization_address) : ucfirst($also_viewed_organization->city->name) . ', ' . ucfirst($also_viewed_organization->state->name) . ', US' }}
                                             </a>
                                         </p>
                                         <ul class="listing-meta d-flex align-items-center">
-                                            @if($also_viewed_organization->rate_stars && $also_viewed_organization->reviews_total_count)
-                                                <li class="d-flex align-items-center">
-                                                        <span
-                                                            class="rate flex-shrink-0">{{ $also_viewed_organization->rate_stars }}</span>
-                                                    <span
-                                                        class="rate-text">{{ $also_viewed_organization->reviews_total_count }} Reviews</span>
-                                                </li>
-                                            @else
-                                                <li class="d-flex align-items-center">
-                                                    <span class="rate flex-shrink-0">0.0</span>
-                                                    <span class="rate-text">0 Reviews</span>
-                                                </li>
-                                            @endif
+                                            <li class="d-flex align-items-center">
+                                                <span class="rate flex-shrink-0">
+                                                    {{ $also_viewed_organization->rate_stars ?? '0.0' }}
+                                                </span>
+                                                <span class="rate-text">
+                                                    {{ $also_viewed_organization->reviews_total_count ? $also_viewed_organization->reviews_total_count . ' Reviews' : '0 Reviews' }}
+                                                </span>
+                                            </li>
                                             <li class="d-flex align-items-center padding-left-20px">
                                                 <i class="{{ $also_viewed_organization->category->icon }} mr-2 listing-icon"></i>
                                                 <p class="listing-business-category">{{ $also_viewed_organization->organization_category ?? $also_viewed_organization->category->name }}</p>
@@ -1100,8 +1090,5 @@
             "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
     }
-
-
-
     </script>
 @endsection
