@@ -149,8 +149,7 @@
                             @endif
 
                             <div class="sidebar-widget">
-                                <h3 class="widget-title text-capitalize">Other fitness centers near {{ $s_state->name }}
-                                    , {{ $city->name }}</h3>
+                                <h3 class="widget-title text-capitalize">Other fitness centers near {{ $s_state->name . ','}} {{ $city->name }}</h3>
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
