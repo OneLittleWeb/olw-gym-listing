@@ -60,19 +60,14 @@
                                                 </a>
                                             </p>
                                             <ul class="listing-meta d-flex align-items-center">
-                                                @if($organization->rate_stars && $organization->reviews_total_count)
-                                                    <li class="d-flex align-items-center">
-                                                        <span
-                                                            class="rate flex-shrink-0">{{ $organization->rate_stars }}</span>
-                                                        <span
-                                                            class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
-                                                    </li>
-                                                @else
-                                                    <li class="d-flex align-items-center">
-                                                        <span class="rate flex-shrink-0">0.0</span>
-                                                        <span class="rate-text">0 Reviews</span>
-                                                    </li>
-                                                @endif
+                                                <li class="d-flex align-items-center">
+                                                    <span class="rate flex-shrink-0">
+                                                        {{ $organization->rate_stars ?? '0.0' }}
+                                                    </span>
+                                                    <span class="rate-text">
+                                                        {{ $organization->reviews_total_count ? $organization->reviews_total_count . ' Reviews' : '0 Reviews' }}
+                                                    </span>
+                                                </li>
                                                 <li class="d-flex align-items-center padding-left-20px">
                                                     <i class="{{ $organization->category->icon }} mr-2 listing-icon"></i>
                                                     <p class="listing-business-category">{{ $organization->organization_category ?? $organization->category->name }}</p>
@@ -119,7 +114,8 @@
                     <div class="col-lg-4">
                         <div class="sidebar mb-0">
                             <div class="sidebar-widget">
-                                <h3 class="widget-title text-capitalize">Other fitness centers near {{ $s_state->name }}</h3>
+                                <h3 class="widget-title text-capitalize">Other fitness centers
+                                    near {{ $s_state->name }}</h3>
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
