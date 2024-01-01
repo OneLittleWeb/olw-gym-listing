@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', "Search Result For $looking_for")
+@section('title', "Search Results For The $looking_for")
 @if (count($organizations) && $organizations->currentPage() > 1)
     @section('meta')
         <meta name="robots" content="noindex, follow">
