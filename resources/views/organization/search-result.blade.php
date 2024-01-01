@@ -5,7 +5,7 @@
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', "Search Result For $looking_for. Get photos, business hours, phone numbers, ratings, reviews and service details.")
+@section('meta_description', "Search Results For the $looking_for. Get photos, business hours, phone numbers, ratings, reviews and service details.")
 @section('meta_keywords', "$looking_for")
 @section('content')
     <section class="card-area section-padding">
