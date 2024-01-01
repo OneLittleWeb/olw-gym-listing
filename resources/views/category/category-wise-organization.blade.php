@@ -56,12 +56,7 @@
                                             <p class="card-sub">
                                                 <a href="#">
                                                     <i class="la la-map-marker mr-1 text-color-5"></i>
-                                                    @if($organization->organization_address)
-                                                        {{ str_replace('Address: ', '', $organization->organization_address) }}
-                                                    @else
-                                                        {{ ucfirst($organization->city->name) }}
-                                                        , {{ ucfirst($organization->state->name) }}, US
-                                                    @endif
+                                                    {{ $organization->organization_address ? str_replace('Address: ', '', $organization->organization_address) : ucfirst($organization->city->name) . ', ' . ucfirst($organization->state->name) . ', US' }}
                                                 </a>
                                             </p>
                                             <ul class="listing-meta d-flex align-items-center">
