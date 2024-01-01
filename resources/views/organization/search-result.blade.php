@@ -38,7 +38,7 @@
                                     <img
                                         src="{{ asset('images/business/' . ($organization->organization_head_photo_file ?? 'default.jpg')) }}"
                                         data-src="{{ asset('images/business/' . ($organization->organization_head_photo_file ?? 'default.jpg')) }}"
-                                        class="card__img lazy"
+                                        class="card__img lazy also_viewed_image"
                                         alt="{{ $organization->organization_name }}"
                                         loading="lazy">
                                 </a>
@@ -50,27 +50,18 @@
                                 <p class="card-sub">
                                     <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}">
                                         <i class="la la-map-marker mr-1 text-color-5"></i>
-                                        @if($organization->organization_address)
-                                            {{ str_replace('Address: ', '', $organization->organization_address) }}
-                                        @else
-                                            {{ ucfirst($organization->city->name) }}
-                                            , {{ ucfirst($organization->state->name) }}, US
-                                        @endif
+                                        {{ $organization->organization_address ? str_replace('Address: ', '', $organization->organization_address) : ucfirst($organization->city->name) . ', ' . ucfirst($organization->state->name) . ', US' }}
                                     </a>
                                 </p>
                                 <ul class="listing-meta d-flex align-items-center">
-                                    @if($organization->rate_stars && $organization->reviews_total_count)
-                                        <li class="d-flex align-items-center">
-                                            <span class="rate flex-shrink-0">{{ $organization->rate_stars }}</span>
-                                            <span
-                                                class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
-                                        </li>
-                                    @else
-                                        <li class="d-flex align-items-center">
-                                            <span class="rate flex-shrink-0">0.0</span>
-                                            <span class="rate-text">0 Reviews</span>
-                                        </li>
-                                    @endif
+                                    <li class="d-flex align-items-center">
+                                        <span class="rate flex-shrink-0">
+                                            {{ $organization->rate_stars ?? '0.0' }}
+                                        </span>
+                                        <span class="rate-text">
+                                            {{ $organization->reviews_total_count ?? 0 }} Reviews
+                                        </span>
+                                    </li>
 
                                     <li class="d-flex align-items-center padding-left-20px">
                                         <i class="{{ $organization->category->icon }} mr-2 listing-icon"></i>
