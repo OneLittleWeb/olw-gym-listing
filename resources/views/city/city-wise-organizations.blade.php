@@ -56,18 +56,12 @@
                                         <div class="card-image">
                                             <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
                                                class="d-block">
-                                                @if($organization->organization_head_photo_file)
-                                                    <img
-                                                        src="{{ asset('images/business/' . $organization->organization_head_photo_file) }}"
-                                                        data-src="{{ asset('images/business/' . $organization->organization_head_photo_file) }}"
-                                                        class="card__img lazy"
-                                                        alt="{{ $organization->organization_name }}" loading="lazy">
-                                                @else
-                                                    <img src="{{ asset('images/default.jpg') }}"
-                                                         data-src="{{ asset('images/default.jpg') }}"
-                                                         class="card__img lazy"
-                                                         alt="{{ $organization->organization_name }}" loading="lazy">
-                                                @endif
+                                                <img
+                                                    src="{{ asset('images/business/' . ($organization->organization_head_photo_file ?? 'default.jpg')) }}"
+                                                    data-src="{{ asset('images/business/' . ($organization->organization_head_photo_file ?? 'default.jpg')) }}"
+                                                    class="card__img lazy"
+                                                    alt="{{ $organization->organization_name }}"
+                                                    loading="lazy">
                                             </a>
                                         </div>
                                         <div class="card-content">
@@ -160,7 +154,8 @@
                             @endif
 
                             <div class="sidebar-widget">
-                                <h3 class="widget-title text-capitalize">Other fitness centers near {{ $s_state->name }}, {{ $city->name }}</h3>
+                                <h3 class="widget-title text-capitalize">Other fitness centers near {{ $s_state->name }}
+                                    , {{ $city->name }}</h3>
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
