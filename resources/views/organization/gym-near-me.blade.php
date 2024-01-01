@@ -357,7 +357,7 @@
                 // Update the organization count text
                 $('.organization-count').text('(' + visibleOrganizations);
 
-                let anyMarkerVisible = false; // Variable to track if any marker is visible
+                let anyMarkerVisible = false;
 
                 // Filter map markers based on the search term
                 mapMarkers.forEach(function (marker, index) {
