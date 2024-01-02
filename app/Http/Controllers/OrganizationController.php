@@ -272,7 +272,7 @@ class OrganizationController extends Controller
 
         arsort($matched_pros);
 
-        return $matched_pros; // Return the sorted array of pros and cons
+        return $matched_pros;
     }
 
     public function getReviewCons($organization)
@@ -299,7 +299,7 @@ class OrganizationController extends Controller
             $review_text = strtolower($review->review_text_original); // Convert text to lowercase for case-insensitive comparison
             $review_stars = $review->review_rate_stars; // Retrieve review stars
 
-            // Check if review stars are greater than 2
+            // Check if review stars are greater than 4
             if ($review_stars < 4) {
                 // Loop through the keywords array to find matches in the review text
                 foreach ($all_cons as $keyword) {
@@ -321,7 +321,7 @@ class OrganizationController extends Controller
 
         arsort($matched_cons);
 
-        return $matched_cons; // Return the sorted array of pros and cons
+        return $matched_cons;
     }
 
     public function getProsConsReviews($slug, $keyword, $type)
