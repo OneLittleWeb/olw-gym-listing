@@ -79,7 +79,7 @@ Route::post('/get-your-award-certificate/{slug}', [OrganizationController::class
 //Suggest an edit
 Route::post('/suggest-an-edit/store/{slug}', [OrganizationController::class, 'storeSuggestAnEdit'])->name('store.suggest.edit');
 
-//category wise organization
+//state / category wise organization
 Route::get('/{state_slug}/{organization_category_slug}', [CategoryController::class, 'categoryWiseBusiness'])->name('category.wise.business');
 Route::get('/organization-category-slug-from-organization-category', [CategoryController::class, 'organizationCategorySlugFromOrganizationCategory']);
 

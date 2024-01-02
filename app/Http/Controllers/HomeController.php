@@ -11,35 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-//    public function index()
-//    {
-//        $major_states = State::where('is_major', 1)->get();
-//        $all_states = State::all();
-//        $states = State::take(8)->get();
-//        $cities = City::all();
-//        $total_pages = Organization::count();
-//        $five_star_ratings = Organization::where('rate_stars', 5)->count();
-//        $company_joined = Organization::select('organization_name')->distinct()->count();
-//
-//        $most_viewed_states = Organization::select('state_id', DB::raw('SUM(views) as total_views'), DB::raw('COUNT(*) as total_business'))
-//            ->groupBy('state_id')
-//            ->orderByDesc('total_views')
-//            ->take(4)
-//            ->get();
-//
-//        if (config('app.APP_ENV') == 'production') {
-//            try {
-//                $posts = Post::taxonomy('category', 'things-to-do')->newest()->published()->take(6)->get();
-//            } catch (\Exception $e) {
-//                $posts = null;
-//            }
-//
-//            return view('home', compact('major_states', 'all_states', 'states', 'most_viewed_states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined', 'posts'));
-//        }
-//
-//        return view('home', compact('major_states', 'all_states', 'states', 'most_viewed_states', 'cities', 'total_pages', 'five_star_ratings', 'company_joined'));
-//    }
-
     public function index()
     {
         $major_states = State::where('is_major', 1)->get();
