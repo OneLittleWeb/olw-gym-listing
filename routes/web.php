@@ -99,7 +99,7 @@ Route::post('/contact-store', [PageController::class, 'contactStore'])->name('co
 Route::get('/pricing', [PricingController::class, 'index'])->name('page.pricing');
 
 //route for import data
-Route::get('/import', [ImportController::class, 'import'])->name('import');
+Route::get('/import-organizations', [ImportController::class, 'importOrganizationData'])->name('import.organizations');
 
 //route for import states data
 Route::get('/import-states', [ImportController::class, 'importStateName'])->name('import.state.name');
@@ -116,10 +116,7 @@ Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDif
 //route for subscriber store
 Route::post('/subscriber-store', [SubscribeController::class, 'subscriberStore'])->name('subscriber.store');
 
-
 // The wildcard route
 Route::get('/{category_slug}-{suffix}', [OrganizationController::class, 'gymNearMe'])->where(['category_slug' => '.*', 'suffix' => 'near-me'])->name('gym.near.me');
-
-//Route::get('/{slug}', [StateController::class, 'generateStateWiseOrganizationView'])->name('state.wise.organizations');
 
 

@@ -87,7 +87,7 @@ class ImportController extends Controller
         }
     }
 
-    public function import()
+    public function importOrganizationData()
     {
         try {
             $state_directories = File::directories('H:\gym');
@@ -179,7 +179,7 @@ class ImportController extends Controller
 //        }
 //    }
 
-//    public function import()
+//    public function importOrganizationData()
 //    {
 //        try {
 //            $state_directories = File::directories('H:\gym');
@@ -232,7 +232,7 @@ class ImportController extends Controller
 //        return redirect()->back();
 //    }
 
-//    public function import()
+//    public function importOrganizationData()
 //    {
 //        $state_directories = File::directories('H:\gym');
 //
