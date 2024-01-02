@@ -38,7 +38,7 @@ class ImportController extends Controller
         }
     }
 
-    public function importCityData()
+    public function importCityName()
     {
         try {
             $baseDirectory = 'H:\gym1';
@@ -137,7 +137,7 @@ class ImportController extends Controller
         return redirect()->back()->with('success', 'Images copy and paste job has been queued for execution.');
     }
 
-    //    public function importCityData()
+    //    public function importCityName()
 //    {
 //        try {
 //

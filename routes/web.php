@@ -105,7 +105,7 @@ Route::get('/import', [ImportController::class, 'import'])->name('import');
 Route::get('/import-states', [ImportController::class, 'importStateName'])->name('import.state.name');
 
 //route for import cities data
-Route::get('/import-cities', [ImportController::class, 'importCityData'])->name('import.city.data');
+Route::get('/import-cities', [ImportController::class, 'importCityName'])->name('import.city.data');
 
 //route for image copy past from multiple folder to single folder
 Route::get('/copy-paste', [ImportController::class, 'imageCopyPasteFromOneFolderToAnother'])->name('copy.past');
