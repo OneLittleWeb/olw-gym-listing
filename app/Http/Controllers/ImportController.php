@@ -93,13 +93,17 @@ class ImportController extends Controller
             $state_directories = File::directories('H:\gym');
 
             foreach ($state_directories as $state_directory) {
+
                 $state_name = trim(basename($state_directory), " ");
+
                 $state = State::where('name', Str::lower($state_name))->first();
 
                 if ($state) {
+
                     $state_id = $state->id;
 
                     foreach (File::directories($state_directory) as $city_directory) {
+
                         $city_name = trim(basename($city_directory), " ");
                         $city = City::where('name', Str::lower($city_name))->first();
 
