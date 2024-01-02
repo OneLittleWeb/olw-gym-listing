@@ -13,9 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $major_states = State::where('is_major', 1)->get();
         $all_states = State::all();
-        $states = State::take(8)->get();
         $cities = City::all();
         $total_pages = Organization::count();
         $five_star_ratings = Organization::where('rate_stars', 5)->count();
@@ -27,9 +25,7 @@ class HomeController extends Controller
             ->get();
 
         $view = view('home')
-            ->with('major_states', $major_states)
             ->with('all_states', $all_states)
-            ->with('states', $states)
             ->with('cities', $cities)
             ->with('total_pages', $total_pages)
             ->with('five_star_ratings', $five_star_ratings)
