@@ -33,7 +33,7 @@ class ExcelImportJob implements ShouldQueue
         $import = new ImportOrganization($this->stateId, $this->cityId);
 
         try {
-            $data = $excel->import($import, $this->filePath);
+            $excel->import($import, $this->filePath);
         } catch (\Exception $e) {
             Log::error('ExcelImportJob failed for file: ' . $this->filePath);
             Log::error('Error: ' . $e->getMessage());
