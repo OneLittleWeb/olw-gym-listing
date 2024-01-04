@@ -735,8 +735,8 @@
                                       enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="review_rate_stars" id="review_rate_stars">
-                                    <input type="hidden" name="organization_guid"
-                                           value="{{ $organization->organization_guid }}">
+                                    <input type="hidden" name="organization_gmaps_id"
+                                           value="{{ $organization->organization_gmaps_id }}">
                                     <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text" for="reviewer_name">Name <span

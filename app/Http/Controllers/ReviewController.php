@@ -17,7 +17,7 @@ class ReviewController extends Controller
             'Email' => 'email:rfc,dns',
             'review_rate_stars' => 'required',
         ]);
-        $organization = Organization::where('organization_guid', $request->organization_guid)->first();
+        $organization = Organization::where('organization_gmaps_id', $request->organization_gmaps_id)->first();
 
         if ($organization) {
             $review = new Review();

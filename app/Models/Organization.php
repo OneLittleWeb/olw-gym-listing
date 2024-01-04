@@ -46,11 +46,6 @@ class Organization extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function pictures()
-    {
-        return $this->hasMany(Picture::class, 'organization_guid');
-    }
-
     public function city()
     {
         return $this->belongsTo(City::class);
@@ -63,7 +58,7 @@ class Organization extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'organization_guid', 'organization_guid');
+        return $this->hasMany(Review::class, 'organization_gmaps_id', 'organization_gmaps_id');
     }
 
     public function user()

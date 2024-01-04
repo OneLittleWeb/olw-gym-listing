@@ -15,9 +15,4 @@ class Picture extends Model
     {
         return $this->belongsTo(Organization::class);
     }
-
-    public function review()
-    {
-        return $this->belongsTo(Review::class,'organization_guid','organization_guid');
-    }
 }
