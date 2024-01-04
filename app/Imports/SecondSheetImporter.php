@@ -17,16 +17,19 @@ class SecondSheetImporter implements ToCollection, WithStartRow
 
     public function collection(Collection $rows)
     {
-        foreach ($rows as $row) {
-            $reviewId = $row[1];
+        $chunkSize = 1000; // Set your preferred chunk size
 
-            if (!$reviewId) {
-                continue;
-            }
+        $rows->chunk($chunkSize)->each(function ($chunk) {
+            $recordsToUpdate = [];
 
-            Review::updateOrCreate(
-                ['review_id' => $reviewId],
-                [
+            $chunk->each(function ($row) use (&$recordsToUpdate) {
+                $reviewId = $row[1];
+
+                if (!$reviewId) {
+                    return;
+                }
+
+                $reviewData = [
                     'organization_guid' => $row[13] ?? null,
                     'organization_gmaps_id' => $row[12] ?? null,
                     'reviewer_name' => $row[2] ?? null,
@@ -37,10 +40,47 @@ class SecondSheetImporter implements ToCollection, WithStartRow
                     'review_text_original' => $row[7] ?? null,
                     'review_photos_files' => $row[10] ?? null,
                     'review_thumbs_up_value' => $row[14] ?? null,
-                ]
-            );
-        }
+                ];
+
+                $recordsToUpdate[] = [
+                    'criteria' => ['review_id' => $reviewId],
+                    'data' => $reviewData
+                ];
+            });
+
+            // Update or create records in chunks
+            foreach ($recordsToUpdate as $record) {
+                Review::updateOrCreate($record['criteria'], $record['data']);
+            }
+        });
     }
+
+//    public function collection(Collection $rows)
+//    {
+//        foreach ($rows as $row) {
+//            $reviewId = $row[1];
+//
+//            if (!$reviewId) {
+//                continue;
+//            }
+//
+//            Review::updateOrCreate(
+//                ['review_id' => $reviewId],
+//                [
+//                    'organization_guid' => $row[13] ?? null,
+//                    'organization_gmaps_id' => $row[12] ?? null,
+//                    'reviewer_name' => $row[2] ?? null,
+//                    'reviewer_reviews_count' => $row[4] ?? null,
+//                    'review_date' => $row[5] ?? null,
+//                    'review_specified_date' => $this->diffForHumansToCarbon($row[5], Carbon::now()->toDateTimeString()),
+//                    'review_rate_stars' => $row[6] ?? null,
+//                    'review_text_original' => $row[7] ?? null,
+//                    'review_photos_files' => $row[10] ?? null,
+//                    'review_thumbs_up_value' => $row[14] ?? null,
+//                ]
+//            );
+//        }
+//    }
 
     function diffForHumansToCarbon($current_review_date, $created_at)
     {

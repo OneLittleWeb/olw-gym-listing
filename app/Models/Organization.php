@@ -25,12 +25,11 @@ class Organization extends Model
     {
         $slug = Str::slug($organization_name); // Generate the slug from the title
 
-        // Check if the slug already exists in the database
-        $existingSlugCount = Organization::where('slug', 'LIKE', "{$slug}%")->count();
+        $originalSlug = $slug;
+        $iteration = 1;
 
-        // If the slug already exists, generate a new one with a unique number
-        if ($existingSlugCount > 0) {
-            $slug .= '-' . mt_rand(1000000, 9999999); // Append a random number to make the slug unique
+        while (Organization::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $iteration++; // Append a number to the slug if it already exists
         }
 
         return $slug;
