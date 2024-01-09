@@ -107,7 +107,7 @@ class ImportController extends Controller
                     foreach (File::directories($state_directory) as $city_directory) {
 
                         $city_name = trim(basename($city_directory), " ");
-                        $city = City::where('name', Str::lower($city_name))->first();
+                        $city = City::where('state_id', $state_id)->where('name', Str::lower($city_name))->first();
 
                         if ($city) {
                             $city_id = $city->id;
