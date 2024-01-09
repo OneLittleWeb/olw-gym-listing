@@ -47,7 +47,7 @@ class SecondSheetImporter implements ToCollection, WithStartRow
                     'data' => $reviewData
                 ];
             });
-            
+
             foreach ($recordsToUpdate as $record) {
                 Review::updateOrCreate($record['criteria'], $record['data']);
             }
