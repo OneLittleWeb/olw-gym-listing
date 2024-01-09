@@ -17,7 +17,7 @@ class SecondSheetImporter implements ToCollection, WithStartRow
 
     public function collection(Collection $rows)
     {
-        $chunkSize = 1000; // Set your preferred chunk size
+        $chunkSize = 500; // Set your preferred chunk size
 
         $rows->chunk($chunkSize)->each(function ($chunk) {
             $recordsToUpdate = [];
