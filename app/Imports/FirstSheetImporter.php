@@ -95,7 +95,6 @@ class FirstSheetImporter implements ToCollection, WithStartRow
                 ];
             });
 
-            // Update or create records in chunks
             foreach ($recordsToUpdate as $record) {
                 Organization::updateOrCreate($record['criteria'], $record['data']);
             }
