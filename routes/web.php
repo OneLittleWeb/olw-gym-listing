@@ -110,9 +110,6 @@ Route::get('/import-cities', [ImportController::class, 'importCityName'])->name(
 //route for image copy past from multiple folder to single folder
 Route::get('/copy-paste', [ImportController::class, 'imageCopyPasteFromOneFolderToAnother'])->name('copy.past');
 
-//route for image copy past from multiple folder to single folder
-Route::get('/city-update', [ImportController::class, 'unwantedCityUpdate'])->name('unwanted.city.update');
-
 //review date diff from human to date route
 Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDiffFromHumanToDate'])->name('get.original.review.date');
 
