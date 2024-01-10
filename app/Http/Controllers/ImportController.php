@@ -71,7 +71,7 @@ class ImportController extends Controller
                     $cityNameLower = Str::lower($cityName);
 
                     // Check if the city already exists in the database
-                    $existingCity = City::where('state_id', $stateId)->where('name', $cityNameLower)->where('state_id', $stateId)->first();
+                    $existingCity = City::where('state_id', $stateId)->where('name', $cityNameLower)->first();
 
                     if (!$existingCity) {
                         $city = new City();
