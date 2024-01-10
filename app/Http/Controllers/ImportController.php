@@ -6,6 +6,7 @@ use App\Imports\ImportOrganization;
 use App\Jobs\ExcelImportJob;
 use App\Jobs\ImageCopyPasteJob;
 use App\Models\City;
+use App\Models\Organization;
 use App\Models\State;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -141,6 +142,20 @@ class ImportController extends Controller
         dispatch(new ImageCopyPasteJob());
 
         return redirect()->back()->with('success', 'Images copy and paste job has been queued for execution.');
+    }
+
+    public function unwantedCityUpdate()
+    {
+        $organizations = Organization::where('state_id', 5)->where('city_id', 100)->get();
+
+        dd($organizations);
+
+        foreach ($organizations as $organization) {
+            $organization->city_id = 146;
+            $organization->update();
+        }
+
+        return redirect()->back()->with('success', 'Cities updated successfully.');
     }
 
     //    public function importCityName()
