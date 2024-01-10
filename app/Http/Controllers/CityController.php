@@ -39,7 +39,7 @@ class CityController extends Controller
 
         if ($city_check && $state_check) {
             $s_state = State::where('slug', $state_slug)->first();
-            $city = City::where('slug', $city_slug)->first();
+            $city = City::where('state_id', $s_state->id)->where('slug', $city_slug)->first();
 
             $states = State::all();
             $cities = City::where('state_id', $s_state->id)->get();

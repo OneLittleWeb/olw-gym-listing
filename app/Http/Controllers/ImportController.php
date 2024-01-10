@@ -146,7 +146,7 @@ class ImportController extends Controller
 
     public function unwantedCityUpdate()
     {
-        $organizations = Organization::where('state_id', 5)->where('city_id', 100)->get();
+        $organizations = Organization::where('state_id', 5)->where('city_id', 146)->get();
 
         dd($organizations);
 
