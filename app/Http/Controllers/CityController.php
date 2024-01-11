@@ -44,7 +44,8 @@ class CityController extends Controller
             $states = State::all();
             $cities = City::where('state_id', $s_state->id)->get();
 
-            $organizations = Organization::where('organization_category_slug', $organization_category_slug)
+            $organizations = Organization::with('city', 'state', 'category')
+                ->where('organization_category_slug', $organization_category_slug)
                 ->where('city_id', $city->id)
                 ->where('state_id', $s_state->id)
                 ->where('permanently_closed', 0)
