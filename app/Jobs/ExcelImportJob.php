@@ -19,14 +19,12 @@ class ExcelImportJob implements ShouldQueue
 
     protected $stateId;
     protected $cityId;
-    protected $cityName;
     protected $filePath;
 
-    public function __construct($stateId, $cityId, $cityName, $filePath)
+    public function __construct($stateId, $cityId, $filePath)
     {
         $this->stateId = $stateId;
         $this->cityId = $cityId;
-        $this->cityName = $cityName;
         $this->filePath = $filePath;
     }
 
@@ -45,6 +43,6 @@ class ExcelImportJob implements ShouldQueue
     // Log a message to indicate that the job has completed
     public function completed()
     {
-        Log::info('ExcelImportJob for the ' . $this->cityName . ' (' .$this->cityId . ') is processing.');
+        Log::info('ExcelImportJob for file ' . $this->filePath . ' has completed.');
     }
 }
