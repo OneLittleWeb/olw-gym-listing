@@ -108,7 +108,7 @@ class ImportController extends Controller
                     foreach (File::directories($state_directory) as $city_directory) {
 
                         $city_name = trim(basename($city_directory), " ");
-                        $city = City::where('state_id', $state_id)->where('name', Str::lower($city_name))->first();
+                        $city = City::where('name', Str::lower($city_name))->first();
 
                         if ($city) {
                             $city_id = $city->id;
@@ -189,7 +189,7 @@ class ImportController extends Controller
 //    public function importOrganizationData()
 //    {
 //        try {
-//            $state_directories = File::directories('H:\gym');
+//            $state_directories = File::directories('H:\gym_div_2');
 //            $successCount = 0;
 //
 //            foreach ($state_directories as $state_directory) {
