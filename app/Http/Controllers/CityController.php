@@ -53,6 +53,15 @@ class CityController extends Controller
                 ->paginate(10)
                 ->withQueryString();
 
+            // Check if it's the first page and has the "page" query parameter
+            if ($organizations->currentPage() == 1 && request()->has('page')) {
+                // Redirect to the same URL without the "page" query parameter
+                return redirect()->route('city.wise.organizations', [
+                    'state_slug' => $state_slug, 'city_slug' => $city_slug,
+                    'organization_category_slug' => $organization_category_slug,
+                ]);
+            }
+
             $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
                 ->where('state_id', $s_state->id)
                 ->where('city_id', $city->id)
@@ -92,7 +101,7 @@ class CityController extends Controller
 
                 $category_name = Str::lower(Str::plural($organizations[0]->organization_category, $organization_category_count));
                 $s_state->meta_description = "Explore the best " . Str::plural($organizations[0]->organization_category, $organization_category_count) . " in the $s_state->name, " . $city->name . ". Get photos, business hours, phone numbers, ratings, reviews and service details.";
-                $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $city->name . ', ' . $category_name .' in '  . $city->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $city->name;
+                $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $city->name;
             }
 
             Meta::setPaginationLinks($organizations);
