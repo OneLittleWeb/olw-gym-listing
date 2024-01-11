@@ -17,13 +17,23 @@ class CategoryController extends Controller
         $s_state = State::where('slug', $state_slug)->first();
 
         if ($s_state) {
-            $organizations = Organization::where('organization_category_slug', $organization_category_slug)
+            $organizations = Organization::with('city', 'state', 'category')
+                ->where('organization_category_slug', $organization_category_slug)
                 ->where('state_id', $s_state->id)
                 ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
                 ->paginate(10)
                 ->withQueryString();
+
+            // Check if it's the first page and has the "page" query parameter
+            if ($organizations->currentPage() == 1 && request()->has('page')) {
+                // Redirect to the same URL without the "page" query parameter
+                return redirect()->route('category.wise.business', [
+                    'state_slug' => $state_slug,
+                    'organization_category_slug' => $organization_category_slug,
+                ]);
+            }
 
             $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', DB::raw('COUNT(*) as category_count'))
                 ->where('state_id', $s_state->id)
@@ -46,12 +56,12 @@ class CategoryController extends Controller
             $s_state->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
 
             $category_name = Str::lower(Str::plural($organizations[0]->organization_category, $organization_category_count));
-            $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $s_state->name . ', ' . $category_name .' in '  . $s_state->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $s_state->name;
+            $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $s_state->name . ', ' . $category_name . ' in ' . $s_state->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $s_state->name;
 
             Meta::setPaginationLinks($organizations);
 
             // Render the view as a string.
-            return view('category.category-wise-organization', compact('organizations', 'organization_categories','organization_category_slug', 'organization_category_count', 's_state', 'states', 'cities'))->render();
+            return view('category.category-wise-organization', compact('organizations', 'organization_categories', 'organization_category_slug', 'organization_category_count', 's_state', 'states', 'cities'))->render();
         }
 
         abort(404);
