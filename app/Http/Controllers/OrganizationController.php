@@ -51,8 +51,8 @@ class OrganizationController extends Controller
 
     public function generateCityWiseOrganizationView($city_slug, $organization_slug)
     {
-        $city = City::where('slug', $city_slug)->first();
         $organization = Organization::where('slug', $organization_slug)->where('permanently_closed', 0)->first();
+        $city = City::where('state_id', $organization->state_id)->where('slug', $city_slug)->first();
 
         if ($city && $organization) {
             $cities = City::all();
