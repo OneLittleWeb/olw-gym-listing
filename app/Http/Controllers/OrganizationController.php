@@ -58,7 +58,7 @@ class OrganizationController extends Controller
         if ($city && $organization) {
 
             $organization->incrementViewCount();
-            
+
             $reviewCounts = $organization->reviews()->select('review_rate_stars', DB::raw('COUNT(*) as count'))->groupBy('review_rate_stars')->pluck('count', 'review_rate_stars')->toArray();
 
             $five_star_reviews = $reviewCounts[5] ?? 0;
