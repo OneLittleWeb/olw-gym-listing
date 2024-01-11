@@ -93,7 +93,7 @@ class ImportController extends Controller
     public function importOrganizationData()
     {
         try {
-            $state_directories = File::directories('H:\gym_div_1');
+            $state_directories = File::directories('H:\gym_div_2');
 
             foreach ($state_directories as $state_directory) {
 
@@ -115,7 +115,7 @@ class ImportController extends Controller
                             $files = File::files($city_directory);
 
                             if (count($files) > 0) {
-                                ExcelImportJob::dispatch($state_id, $city_id, $files[0]->getRealPath());
+                                ExcelImportJob::dispatch($state_id, $city_id, $city_name, $files[0]->getRealPath());
                             } else {
                                 alert()->error('Error', "No Excel files found in the '$city_name' directory.");
                             }
