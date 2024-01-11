@@ -99,11 +99,14 @@ class OrganizationController extends Controller
 
             $organization->about2 = "<strong>$organization->organization_name</strong>" . ' has earned a ' . "<strong>$organization->rate_stars</strong>" . '-star rating with ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. ' . 'You can contact them at ' . $contactInfo . ' for more information.';
 
-            $organization->exploded_organization_email = explode(',', $organization->organization_email);
-            $organization->exploded_organization_facebook = explode(',', $organization->organization_facebook);
-            $organization->exploded_organization_twitter = explode(',', $organization->organization_twitter);
-            $organization->exploded_organization_instagram = explode(',', $organization->organization_instagram);
-            $organization->exploded_organization_youTube = explode(',', $organization->organization_youTube);
+            $emailProperties = ['organization_email', 'organization_facebook', 'organization_twitter', 'organization_instagram', 'organization_youTube'];
+
+            foreach ($emailProperties as $property) {
+                $value = $organization->$property;
+
+                // Check if the value is not null before using explode
+                $organization->{"exploded_$property"} = $value !== null ? explode(',', $value) : [];
+            }
 
             $organization->rate_stars = $organization->rate_stars ?? 0;
             $organization->reviews_total_count = $organization->reviews_total_count ?? 0;
