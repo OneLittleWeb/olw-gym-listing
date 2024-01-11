@@ -58,11 +58,14 @@ class OrganizationController extends Controller
         if ($city && $organization) {
 
             $organization->incrementViewCount();
-            $five_star_reviews = $organization->reviews()->where('review_rate_stars', 5)->count();
-            $four_star_reviews = $organization->reviews()->where('review_rate_stars', 4)->count();
-            $three_star_reviews = $organization->reviews()->where('review_rate_stars', 3)->count();
-            $two_star_reviews = $organization->reviews()->where('review_rate_stars', 2)->count();
-            $one_star_reviews = $organization->reviews()->where('review_rate_stars', 1)->count();
+            
+            $reviewCounts = $organization->reviews()->select('review_rate_stars', DB::raw('COUNT(*) as count'))->groupBy('review_rate_stars')->pluck('count', 'review_rate_stars')->toArray();
+
+            $five_star_reviews = $reviewCounts[5] ?? 0;
+            $four_star_reviews = $reviewCounts[4] ?? 0;
+            $three_star_reviews = $reviewCounts[3] ?? 0;
+            $two_star_reviews = $reviewCounts[2] ?? 0;
+            $one_star_reviews = $reviewCounts[1] ?? 0;
 
             if ($organization->organization_address) {
                 $meta = explode(',', $organization->organization_address);
