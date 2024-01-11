@@ -804,18 +804,6 @@
 
                         @include('organization.partials.suggest_edit_modal')
 
-                        @if($organization->organization_badge)
-                            <button type="button" class="btn btn-light sidebar-widget-get-award"
-                                    data-toggle="modal"
-                                    data-target="#getYourAwardModal">
-                                <img class="nebraska-badge-image"
-                                     src="{{ asset('images/badges/' . $organization->organization_badge) }}"
-                                     data-src="{{ asset('images/badges/' . $organization->organization_badge) }}"
-                                     alt="GymNearX Badge">
-                                <span class="text-center pt-4 font-weight-bold">Get your award certificate!</span>
-                            </button>
-                        @endif
-
                         <div class="sidebar-widget">
                             <h3 class="widget-title">General Information</h3>
                             <div class="stroke-shape mb-4"></div>
