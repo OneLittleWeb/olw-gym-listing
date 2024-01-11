@@ -46,14 +46,14 @@ class Organization extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
-
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 
     public function reviews()
