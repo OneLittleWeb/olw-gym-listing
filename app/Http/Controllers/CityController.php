@@ -92,7 +92,7 @@ class CityController extends Controller
             $organization_category_count = Organization::where('state_id', $s_state->id)->where('city_id', $city->id)
                 ->where('organization_category_slug', $organization_category_slug)->count();
 
-            //For meta title
+            //For meta title, description and keyword
             if ($organizations->isNotEmpty()) {
                 $meta_title_prefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
                 $organization_category = Str::plural($organizations[0]->organization_category, $organization_category_count);
