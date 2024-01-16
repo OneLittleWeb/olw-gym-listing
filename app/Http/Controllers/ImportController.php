@@ -44,7 +44,7 @@ class ImportController extends Controller
     public function importCityName()
     {
         try {
-            $baseDirectory = 'H:\gym1';
+            $baseDirectory = 'H:\4city';
 
             if (!File::exists($baseDirectory)) {
                 throw new \Exception('Base directory does not exist.');
