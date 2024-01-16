@@ -93,7 +93,7 @@ class ImportController extends Controller
     public function importOrganizationData()
     {
         try {
-            $state_directories = File::directories('H:\gym_div_2');
+            $state_directories = File::directories('H:\4city');
 
             foreach ($state_directories as $state_directory) {
 
