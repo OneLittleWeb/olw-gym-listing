@@ -40,7 +40,7 @@ class FirstSheetImporter implements ToCollection, WithStartRow
                     $address = $row[8];
                     $exploded_address = array_map('trim', explode(',', $address)); // Explode address parts and trim whitespaces
                     if (isset($exploded_address[1])) {
-                        $org_city = City::where('name', Str::lower($exploded_address[1]))->first();
+                        $org_city = City::where('name', Str::lower($exploded_address[1]))->where('state_id', $this->state_id)->first();
                         if ($org_city) {
                             $org_city_id = $org_city->id; // Assign city ID if found
                         }
