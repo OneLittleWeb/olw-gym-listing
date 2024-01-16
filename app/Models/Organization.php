@@ -21,15 +21,23 @@ class Organization extends Model
         });
     }
 
-    public function generateUniqueSlug($organization_name)
+    public function generateUniqueSlug($organization_name, $organization_gmaps_id)
     {
+        // Check if an organization with the given gmaps_id already exists
+        $existingOrganization = Organization::where('organization_gmaps_id', $organization_gmaps_id)->first();
+
+        if ($existingOrganization) {
+            return $existingOrganization->slug; // Return the existing slug
+        }
+
         $slug = Str::slug($organization_name); // Generate the slug from the title
 
-        $originalSlug = $slug;
-        $iteration = 1;
+        // Check if the slug already exists in the database
+        $existingSlugCount = Organization::where('slug', 'LIKE', "{$slug}%")->count();
 
-        while (Organization::where('slug', $slug)->exists()) {
-            $slug = $originalSlug . '-' . $iteration++; // Append a number to the slug if it already exists
+        // If the slug already exists, generate a new one with a unique number
+        if ($existingSlugCount > 0) {
+            $slug .= '-' . mt_rand(1000000, 9999999); // Append a random number to make the slug unique
         }
 
         return $slug;

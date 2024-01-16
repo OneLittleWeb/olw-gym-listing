@@ -17,42 +17,104 @@ class SecondSheetImporter implements ToCollection, WithStartRow
 
     public function collection(Collection $rows)
     {
-        $chunkSize = 200; // Set your preferred chunk size
+        $rows->each(function ($row) {
+            $reviewId = $row[1];
 
-        $rows->chunk($chunkSize)->each(function ($chunk) {
-            $recordsToUpdate = [];
-
-            $chunk->each(function ($row) use (&$recordsToUpdate) {
-                $reviewId = $row[1];
-
-                if (!$reviewId) {
-                    return;
-                }
-
-                $reviewData = [
-                    'organization_guid' => $row[13] ?? null,
-                    'organization_gmaps_id' => $row[12] ?? null,
-                    'reviewer_name' => $row[2] ?? null,
-                    'reviewer_reviews_count' => $row[4] ?? null,
-                    'review_date' => $row[5] ?? null,
-                    'review_specified_date' => $this->diffForHumansToCarbon($row[5], Carbon::now()->toDateTimeString()),
-                    'review_rate_stars' => $row[6] ?? null,
-                    'review_text_original' => $row[7] ?? null,
-                    'review_photos_files' => $row[10] ?? null,
-                    'review_thumbs_up_value' => $row[14] ?? null,
-                ];
-
-                $recordsToUpdate[] = [
-                    'criteria' => ['review_id' => $reviewId],
-                    'data' => $reviewData
-                ];
-            });
-
-            foreach ($recordsToUpdate as $record) {
-                Review::updateOrCreate($record['criteria'], $record['data']);
+            if (!$reviewId) {
+                return;
             }
+
+            $reviewData = [
+                'organization_guid' => $row[13] ?? null,
+                'organization_gmaps_id' => $row[12] ?? null,
+                'reviewer_name' => $row[2] ?? null,
+                'reviewer_reviews_count' => $row[4] ?? null,
+                'review_date' => $row[5] ?? null,
+                'review_specified_date' => $this->diffForHumansToCarbon($row[5], Carbon::now()->toDateTimeString()),
+                'review_rate_stars' => $row[6] ?? null,
+                'review_text_original' => $row[7] ?? null,
+                'review_photos_files' => $row[10] ?? null,
+                'review_thumbs_up_value' => $row[14] ?? null,
+            ];
+
+            // Find the review by ID or create a new instance
+            Review::firstOrCreate(['review_id' => $reviewId], $reviewData);
         });
     }
+
+//    public function collection(Collection $rows)
+//    {
+//        $recordsToUpdate = [];
+//
+//        $rows->each(function ($row) use (&$recordsToUpdate) {
+//            $reviewId = $row[1];
+//
+//            if (!$reviewId) {
+//                return;
+//            }
+//
+//            $reviewData = [
+//                'organization_guid' => $row[13] ?? null,
+//                'organization_gmaps_id' => $row[12] ?? null,
+//                'reviewer_name' => $row[2] ?? null,
+//                'reviewer_reviews_count' => $row[4] ?? null,
+//                'review_date' => $row[5] ?? null,
+//                'review_specified_date' => $this->diffForHumansToCarbon($row[5], Carbon::now()->toDateTimeString()),
+//                'review_rate_stars' => $row[6] ?? null,
+//                'review_text_original' => $row[7] ?? null,
+//                'review_photos_files' => $row[10] ?? null,
+//                'review_thumbs_up_value' => $row[14] ?? null,
+//            ];
+//
+//            $recordsToUpdate[] = [
+//                'criteria' => ['review_id' => $reviewId],
+//                'data' => $reviewData
+//            ];
+//        });
+//
+//        foreach ($recordsToUpdate as $record) {
+//            Review::updateOrCreate($record['criteria'], $record['data']);
+//        }
+//    }
+
+//    public function collection(Collection $rows)
+//    {
+//        $chunkSize = 500; // Set your preferred chunk size
+//
+//        $rows->chunk($chunkSize)->each(function ($chunk) {
+//            $recordsToUpdate = [];
+//
+//            $chunk->each(function ($row) use (&$recordsToUpdate) {
+//                $reviewId = $row[1];
+//
+//                if (!$reviewId) {
+//                    return;
+//                }
+//
+//                $reviewData = [
+//                    'organization_guid' => $row[13] ?? null,
+//                    'organization_gmaps_id' => $row[12] ?? null,
+//                    'reviewer_name' => $row[2] ?? null,
+//                    'reviewer_reviews_count' => $row[4] ?? null,
+//                    'review_date' => $row[5] ?? null,
+//                    'review_specified_date' => $this->diffForHumansToCarbon($row[5], Carbon::now()->toDateTimeString()),
+//                    'review_rate_stars' => $row[6] ?? null,
+//                    'review_text_original' => $row[7] ?? null,
+//                    'review_photos_files' => $row[10] ?? null,
+//                    'review_thumbs_up_value' => $row[14] ?? null,
+//                ];
+//
+//                $recordsToUpdate[] = [
+//                    'criteria' => ['review_id' => $reviewId],
+//                    'data' => $reviewData
+//                ];
+//            });
+//
+//            foreach ($recordsToUpdate as $record) {
+//                Review::updateOrCreate($record['criteria'], $record['data']);
+//            }
+//        });
+//    }
 
 //    public function collection(Collection $rows)
 //    {
