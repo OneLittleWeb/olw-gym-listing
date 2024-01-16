@@ -46,12 +46,12 @@ class HomeController extends Controller
 
     public function replaceCity()
     {
-        $organizations = Organization::where('state_id', 26)->where('city_id', 302)->get();
-
-        foreach ($organizations as $organization) {
-            $organization->city_id = 359;
-            $organization->update();
-        }
+//        $organizations = Organization::where('state_id', 11)->where('city_id', 280)->get();
+//
+//        foreach ($organizations as $organization) {
+//            $organization->city_id = 359;
+//            $organization->update();
+//        }
 
         alert()->success('Success', 'City id updated successfully.');
 
