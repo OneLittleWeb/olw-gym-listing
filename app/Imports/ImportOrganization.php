@@ -19,7 +19,7 @@ class ImportOrganization implements WithMultipleSheets
 
     public function sheets(): array
     {
-        Log::info('Completed successfully for the city: ' . $this->city_id);
+        Log::info('Import processing for the city id: ' . $this->city_id);
 
         return [
             new FirstSheetImporter($this->state_id, $this->city_id),
