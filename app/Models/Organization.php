@@ -17,7 +17,10 @@ class Organization extends Model
         parent::boot();
 
         static::creating(function ($organization) {
-            $organization->slug = $organization->generateUniqueSlug($organization->organization_name);
+            $organization->slug = $organization->generateUniqueSlug(
+                $organization->organization_name,
+                $organization->organization_gmaps_id
+            );
         });
     }
 
