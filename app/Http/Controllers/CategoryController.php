@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Organization;
 use App\Models\State;
 use Butschster\Head\Facades\Meta;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -35,14 +36,19 @@ class CategoryController extends Controller
                 ]);
             }
 
-            $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', DB::raw('COUNT(*) as category_count'))
+            $organization_categories = Organization::with('state')->select('organization_category', 'organization_category_slug', 'state_id', DB::raw('COUNT(*) as category_count'))
                 ->where('state_id', $s_state->id)
                 ->groupBy('organization_category', 'state_id', 'organization_category_slug')
                 ->orderBy('category_count', 'desc')
                 ->get();
 
-            $states = State::all();
-            $cities = City::where('state_id', $s_state->id)->get();
+            $states = Cache::remember('states_with_organizations', now()->addMinutes(60), function () {
+                return State::with('organizations', 'cities')->get();
+            });
+
+            $cities = Cache::remember('cities_with_states_' . $s_state->id, now()->addMinutes(60), function () use ($s_state) {
+                return City::with('state')->where('state_id', $s_state->id)->get();
+            });
 
             $organization_category_count = Organization::where('state_id', $s_state->id)
                 ->where('permanently_closed', 0)
