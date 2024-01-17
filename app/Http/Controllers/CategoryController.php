@@ -43,7 +43,7 @@ class CategoryController extends Controller
                 ->get();
 
             $states = Cache::remember('states_with_organizations', now()->addMinutes(60), function () {
-                return State::with('organizations', 'cities')->get();
+                return State::with('organizations')->get();
             });
 
             $cities = Cache::remember('cities_with_states_' . $s_state->id, now()->addMinutes(60), function () use ($s_state) {
