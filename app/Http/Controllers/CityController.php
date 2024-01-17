@@ -41,8 +41,13 @@ class CityController extends Controller
             $s_state = State::where('slug', $state_slug)->first();
             $city = City::where('state_id', $s_state->id)->where('slug', $city_slug)->first();
 
-            $states = State::all();
-            $cities = City::where('state_id', $s_state->id)->get();
+            $states = Cache::remember('states_with_organizations', now()->addMinutes(60), function () {
+                return State::with('organizations')->get();
+            });
+
+            $cities = Cache::remember('cities_with_states_' . $s_state->id, now()->addMinutes(60), function () use ($s_state) {
+                return City::with('state')->where('state_id', $s_state->id)->get();
+            });
 
             $organizations = Organization::with('city', 'state', 'category')
                 ->where('organization_category_slug', $organization_category_slug)
@@ -63,7 +68,7 @@ class CityController extends Controller
                 ]);
             }
 
-            $organization_categories = Organization::select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
+            $organization_categories = Organization::with('state', 'city')->select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
                 ->where('state_id', $s_state->id)
                 ->where('city_id', $city->id)
                 ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
