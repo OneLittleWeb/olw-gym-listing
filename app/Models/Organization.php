@@ -52,11 +52,6 @@ class Organization extends Model
         return $this->save();
     }
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
     public function state()
     {
         return $this->belongsTo(State::class);
@@ -70,6 +65,11 @@ class Organization extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class, 'organization_gmaps_id', 'organization_gmaps_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function user()

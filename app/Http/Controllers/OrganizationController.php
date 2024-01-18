@@ -51,7 +51,10 @@ class OrganizationController extends Controller
 
     public function generateCityWiseOrganizationView($city_slug, $organization_slug)
     {
-        $organization = Organization::with(['state', 'city', 'reviews', 'category'])->where('slug', $organization_slug)->where('permanently_closed', 0)->first();
+        $organization = Organization::with(['state', 'city', 'reviews', 'category'])
+            ->where('slug', $organization_slug)
+            ->where('permanently_closed', 0)
+            ->first();
 
         $city = City::where('state_id', $organization->state_id)->where('slug', $city_slug)->first();
 
@@ -61,18 +64,21 @@ class OrganizationController extends Controller
 
             $reviewCounts = $organization->reviews()->select('review_rate_stars', DB::raw('COUNT(*) as count'))->groupBy('review_rate_stars')->pluck('count', 'review_rate_stars')->toArray();
 
-            $five_star_reviews = $reviewCounts[5] ?? 0;
-            $four_star_reviews = $reviewCounts[4] ?? 0;
-            $three_star_reviews = $reviewCounts[3] ?? 0;
-            $two_star_reviews = $reviewCounts[2] ?? 0;
-            $one_star_reviews = $reviewCounts[1] ?? 0;
+            [
+                $five_star_reviews,
+                $four_star_reviews,
+                $three_star_reviews,
+                $two_star_reviews,
+                $one_star_reviews,
+            ] = array_values($reviewCounts + [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0]);
 
-            if ($organization->organization_address) {
-                $meta = explode(',', $organization->organization_address);
-                $organization->meta_title = $organization->organization_name . ' -' . $meta[1] . ',' . $meta[2];
-            } else {
-                $organization->meta_title = $organization->organization_name . ' - ' . $city->name . ', ' . $city->state->name;
-            }
+
+            $meta = explode(',', $organization->organization_address);
+            $metaTitle = $organization->organization_address
+                ? $organization->organization_name . ' -' . $meta[1] . ',' . $meta[2]
+                : $organization->organization_name . ' - ' . $city->name . ', ' . $city->state->name;
+
+            $organization->meta_title = $metaTitle;
 
             if ($organization->organization_address && $organization->located_in) {
                 $address_line = explode(',', $organization->organization_address);
@@ -117,7 +123,7 @@ class OrganizationController extends Controller
 
             $select_hours = ['Open 24 Hours', 'Closed', '12 AM', '12:15 AM', '12:30 AM', '12:45 AM', '1 AM', '1:15 AM', '1:30 AM', '1:45 AM', '2 AM', '2:15 AM', '2:30 AM', '2:45 AM', '3 AM', '3:15 AM', '3:30 AM', '3:45 AM', '4 AM', '4:15 AM', '4:30 AM', '4:45 AM', '5 AM', '5:15 AM', '5:30 AM', '5:45 AM', '6 AM', '6:15 AM', '6:30 AM', '6:45 AM', '7 AM', '7:15 AM', '7:30 AM', '7:45 AM', '8 AM', '8:15 AM', '8:30 AM', '8:45 AM', '9 AM', '9:15 AM', '9:30 AM', '9:45 AM', '10 AM', '10:15 AM', '10:30 AM', '10:45 AM', '11 AM', '11:15 AM', '11:30 AM', '11:45 AM', '12 PM', '12:15 PM', '12:30 PM', '12:45 PM', '1 PM', '1:15 PM', '1:30 PM', '1:45 PM', '2 PM', '2:15 PM', '2:30 PM', '2:45 PM', '3 PM', '3:15 PM', '3:30 PM', '3:45 PM', '4 PM', '4:15 PM', '4:30 PM', '4:45 PM', '5 PM', '5:15 PM', '5:30 PM', '5:45 PM', '6 PM', '6:15 PM', '6:30 PM', '6:45 PM', '7 PM', '7:15 PM', '7:30 PM', '7:45 PM', '8 PM', '8:15 PM', '8:30 PM', '8:45 PM', '9 PM', '9:15 PM', '9:30 PM', '9:45 PM', '10 PM', '10:15 PM', '10:30 PM', '10:45 PM', '11 PM', '11:15 PM', '11:30 PM', '11:45 PM'];
 
-            $also_viewed = Organization::where('id', '!=', $organization->id)
+            $also_viewed = Organization::with('city:id,name,slug', 'category:id,name,icon')->where('id', '!=', $organization->id)
                 ->where('state_id', $organization->state_id)
                 ->where('city_id', $organization->city_id)
                 ->where('permanently_closed', 0)
