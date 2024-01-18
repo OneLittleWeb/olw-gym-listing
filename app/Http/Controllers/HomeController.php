@@ -7,18 +7,20 @@ use App\Models\Organization;
 use App\Models\State;
 use Corcel\Model\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $all_states = State::all();
-        $cities = City::all();
+        $all_states = Cache::rememberForever('all_states_home_page', function () {
+            return State::select('id', 'name', 'slug', 'background_image')->get();
+        });
         $total_pages = Organization::count();
         $five_star_ratings = Organization::where('rate_stars', 5)->count();
         $company_joined = Organization::distinct('organization_name')->count('organization_name');
-        $most_viewed_states = Organization::select('state_id', DB::raw('SUM(views) as total_views'), DB::raw('COUNT(*) as total_business'))
+        $most_viewed_states = Organization::with('state')->select('state_id', DB::raw('SUM(views) as total_views'), DB::raw('COUNT(*) as total_business'))
             ->groupBy('state_id')
             ->orderByDesc('total_views')
             ->take(4)
@@ -26,7 +28,6 @@ class HomeController extends Controller
 
         $view = view('home')
             ->with('all_states', $all_states)
-            ->with('cities', $cities)
             ->with('total_pages', $total_pages)
             ->with('five_star_ratings', $five_star_ratings)
             ->with('company_joined', $company_joined)
