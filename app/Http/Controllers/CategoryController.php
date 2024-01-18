@@ -12,13 +12,12 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-
     public function categoryWiseBusiness($state_slug, $organization_category_slug)
     {
         $s_state = State::where('slug', $state_slug)->first();
 
         if ($s_state) {
-            $organizations = Organization::with('city', 'state', 'category')
+            $organizations = Organization::with('city', 'state:name', 'category')
                 ->where('organization_category_slug', $organization_category_slug)
                 ->where('state_id', $s_state->id)
                 ->where('permanently_closed', 0)
@@ -42,7 +41,7 @@ class CategoryController extends Controller
                 ->orderBy('category_count', 'desc')
                 ->get();
 
-            $states = Cache::remember('states_with_organizations', now()->addMinutes(60), function () {
+            $states = Cache::rememberForever('states_with_organizations', function () {
                 return State::with('organizations')->get();
             });
 
