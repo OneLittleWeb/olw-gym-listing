@@ -16,7 +16,7 @@
                         <div
                             class="breadcrumb-content breadcrumb-content-2 d-flex flex-wrap align-items-end justify-content-between margin-bottom-30px">
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
-                                <li><a href="{{ route('home') }}">Home tt</a></li>
+                                <li><a href="{{ route('home') }}">Home</a></li>
                                 <li>
                                     <a href="{{ route('category.wise.business',['state_slug' => $s_state->slug , 'organization_category_slug' => 'gym']) }}">{{ $s_state->name }}</a>
                                 </li>
