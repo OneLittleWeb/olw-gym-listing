@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
 use Stevebauman\Location\Facades\Location;
 
 class OrganizationController extends Controller
@@ -90,19 +89,16 @@ class OrganizationController extends Controller
                 $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located in ' . Str::title($organization->state->name) . ', ' . Str::title($organization->city->name) . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             }
 
-            if ($organization->organization_phone_number) {
-                $contactInfo = "<a href='tel:$organization->organization_phone_number'>$organization->organization_phone_number</a>";
-            } elseif ($organization->organization_email) {
-                $contactInfo = "<strong>$organization->organization_email</strong>";
-            } elseif ($organization->organization_website) {
-                $contactInfo = "<strong>$organization->organization_website</strong>";
-            } elseif ($organization->organization_address) {
-                $contactInfo = "<strong>$organization->organization_address</strong>";
-            } else {
-                $contactInfo = null;
-            }
+            $contactInfo =
+                "<a href='tel:$organization->organization_phone_number'>$organization->organization_phone_number</a>" ??
+                "<strong>$organization->organization_email</strong>" ??
+                "<strong>$organization->organization_website</strong>" ??
+                "<strong>$organization->organization_address</strong>";
 
-            $organization->about2 = "<strong>$organization->organization_name</strong>" . ' has earned a ' . "<strong>$organization->rate_stars</strong>" . '-star rating with ' . "<strong>$organization->reviews_total_count</strong>" . ' reviews. ' . 'You can contact them at ' . $contactInfo . ' for more information.';
+            $organization->about2 = "<strong>$organization->organization_name</strong>" .
+                ' has earned a ' . "<strong>$organization->rate_stars</strong>" .
+                '-star rating with ' . "<strong>$organization->reviews_total_count</strong>" .
+                ' reviews. ' . 'You can contact them at ' . $contactInfo . ' for more information.';
 
             $emailProperties = ['organization_email', 'organization_facebook', 'organization_twitter', 'organization_instagram', 'organization_youTube'];
 
@@ -116,23 +112,21 @@ class OrganizationController extends Controller
             $organization->rate_stars = $organization->rate_stars ?? 0;
             $organization->reviews_total_count = $organization->reviews_total_count ?? 0;
 
-            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'g_reviews')->withQueryString();
-            $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'own_reviews')->withQueryString();
+//            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'g_reviews')->withQueryString();
+//            $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'own_reviews')->withQueryString();
+
+            $organization->reviews_paginator = $this->getReviewsPaginator($organization, 'g_reviews');
+            $organization->own_reviews_paginator = $this->getReviewsPaginator($organization, 'own_reviews');
 
             Meta::setPaginationLinks($organization->reviews_paginator);
 
             $select_hours = ['Open 24 Hours', 'Closed', '12 AM', '12:15 AM', '12:30 AM', '12:45 AM', '1 AM', '1:15 AM', '1:30 AM', '1:45 AM', '2 AM', '2:15 AM', '2:30 AM', '2:45 AM', '3 AM', '3:15 AM', '3:30 AM', '3:45 AM', '4 AM', '4:15 AM', '4:30 AM', '4:45 AM', '5 AM', '5:15 AM', '5:30 AM', '5:45 AM', '6 AM', '6:15 AM', '6:30 AM', '6:45 AM', '7 AM', '7:15 AM', '7:30 AM', '7:45 AM', '8 AM', '8:15 AM', '8:30 AM', '8:45 AM', '9 AM', '9:15 AM', '9:30 AM', '9:45 AM', '10 AM', '10:15 AM', '10:30 AM', '10:45 AM', '11 AM', '11:15 AM', '11:30 AM', '11:45 AM', '12 PM', '12:15 PM', '12:30 PM', '12:45 PM', '1 PM', '1:15 PM', '1:30 PM', '1:45 PM', '2 PM', '2:15 PM', '2:30 PM', '2:45 PM', '3 PM', '3:15 PM', '3:30 PM', '3:45 PM', '4 PM', '4:15 PM', '4:30 PM', '4:45 PM', '5 PM', '5:15 PM', '5:30 PM', '5:45 PM', '6 PM', '6:15 PM', '6:30 PM', '6:45 PM', '7 PM', '7:15 PM', '7:30 PM', '7:45 PM', '8 PM', '8:15 PM', '8:30 PM', '8:45 PM', '9 PM', '9:15 PM', '9:30 PM', '9:45 PM', '10 PM', '10:15 PM', '10:30 PM', '10:45 PM', '11 PM', '11:15 PM', '11:30 PM', '11:45 PM'];
 
-            $also_viewed = Organization::with('city:id,name,slug', 'category:id,name,icon')->where('id', '!=', $organization->id)
-                ->where('state_id', $organization->state_id)
-                ->where('city_id', $organization->city_id)
-                ->where('permanently_closed', 0)
-                ->orderByDesc('views')
-                ->limit(4)
-                ->get();
+            $reviews = $organization->reviews()->get();
 
-            $review_pros = $this->getReviewPros($organization);
-            $review_cons = $this->getReviewCons($organization);
+            $also_viewed = $this->getAlsoViewedOrganizations($organization);
+            $review_pros = $this->getReviewPros($reviews);
+            $review_cons = $this->getReviewCons($reviews);
 
             if ($organization->organization_work_time && $organization->organization_work_time != ". Hide open hours for the week") {
                 $organization_work_time_exploded = explode(';', $organization->organization_work_time);
@@ -221,7 +215,7 @@ class OrganizationController extends Controller
         abort(404);
     }
 
-    public function getReviewPros($organization)
+    public function getReviewPros($reviews)
     {
         $all_pros = [
             'great gym', 'recommend', '24 hour', 'the best gym', 'down to earth', 'friendly environment', 'friendly', 'great environment',
@@ -239,9 +233,6 @@ class OrganizationController extends Controller
         foreach ($all_pros as $keyword) {
             $matched_pros_count[$keyword] = 0;
         }
-
-        // Assuming $organization->reviews() retrieves all reviews related to the organization
-        $reviews = $organization->reviews()->get();
 
         foreach ($reviews as $review) {
             $review_text = strtolower($review->review_text_original); // Convert text to lowercase for case-insensitive comparison
@@ -272,7 +263,7 @@ class OrganizationController extends Controller
         return $matched_pros;
     }
 
-    public function getReviewCons($organization)
+    public function getReviewCons($reviews)
     {
         $all_cons = [
             'not a safe environment', 'not a good gym', 'not a good place', 'not a good experience', 'not a good deal', 'not a good value', 'forced us to pay',
@@ -288,9 +279,6 @@ class OrganizationController extends Controller
         foreach ($all_cons as $keyword) {
             $matched_cons_count[$keyword] = 0;
         }
-
-        // Assuming $organization->reviews() retrieves all reviews related to the organization
-        $reviews = $organization->reviews()->get();
 
         foreach ($reviews as $review) {
             $review_text = strtolower($review->review_text_original); // Convert text to lowercase for case-insensitive comparison
@@ -319,6 +307,31 @@ class OrganizationController extends Controller
         arsort($matched_cons);
 
         return $matched_cons;
+    }
+
+    public function getAlsoViewedOrganizations($organization)
+    {
+        return Organization::with('city:id,name,slug', 'category:id,name,icon')->where('id', '!=', $organization->id)
+            ->where('state_id', $organization->state_id)
+            ->where('city_id', $organization->city_id)
+            ->where('permanently_closed', 0)
+            ->orderByDesc('views')
+            ->limit(4)
+            ->get();
+    }
+
+    private function getReviewsPaginator($organization, $reviewIdColumn)
+    {
+        return $organization->reviews()
+            ->when($reviewIdColumn === 'g_reviews', function ($query) {
+                return $query->whereNotNull('review_id');
+            })
+            ->when($reviewIdColumn === 'own_reviews', function ($query) {
+                return $query->whereNull('review_id');
+            })
+            ->orderByDesc('id')
+            ->paginate(10, ['*'], $reviewIdColumn)
+            ->withQueryString();
     }
 
     public function getProsConsReviews($slug, $keyword, $type)
