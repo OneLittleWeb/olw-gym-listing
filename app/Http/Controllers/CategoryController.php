@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     public function categoryWiseBusiness($state_slug, $organization_category_slug)
     {
-        $s_state = State::where('slug', $state_slug)->first();
+        $s_state = State::select('id', 'name', 'slug')->where('slug', $state_slug)->first();
 
         if ($s_state) {
             $organizations = Organization::with('city', 'state:name', 'category')
