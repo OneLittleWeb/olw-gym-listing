@@ -684,7 +684,7 @@ class OrganizationController extends Controller
                         'rate_stars' => $organization->rate_stars,
                         'reviews_total_count' => $organization->reviews_total_count,
                         'direction' => $organization->gmaps_link,
-                        'head_photo' => $organization->organization_head_photo_file ? $organization->organization_head_photo_file : 'default.jpg',
+                        'head_photo' => $organization->organization_head_photo_file ?? 'default.jpg',
                     ];
                 }
 
