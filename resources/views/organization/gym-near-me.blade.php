@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', "$meta_title")
 @section('meta_description', "$meta_description")
-@section('meta_keywords',"USA, gymnearx, gymnearme")
+@section('meta_keywords',"$meta_keyword")
 @section('content')
     <!-- =====START BREADCRUMB AREA==== -->
     <section class="breadcrumb-area bg-gradient-gray near-me-popup-header py-4">
