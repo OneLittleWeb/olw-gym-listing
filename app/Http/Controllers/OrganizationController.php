@@ -627,6 +627,8 @@ class OrganizationController extends Controller
         $organizations = [];
         $location_data = [];
         $organization_category_count = [];
+        $meta_title = 'Top Gyms near me - Best Fitness Center near me - Gymnearx';
+        $meta_description = 'Find ✓Fitness Center, ✓Unisex Gyms, ✓Women Gym. Get Phone Numbers, Address, Reviews, Photos, Maps for top Fitness Center near me on Gymnearx.';
 
         if ($user_location) {
             $state = State::where('name', Str::lower($user_location->regionName))->first();
@@ -639,7 +641,7 @@ class OrganizationController extends Controller
                 $user_latitude = $user_location->latitude;
                 $user_longitude = $user_location->longitude;
 
-                $organizations_query = Organization::with('state','city')->where('state_id', $state_id)
+                $organizations_query = Organization::with('state', 'city')->where('state_id', $state_id)
                     ->where('city_id', $city_id)
                     ->where('permanently_closed', 0);
 
@@ -684,10 +686,14 @@ class OrganizationController extends Controller
                         'head_photo' => $organization->organization_head_photo_file ? $organization->organization_head_photo_file : 'default.jpg',
                     ];
                 }
+
+                $meta_title = $this->generateMetaTitle($organizations, $city);
+
+                $meta_description = $this->generateMetaDescription($organizations, $city);
             }
         }
 
-        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug, 'states' => $states, 'organization_category_count' => $organization_category_count]);
+        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug, 'states' => $states, 'organization_category_count' => $organization_category_count, 'meta_description' => $meta_description, 'meta_title' => $meta_title]);
     }
 
     public function getClientIP()
@@ -737,5 +743,20 @@ class OrganizationController extends Controller
             ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
             ->orderBy('category_count', 'desc')
             ->get();
+    }
+
+    private function generateMetaTitle($organizations, $city)
+    {
+        return 'Top ' . ($organizations->isNotEmpty()
+                ? Str::plural($organizations[0]->organization_category, $organizations->count()) . ' in ' . $city->name . ' - Best ' . Str::plural($organizations[0]->organization_category, $organizations->count()) . ' near me'
+                : 'Top Gyms near me - Best Fitness Center near me') . ' - Gymnearx';
+    }
+
+
+    private function generateMetaDescription($organizations, $city)
+    {
+        return $organizations->isNotEmpty()
+            ? Str::plural($organizations[0]->organization_category, $organizations->count()) . " in " . $city->name . ". Find ✓Fitness Center, ✓Unisex Gyms, ✓Women Gym, ✓fitness gym in " . $city->name . ". Get Phone Numbers, Address, Reviews, Photos, Maps for top Fitness Center near me in " . $city->name . " on Gymnearx."
+            : 'Find ✓Fitness Center, ✓Unisex Gyms, ✓Women Gym. Get Phone Numbers, Address, Reviews, Photos, Maps for top Fitness Center near me on Gymnearx.';
     }
 }

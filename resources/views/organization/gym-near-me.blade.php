@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('title', $organizations ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near me' : 'Gym Near Me')
-@section('meta_description', "Browse near by all gyms.")
+@section('title', "$meta_title")
+@section('meta_description', "$meta_description")
 @section('meta_keywords',"USA, gymnearx, gymnearme")
 @section('content')
     <!-- =====START BREADCRUMB AREA==== -->
