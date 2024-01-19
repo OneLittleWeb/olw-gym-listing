@@ -622,8 +622,7 @@ class OrganizationController extends Controller
 
         $user_location = Location::get($client_ip_address);
 
-        $states = State::with('cities')->get();
-        $cities = City::orderByDesc('id')->get();
+        $states = State::with('cities:id,name,slug')->get();
 
         $organizations = [];
         $location_data = [];
@@ -640,7 +639,7 @@ class OrganizationController extends Controller
                 $user_latitude = $user_location->latitude;
                 $user_longitude = $user_location->longitude;
 
-                $organizations_query = Organization::where('state_id', $state_id)
+                $organizations_query = Organization::with('state','city')->where('state_id', $state_id)
                     ->where('city_id', $city_id)
                     ->where('permanently_closed', 0);
 
@@ -688,7 +687,7 @@ class OrganizationController extends Controller
             }
         }
 
-        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug, 'states' => $states, 'cities' => $cities, 'organization_category_count' => $organization_category_count]);
+        return view('organization.gym-near-me', ['locations' => json_encode($location_data), 'organizations' => $organizations, 'organization_category_slug' => $organization_category_slug, 'states' => $states, 'organization_category_count' => $organization_category_count]);
     }
 
     public function getClientIP()
