@@ -612,7 +612,7 @@ class OrganizationController extends Controller
         abort(404);
     }
 
-    public function gymNearMe(Request $request, $organization_category_slug = null, $suffix = null)
+    public function gymNearMe($organization_category_slug = null, $suffix = null)
     {
         $client_ip_address = $this->getClientIP();
 
