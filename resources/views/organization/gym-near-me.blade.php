@@ -11,13 +11,13 @@
                     <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
                         <div class="section-heading text-capitalize">
                             <h2 class="sec__title font-size-26 mb-0">
-                                {{ $organizations->isNotEmpty() ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near ' . $organizations[0]->state->name . ', ' . $organizations[0]->city->name : 'Gym Near Me' }}
+                                {{ (count($organizations) > 0) ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near ' . $organizations[0]->state->name . ', ' . $organizations[0]->city->name : 'Gym Near Me' }}
                             </h2>
                         </div>
                         <ul class="list-items bread-list bread-list-2 text-capitalize">
                             <li><a href="/">Home</a></li>
                             <li>
-                                {{ $organizations->isNotEmpty() ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near me' : 'Gym Near Me' }}
+                                {{ (count($organizations) > 0) ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near me' : 'Gym Near Me' }}
                             </li>
                         </ul>
                     </div>
@@ -26,7 +26,7 @@
         </div>
     </section>
     <!-- ====END BREADCRUMB AREA==== -->
-    @if($organizations->isNotEmpty())
+    @if((count($organizations) > 0))
         <section class="full-screen-container d-flex states-border-bottom">
             <div class="near-me-organization-section card-area">
                 <div class="filter-bar-wrap padding-left-30px padding-right-30px pb-3 bg-light-blue">
