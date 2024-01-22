@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Organization;
 use App\Models\State;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
+use Stevebauman\Location\Facades\Location;
 
 class SitemapController extends Controller
 {
@@ -61,11 +64,24 @@ class SitemapController extends Controller
         }
         $sitemap_state_city_business->store('xml', 'sitemap_state_city_business');
 
+        // Generate sitemap for near me
+        $sitemap_near_me = App::make("sitemap");
+        $organization_categories = Organization::whereNotNull('organization_category')->select('organization_category', 'organization_category_slug', DB::raw('COUNT(*) as category_count'))
+            ->groupBy('organization_category', 'organization_category_slug')
+            ->orderBy('category_count', 'desc')
+            ->get();
+
+        foreach ($organization_categories as $organization_category) {
+            $sitemap_near_me->add(route('gym.near.me', ['category_slug' => $organization_category->organization_category_slug, 'suffix' => 'near-me']), $now, '0.8', 'monthly');
+        }
+        $sitemap_near_me->store('xml', 'sitemap_near_me');
+
         // Create the main sitemap index
         $sitemap = App::make("sitemap");
         $sitemap->addSitemap(URL::to('sitemap-pages.xml'), $now);
         $sitemap->addSitemap(URL::to('sitemap_state_business.xml'), $now);
         $sitemap->addSitemap(URL::to('sitemap_state_city_business.xml'), $now);
+        $sitemap->addSitemap(URL::to('sitemap_near_me.xml'), $now);
 
         // Fetch state-wise organizations and create sitemap instances
         $states = State::all();

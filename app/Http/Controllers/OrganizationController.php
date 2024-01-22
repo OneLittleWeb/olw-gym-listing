@@ -622,7 +622,7 @@ class OrganizationController extends Controller
 
         $user_location = Location::get($client_ip_address);
 
-        $states = State::with('cities:id,name,slug')->get();
+        $states = State::with('cities:id,state_id,name,slug')->get();
 
         $organizations = [];
         $location_data = [];
@@ -652,47 +652,49 @@ class OrganizationController extends Controller
 
                 $organizations = $organizations_query->get();
 
-                $organizations = $organizations->map(function ($organization) use ($user_latitude, $user_longitude) {
-                    $org_latitude = $organization->organization_latitude;
-                    $org_longitude = $organization->organization_longitude;
+                if (count($organizations) > 0){
+                    $organizations = $organizations->map(function ($organization) use ($user_latitude, $user_longitude) {
+                        $org_latitude = $organization->organization_latitude;
+                        $org_longitude = $organization->organization_longitude;
 
-                    $distance = $this->calculateDistance($user_latitude, $user_longitude, $org_latitude, $org_longitude);
-                    $organization->distance = $distance;
+                        $distance = $this->calculateDistance($user_latitude, $user_longitude, $org_latitude, $org_longitude);
+                        $organization->distance = $distance;
 
-                    return $organization;
-                });
+                        return $organization;
+                    });
 
-                $organization_category_count = Organization::where('state_id', $state_id)
-                    ->where('city_id', $city_id)
-                    ->where('permanently_closed', 0)
-                    ->where('organization_category_slug', $organization_category_slug)->count();
+                    $organization_category_count = Organization::where('state_id', $state_id)
+                        ->where('city_id', $city_id)
+                        ->where('permanently_closed', 0)
+                        ->where('organization_category_slug', $organization_category_slug)->count();
 
 
-                $organizations = $organizations->sortBy('distance');
+                    $organizations = $organizations->sortBy('distance');
 
-                $organizations->organization_categories = $this->organizationCategories($state_id, $city_id);
+                    $organizations->organization_categories = $this->organizationCategories($state_id, $city_id);
 
-                foreach ($organizations as $organization) {
-                    $location_data[] = [
-                        'name' => $organization->organization_name,
-                        'lat' => $organization->organization_latitude,
-                        'lng' => $organization->organization_longitude,
-                        'city_slug' => $organization->city->slug,
-                        'slug' => $organization->slug,
-                        'distance' => $organization->distance,
-                        'address' => $organization->organization_address,
-                        'rate_stars' => $organization->rate_stars,
-                        'reviews_total_count' => $organization->reviews_total_count,
-                        'direction' => $organization->gmaps_link,
-                        'head_photo' => $organization->organization_head_photo_file ?? 'default.jpg',
-                    ];
+                    foreach ($organizations as $organization) {
+                        $location_data[] = [
+                            'name' => $organization->organization_name,
+                            'lat' => $organization->organization_latitude,
+                            'lng' => $organization->organization_longitude,
+                            'city_slug' => $organization->city->slug,
+                            'slug' => $organization->slug,
+                            'distance' => $organization->distance,
+                            'address' => $organization->organization_address,
+                            'rate_stars' => $organization->rate_stars,
+                            'reviews_total_count' => $organization->reviews_total_count,
+                            'direction' => $organization->gmaps_link,
+                            'head_photo' => $organization->organization_head_photo_file ?? 'default.jpg',
+                        ];
+                    }
+
+                    $meta_title = $this->generateMetaTitle($organizations, $city);
+
+                    $meta_description = $this->generateMetaDescription($organizations, $city);
+
+                    $meta_keyword = $this->generateMetaKeyWord($organizations, $city);
                 }
-
-                $meta_title = $this->generateMetaTitle($organizations, $city);
-
-                $meta_description = $this->generateMetaDescription($organizations, $city);
-
-                $meta_keyword = $this->generateMetaKeyWord($organizations, $city);
             }
         }
 
@@ -738,7 +740,7 @@ class OrganizationController extends Controller
         return $earth_radius * $c;
     }
 
-    private function organizationCategories($state_id, $city_id)
+    public function organizationCategories($state_id, $city_id)
     {
         return Organization::select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
             ->where('state_id', $state_id)
