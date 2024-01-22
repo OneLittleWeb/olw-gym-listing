@@ -622,7 +622,19 @@ class OrganizationController extends Controller
 
         $user_location = Location::get($client_ip_address);
 
-        $states = State::with('cities:id,state_id,name,slug')->get();
+        $states = Cache::rememberForever('states_data_near_me', function () {
+            return State::select('id', 'name', 'slug', 'background_image')
+                ->withCount(['cities as cities_count'])
+                ->groupBy('id', 'name', 'slug', 'background_image')
+                ->get();
+        });
+
+        $stateIds = $states->pluck('id');
+        $cities = City::with('state')->whereIn('state_id', $stateIds)->select('id', 'state_id', 'name', 'slug')->get();
+
+        $states->each(function ($state) use ($cities) {
+            $state->cities = $cities->where('state_id', $state->id)->all();
+        });
 
         $organizations = [];
         $location_data = [];
