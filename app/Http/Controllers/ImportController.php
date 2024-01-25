@@ -43,6 +43,9 @@ class ImportController extends Controller
 
     public function importCityName()
     {
+
+        return redirect()->back();
+
         try {
 //            $baseDirectory = 'H:\4city';
 
