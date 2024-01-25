@@ -121,6 +121,8 @@ class ImportController extends Controller
                             $city_id = $city->id;
                             $files = File::files($city_directory);
 
+                            dd($files);
+
                             if (count($files) > 0) {
                                 ExcelImportJob::dispatch($state_id, $city_id, $files[0]->getRealPath());
                             } else {
