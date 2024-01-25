@@ -48,6 +48,8 @@ class ImportController extends Controller
 
             $baseDirectory = public_path('6city_separate');
 
+            dd($baseDirectory);
+
             if (!File::exists($baseDirectory)) {
                 throw new \Exception('Base directory does not exist.');
             }
