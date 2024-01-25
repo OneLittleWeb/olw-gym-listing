@@ -102,6 +102,8 @@ class ImportController extends Controller
 
             $state_directories = File::directories(public_path('6city_separate'));
 
+            dd($state_directories);
+
             foreach ($state_directories as $state_directory) {
 
                 $state_name = trim(basename($state_directory), " ");
