@@ -96,9 +96,9 @@ class ImportController extends Controller
     public function importOrganizationData()
     {
         try {
-//            $state_directories = File::directories('H:\6city_separate');
+            $state_directories = File::directories('H:\gymnearx_city_separated\8city');
 
-            $state_directories = File::directories(public_path('6city_separate'));
+//            $state_directories = File::directories(public_path('6city_separate'));
 
             foreach ($state_directories as $state_directory) {
 
