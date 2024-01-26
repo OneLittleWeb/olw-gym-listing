@@ -44,12 +44,10 @@ class ImportController extends Controller
     public function importCityName()
     {
 
-        return redirect()->back();
-
         try {
-//            $baseDirectory = 'H:\4city';
+            $baseDirectory = 'H:\gymnearx_city_separated\8city';
 
-            $baseDirectory = public_path('6city_separate');
+//            $baseDirectory = public_path('6city_separate');
 
             if (!File::exists($baseDirectory)) {
                 throw new \Exception('Base directory does not exist.');
