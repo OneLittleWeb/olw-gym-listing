@@ -42,7 +42,7 @@ class ImportController extends Controller
     {
 
         try {
-            $baseDirectory = 'H:\gymnearx_city_separated\8city';
+            $baseDirectory = 'H:\gymnearx_city_separated\10city';
 
 //            $baseDirectory = public_path('6city_separate');
 
@@ -93,7 +93,7 @@ class ImportController extends Controller
     public function importOrganizationData()
     {
         try {
-            $state_directories = File::directories('H:\8city');
+            $state_directories = File::directories('H:\10city');
 
 //            $state_directories = File::directories(public_path('6city_separate'));
 
