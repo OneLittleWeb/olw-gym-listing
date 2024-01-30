@@ -33,13 +33,13 @@ class ImageCopyPasteJob implements ShouldQueue
     public function handle()
     {
         try {
-            $state_directories = File::directories('H:\6city');
+            $state_directories = File::directories('H:\gymnearx_city_separated\8city');
 
             foreach ($state_directories as $state_directory) {
                 foreach (File::directories($state_directory) as $city_directory) {
                     $sourcePath = File::glob($city_directory . '/media/*');
                     foreach ($sourcePath as $source) {
-                        $destinationPath = 'H:\6city_image';
+                        $destinationPath = 'H:\8city_image';
                         $file = basename($source);
                         $destinationPath = $destinationPath . '/' . $file;
                         File::copy($source, $destinationPath);
