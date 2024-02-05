@@ -45,11 +45,7 @@ class CategoryController extends Controller
 //                return State::with('organizations')->get();
 //            });
 
-            $states = Cache::remember('states_wise_organizations', 720, function () {
-                return State::with('organizations')->get();
-            });
-
-//            $states = State::with('organizations')->get();
+            $states = State::with('organizations')->get();
 
 //            $cities = Cache::remember('cities_with_states_' . $s_state->id, now()->addMinutes(60), function () use ($s_state) {
 //                return City::with('state')->where('state_id', $s_state->id)->get();
