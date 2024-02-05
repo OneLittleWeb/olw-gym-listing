@@ -61,6 +61,14 @@ class OrganizationController extends Controller
 
             $organization->incrementViewCount();
 
+            // Cache key for also viewed organizations
+            $cacheKey = 'also_viewed_organizations_' . $organization->id;
+
+            // Retrieve cached value if available
+            $also_viewed = cache()->remember($cacheKey, now()->addHours(24), function () use ($organization) {
+                return $this->getAlsoViewedOrganizations($organization);
+            });
+
             $reviewCounts = $organization->reviews()->select('review_rate_stars', DB::raw('COUNT(*) as count'))->groupBy('review_rate_stars')->pluck('count', 'review_rate_stars')->toArray();
 
             [
@@ -112,9 +120,6 @@ class OrganizationController extends Controller
             $organization->rate_stars = $organization->rate_stars ?? 0;
             $organization->reviews_total_count = $organization->reviews_total_count ?? 0;
 
-//            $organization->reviews_paginator = $organization->reviews()->whereNotNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'g_reviews')->withQueryString();
-//            $organization->own_reviews_paginator = $organization->reviews()->whereNull('review_id')->orderByDesc('id')->paginate(10, ['*'], 'own_reviews')->withQueryString();
-
             $organization->reviews_paginator = $this->getReviewsPaginator($organization, 'g_reviews');
             $organization->own_reviews_paginator = $this->getReviewsPaginator($organization, 'own_reviews');
 
@@ -124,7 +129,7 @@ class OrganizationController extends Controller
 
             $reviews = $organization->reviews()->get();
 
-            $also_viewed = $this->getAlsoViewedOrganizations($organization);
+//            $also_viewed = $this->getAlsoViewedOrganizations($organization);
             $review_pros = $this->getReviewPros($reviews);
             $review_cons = $this->getReviewCons($reviews);
 
