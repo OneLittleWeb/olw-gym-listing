@@ -41,7 +41,11 @@ class CategoryController extends Controller
                 ->orderBy('category_count', 'desc')
                 ->get();
 
-            $states = Cache::rememberForever('states_wise_organizations', function () {
+//            $states = Cache::rememberForever('states_wise_organizations', function () {
+//                return State::with('organizations')->get();
+//            });
+
+            $states = Cache::remember('states_wise_organizations', 720, function () {
                 return State::with('organizations')->get();
             });
 
