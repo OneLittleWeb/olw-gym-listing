@@ -45,20 +45,6 @@ class HomeController extends Controller
         return $view;
     }
 
-    public function replaceCity()
-    {
-//        $organizations = Organization::where('state_id', 11)->where('city_id', 280)->get();
-//
-//        foreach ($organizations as $organization) {
-//            $organization->city_id = 359;
-//            $organization->update();
-//        }
-
-        alert()->success('Success', 'City id updated successfully.');
-
-        return redirect()->back();
-    }
-
     public function autocomplete(Request $request)
     {
         $query = $request->search;
