@@ -41,12 +41,9 @@ class CategoryController extends Controller
                 ->orderBy('category_count', 'desc')
                 ->get();
 
-            // Cache the states with organizations
-//            $states = Cache::remember('states_with_organizations', now()->addHours(24), function () {
-//                return State::with('organizations')->get();
-//            });
-
-            $states = State::all();
+            $states = Cache::rememberForever('states', function () {
+                return State::all();
+            });
 
             $cities = City::with('state')->where('state_id', $s_state->id)->get();
 
