@@ -46,7 +46,6 @@ $(document).ready(function () {
                     'alt="image" class="generic-img-card-img filter-image lazy" loading="lazy">' +
                     '<div class="generic-img-card-content d-flex align-items-center justify-content-between">' +
                     '<span class="badge text-capitalize">' + state.name + '</span>' +
-                    '<span class="generic-img-card-counter">' + state.organizations_count + '</span>' +
                     '</div>' +
                     '</a';
 
