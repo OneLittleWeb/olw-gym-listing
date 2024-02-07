@@ -187,7 +187,7 @@
                                     @foreach($states->take(5) as $state)
                                         <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3 state-card"
-                                           data-organization-count="{{ $state->organizations_count }}">
+                                           data-organization-count="{{ $state->organizations->count() }}">
                                             <img src="{{ asset('images/sm-bg.jpg') }}"
                                                  data-src="{{ asset('images/sm-bg.jpg') }}"
                                                  alt="image" class="generic-img-card-img filter-image lazy"
@@ -196,7 +196,7 @@
                                                 class="generic-img-card-content d-flex align-items-center justify-content-between">
                                                 <span class="badge text-capitalize">{{ $state->name }}</span>
                                                 <span
-                                                    class="generic-img-card-counter">{{ $state->organizations_count }}</span>
+                                                    class="generic-img-card-counter">{{ $state->organizations->count() }}</span>
                                             </div>
                                         </a>
                                     @endforeach
@@ -204,7 +204,7 @@
                                         @foreach($states->skip(5) as $state)
                                             <a href="{{ route('category.wise.business',['state_slug' => $state->slug , 'organization_category_slug' => 'gym']) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3"
-                                               data-organization-count="{{ $state->organizations_count }}">
+                                               data-organization-count="{{ $state->organizations->count() }}">
                                                 <img
                                                     src="{{ asset('images/sm-bg.jpg') }}"
                                                     data-src="{{ asset('images/sm-bg.jpg') }}"
@@ -214,7 +214,7 @@
                                                     class="generic-img-card-content d-flex align-items-center justify-content-between">
                                                     <span class="badge text-capitalize">{{ $state->name }}</span>
                                                     <span
-                                                        class="generic-img-card-counter">{{ $state->organizations_count }}</span>
+                                                        class="generic-img-card-counter">{{ $state->organizations->count() }}</span>
                                                 </div>
                                             </a>
                                         @endforeach
