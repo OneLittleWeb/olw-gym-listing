@@ -46,7 +46,7 @@ class CategoryController extends Controller
 //                return State::with('organizations')->get();
 //            });
 
-            $states = State::with('organizations')->get();
+            $states = State::all();
 
             $cities = City::with('state')->where('state_id', $s_state->id)->get();
 
