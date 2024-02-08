@@ -42,9 +42,7 @@ class ImportController extends Controller
     {
 
         try {
-            $baseDirectory = 'H:\gymnearx_city_separated\14city';
-
-//            $baseDirectory = public_path('6city_separate');
+            $baseDirectory = 'H:\gymnearx_city_separated\16city';
 
             if (!File::exists($baseDirectory)) {
                 throw new \Exception('Base directory does not exist.');
