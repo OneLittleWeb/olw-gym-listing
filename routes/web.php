@@ -55,6 +55,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/autocomplete', [HomeController::class, 'autocomplete'])->name('autocomplete');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
+Route::get('/remove-unknown-category', [HomeController::class, 'removeUnknownCategory'])->name('remove.unknown.category');
+
 Route::get('/checkout', [StripePaymentController::class, 'index'])->name('payment.form')->middleware('auth');
 Route::post('/payments/pay', [StripePaymentController::class, 'checkout'])->name('payment.checkout');
 Route::get('/payments/approval', [StripePaymentController::class, 'approval'])->name('payment.approval');

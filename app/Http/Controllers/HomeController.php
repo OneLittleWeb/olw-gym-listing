@@ -109,4 +109,33 @@ class HomeController extends Controller
 
         abort(404);
     }
+
+    public function removeUnknownCategory()
+    {
+        $unknown_categories = ['lounge'];
+
+        foreach ($unknown_categories as $unknown_category) {
+            // Fetch organizations and their reviews with eager loading
+            $organizations = Organization::with('reviews')
+                ->where('organization_category_slug', $unknown_category)
+                ->get();
+
+            dd($organizations);
+
+            foreach ($organizations as $organization) {
+
+                dd($organization);
+                // Ensure organization exists before deletion
+                if ($organization) {
+                    // Delete all associated reviews
+                    $organization->reviews()->delete();
+
+                    // Delete organization
+                    $organization->delete();
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', 'Unknown categories deleted successfully.');
+    }
 }
