@@ -42,7 +42,9 @@ class ImportController extends Controller
     {
 
         try {
-            $baseDirectory = 'H:\gymnearx_city_separated\18city';
+            $baseDirectory = 'H:\gymnearx_city_separated\20city';
+
+            dd($baseDirectory);
 
             if (!File::exists($baseDirectory)) {
                 throw new \Exception('Base directory does not exist.');
@@ -91,7 +93,7 @@ class ImportController extends Controller
     public function importOrganizationData()
     {
         try {
-            $state_directories = File::directories('H:\18city');
+            $state_directories = File::directories('H:\20city');
 
             foreach ($state_directories as $state_directory) {
 
