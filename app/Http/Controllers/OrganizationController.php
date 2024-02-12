@@ -645,7 +645,7 @@ class OrganizationController extends Controller
         $location_data = [];
         $organization_category_count = [];
         $meta_title = 'Top Gyms near me - Best Fitness Center near me - Gymnearx';
-        $meta_description = 'Find •Fitness Center, •Unisex Gyms, •Women Gym. Get Phone Numbers, Address, Reviews, Photos, Maps for top Fitness Center near me on Gymnearx.';
+        $meta_description = 'Gyms near me - Gymnearx';
         $meta_keyword = 'Gyms near me, Popular Gyms near me, Local Gyms nearby, Body Building Classes, Reviews, Ratings, Map, Address, Phone number, Contact Number';
 
         if ($user_location) {
@@ -775,7 +775,7 @@ class OrganizationController extends Controller
 
     private function generateMetaDescription($organizations, $city)
     {
-        return Str::plural($organizations[0]->organization_category, $organizations->count()) . " in " . $city->name . ". Find •Fitness Center, •Unisex Gyms, •Women Gym, •fitness gym in " . $city->name . ". Get Phone Numbers, Address, Reviews, Photos, Maps for top " . Str::plural($organizations[0]->organization_category, $organizations->count()) . " near me in " . $city->name . " on Gymnearx.";
+        return Str::plural($organizations[0]->organization_category, $organizations->count()) . " near me - Gymnearx.";
     }
 
     private function generateMetaKeyWord($organizations, $city)
