@@ -17,7 +17,7 @@ class HomeController extends Controller
         $all_states = Cache::rememberForever('all_states_home_page', function () {
             return State::select('id', 'name', 'slug', 'background_image')->get();
         });
-        $total_pages = Organization::count();
+        $total_pages = Organization::limit(1000)->count();
         $five_star_ratings = Organization::where('rate_stars', 5)->count();
         $company_joined = Organization::distinct('organization_name')->count('organization_name');
         $most_viewed_states = Organization::with('state')->select('state_id', DB::raw('SUM(views) as total_views'), DB::raw('COUNT(*) as total_business'))
