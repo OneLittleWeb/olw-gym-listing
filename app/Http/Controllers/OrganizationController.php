@@ -129,7 +129,6 @@ class OrganizationController extends Controller
 
             $reviews = $organization->reviews()->get();
 
-//            $also_viewed = $this->getAlsoViewedOrganizations($organization);
             $review_pros = $this->getReviewPros($reviews);
             $review_cons = $this->getReviewCons($reviews);
 
