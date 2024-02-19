@@ -112,7 +112,7 @@ class HomeController extends Controller
 
     public function removeUnknownCategory()
     {
-        $unknown_categories = ['lounge'];
+        $unknown_categories = ['orthopedic-surgeon', 'occupational-therapist'];
 
         foreach ($unknown_categories as $unknown_category) {
             // Fetch organizations and their reviews with eager loading
