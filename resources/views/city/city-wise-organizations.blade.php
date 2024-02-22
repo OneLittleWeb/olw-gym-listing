@@ -10,7 +10,7 @@
 @section('content')
     <section class="card-area section-padding">
         <div class="container pt-5">
-            @if(count($organizations))
+            @if(count($organizations) > 0)
                 <div class="row">
                     <div class="col-lg-12">
                         <div
