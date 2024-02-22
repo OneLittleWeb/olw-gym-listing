@@ -65,49 +65,49 @@ class SitemapController extends Controller
         $sitemap_state_city_business->store('xml', 'sitemap_state_city_business');
 
         // Generate sitemap for near me
-        $sitemap_near_me = App::make("sitemap");
-        $organization_categories = Organization::whereNotNull('organization_category')->select('organization_category', 'organization_category_slug', DB::raw('COUNT(*) as category_count'))
-            ->groupBy('organization_category', 'organization_category_slug')
-            ->orderBy('category_count', 'desc')
-            ->get();
-
-        foreach ($organization_categories as $organization_category) {
-            $sitemap_near_me->add(route('gym.near.me', ['category_slug' => $organization_category->organization_category_slug, 'suffix' => 'near-me']), $now, '0.8', 'monthly');
-        }
-        $sitemap_near_me->store('xml', 'sitemap_near_me');
+//        $sitemap_near_me = App::make("sitemap");
+//        $organization_categories = Organization::whereNotNull('organization_category')->select('organization_category', 'organization_category_slug', DB::raw('COUNT(*) as category_count'))
+//            ->groupBy('organization_category', 'organization_category_slug')
+//            ->orderBy('category_count', 'desc')
+//            ->get();
+//
+//        foreach ($organization_categories as $organization_category) {
+//            $sitemap_near_me->add(route('gym.near.me', ['category_slug' => $organization_category->organization_category_slug, 'suffix' => 'near-me']), $now, '0.8', 'monthly');
+//        }
+//        $sitemap_near_me->store('xml', 'sitemap_near_me');
 
         // Create the main sitemap index
         $sitemap = App::make("sitemap");
         $sitemap->addSitemap(URL::to('sitemap-pages.xml'), $now);
         $sitemap->addSitemap(URL::to('sitemap_state_business.xml'), $now);
         $sitemap->addSitemap(URL::to('sitemap_state_city_business.xml'), $now);
-        $sitemap->addSitemap(URL::to('sitemap_near_me.xml'), $now);
+//        $sitemap->addSitemap(URL::to('sitemap_near_me.xml'), $now);
 
         // Fetch state-wise organizations and create sitemap instances
-        $states = State::all();
-
-        foreach ($states as $state) {
-            $chunkNumber = 1;
-
-            $state->organizations()->chunk(10000, function ($organizations) use ($now, $state, &$sitemap, &$chunkNumber) {
-                $sitemap_state_wise_business = App::make("sitemap");
-
-                foreach ($organizations as $organization) {
-                    $sitemap_state_wise_business->add(
-                        route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
-                }
-
-                $sitemapFilename = 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business';
-                if ($chunkNumber > 1) {
-                    $sitemapFilename .= sprintf("%02d", $chunkNumber);
-                }
-
-                $sitemap_state_wise_business->store('xml', $sitemapFilename);
-                $sitemap->addSitemap(secure_url($sitemapFilename . '.xml'), $now);
-
-                $chunkNumber++;
-            });
-        }
+//        $states = State::all();
+//
+//        foreach ($states as $state) {
+//            $chunkNumber = 1;
+//
+//            $state->organizations()->chunk(10000, function ($organizations) use ($now, $state, &$sitemap, &$chunkNumber) {
+//                $sitemap_state_wise_business = App::make("sitemap");
+//
+//                foreach ($organizations as $organization) {
+//                    $sitemap_state_wise_business->add(
+//                        route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
+//                }
+//
+//                $sitemapFilename = 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business';
+//                if ($chunkNumber > 1) {
+//                    $sitemapFilename .= sprintf("%02d", $chunkNumber);
+//                }
+//
+//                $sitemap_state_wise_business->store('xml', $sitemapFilename);
+//                $sitemap->addSitemap(secure_url($sitemapFilename . '.xml'), $now);
+//
+//                $chunkNumber++;
+//            });
+//        }
 
         $sitemap->store('sitemapindex', 'sitemap');
 
