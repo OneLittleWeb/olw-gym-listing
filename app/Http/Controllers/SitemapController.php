@@ -84,30 +84,30 @@ class SitemapController extends Controller
         $sitemap->addSitemap(URL::to('sitemap_near_me.xml'), $now);
 
         // Fetch state-wise organizations and create sitemap instances
-//        $states = State::all();
-//
-//        foreach ($states as $state) {
-//            $chunkNumber = 1;
-//
-//            $state->organizations()->chunk(10000, function ($organizations) use ($now, $state, &$sitemap, &$chunkNumber) {
-//                $sitemap_state_wise_business = App::make("sitemap");
-//
-//                foreach ($organizations as $organization) {
-//                    $sitemap_state_wise_business->add(
-//                        route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
-//                }
-//
-//                $sitemapFilename = 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business';
-//                if ($chunkNumber > 1) {
-//                    $sitemapFilename .= sprintf("%02d", $chunkNumber);
-//                }
-//
-//                $sitemap_state_wise_business->store('xml', $sitemapFilename);
-//                $sitemap->addSitemap(secure_url($sitemapFilename . '.xml'), $now);
-//
-//                $chunkNumber++;
-//            });
-//        }
+        $states = State::all();
+
+        foreach ($states as $state) {
+            $chunkNumber = 1;
+
+            $state->organizations()->chunk(10000, function ($organizations) use ($now, $state, &$sitemap, &$chunkNumber) {
+                $sitemap_state_wise_business = App::make("sitemap");
+
+                foreach ($organizations as $organization) {
+                    $sitemap_state_wise_business->add(
+                        route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]), $now, '0.8', 'daily');
+                }
+
+                $sitemapFilename = 'sitemap_' . str_replace(' ', '_', strtolower($state->name)) . '_business';
+                if ($chunkNumber > 1) {
+                    $sitemapFilename .= sprintf("%02d", $chunkNumber);
+                }
+
+                $sitemap_state_wise_business->store('xml', $sitemapFilename);
+                $sitemap->addSitemap(secure_url($sitemapFilename . '.xml'), $now);
+
+                $chunkNumber++;
+            });
+        }
 
         $sitemap->store('sitemapindex', 'sitemap');
 
