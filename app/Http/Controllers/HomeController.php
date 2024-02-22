@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Organization;
+use App\Models\Review;
 use App\Models\State;
 use Corcel\Model\Post;
 use Illuminate\Http\Request;
@@ -112,7 +113,7 @@ class HomeController extends Controller
 
     public function removeUnknownCategory()
     {
-        $unknown_categories = ['orthopedic-surgeon', 'occupational-therapist'];
+        $unknown_categories = ['playground'];
 
         foreach ($unknown_categories as $unknown_category) {
             // Fetch organizations and their reviews with eager loading
@@ -121,10 +122,7 @@ class HomeController extends Controller
                 ->get();
 
             dd($organizations);
-
             foreach ($organizations as $organization) {
-
-                dd($organization);
                 // Ensure organization exists before deletion
                 if ($organization) {
                     // Delete all associated reviews
