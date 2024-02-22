@@ -63,61 +63,65 @@ class CityController extends Controller
                 ->paginate(10)
                 ->withQueryString();
 
-            // Check if it's the first page and has the "page" query parameter
-            if ($organizations->currentPage() == 1 && request()->has('page')) {
-                // Redirect to the same URL without the "page" query parameter
-                return redirect()->route('city.wise.organizations', [
-                    'state_slug' => $state_slug, 'city_slug' => $city_slug,
-                    'organization_category_slug' => $organization_category_slug,
-                ]);
-            }
-
-            $organization_categories = Organization::with('state', 'city')->select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
-                ->where('state_id', $s_state->id)
-                ->where('city_id', $city->id)
-                ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
-                ->orderBy('category_count', 'desc')
-                ->get();
-
-            $organization_badge = '';
-
             if ($organizations->isNotEmpty()) {
-                $files = File::files(public_path('images/badges'));
-                $images = [];
+                // Check if it's the first page and has the "page" query parameter
+                if ($organizations->currentPage() == 1 && request()->has('page')) {
+                    // Redirect to the same URL without the "page" query parameter
+                    return redirect()->route('city.wise.organizations', [
+                        'state_slug' => $state_slug, 'city_slug' => $city_slug,
+                        'organization_category_slug' => $organization_category_slug,
+                    ]);
+                }
 
-                foreach ($files as $file) {
-                    $images[] = $file->getRelativePathname();
+                $organization_categories = Organization::with('state', 'city')->select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
+                    ->where('state_id', $s_state->id)
+                    ->where('city_id', $city->id)
+                    ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
+                    ->orderBy('category_count', 'desc')
+                    ->get();
 
-                    foreach ($images as $image) {
-                        if ($image == $organizations[0]->category->name . ' - ' . $organizations[0]->city->name . '.png') {
-                            $organization_badge = $image;
+                $organization_badge = '';
+
+                if ($organizations->isNotEmpty()) {
+                    $files = File::files(public_path('images/badges'));
+                    $images = [];
+
+                    foreach ($files as $file) {
+                        $images[] = $file->getRelativePathname();
+
+                        foreach ($images as $image) {
+                            if ($image == $organizations[0]->category->name . ' - ' . $organizations[0]->city->name . '.png') {
+                                $organization_badge = $image;
+                            }
                         }
                     }
                 }
+
+                $organization_count = Organization::where('city_id', $city->id)
+                    ->where('state_id', $s_state->id)->count();
+                $organization_category_count = Organization::where('state_id', $s_state->id)->where('city_id', $city->id)
+                    ->where('organization_category_slug', $organization_category_slug)->count();
+
+                //For meta title, description and keyword
+                if ($organizations->isNotEmpty()) {
+                    $meta_title_prefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
+                    $organization_category = Str::plural($organizations[0]->organization_category, $organization_category_count);
+                    $meta_title_suffix = 'Near ' . Str::title($s_state->name . ' ' . $city->name);
+
+                    $s_state->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
+
+                    $category_name = Str::lower(Str::plural($organizations[0]->organization_category, $organization_category_count));
+                    $s_state->meta_description = "Explore the best " . Str::plural($organizations[0]->organization_category, $organization_category_count) . " in the $s_state->name, " . $city->name . ". Get photos, business hours, phone numbers, ratings, reviews and service details.";
+                    $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $city->name;
+                }
+
+                Meta::setPaginationLinks($organizations);
+
+                // Render the view as a string.
+                return view('city.city-wise-organizations', compact('organizations', 'organization_categories', 'organization_category_slug', 'organization_category_count', 'cities', 'city', 's_state', 'states', 'organization_badge', 'organization_count'))->render();
+            } else {
+                abort(404);
             }
-
-            $organization_count = Organization::where('city_id', $city->id)
-                ->where('state_id', $s_state->id)->count();
-            $organization_category_count = Organization::where('state_id', $s_state->id)->where('city_id', $city->id)
-                ->where('organization_category_slug', $organization_category_slug)->count();
-
-            //For meta title, description and keyword
-            if ($organizations->isNotEmpty()) {
-                $meta_title_prefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
-                $organization_category = Str::plural($organizations[0]->organization_category, $organization_category_count);
-                $meta_title_suffix = 'Near ' . Str::title($s_state->name . ' ' . $city->name);
-
-                $s_state->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
-
-                $category_name = Str::lower(Str::plural($organizations[0]->organization_category, $organization_category_count));
-                $s_state->meta_description = "Explore the best " . Str::plural($organizations[0]->organization_category, $organization_category_count) . " in the $s_state->name, " . $city->name . ". Get photos, business hours, phone numbers, ratings, reviews and service details.";
-                $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $city->name;
-            }
-
-            Meta::setPaginationLinks($organizations);
-
-            // Render the view as a string.
-            return view('city.city-wise-organizations', compact('organizations', 'organization_categories', 'organization_category_slug', 'organization_category_count', 'cities', 'city', 's_state', 'states', 'organization_badge', 'organization_count'))->render();
         }
 
         abort(404);
