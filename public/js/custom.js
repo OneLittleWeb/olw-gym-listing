@@ -275,69 +275,6 @@ $(document).ready(function () {
     showAllElements();
 });
 
-
-// $(document).ready(function () {
-//     // Hide city information for all states except the first one after the page loads
-//     $('.all-state-info-list-box').not(':first').hide();
-//
-//     // Handle toggling of the first state's information after the page loads
-//     let firstStateTarget = $('.all-state-info-list-box:first').attr('id');
-//     let firstStateTargetUpdated = $('#' + firstStateTarget);
-//     firstStateTargetUpdated.slideDown();
-//
-//     // Set the initial icon state for the first state
-//     let firstStateIcon = $('.single-state-block-card-div:first').find('.toggle-icon i');
-//     if (firstStateTargetUpdated.is(':hidden')) {
-//         firstStateIcon.removeClass('fa-caret-up').addClass('fa-caret-down');
-//     } else {
-//         firstStateIcon.removeClass('fa-caret-down').addClass('fa-caret-up');
-//     }
-//
-//     // Use event delegation for dynamically added elements
-//     $(document).on('click', '.single-state-block-card-div', function () {
-//         // Find the target element to toggle based on the data-target attribute
-//         let targetSelector = $(this).data('target');
-//         let targetElement = $('#' + targetSelector);
-//
-//         // Toggle the visibility of the target element
-//         targetElement.slideToggle();
-//
-//         // Toggle the caret icon
-//         let iconElement = $(this).find('.toggle-icon i');
-//         iconElement.toggleClass('fa-caret-down fa-caret-up');
-//     });
-// });
-
-//state search script
-
-// $(document).ready(function () {
-//     // When the search input changes
-//     $('#all_state_search').on('input', function () {
-//         let searchText = $(this).val().toLowerCase();
-//         let foundStates = false;
-//
-//         // Iterate over each state container
-//         $('.single-state-block-card-div').each(function () {
-//             let stateName = $(this).find('.all-state-widget-title span').text().toLowerCase();
-//
-//             // Show or hide based on the search text
-//             if (stateName.includes(searchText)) {
-//                 $(this).show();
-//                 foundStates = true;
-//             } else {
-//                 $(this).hide();
-//             }
-//         });
-//
-//         // Show the "No State Found" message if no states are found
-//         if (!foundStates) {
-//             $('.no-state-found-message').show();
-//         } else {
-//             $('.no-state-found-message').hide();
-//         }
-//     });
-// });
-
 // Review scroll to top script
 
 $(window).on('load', function() {
