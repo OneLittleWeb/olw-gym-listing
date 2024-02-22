@@ -55,9 +55,9 @@ class OrganizationController extends Controller
             ->where('permanently_closed', 0)
             ->first();
 
-        $city = City::where('state_id', $organization->state_id)->where('slug', $city_slug)->first();
+        if ($organization) {
 
-        if ($city && $organization) {
+            $city = City::where('state_id', $organization->state_id)->where('slug', $city_slug)->first();
 
             $organization->incrementViewCount();
 
