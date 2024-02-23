@@ -83,7 +83,7 @@ class OrganizationController extends Controller
             $meta = explode(',', $organization->organization_address);
             $metaTitle = $organization->organization_address
                 ? $organization->organization_name . ' -' . $meta[1] . ',' . $meta[2]
-                : $organization->organization_name . ' - ' . $city->name . ', ' . $city->state->name;
+                : $organization->organization_name . ' - ' . $city->name . ', ' . $city->State->name;
 
             $organization->meta_title = $metaTitle;
 
@@ -94,7 +94,7 @@ class OrganizationController extends Controller
                 $address_line = explode(',', $organization->organization_address);
                 $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located in ' . $address_line[1] . ',' . $address_line[2] . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             } else {
-                $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located in ' . Str::title($organization->state->name) . ', ' . Str::title($organization->city->name) . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
+                $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located in ' . Str::title($organization->State->name) . ', ' . Str::title($organization->city->name) . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             }
 
             $contactInfo =

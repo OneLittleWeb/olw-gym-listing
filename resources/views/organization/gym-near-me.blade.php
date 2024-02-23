@@ -11,7 +11,7 @@
                     <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
                         <div class="section-heading text-capitalize">
                             <h2 class="sec__title font-size-26 mb-0">
-                                {{ (count($organizations) > 0) ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near ' . $organizations[0]->state->name . ', ' . $organizations[0]->city->name : 'Gyms Near Me' }}
+                                {{ (count($organizations) > 0) ? Str::plural($organizations[0]->organization_category, $organization_category_count) . ' near ' . $organizations[0]->State->name . ', ' . $organizations[0]->city->name : 'Gyms Near Me' }}
                             </h2>
                         </div>
                         <ul class="list-items bread-list bread-list-2 text-capitalize">
@@ -60,7 +60,7 @@
                                         <p class="card-sub">
                                             <a href="{{ route('city.wise.organization', ['city_slug' => $organization->city->slug, 'organization_slug' => $organization->slug]) }}"
                                                target="_blank"><i class="la la-map-marker mr-1 text-color-2"></i>
-                                                {{ $organization->organization_address ? str_replace('Address: ', '', $organization->organization_address) : ucfirst($organization->city->name) . ', ' . ucfirst($organization->state->name) . ', US' }}
+                                                {{ $organization->organization_address ? str_replace('Address: ', '', $organization->organization_address) : ucfirst($organization->city->name) . ', ' . ucfirst($organization->State->name) . ', US' }}
                                             </a>
                                         </p>
                                         <ul class="listing-meta d-flex align-items-center">
@@ -168,7 +168,7 @@
                                                     <li class="col-lg-3 city-state-title individual-city-from-states text-capitalize pt-3">
                                                         <i class="las la-angle-double-right"></i>
                                                         <a class="text-decoration-underline"
-                                                           href="{{ route('city.wise.organizations', ['state_slug' => $city->state->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
+                                                           href="{{ route('city.wise.organizations', ['state_slug' => $city->State->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
                                                     </li>
                                                 @endforeach
                                             </ul>

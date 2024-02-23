@@ -19,7 +19,7 @@ class City extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function state()
+    public function State()
     {
         return $this->hasOne(State::class,'id','state_id');
     }

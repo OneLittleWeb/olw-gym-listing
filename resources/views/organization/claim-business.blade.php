@@ -40,7 +40,7 @@
                                     <option class="text-capitalize"
                                             value="{{ $organization_city->id }}" {{ $organization_city->id == $organization->city_id ? 'selected' : '' }}>{{ $organization_city->name }}
                                         ,
-                                        {{ $organization_city->state->name }}
+                                        {{ $organization_city->State->name }}
                                     </option>
                                 @endforeach
                             </select>

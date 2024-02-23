@@ -5,7 +5,7 @@
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', str_replace("'","",$organization->organization_name) . " is in " . $organization->state ?? $organization->state->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.")
+@section('meta_description', str_replace("'","",$organization->organization_name) . " is in " . $organization->state ?? $organization->State->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.")
 @section('meta_keywords',  str_replace("'","",$organization->organization_name). ", " .str_replace("'","",$organization->organization_name) . " review")
 @section('content')
     <!-- ======START FULL SCREEN SLIDER===== -->
@@ -37,10 +37,10 @@
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
                                 <li>
-                                    <a href="{{ route('category.wise.business',['state_slug' => $organization->state->slug , 'organization_category_slug' => 'gym']) }}">{{ $organization->state->name }}</a>
+                                    <a href="{{ route('category.wise.business',['state_slug' => $organization->State->slug , 'organization_category_slug' => 'gym']) }}">{{ $organization->State->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('city.wise.organizations', ['state_slug' => $organization->state->slug, 'city_slug' => $organization->city->slug, 'organization_category_slug' => 'gym']) }}">{{ $organization->city->name }}</a>
+                                    <a href="{{ route('city.wise.organizations', ['state_slug' => $organization->State->slug, 'city_slug' => $organization->city->slug, 'organization_category_slug' => 'gym']) }}">{{ $organization->city->name }}</a>
                                 </li>
                                 <li>{{ $organization->organization_name }}</li>
                             </ul>
@@ -74,7 +74,7 @@
                                     {{ str_replace('Address: ', '', $organization->organization_address) }}
                                 @else
                                     {{ ucfirst($organization->city->name ?? '') }}
-                                    , {{ ucfirst($organization->state->name ?? '') }}, US
+                                    , {{ ucfirst($organization->State->name ?? '') }}, US
                                 @endif
                             </p>
                             <p class="pb-2 font-weight-medium">
@@ -896,7 +896,7 @@
                                                     {{ str_replace('Address: ', '', $also_viewed_organization->organization_address) }}
                                                 @else
                                                     {{ ucfirst($also_viewed_organization->city->name ?? '') }}
-                                                    , {{ ucfirst($also_viewed_organization->state->name ?? '') }}, US
+                                                    , {{ ucfirst($also_viewed_organization->State->name ?? '') }}, US
                                                 @endif
                                             </a>
                                         </p>

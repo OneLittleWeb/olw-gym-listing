@@ -52,7 +52,7 @@ class Organization extends Model
         return $this->save();
     }
 
-    public function state()
+    public function State()
     {
         return $this->belongsTo(State::class);
     }

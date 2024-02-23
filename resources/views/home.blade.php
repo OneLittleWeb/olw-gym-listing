@@ -147,12 +147,12 @@
                                          alt="category-image"
                                          class="cat-img lazy {{ !$loop->first ? 'cat-img-height' : '' }}">
                                     <div class="category-content">
-                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->state->slug , 'organization_category_slug' => 'gym']) }}"
+                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->State->slug , 'organization_category_slug' => 'gym']) }}"
                                            class="category-link d-flex align-items-end w-100 h-100 text-left">
                                             <div
                                                 class="category-content-inner d-flex align-items-center justify-content-between">
                                                 <div>
-                                                    <h4 class="cat__title mb-1">{{ $most_viewed_state->state->name }}</h4>
+                                                    <h4 class="cat__title mb-1">{{ $most_viewed_state->State->name }}</h4>
                                                     <span class="font-weight-medium font-size-15">{{ $most_viewed_state->total_business }} Gyms</span>
                                                 </div>
                                                 <i class="la la-arrow-right"></i>
@@ -170,12 +170,12 @@
                                          alt="category-image"
                                          class="cat-img lazy {{ $loop->first ? 'cat-img-height' : '' }}">
                                     <div class="category-content">
-                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->state->slug , 'organization_category_slug' => 'gym']) }}"
+                                        <a href="{{ route('category.wise.business',['state_slug' => $most_viewed_state->State->slug , 'organization_category_slug' => 'gym']) }}"
                                            class="category-link d-flex align-items-end w-100 h-100 text-left">
                                             <div
                                                 class="category-content-inner d-flex align-items-center justify-content-between">
                                                 <div>
-                                                    <h4 class="cat__title mb-1">{{ $most_viewed_state->state->name }}</h4>
+                                                    <h4 class="cat__title mb-1">{{ $most_viewed_state->State->name }}</h4>
                                                     <span class="font-weight-medium font-size-15">{{ $most_viewed_state->total_business }} Gyms</span>
                                                 </div>
                                                 <i class="la la-arrow-right"></i>

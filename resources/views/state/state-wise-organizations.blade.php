@@ -59,7 +59,7 @@
                                                         {{ str_replace('Address: ', '', $organization->organization_address) }}
                                                     @else
                                                         {{ ucfirst($organization->city->name) }}
-                                                        , {{ ucfirst($organization->state->name) }}, US
+                                                        , {{ ucfirst($organization->State->name) }}, US
                                                     @endif
                                                 </a>
                                             </p>
@@ -129,7 +129,7 @@
                                     @foreach($organization_categories as $category)
                                         @if($category->organization_category)
                                             <li>
-                                                <a href="{{ route('category.wise.business', ['state_slug' => $category->state->slug, 'organization_category_slug' => $category->organization_category_slug]) }}">
+                                                <a href="{{ route('category.wise.business', ['state_slug' => $category->State->slug, 'organization_category_slug' => $category->organization_category_slug]) }}">
                                                     {{ $category->organization_category }}
                                                     ({{ $category->category_count }})
                                                 </a>
@@ -144,7 +144,7 @@
                                 <div class="stroke-shape mb-4"></div>
                                 <div class="category-list">
                                     @foreach($cities->take(6) as $f_city)
-                                        <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug, 'organization_category_slug' => 'gym']) }}"
+                                        <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->State->slug, 'city_slug' => $f_city->slug, 'organization_category_slug' => 'gym']) }}"
                                            class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                             <img src="{{ asset('images/cta-sm.jpg') }}"
                                                  data-src="{{ asset('images/cta-sm.jpg') }}"
@@ -158,7 +158,7 @@
                                     @endforeach
                                     <div class="collapse collapse-content" id="showMoreCity">
                                         @foreach($cities->skip(6) as $f_city)
-                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->state->slug, 'city_slug' => $f_city->slug, 'organization_category_slug' => 'gym']) }}"
+                                            <a href="{{ route('city.wise.organizations', ['state_slug' => $f_city->State->slug, 'city_slug' => $f_city->slug, 'organization_category_slug' => 'gym']) }}"
                                                class="generic-img-card d-block hover-y overflow-hidden mb-3">
                                                 <img src="{{ asset('images/cta-sm.jpg') }}"
                                                      data-src="{{ asset('images/cta-sm.jpg') }}"
