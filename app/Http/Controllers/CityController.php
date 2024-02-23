@@ -34,29 +34,19 @@ class CityController extends Controller
 
     public function generateCityWiseOrganizationsView($state_slug, $city_slug, $organization_category_slug)
     {
-        $state_check = State::where('slug', $state_slug)->exists();
         $city_check = City::where('slug', $city_slug)->exists();
 
-        if ($city_check && $state_check) {
-            $s_state = State::where('slug', $state_slug)->first();
-            $city = City::where('state_id', $s_state->id)->where('slug', $city_slug)->first();
-
-//            $states = Cache::rememberForever('states_with_organizations_city', function () {
-//                return State::all();
-//            });
+        if ($city_check) {
+            $city = City::with('State')->where('slug', $city_slug)->first();
 
             $states = State::with('organizations')->get();
 
-//            $cities = Cache::remember('cities_with_states_city_' . $s_state->id, now()->addMinutes(60), function () use ($s_state) {
-//                return City::with('state')->where('state_id', $s_state->id)->get();
-//            });
-
-            $cities = City::with('state')->where('state_id', $s_state->id)->get();
+            $cities = City::with('state')->where('state_id', $city->State->id)->get();
 
             $organizations = Organization::with('city:id,name,slug', 'state:name', 'category')
                 ->where('organization_category_slug', $organization_category_slug)
                 ->where('city_id', $city->id)
-                ->where('state_id', $s_state->id)
+                ->where('state_id', $city->State->id)
                 ->where('permanently_closed', 0)
                 ->orderByRaw('CAST(rate_stars AS SIGNED) DESC')
                 ->orderByRaw('CAST(reviews_total_count AS SIGNED) DESC')
@@ -74,7 +64,7 @@ class CityController extends Controller
                 }
 
                 $organization_categories = Organization::with('state', 'city')->select('organization_category', 'organization_category_slug', 'state_id', 'city_id', DB::raw('COUNT(*) as category_count'))
-                    ->where('state_id', $s_state->id)
+                    ->where('state_id', $city->State->id)
                     ->where('city_id', $city->id)
                     ->groupBy('organization_category', 'state_id', 'city_id', 'organization_category_slug')
                     ->orderBy('category_count', 'desc')
@@ -98,27 +88,27 @@ class CityController extends Controller
                 }
 
                 $organization_count = Organization::where('city_id', $city->id)
-                    ->where('state_id', $s_state->id)->count();
-                $organization_category_count = Organization::where('state_id', $s_state->id)->where('city_id', $city->id)
+                    ->where('state_id', $city->State->id)->count();
+                $organization_category_count = Organization::where('state_id', $city->State->id)->where('city_id', $city->id)
                     ->where('organization_category_slug', $organization_category_slug)->count();
 
                 //For meta title, description and keyword
                 if ($organizations->isNotEmpty()) {
                     $meta_title_prefix = ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best';
                     $organization_category = Str::plural($organizations[0]->organization_category, $organization_category_count);
-                    $meta_title_suffix = 'Near ' . Str::title($s_state->name . ' ' . $city->name);
+                    $meta_title_suffix = 'Near ' . Str::title($city->State->name . ' ' . $city->name);
 
-                    $s_state->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
+                    $city->meta_title = $meta_title_prefix . ' ' . $organization_category . ' ' . $meta_title_suffix;
 
                     $category_name = Str::lower(Str::plural($organizations[0]->organization_category, $organization_category_count));
-                    $s_state->meta_description = "Explore the best " . Str::plural($organizations[0]->organization_category, $organization_category_count) . " in the $s_state->name, " . $city->name . ". Get photos, business hours, phone numbers, ratings, reviews and service details.";
-                    $s_state->meta_keywords = 'best ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $city->name;
+                    $city->meta_description = "Explore the best " . Str::plural($organizations[0]->organization_category, $organization_category_count) . " in the $city->State->name, " . $city->name . ". Get photos, business hours, phone numbers, ratings, reviews and service details.";
+                    $city->meta_keywords = 'best ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' in ' . $city->name . ', ' . $category_name . ' near me, ' . $category_name . ' near ' . $city->name;
                 }
 
                 Meta::setPaginationLinks($organizations);
 
                 // Render the view as a string.
-                return view('city.city-wise-organizations', compact('organizations', 'organization_categories', 'organization_category_slug', 'organization_category_count', 'cities', 'city', 's_state', 'states', 'organization_badge', 'organization_count'))->render();
+                return view('city.city-wise-organizations', compact('organizations', 'organization_categories', 'organization_category_slug', 'organization_category_count', 'cities', 'city', 'states', 'organization_badge', 'organization_count'))->render();
             } else {
                 abort(404);
             }

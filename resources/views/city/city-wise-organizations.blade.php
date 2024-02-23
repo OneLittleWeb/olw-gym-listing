@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', "$s_state->meta_title")
+@section('title', "$city->meta_title")
 @if (count($organizations) && $organizations->currentPage() > 1)
     @section('meta')
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', "$s_state->meta_description")
-@section('meta_keywords', "$s_state->meta_keywords")
+@section('meta_description', "$city->meta_description")
+@section('meta_keywords', "$city->meta_keywords")
 @section('content')
     <section class="card-area section-padding">
         <div class="container pt-5">
@@ -18,7 +18,7 @@
                             <ul class="list-items bread-list bread-list-2 bg-transparent rounded-0 p-0 text-capitalize">
                                 <li><a href="{{ route('home') }}">Home</a></li>
                                 <li>
-                                    <a href="{{ route('category.wise.business',['state_slug' => $s_state->slug , 'organization_category_slug' => 'gym']) }}">{{ $s_state->name }}</a>
+                                    <a href="{{ route('category.wise.business',['state_slug' => $city->State->slug , 'organization_category_slug' => 'gym']) }}">{{ $city->State->name }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('city.wise.organizations', ['state_slug' => $city->State->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
@@ -32,7 +32,7 @@
                             <h1 class="sec__title mb-0">
                                 {{ ($organizations->onFirstPage() && $organization_category_count >= 10) ? 'Top 10 Best' : 'Best' }}
                                 {{ Str::plural($organizations[0]->organization_category, $organization_category_count) }}
-                                Near {{ $s_state->name }}, {{ $city->name }}
+                                Near {{ $city->State->name }}, {{ $city->name }}
                             </h1>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
 
                             <div class="sidebar-widget">
                                 <h3 class="widget-title text-capitalize">Other fitness centers
-                                    near {{ $s_state->name . ','}} {{ $city->name }}</h3>
+                                    near {{ $city->State->name . ','}} {{ $city->name }}</h3>
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
