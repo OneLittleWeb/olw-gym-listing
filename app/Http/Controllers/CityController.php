@@ -41,11 +41,11 @@ class CityController extends Controller
             $s_state = State::where('slug', $state_slug)->first();
             $city = City::where('state_id', $s_state->id)->where('slug', $city_slug)->first();
 
-//            $states = Cache::rememberForever('states_with_organizations_city', function () {
-//                return State::with('organizations')->get();
-//            });
+            $states = Cache::rememberForever('states_with_organizations_city', function () {
+                return State::with('organizations')->get();
+            });
 
-            $states = State::with('organizations')->get();
+//            $states = State::with('organizations')->get();
 
 //            $cities = Cache::remember('cities_with_states_city_' . $s_state->id, now()->addMinutes(60), function () use ($s_state) {
 //                return City::with('state')->where('state_id', $s_state->id)->get();
