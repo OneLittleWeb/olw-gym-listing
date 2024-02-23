@@ -108,7 +108,7 @@ class CityController extends Controller
                 Meta::setPaginationLinks($organizations);
 
                 // Render the view as a string.
-                return view('city.city-wise-organizations', compact('organizations', 'organization_categories', 'organization_category_slug', 'organization_category_count', 'cities', 'city', 'states', 'organization_badge', 'organization_count'))->render();
+                return view('city.city-wise-organizations', compact('organizations', 'organization_categories', 'organization_category_slug', 'organization_category_count', 'cities', 'city', 'states', 'organization_badge', 'organization_count'));
             } else {
                 abort(404);
             }
