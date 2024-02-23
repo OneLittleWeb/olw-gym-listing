@@ -5,7 +5,7 @@
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', str_replace("'","",$organization->organization_name) . " is in " . $organization->state->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.")
+@section('meta_description', str_replace("'","",$organization->organization_name) . " is in " . $organization->state ?? $organization->state->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.")
 @section('meta_keywords',  str_replace("'","",$organization->organization_name). ", " .str_replace("'","",$organization->organization_name) . " review")
 @section('content')
     <!-- ======START FULL SCREEN SLIDER===== -->
@@ -70,7 +70,12 @@
 
                             <p class="sec__desc py-2 font-size-17"><i
                                     class="la la-map-marker mr-1 text-color-16"></i>
-                                {{ $organization->organization_address ? str_replace('Address: ', '', $organization->organization_address) : ucfirst($organization->city->name) . ', ' . ucfirst($organization->state->name) . ', US' }}
+                                @if ($organization->organization_address)
+                                    {{ str_replace('Address: ', '', $organization->organization_address) }}
+                                @else
+                                    {{ ucfirst($organization->city->name ?? '') }}
+                                    , {{ ucfirst($organization->state->name ?? '') }}, US
+                                @endif
                             </p>
                             <p class="pb-2 font-weight-medium">
                             <span class="price-range mr-1 text-color font-size-16" data-toggle="tooltip"
@@ -887,7 +892,12 @@
                                         <p class="card-sub">
                                             <a href="{{ route('city.wise.organization', ['city_slug' => $also_viewed_organization->city->slug, 'organization_slug' => $also_viewed_organization->slug]) }}">
                                                 <i class="la la-map-marker mr-1 text-color-2"></i>
-                                                {{ $also_viewed_organization->organization_address ? str_replace('Address: ', '', $also_viewed_organization->organization_address) : ucfirst($also_viewed_organization->city->name) . ', ' . ucfirst($also_viewed_organization->state->name) . ', US' }}
+                                                @if ($also_viewed_organization->organization_address)
+                                                    {{ str_replace('Address: ', '', $also_viewed_organization->organization_address) }}
+                                                @else
+                                                    {{ ucfirst($also_viewed_organization->city->name ?? '') }}
+                                                    , {{ ucfirst($also_viewed_organization->state->name ?? '') }}, US
+                                                @endif
                                             </a>
                                         </p>
                                         <ul class="listing-meta d-flex align-items-center">
@@ -995,5 +1005,6 @@
             "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
     }
+
     </script>
 @endsection

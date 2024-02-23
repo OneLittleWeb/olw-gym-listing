@@ -74,7 +74,8 @@
                                                     @if ($organization->organization_address)
                                                         {{ str_replace('Address: ', '', $organization->organization_address) }}
                                                     @else
-                                                        {{ ucfirst($organization->city->name ?? '') }}, {{ ucfirst($organization->state->name ?? '') }}, US
+                                                        {{ ucfirst($organization->city->name ?? '') }}
+                                                        , {{ ucfirst($organization->state->name ?? '') }}, US
                                                     @endif
                                                 </a>
                                             </p>
@@ -153,7 +154,8 @@
                             @endif
 
                             <div class="sidebar-widget">
-                                <h3 class="widget-title text-capitalize">Other fitness centers near {{ $s_state->name . ','}} {{ $city->name }}</h3>
+                                <h3 class="widget-title text-capitalize">Other fitness centers
+                                    near {{ $s_state->name . ','}} {{ $city->name }}</h3>
                                 <div class="stroke-shape mb-4"></div>
                                 <ul class="tag-list">
                                     @foreach($organization_categories as $category)
