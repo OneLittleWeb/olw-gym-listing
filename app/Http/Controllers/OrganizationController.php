@@ -333,7 +333,7 @@ class OrganizationController extends Controller
             ->when($reviewIdColumn === 'own_reviews', function ($query) {
                 return $query->whereNull('review_id');
             })
-            ->orderByDesc('id')
+            ->orderByDesc('review_specified_date')
             ->paginate(10, ['*'], $reviewIdColumn)
             ->withQueryString();
     }
