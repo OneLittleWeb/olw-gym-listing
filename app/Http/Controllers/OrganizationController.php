@@ -120,8 +120,8 @@ class OrganizationController extends Controller
             $organization->rate_stars = $organization->rate_stars ?? 0;
             $organization->reviews_total_count = $organization->reviews_total_count ?? 0;
 
-            $organization->reviews_paginator = $this->getReviewsPaginator($organization, 'g_reviews');
-            $organization->own_reviews_paginator = $this->getReviewsPaginator($organization, 'own_reviews');
+            $organization->reviews_paginator = $this->getOrganizationReviews($organization, 'g_reviews');
+            $organization->own_reviews_paginator = $this->getOrganizationReviews($organization, 'own_reviews');
 
             Meta::setPaginationLinks($organization->reviews_paginator);
 
@@ -324,7 +324,7 @@ class OrganizationController extends Controller
             ->get();
     }
 
-    private function getReviewsPaginator($organization, $reviewIdColumn)
+    private function getOrganizationReviews($organization, $reviewIdColumn)
     {
         return $organization->reviews()
             ->when($reviewIdColumn === 'g_reviews', function ($query) {
