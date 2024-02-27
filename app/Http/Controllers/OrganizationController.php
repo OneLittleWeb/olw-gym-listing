@@ -92,7 +92,7 @@ class OrganizationController extends Controller
                 $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located at the ' . $organization->located_in . ',' . $address_line[1] . ',' . $address_line[2] . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             } elseif ($organization->organization_address) {
                 $address_line = explode(',', $organization->organization_address);
-                $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located in ' . $address_line[1] ?? '' . ',' . $address_line[2] ?? '' . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
+                $organization->about1 = 'Join the beacon of health and wellness at <strong>' . $organization->organization_name . '</strong>, located in ' . ($address_line[1] ?? '') . ', ' . ($address_line[2] ?? '') . '. Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             } else {
                 $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located in ' . Str::title($organization->State->name) . ', ' . Str::title($organization->city->name) . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
             }
