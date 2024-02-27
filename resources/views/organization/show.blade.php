@@ -657,7 +657,7 @@
                                              data-parent="#accordion">
                                             <div class="card-body">
                                                 <p>This service is listed
-                                                    under {{ Str::title($organization->category->name) }}.</p>
+                                                    under {{ Str::title($organization->organization_category ?? $organization->category->name) }}.</p>
                                             </div>
                                         </div>
                                     </div>
