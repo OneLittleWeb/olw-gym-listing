@@ -620,9 +620,10 @@ class OrganizationController extends Controller
     {
         $client_ip_address = $this->getClientIP();
 
-//        $client_ip_address = '172.69.59.14';
+        //For Local Testing
 
-//        $client_ip_address = '138.26.72.17';
+        //$client_ip_address = '172.69.59.14';
+        //$client_ip_address = '138.26.72.17';
 
         $user_location = Location::get($client_ip_address);
 
@@ -668,7 +669,7 @@ class OrganizationController extends Controller
 
                 $organizations = $organizations_query->get();
 
-                if (count($organizations) > 0){
+                if (count($organizations) > 0) {
                     $organizations = $organizations->map(function ($organization) use ($user_latitude, $user_longitude) {
                         $org_latitude = $organization->organization_latitude;
                         $org_longitude = $organization->organization_longitude;
