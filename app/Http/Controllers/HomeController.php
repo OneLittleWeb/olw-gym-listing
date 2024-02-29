@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Organization;
-use App\Models\Review;
 use App\Models\State;
 use Corcel\Model\Post;
 use Illuminate\Http\Request;

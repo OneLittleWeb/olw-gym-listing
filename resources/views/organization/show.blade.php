@@ -657,7 +657,8 @@
                                              data-parent="#accordion">
                                             <div class="card-body">
                                                 <p>This service is listed
-                                                    under {{ Str::title($organization->organization_category ?? $organization->category->name) }}.</p>
+                                                    under {{ Str::title($organization->organization_category ?? $organization->category->name) }}
+                                                    .</p>
                                             </div>
                                         </div>
                                     </div>
@@ -994,17 +995,16 @@
 @section('json-ld')
     <!-- =======Schema======= -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org/",
-        "@type": "Organization",
-        "name": "{{ $organization->organization_name ?? '' }}",
-        "description": "{{ $organization->organization_short_description ?? '' }}",
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "{{ $organization->rate_stars ?? 0 }}",
-            "reviewCount": {{ $organization->reviews->count() ?? 0 }}
+        {
+            "@context": "https://schema.org/",
+            "@type": "Organization",
+            "name": "{{ $organization->organization_name ?? '' }}",
+            "description": "{{ $organization->organization_short_description ?? '' }}",
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "{{ $organization->rate_stars ?? 0 }}",
+                "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
-    }
-
+}
     </script>
 @endsection

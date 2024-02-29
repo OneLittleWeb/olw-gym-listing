@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubscribeController;
@@ -52,6 +53,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/chat-result', [ChatGPTController::class, 'getAboutUs'])->name('get.about.us');
 Route::get('/autocomplete', [HomeController::class, 'autocomplete'])->name('autocomplete');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
