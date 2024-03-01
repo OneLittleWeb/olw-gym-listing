@@ -20,11 +20,12 @@
                             </p>
                         </div>
                         <div class="btn-box pt-4">
-                            <a href="{{ route('home') }}" class="theme-btn gradient-btn"><i class="la la-mail-reply mr-2"></i> Back to Home</a>
+                            <a href="{{ route('home') }}" class="theme-btn gradient-btn"><i
+                                    class="la la-mail-reply mr-2"></i> Back to Home</a>
                         </div>
-                    </div><!-- end error-content -->
-                </div><!-- end col-lg-6 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end error-area -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
