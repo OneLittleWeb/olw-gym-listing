@@ -621,7 +621,6 @@ class OrganizationController extends Controller
         $client_ip_address = $this->getClientIP();
 
         //For Local Testing
-
         //$client_ip_address = '172.69.59.14';
         //$client_ip_address = '138.26.72.17';
 
