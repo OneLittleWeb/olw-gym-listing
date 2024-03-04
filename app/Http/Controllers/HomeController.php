@@ -162,15 +162,15 @@ class HomeController extends Controller
 
     public function removeUnknownCategory()
     {
-        $unknown_categories = ['playground'];
+        $unknown_categories = ['playground', 'restaurant'];
 
         foreach ($unknown_categories as $unknown_category) {
             // Fetch organizations and their reviews with eager loading
             $organizations = Organization::with('reviews')
                 ->where('organization_category_slug', $unknown_category)
                 ->get();
-
             dd($organizations);
+
             foreach ($organizations as $organization) {
                 // Ensure organization exists before deletion
                 if ($organization) {

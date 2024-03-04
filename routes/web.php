@@ -57,7 +57,7 @@ Route::get('/chat-result', [ChatGPTController::class, 'getAboutUs'])->name('get.
 Route::get('/autocomplete', [HomeController::class, 'autocomplete'])->name('autocomplete');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
-Route::get('/remove-unknown-category', [HomeController::class, 'removeUnknownCategory'])->name('remove.unknown.category');
+Route::get('/remove-unknown-categories', [HomeController::class, 'removeUnknownCategory'])->name('remove.unknown.category');
 
 Route::get('/checkout', [StripePaymentController::class, 'index'])->name('payment.form')->middleware('auth');
 Route::post('/payments/pay', [StripePaymentController::class, 'checkout'])->name('payment.checkout');
