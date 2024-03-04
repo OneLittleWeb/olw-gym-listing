@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('title', "Gymnearx THE Local Business Directory | About Us")
-@section('meta_description', "Gymnearx, best gym in the USA")
+@section('title', "THE Local Business Directory | About Us - Gymnearx")
+@section('meta_description', "Best gyms in the USA - Gymnearx")
 @section('content')
     <section>
         <div class="container main_container">
