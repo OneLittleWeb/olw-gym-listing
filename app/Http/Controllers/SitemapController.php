@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
 use App\Models\Organization;
 use App\Models\State;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
-use Stevebauman\Location\Facades\Location;
 
 class SitemapController extends Controller
 {
