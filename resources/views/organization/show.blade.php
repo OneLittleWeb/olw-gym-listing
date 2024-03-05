@@ -5,7 +5,7 @@
         <meta name="robots" content="noindex, follow">
     @endsection
 @endif
-@section('meta_description', str_replace("'","",$organization->organization_name) . " is in " . $organization->State->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.")
+@section('meta_description', $organization->meta_description)
 @section('meta_keywords',  str_replace("'","",$organization->organization_name). ", " .str_replace("'","",$organization->organization_name) . " review")
 @section('content')
     <!-- ======START FULL SCREEN SLIDER===== -->

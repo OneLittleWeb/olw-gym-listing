@@ -87,6 +87,8 @@ class OrganizationController extends Controller
 
             $organization->meta_title = $metaTitle;
 
+            $organization->meta_description = str_replace("'","",$organization->organization_name) . " is in " . $organization->State->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.";
+
             if ($organization->organization_address && $organization->located_in) {
                 $address_line = explode(',', $organization->organization_address);
                 $organization->about1 = 'Join the beacon of health and wellness at ' . "<strong>$organization->organization_name</strong>" . ', located at the ' . $organization->located_in . ',' . ($address_line[1] ?? '') . ',' . ($address_line[2] ?? '') . '.' . ' Experience a holistic fitness center providing unparalleled access to diverse workouts, personal training, and wellness facilities.';
