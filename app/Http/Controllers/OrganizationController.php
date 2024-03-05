@@ -57,7 +57,12 @@ class OrganizationController extends Controller
 
         if ($organization) {
 
-            $city = City::where('state_id', $organization->state_id)->where('slug', $city_slug)->first();
+            $city = City::where(function ($query) use ($organization, $city_slug) {
+                $query->where('state_id', $organization->state_id)
+                    ->where('slug', $city_slug);
+            })->orWhere(function ($query) use ($city_slug) {
+                $query->where('slug', $city_slug);
+            })->first();
 
             $organization->incrementViewCount();
 
@@ -87,7 +92,7 @@ class OrganizationController extends Controller
 
             $organization->meta_title = $metaTitle;
 
-            $organization->meta_description = str_replace("'","",$organization->organization_name) . " is in " . $organization->State->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.";
+            $organization->meta_description = str_replace("'", "", $organization->organization_name) . " is in " . $organization->State->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.";
 
             if ($organization->organization_address && $organization->located_in) {
                 $address_line = explode(',', $organization->organization_address);
