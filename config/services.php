@@ -48,4 +48,9 @@ return [
         'token' => env('TELEGRAM_BOT_TOKEN', '5817659027:AAHevWEE1JSUlhNyLwrvtga2Tx2XNDjiCQ0')
     ],
 
+    'chatgpt' => [
+        'api_key' => env('CHAT_GPT_KEY'),
+        'base_uri' => 'https://api.openai.com/v1/chat/completions',
+    ],
+
 ];
