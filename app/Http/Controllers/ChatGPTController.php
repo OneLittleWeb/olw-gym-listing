@@ -13,6 +13,8 @@ class ChatGPTController extends Controller
     {
         $organizations = Organization::with(['reviews', 'city', 'state'])->take(2)->get();
 
+        dd($organizations);
+
         foreach ($organizations as $organization) {
             try {
                 $queryInstructions = $this->prepareQueryInstructions($organization);
