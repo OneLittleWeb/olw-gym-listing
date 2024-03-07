@@ -115,13 +115,24 @@
                 <div class="col-lg-8">
                     <div class="listing-detail-wrap">
                         <div class="block-card mb-4">
-                            <div class="block-card-header">
-                                <h2 class="widget-title">About</h2>
-                                <div class="stroke-shape"></div>
-                            </div>
+                            {{--                            <div class="block-card-header">--}}
+                            {{--                                <h2 class="widget-title">About</h2>--}}
+                            {{--                                <div class="stroke-shape"></div>--}}
+                            {{--                            </div>--}}
                             <div class="block-card-body">
-                                <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about1 !!}</p>
-                                <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about2 !!}</p>
+                                @if($organization->description && is_array($organization->description))
+                                    <p class="pb-3 font-weight-medium line-height-30">{{ $organization->description[0] ?? '' }}</p>
+                                    @foreach(['Pros' => 1, 'Cons' => 2] as $label => $index)
+                                        @if(!empty($organization->description[$index]))
+                                            <span
+                                                class="font-weight-bold text-{{ $label == 'Pros' ? 'success' : 'danger' }}">{{ $label }}:</span>
+                                            <p class="pb-3 font-weight-medium line-height-30">{{ $organization->description[$index] }}</p>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about1 !!}</p>
+                                    <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about2 !!}</p>
+                                @endif
                             </div>
                         </div>
 
@@ -1006,5 +1017,8 @@
                 "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
 }
+
+
+
     </script>
 @endsection

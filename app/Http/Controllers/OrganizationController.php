@@ -93,6 +93,7 @@ class OrganizationController extends Controller
             $organization->meta_title = $metaTitle;
 
             $organization->meta_description = str_replace("'", "", $organization->organization_name) . " is in " . $organization->State->name . ", $city->name. Get photos, business hours, phone numbers, ratings, reviews and service details.";
+            $organization->description = json_decode($organization->organization_description, true);
 
             if ($organization->organization_address && $organization->located_in) {
                 $address_line = explode(',', $organization->organization_address);
