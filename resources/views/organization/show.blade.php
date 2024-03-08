@@ -95,10 +95,11 @@
                                             reviews</p>
                                     </div>
                                 @endif
-                                    <div class="timestamp font-weight-medium last-updated-time border-left border-left-color line-height-20">
-                                        <span class="mr-2">Last Updated:</span>
-                                        <span>{{ Carbon::parse($organization->updated_at)->format('M, d Y') }}</span>
-                                    </div>
+{{--                                <div--}}
+{{--                                    class="timestamp font-weight-medium last-updated-time border-left border-left-color line-height-20">--}}
+{{--                                    <span class="mr-2">Last Updated:</span>--}}
+{{--                                    <span>{{ Carbon::parse($organization->updated_at)->format('M, d Y') }}</span>--}}
+{{--                                </div>--}}
                             </div>
                             <div class="btn-box pt-3">
                                 <a href="#review" class="btn-gray mr-1"><i class="la la-star mr-1"></i>Write a
@@ -1021,6 +1022,7 @@
                 "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
 }
+
 
 
 
