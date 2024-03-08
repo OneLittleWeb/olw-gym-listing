@@ -45,7 +45,7 @@
                                 <input type="hidden" name="source_id" id="source_id">
                             </div>
                             <div class="main-search-now-button">
-                                <button class="theme-btn gradient-btn border-0 w-100" type="submit"><i
+                                <button class="theme-btn gradient-btn border-0 w-100" type="submit" name="search"><i
                                         class="la la-search mr-2"></i>Search Now
                                 </button>
                             </div>

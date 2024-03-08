@@ -33,7 +33,7 @@
                                 <input type="hidden" name="source_value" id="source_value">
                                 <input type="hidden" name="source_id" id="source_id">
                                 <div>
-                                    <button type="submit" class="btn btn-warning header-search-button rounded-0">
+                                    <button type="submit" name="search" class="btn btn-warning header-search-button rounded-0">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
