@@ -17,6 +17,8 @@ class ChatGPTController extends Controller
             try {
                 $queryInstructions = $this->prepareQueryInstructions($organization);
 
+                dd($queryInstructions);
+
                 $response = Http::withHeaders([
                     "Content-Type" => "application/json",
                     "Authorization" => "Bearer " . config('services.chatgpt.api_key'),
@@ -67,15 +69,13 @@ class ChatGPTController extends Controller
 
         // Assemble organization details, only including if available
         $details = [
-            'Address' => $organization->organization_address ?: ucfirst($organization->city->name ?? 'unknown') . ', ' . ucfirst($organization->state->name ?? 'unknown') . ', US',
+            'Address' => $organization->organization_address ?: ucfirst($organization->city->name ?? 'unknown') . ', ' . ucfirst($organization->State->name ?? 'unknown') . ', US',
             'Phone' => $organization->organization_phone_number ? "Phone number: " . $organization->organization_phone_number : '',
             'Email' => $organization->organization_email ? "Email: " . $organization->organization_email : '',
             'Website' => $organization->organization_website ? "Website: " . $organization->organization_website : '',
             'Location' => $organization->located_in ? "Located in: " . $organization->located_in : '',
             'Working Hours' => $organization->organization_work_time ? "Working hours: " . $organization->organization_work_time : '',
             'Category' => $organization->organization_category ? "Category: " . $organization->organization_category : '',
-            'Rating' => isset($organization->rate_stars) ? "Rating: " . $organization->rate_stars . " stars" : '',
-            'Total Reviews' => isset($organization->reviews_total_count) ? "Total reviews: " . $organization->reviews_total_count : '',
         ];
 
         // Filter out empty details
