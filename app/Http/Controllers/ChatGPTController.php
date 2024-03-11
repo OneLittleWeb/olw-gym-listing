@@ -34,8 +34,10 @@ class ChatGPTController extends Controller
         }
 
         alert()->success('Success', 'Descriptions updated. Please check your email for confirmation.');
-        return redirect()->back();
+        
+        return redirect()->route('home');
     }
+
     protected function prepareQueryInstructions($organization)
     {
         // Initialize variables for the details sections
