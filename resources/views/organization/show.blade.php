@@ -95,11 +95,13 @@
                                             reviews</p>
                                     </div>
                                 @endif
-{{--                                <div--}}
-{{--                                    class="timestamp font-weight-medium last-updated-time border-left border-left-color line-height-20">--}}
-{{--                                    <span class="mr-2">Last Updated:</span>--}}
-{{--                                    <span>{{ Carbon::parse($organization->updated_at)->format('M, d Y') }}</span>--}}
-{{--                                </div>--}}
+                                @if($organization->last_updated)
+                                    <div
+                                        class="timestamp font-weight-medium last-updated-time border-left border-left-color line-height-20">
+                                        <span class="mr-2">Last Updated:</span>
+                                        <span>{{ Carbon::parse($organization->last_updated)->format('M, d Y') }}</span>
+                                    </div>
+                                @endif
                             </div>
                             <div class="btn-box pt-3">
                                 <a href="#review" class="btn-gray mr-1"><i class="la la-star mr-1"></i>Write a
@@ -120,20 +122,29 @@
                 <div class="col-lg-8">
                     <div class="listing-detail-wrap">
                         <div class="block-card mb-4">
-                            {{--                            <div class="block-card-header">--}}
-                            {{--                                <h2 class="widget-title">About</h2>--}}
-                            {{--                                <div class="stroke-shape"></div>--}}
-                            {{--                            </div>--}}
                             <div class="block-card-body">
-                                @if($organization->description && is_array($organization->description))
-                                    <p class="pb-3 font-weight-medium line-height-30">{{ $organization->description[0] ?? '' }}</p>
-                                    @foreach(['Pros' => 1, 'Cons' => 2] as $label => $index)
-                                        @if(!empty($organization->description[$index]))
-                                            <span
-                                                class="font-weight-bold text-{{ $label == 'Pros' ? 'success' : 'danger' }}">{{ $label }}:</span>
-                                            <p class="pb-3 font-weight-medium line-height-30">{{ $organization->description[$index] }}</p>
-                                        @endif
-                                    @endforeach
+                                @if(is_array($organization->description ) && count($organization->description ) === 3)
+                                    <p class="pb-3 font-weight-medium line-height-30">{!! $organization->description[0] !!}</p>
+                                    <div class="pros">
+                                        <span class="font-weight-bold text-success">Pros:</span>
+                                        <div class="padding-left-30px">
+                                            <ul class="pt-2 list-style-type-disc">
+                                                @foreach($organization->description[1] as $pros)
+                                                    <li>{{ $pros }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="pros pt-2">
+                                        <span class="font-weight-bold text-danger">Cons:</span>
+                                        <div class="padding-left-30px">
+                                            <ul class="pt-2 list-style-type-disc">
+                                                @foreach($organization->description[2] as $cons)
+                                                    <li>{{ $cons }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
                                 @else
                                     <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about1 !!}</p>
                                     <p class="pb-3 font-weight-medium line-height-30">{!! $organization->about2 !!}</p>
@@ -1022,9 +1033,5 @@
                 "reviewCount": {{ $organization->reviews->count() ?? 0 }}
         }
 }
-
-
-
-
     </script>
 @endsection
