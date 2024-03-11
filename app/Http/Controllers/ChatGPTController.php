@@ -94,7 +94,7 @@ class ChatGPTController extends Controller
 
     protected function requestChatGptDescription($queryInstructions)
     {
-//        dd($queryInstructions);
+        dd($queryInstructions);
         // Make the API request using HTTP client
         try {
             $response = Http::withHeaders([
