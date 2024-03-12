@@ -34,7 +34,7 @@ class ChatGPTController extends Controller
         }
 
         alert()->success('Success', 'Descriptions updated. Please check your email for confirmation.');
-        
+
         return redirect()->route('home');
     }
 

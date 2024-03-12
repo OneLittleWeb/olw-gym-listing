@@ -511,8 +511,7 @@
 }
 
 .last-updated-time {
-    padding-left: 1rem !important;
-    margin-left: 1rem !important;
+    font-weight: 500;
 }
 
 .list-style-type-disc {
@@ -602,12 +601,6 @@
     .states-border-bottom {
         padding-bottom: 20px;
     }
-
-    .last-updated-time {
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-        padding-top: 10px;
-    }
 }
 
 /* For larger screens (desktop), revert the order */
@@ -690,12 +683,6 @@
     .suggest-edit-close-button {
         padding-left: 450px !important;
     }
-
-    .last-updated-time {
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-        padding-top: 10px;
-    }
 }
 
 @media screen and (max-width: 420px) and (min-width: 330px) {
@@ -709,11 +696,5 @@
 
     .suggest-edit-close-button {
         padding-left: 450px !important;
-    }
-
-    .last-updated-time {
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-        padding-top: 10px;
     }
 }

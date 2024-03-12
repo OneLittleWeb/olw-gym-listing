@@ -343,7 +343,7 @@ img[data-img] {
 }
 
 body {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 24px;
     font-family: 'Be Vietnam', 'sans-serif';
     color: #808996;
@@ -501,7 +501,6 @@ body {
 
 .padding-top-50px {
     padding-top: 50px !important;
-    padding-top: 50px !important
 }
 
 .padding-top-45px {

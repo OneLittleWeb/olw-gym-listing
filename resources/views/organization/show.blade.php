@@ -95,14 +95,14 @@
                                             reviews</p>
                                     </div>
                                 @endif
-                                @if($organization->last_updated)
-                                    <div
-                                        class="timestamp font-weight-medium last-updated-time border-left border-left-color line-height-20">
-                                        <span class="mr-2">Last Updated:</span>
-                                        <span>{{ Carbon::parse($organization->last_updated)->format('M, d Y') }}</span>
-                                    </div>
-                                @endif
                             </div>
+                            @if($organization->last_updated)
+                                <div
+                                    class="timestamp line-height-30 last-updated-time pt-2 font-size-17">
+                                    <span class="mr-2">Last Updated:</span>
+                                    <span>{{ Carbon::parse($organization->last_updated)->format('M, d Y') }}</span>
+                                </div>
+                            @endif
                             <div class="btn-box pt-3">
                                 <a href="#review" class="btn-gray mr-1"><i class="la la-star mr-1"></i>Write a
                                     Review</a>
@@ -124,23 +124,23 @@
                         <div class="block-card mb-4">
                             <div class="block-card-body">
                                 @if(is_array($organization->description ) && count($organization->description ) === 3)
-                                    <p class="pb-3 font-weight-medium line-height-30">{!! $organization->description[0] !!}</p>
+                                    <p class="pb-3 font-weight-medium line-height-30 text-justify">{!! $organization->description[0] !!}</p>
                                     <div class="pros">
                                         <span class="font-weight-bold text-success">Pros:</span>
                                         <div class="padding-left-30px">
-                                            <ul class="pt-2 list-style-type-disc">
+                                            <ul class="">
                                                 @foreach($organization->description[1] as $pros)
-                                                    <li>{{ $pros }}</li>
+                                                    <li class="text-justify pt-4"><i class='far fa-arrow-alt-circle-right'></i> {{ $pros }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="pros pt-2">
+                                    <div class="pros pt-4">
                                         <span class="font-weight-bold text-danger">Cons:</span>
                                         <div class="padding-left-30px">
-                                            <ul class="pt-2 list-style-type-disc">
+                                            <ul class="">
                                                 @foreach($organization->description[2] as $cons)
-                                                    <li>{{ $cons }}</li>
+                                                    <li class="text-justify pt-4"><i class='far fa-arrow-alt-circle-right'></i> {{ $cons }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
