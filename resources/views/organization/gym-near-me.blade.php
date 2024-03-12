@@ -167,7 +167,7 @@
                                                 @foreach($state->cities as $city)
                                                     <li class="col-lg-3 city-state-title individual-city-from-states text-capitalize pt-3">
                                                         <i class="las la-angle-double-right"></i>
-                                                        <a class="text-decoration-underline"
+                                                        <a class="text-decoration-underline font-size-18"
                                                            href="{{ route('city.wise.organizations', ['state_slug' => $city->State->slug, 'city_slug' => $city->slug, 'organization_category_slug' => 'gym']) }}">{{ $city->name }}</a>
                                                     </li>
                                                 @endforeach
