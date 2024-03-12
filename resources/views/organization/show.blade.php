@@ -124,7 +124,7 @@
                         <div class="block-card mb-4">
                             <div class="block-card-body">
                                 @if(is_array($organization->description ) && count($organization->description ) === 3)
-                                    <p class="pb-3 font-weight-medium line-height-30 text-justify">{!! $organization->description[0] !!}</p>
+                                    <p class="pb-3 font-weight-medium text-justify">{!! $organization->description[0] !!}</p>
                                     <div class="pros">
                                         <span class="font-weight-bold text-success">Pros:</span>
                                         <div class="padding-left-30px">
