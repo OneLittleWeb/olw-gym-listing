@@ -258,6 +258,10 @@
     color: #f8c401;
 }
 
+.black-color {
+    color: black !important;
+}
+
 .state-icon-element {
     width: 30px;
     height: 25px;
@@ -284,14 +288,14 @@
 
 .state-info-list li {
     display: block;
-    font-size: 16px;
-    color: #808996 !important;
+    font-size: 17px;
+    color: #000000 !important;
     font-weight: 500;
     margin-bottom: 25px;
 }
 
 .state-info-list li a {
-    color: #808996 !important;
+    color: #000000 !important;
 }
 
 .state-info-list li a:hover {
@@ -348,6 +352,7 @@
 
 .pros-cons-list li a {
     color: #198754 !important;
+    font-size: 18px;
 }
 
 .review-cons-list li a {
@@ -516,6 +521,21 @@
 
 .list-style-type-disc {
     list-style-type: disc !important;
+}
+
+.pros-cons-widget-title {
+    font-size: 18px !important;
+    font-weight: 600;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.google-review {
+    font-size: 19px;
+}
+
+.nebraska-review {
+    font-size: 19px;
 }
 
 @keyframes spin {

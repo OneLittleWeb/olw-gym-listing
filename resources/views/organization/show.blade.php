@@ -68,7 +68,7 @@
                                 @endif
                             </div>
 
-                            <p class="sec__desc py-2 font-size-17"><i
+                            <p class="sec__desc py-2 font-size-17 black-color"><i
                                     class="la la-map-marker mr-1 text-color-16"></i>
                                 @if ($organization->organization_address)
                                     {{ str_replace('Address: ', '', $organization->organization_address) }}
@@ -77,7 +77,7 @@
                                     , {{ ucfirst($organization->State->name ?? '') }}, US
                                 @endif
                             </p>
-                            <p class="pb-2 font-weight-medium">
+                            <p class="pb-2 font-weight-medium font-size-17">
                             <span class="price-range mr-1 text-color font-size-16" data-toggle="tooltip"
                                   data-placement="top" title="Moderate">
                                 <strong class="font-weight-medium">{{ $organization->price_policy ?? '$' }}</strong>
@@ -91,7 +91,7 @@
                                     <div class="star-rating-wrap d-flex align-items-center">
                                         <div class="organization_rating"
                                              data-rating="{{ $organization->rate_stars }}"></div>
-                                        <p class="font-size-14 pl-2 font-weight-medium">{{ $organization->reviews_total_count }}
+                                        <p class="font-size-17 pl-2 font-weight-medium">{{ $organization->reviews_total_count }}
                                             reviews</p>
                                     </div>
                                 @endif
@@ -124,23 +124,25 @@
                         <div class="block-card mb-4">
                             <div class="block-card-body">
                                 @if(is_array($organization->description ) && count($organization->description ) === 3)
-                                    <p class="pb-3 font-weight-medium text-justify">{!! $organization->description[0] !!}</p>
+                                    <p class="pb-3">{!! $organization->description[0] !!}</p>
                                     <div class="pros">
-                                        <span class="font-weight-bold text-success">Pros:</span>
+                                        <h3 class="pros-cons-widget-title text-success">Pros:</h3>
+                                        <div class="stroke-shape mb-4"></div>
                                         <div class="padding-left-30px">
-                                            <ul class="">
+                                            <ul>
                                                 @foreach($organization->description[1] as $pros)
-                                                    <li class="text-justify pt-4"><i class='far fa-arrow-alt-circle-right'></i> {{ $pros }}</li>
+                                                    <li class="pb-4"><i class="las la-arrow-circle-right"></i> {{ $pros }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="pros pt-4">
-                                        <span class="font-weight-bold text-danger">Cons:</span>
+                                        <h3 class="pros-cons-widget-title text-danger">Cons:</h3>
+                                        <div class="stroke-shape mb-4"></div>
                                         <div class="padding-left-30px">
-                                            <ul class="">
+                                            <ul>
                                                 @foreach($organization->description[2] as $cons)
-                                                    <li class="text-justify pt-4"><i class='far fa-arrow-alt-circle-right'></i> {{ $cons }}</li>
+                                                    <li class="pb-4"><i class="las la-arrow-circle-right"></i> {{ $cons }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -249,7 +251,7 @@
                                        {{ $organization->rate_stars }}
                                     </span>
                                             <div class="star-rating-wrap">
-                                                <p class="font-size-14 font-weight-medium">out of 5.0</p>
+                                                <p class="font-size-16 font-weight-medium">out of 5.0</p>
                                                 <div class="organization_rating"
                                                      data-rating="{{ $organization->rate_stars }}"></div>
                                             </div>
@@ -689,60 +691,21 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="block-card-header pt-3">
-                                    </div>
-
-                                    <div class="pt-4">
-                                        <h2 class="widget-title pb-1">Finally</h2>
-                                    </div>
-                                    <div class="pt-2">
-                                        <p class="text-dark text-justify">
-                                            <strong>{{ $organization->organization_name }}</strong> is a very
-                                            picturesque
-                                            and welcoming place for all. Come join with
-                                            your friends or family, relax, take some good selfies and
-                                            enjoy your time together. Thus, you can make it a memorable day for
-                                            everyone.
-                                        </p>
-                                        @if($organization->organization_website || $organization->organization_facebook)
-                                            <p class="text-dark pt-3">For more info about
-                                                <strong>{{ $organization->organization_name }}</strong>, visit their
-                                                @if($organization->organization_website)
-                                                    <a rel="nofollow"
-                                                       href="{{ 'https://' . $organization->organization_website }}"
-                                                       target="_blank">Website</a>.
-                                                @elseif($organization->organization_facebook)
-                                                    <a rel="nofollow"
-                                                       href="{{ $organization->exploded_organization_facebook[0] }}"
-                                                       target="_blank">Facebook</a>.
-                                                @elseif($organization->organization_twitter)
-                                                    <a rel="nofollow"
-                                                       href="{{ $organization->exploded_organization_twitter[0] }}"
-                                                       target="_blank">Twitter</a>.
-                                                @elseif($organization->organization_instagram)
-                                                    <a rel="nofollow"
-                                                       href="{{ $organization->exploded_organization_instagram[0] }}"
-                                                       target="_blank">Instagram</a>.
-                                                @endif
-                                            </p>
-                                        @endif
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="block-card" id="review">
                             <div class="block-card-header">
                                 <h2 class="widget-title pb-1">Add a Review</h2>
-                                <p>Your email address will not be published. Required fields are marked <span
+                                <p class="font-size-18">Your email address will not be published. Required fields are marked <span
                                         class="required">*</span></p>
                             </div>
                             <div class="block-card-body">
                                 <div
-                                    class="add-rating-bars review-bars d-flex flex-row flex-wrap flex-grow-1 align-items-center">
+                                    class="add-rating-bars review-bars d-flex flex-row flex-wrap flex-grow-1 align-items-center font-size-17">
                                     <span class="review-bars-name pr-3">Rate this business! <span
                                             class="required">*</span></span>
-                                    <section class='rating-widget'>
+                                    <section class='rating-widget font-size-14'>
                                         <div class='rating-stars text-center'>
                                             <ul id='stars'>
                                                 <li class='star' title='Poor' data-value='1'>
