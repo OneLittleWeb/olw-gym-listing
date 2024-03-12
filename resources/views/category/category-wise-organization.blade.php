@@ -65,14 +65,14 @@
                                             </p>
                                             <ul class="listing-meta d-flex align-items-center">
                                                 <li class="d-flex align-items-center">
-                                                    <span class="rate flex-shrink-0">
+                                                    <span class="rate flex-shrink-0 font-size-17">
                                                         {{ $organization->rate_stars ?? '0.0' }}
                                                     </span>
-                                                    <span class="rate-text">
+                                                    <span class="rate-text font-size-17">
                                                         {{ $organization->reviews_total_count ? $organization->reviews_total_count . ' Reviews' : '0 Reviews' }}
                                                     </span>
                                                 </li>
-                                                <li class="d-flex align-items-center padding-left-20px">
+                                                <li class="d-flex align-items-center padding-left-20px font-size-17">
                                                     <i class="{{ $organization->category->icon }} mr-2 listing-icon"></i>
                                                     <p class="listing-business-category">{{ $organization->organization_category ?? $organization->category->name }}</p>
                                                 </li>
@@ -125,7 +125,7 @@
                                     @foreach($organization_categories as $category)
                                         @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
                                             <li>
-                                                <a href="{{ route('category.wise.business',['state_slug' => $category->State->slug , 'organization_category_slug' => $category->organization_category_slug]) }}">{{ $category->organization_category }}
+                                                <a class="font-size-17" href="{{ route('category.wise.business',['state_slug' => $category->State->slug , 'organization_category_slug' => $category->organization_category_slug]) }}">{{ $category->organization_category }}
                                                     ({{ $category->category_count }})</a>
                                             </li>
                                         @endif

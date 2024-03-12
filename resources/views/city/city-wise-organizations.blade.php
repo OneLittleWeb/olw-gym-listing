@@ -82,8 +82,8 @@
                                                 @if($organization->rate_stars && $organization->reviews_total_count)
                                                     <li class="d-flex align-items-center">
                                                         <span
-                                                            class="rate flex-shrink-0">{{ $organization->rate_stars }}</span>
-                                                        <span class="rate-text">{{ $organization->reviews_total_count }} Reviews</span>
+                                                            class="rate flex-shrink-0 font-size-17">{{ $organization->rate_stars }}</span>
+                                                        <span class="rate-text font-size-17">{{ $organization->reviews_total_count }} Reviews</span>
                                                     </li>
                                                 @endif
                                                 <li>
@@ -93,7 +93,7 @@
                                                             class="font-weight-medium">{{ $organization->price_policy ?? '$' }}</strong>
                                                     </span>
                                                 </li>
-                                                <li class="d-flex align-items-center">
+                                                <li class="d-flex align-items-center font-size-17">
                                                     <i class="{{ $organization->category->icon }} mr-2 listing-icon"></i>&nbsp;&nbsp;
                                                     <p class="listing-business-category">{{ $organization->organization_category ?? $organization->category->name }}</p>
                                                 </li>
@@ -160,7 +160,7 @@
                                     @foreach($organization_categories as $category)
                                         @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
                                             <li>
-                                                <a href="{{ route('city.wise.organizations', ['state_slug' => $category->State->slug, 'city_slug' => $category->city->slug, 'organization_category_slug' => $category->organization_category_slug]) }}">
+                                                <a class="font-size-17" href="{{ route('city.wise.organizations', ['state_slug' => $category->State->slug, 'city_slug' => $category->city->slug, 'organization_category_slug' => $category->organization_category_slug]) }}">
                                                     {{ $category->organization_category }}
                                                     ({{ $category->category_count }})
                                                 </a>

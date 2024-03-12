@@ -3137,7 +3137,7 @@ div.datedropper .picker .pick-lg-b li {
 
 .info-list li {
     display: block;
-    font-size: 16px;
+    font-size: 17px;
     color: #808996;
     font-weight: 500;
     margin-bottom: 6px
@@ -3150,7 +3150,7 @@ div.datedropper .picker .pick-lg-b li {
 .info-list li .icon {
     color: #f8c401;
     margin-right: 2px;
-    font-size: 16px;
+    font-size: 17px;
     width: 30px;
     height: 30px;
     background-color: rgba(123, 104, 238, 0.1);
@@ -7480,7 +7480,7 @@ div.datedropper .picker .pick-lg-b li {
 }
 
 .card-item .card-sub {
-    font-size: 16px;
+    font-size: 17px;
     color: #808996;
     font-weight: 500;
     line-height: 26px
