@@ -352,11 +352,12 @@
 
 .pros-cons-list li a {
     color: #198754 !important;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .review-cons-list li a {
     color: #ff0000 !important;
+    font-size: 17px;
 }
 
 .post-category-badge {
