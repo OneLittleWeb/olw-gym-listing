@@ -343,10 +343,13 @@ img[data-img] {
 }
 
 body {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 20px;
+    /*line-height: 24px;*/
+    line-height: 1.6;
+    /*font-family: "Times New Roman", Times, serif;*/
     font-family: 'Be Vietnam', 'sans-serif';
-    color: #808996;
+    /*color: #808996;*/
+    color: #000000;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
 }

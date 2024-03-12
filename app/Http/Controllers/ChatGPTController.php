@@ -69,7 +69,8 @@ class ChatGPTController extends Controller
             "We’re writing gym reviews to help our audience make the best decision to take Gym service from providers.
         Now, act as a Product Description Writer and analyze all business details and customer reviews given below.
         With your analysis, write a short description of " . $organization->organization_name . ", with pros and cons.
-        Use bullet points in Pros and Cons when possible. The maximum bullet point limit for Pros is 10, whereas you can only give 3 bullet points for cons.",
+        Use bullet points in Pros and Cons when required. Don’t exceed 10 bullet points for Pros and 3 bullet points for cons.
+        Focus on quality over quantity of bullets. Make sure your output doesn’t contain any redundant information.",
         "Strictly follow the guidelines:
         1. The language of your description, pros, and cons must be in simple and short sentences.
         2. The sentences cannot be written in passive voice.
