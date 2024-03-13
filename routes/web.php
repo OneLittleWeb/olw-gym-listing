@@ -53,7 +53,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/chat-result', [ChatGPTController::class, 'getAboutUs'])->name('get.about.us');
+Route::get('/generate-description', [ChatGPTController::class, 'getAboutUs'])->name('get.about.us');
 Route::get('/autocomplete', [HomeController::class, 'autocomplete'])->name('autocomplete');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
