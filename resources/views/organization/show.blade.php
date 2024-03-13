@@ -893,14 +893,14 @@
                                         </p>
                                         <ul class="listing-meta d-flex align-items-center">
                                             <li class="d-flex align-items-center">
-                                                <span class="rate flex-shrink-0">
+                                                <span class="rate flex-shrink-0 font-size-17">
                                                     {{ $also_viewed_organization->rate_stars ?? '0.0' }}
                                                 </span>
-                                                <span class="rate-text">
+                                                <span class="rate-text font-size-17">
                                                     {{ $also_viewed_organization->reviews_total_count ? $also_viewed_organization->reviews_total_count . ' Reviews' : '0 Reviews' }}
                                                 </span>
                                             </li>
-                                            <li class="d-flex align-items-center padding-left-20px">
+                                            <li class="d-flex align-items-center padding-left-20px font-size-17">
                                                 <i class="{{ $also_viewed_organization->category->icon }} mr-2 listing-icon"></i>
                                                 <p class="listing-business-category">{{ $also_viewed_organization->organization_category ?? $also_viewed_organization->category->name }}</p>
                                             </li>
