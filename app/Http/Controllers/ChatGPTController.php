@@ -11,7 +11,7 @@ class ChatGPTController extends Controller
 {
     public function getAboutUs()
     {
-        $organizations = Organization::with(['reviews', 'city', 'state'])->skip(16)->take(4)->get();
+        $organizations = Organization::with(['reviews', 'city', 'state'])->where('last_updated', null)->take(10)->get();
 
         foreach ($organizations as $organization) {
             // Prepare data for the API request
