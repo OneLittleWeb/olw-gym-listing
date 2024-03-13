@@ -125,7 +125,7 @@
                             <div class="block-card-body">
                                 @if(is_array($organization->description ) && count($organization->description ) === 3)
                                     <p class="pb-3">{!! $organization->description[0] !!}</p>
-                                    <div class="pros">
+                                    <div class="pros pt-4">
                                         <h3 class="pros-cons-widget-title text-success">Pros:</h3>
                                         <div class="stroke-shape mb-4"></div>
                                         <div class="padding-left-30px">
