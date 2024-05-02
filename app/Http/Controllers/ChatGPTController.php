@@ -106,7 +106,7 @@ class ChatGPTController extends Controller
                 "model" => "gpt-4",
                 "messages" => [["role" => "user", "content" => $queryInstructions]],
                 "temperature" => 1,
-                "max_tokens" => 1024,
+                "max_tokens" => 2024,
             ])->json();
 
             if (isset($response['choices'][0]['message']['content'])) {
