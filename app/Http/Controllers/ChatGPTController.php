@@ -103,7 +103,7 @@ class ChatGPTController extends Controller
                 "Content-Type" => "application/json",
                 "Authorization" => "Bearer " . config('services.chatgpt.api_key'),
             ])->post(config('services.chatgpt.base_uri'), [
-                "model" => "gpt-4",
+                "model" => "gpt-4-32k",
                 "messages" => [["role" => "user", "content" => $queryInstructions]],
                 "temperature" => 1,
                 "max_tokens" => 2024,
