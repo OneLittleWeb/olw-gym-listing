@@ -6,7 +6,7 @@
             ->addMeta('X-UA-Compatible', ['content' => 'ie=edge'])
             ->addMeta('author', ['content' => 'serpkick'])
             ->setFavicon(asset('/images/favicon.png'))
-            ->setCanonical(request()->fullUrl())
+            ->setCanonical(request()->url())
             }}
     <title>@yield('title')</title>
     <meta name="description" content="@yield('meta_description')"/>
