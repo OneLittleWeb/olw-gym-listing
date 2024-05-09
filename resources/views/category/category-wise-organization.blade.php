@@ -250,4 +250,54 @@
         let assetPath = '{{ asset('images/sm-bg.jpg') }}';
     </script>
 @endsection
-
+@section('json-ld')
+    @foreach($organizations as $organization)
+        @php
+        // Splitting the Org Address to use in LocalBusiness Schema data
+            $organization_address = $organization->organization_address;
+            $add_parts = explode(', ', $organization_address);
+            $org_streetAddress = trim(str_replace("Address: ", "", $add_parts[0])); ;
+            $org_city = $add_parts[1];
+            $org_stateZip = explode(' ', trim($add_parts[2]));
+            $org_state = $org_stateZip[0];
+            $org_postalCode = $org_stateZip[1];
+            $org_country = $add_parts[3];
+        @endphp
+        <!-- =======Schema======= -->
+        <script type="application/ld+json">
+            {
+              "@context": "http://schema.org",
+              "@type": "LocalBusiness",
+              "name": "{{ $organization->organization_name ?? '' }}",
+          "description": "{{ $organization->organization_short_description ?? '' }}",
+            @if(!is_null($organization->organization_phone_number))
+                "telephone": "{{ $organization->organization_phone_number ?? '' }}",
+            @endif
+            @if(!is_null($organization->organization_address))
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "{{$org_streetAddress ?? ''}}",
+            "addressLocality": "{{$org_city ?? ''}}",
+            "addressRegion": "{{$org_state ?? ''}}",
+            "postalCode": "{{$org_postalCode ?? ''}}",
+            "addressCountry": "{{$org_country ?? ''}}"
+          },
+            @endif
+            "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "{{ $organization->rate_stars ?? 0 }}",
+                "reviewCount": {{ $organization->reviews->count() ?? 0 }}
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "{{ $organization->organization_latitude ?? '' }}",
+            "longitude": "{{ $organization->organization_longitude ?? '' }}"
+          }
+            @if(!is_null($organization->organization_website))
+                ,
+                "url": "{{ $organization->organization_website ?? '' }}"
+            @endif
+            }
+        </script>
+    @endforeach
+@endsection
