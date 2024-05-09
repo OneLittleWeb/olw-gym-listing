@@ -54,9 +54,7 @@ class OrganizationController extends Controller
             ->where('slug', $organization_slug)
             ->where('permanently_closed', 0)
             ->first();
-
         if ($organization) {
-
             $city = City::where(function ($query) use ($organization, $city_slug) {
                 $query->where('state_id', $organization->state_id)
                     ->where('slug', $city_slug);
@@ -135,6 +133,16 @@ class OrganizationController extends Controller
             $organization->own_reviews_paginator = $this->getOrganizationReviews($organization, 'own_reviews');
 
             Meta::setPaginationLinks($organization->reviews_paginator);
+
+            // Splitting the Org Address to use in LocalBusiness Schema data
+            $organization_address = $organization->organization_address;
+            $add_parts = explode(', ', $organization_address);
+            $org_streetAddress = trim(str_replace("Address: ", "", $add_parts[0])); ;
+            $org_city = $add_parts[1];
+            $org_stateZip = explode(' ', trim($add_parts[2]));
+            $org_state = $org_stateZip[0];
+            $org_postalCode = $org_stateZip[1];
+            $org_country = $add_parts[3];
 
             $select_hours = ['Open 24 Hours', 'Closed', '12 AM', '12:15 AM', '12:30 AM', '12:45 AM', '1 AM', '1:15 AM', '1:30 AM', '1:45 AM', '2 AM', '2:15 AM', '2:30 AM', '2:45 AM', '3 AM', '3:15 AM', '3:30 AM', '3:45 AM', '4 AM', '4:15 AM', '4:30 AM', '4:45 AM', '5 AM', '5:15 AM', '5:30 AM', '5:45 AM', '6 AM', '6:15 AM', '6:30 AM', '6:45 AM', '7 AM', '7:15 AM', '7:30 AM', '7:45 AM', '8 AM', '8:15 AM', '8:30 AM', '8:45 AM', '9 AM', '9:15 AM', '9:30 AM', '9:45 AM', '10 AM', '10:15 AM', '10:30 AM', '10:45 AM', '11 AM', '11:15 AM', '11:30 AM', '11:45 AM', '12 PM', '12:15 PM', '12:30 PM', '12:45 PM', '1 PM', '1:15 PM', '1:30 PM', '1:45 PM', '2 PM', '2:15 PM', '2:30 PM', '2:45 PM', '3 PM', '3:15 PM', '3:30 PM', '3:45 PM', '4 PM', '4:15 PM', '4:30 PM', '4:45 PM', '5 PM', '5:15 PM', '5:30 PM', '5:45 PM', '6 PM', '6:15 PM', '6:30 PM', '6:45 PM', '7 PM', '7:15 PM', '7:30 PM', '7:45 PM', '8 PM', '8:15 PM', '8:30 PM', '8:45 PM', '9 PM', '9:15 PM', '9:30 PM', '9:45 PM', '10 PM', '10:15 PM', '10:30 PM', '10:45 PM', '11 PM', '11:15 PM', '11:30 PM', '11:45 PM'];
 
@@ -221,9 +229,9 @@ class OrganizationController extends Controller
                 $seventh_day_opening_hours = ltrim($seventh_day_work_hours[0]);
                 $seventh_day_closing_hours = ltrim($seventh_day_work_hours[1]);
 
-                return view('organization.show', compact('organization', 'city', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours', 'review_pros', 'review_cons'));
+                return view('organization.show', compact('organization', 'city', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours', 'review_pros', 'review_cons', 'org_streetAddress', 'org_city', 'org_state', 'org_postalCode', 'org_country'));
             } else {
-                return view('organization.show', compact('organization', 'city', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'review_pros', 'review_cons'));
+                return view('organization.show', compact('organization', 'city', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'review_pros', 'review_cons','org_streetAddress', 'org_city', 'org_state', 'org_postalCode', 'org_country'));
             }
         }
 

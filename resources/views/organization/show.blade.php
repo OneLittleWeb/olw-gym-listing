@@ -131,7 +131,8 @@
                                         <div class="padding-left-30px">
                                             <ul>
                                                 @foreach($organization->description[1] as $pros)
-                                                    <li class="pb-4"><i class="las la-arrow-circle-right"></i> {{ $pros }}</li>
+                                                    <li class="pb-4"><i
+                                                            class="las la-arrow-circle-right"></i> {{ $pros }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -142,7 +143,8 @@
                                         <div class="padding-left-30px">
                                             <ul>
                                                 @foreach($organization->description[2] as $cons)
-                                                    <li class="pb-4"><i class="las la-arrow-circle-right"></i> {{ $cons }}</li>
+                                                    <li class="pb-4"><i
+                                                            class="las la-arrow-circle-right"></i> {{ $cons }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -697,7 +699,8 @@
                         <div class="block-card" id="review">
                             <div class="block-card-header">
                                 <h2 class="widget-title pb-1">Add a Review</h2>
-                                <p class="font-size-18">Your email address will not be published. Required fields are marked <span
+                                <p class="font-size-18">Your email address will not be published. Required fields are
+                                    marked <span
                                         class="required">*</span></p>
                             </div>
                             <div class="block-card-body">
@@ -986,15 +989,38 @@
     <!-- =======Schema======= -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org/",
-            "@type": "Organization",
-            "name": "{{ $organization->organization_name ?? '' }}",
-            "description": "{{ $organization->organization_short_description ?? '' }}",
-            "aggregateRating": {
+          "@context": "http://schema.org",
+          "@type": "LocalBusiness",
+          "name": "{{ $organization->organization_name ?? '' }}",
+          "description": "{{ $organization->organization_short_description ?? '' }}",
+          @if(!is_null($organization->organization_phone_number))
+            "telephone": "{{ $organization->organization_phone_number ?? '' }}",
+          @endif
+          @if(!is_null($organization->organization_address))
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{$org_streetAddress ?? ''}}",
+            "addressLocality": "{{$org_city ?? ''}}",
+            "addressRegion": "{{$org_state ?? ''}}",
+            "postalCode": "{{$org_postalCode ?? ''}}",
+            "addressCountry": "{{$org_country ?? ''}}"
+          },
+          @endif
+          "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "{{ $organization->rate_stars ?? 0 }}",
                 "reviewCount": {{ $organization->reviews->count() ?? 0 }}
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "{{ $organization->organization_latitude ?? '' }}",
+            "longitude": "{{ $organization->organization_longitude ?? '' }}"
+          }
+          @if(!is_null($organization->organization_website))
+          ,
+          "url": "{{ $organization->organization_website ?? '' }}"
+          @endif
         }
-}
     </script>
+
 @endsection
