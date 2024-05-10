@@ -32,6 +32,8 @@ class ChatGPTController extends Controller
                 Log::error("Error processing organization {$organization->id}: " . $e->getMessage());
             }
         }
+        //Send Data to Webhook
+        $this->sendToWebhook();
 
         alert()->success('Success', 'Descriptions updated. Please check your email for confirmation.');
 
@@ -71,7 +73,7 @@ class ChatGPTController extends Controller
         With your analysis, write a short description of " . $organization->organization_name . ", with pros and cons.
         Use bullet points in Pros and Cons when required. Don’t exceed 10 bullet points for Pros and 3 bullet points for cons.
         Focus on quality over quantity of bullets. Make sure your output doesn’t contain any redundant information.",
-        "Strictly follow the guidelines:
+            "Strictly follow the guidelines:
         1. The language of your description, pros, and cons must be in simple and short sentences.
         2. The sentences cannot be written in passive voice.
         3. Don’t make up any information, write everything based on the data I provide.
@@ -90,7 +92,9 @@ class ChatGPTController extends Controller
         ];
 
         // Filtering out empty sections
-        $queryInstructions = implode("\n", array_filter($queryParts, function($value) { return !empty($value); }));
+        $queryInstructions = implode("\n", array_filter($queryParts, function ($value) {
+            return !empty($value);
+        }));
 
         return $queryInstructions;
     }
@@ -118,6 +122,31 @@ class ChatGPTController extends Controller
         } catch (Throwable $e) {
             Log::error("Error calling ChatGPT API: " . $e->getMessage());
             throw $e;
+        }
+    }
+
+    public function sendToWebhook()
+    {
+        // Step 1: Fetch the organizations
+        $organizations = Organization::with(['city', 'state'])
+            ->whereNotNull('last_updated')
+            ->get();
+        // Step 2: Prepare the data array
+        $dataToSend = $organizations->map(function ($organization) {
+            return [
+                "url" => "https://gymnearx.com/" . $organization->city->slug . "/gnx/" . $organization->slug,
+                "Last Update" => $organization->last_updated  // Ensure the date is in a proper format
+            ];
+        });
+
+        // Step 3: Send the data to the webhook
+        $response = Http::post('https://secure.onelittleweb.team/webhook/bd50f8ff-85f9-4b40-977a-2639e32cf7e7', $dataToSend->toArray());
+
+        // Check response status and handle accordingly
+        if ($response->successful()) {
+            return 'Data sent successfully';
+        } else {
+            return 'Failed to send data';
         }
     }
 
