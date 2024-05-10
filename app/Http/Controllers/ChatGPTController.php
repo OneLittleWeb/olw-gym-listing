@@ -88,7 +88,7 @@ class ChatGPTController extends Controller
             $categorySection,
             $reviewsAvailable ? "\n\n" . $reviewsDetails : ''
         ];
-        
+
         // Filtering out empty sections
         $queryInstructions = implode("\n", array_filter($queryParts, function($value) { return !empty($value); }));
 
@@ -106,7 +106,7 @@ class ChatGPTController extends Controller
                 "model" => "gpt-4-turbo",
                 "messages" => [["role" => "user", "content" => $queryInstructions]],
                 "temperature" => 1,
-                "max_tokens" => 2048,
+                // "max_tokens" => 2024,
             ])->json();
 
             if (isset($response['choices'][0]['message']['content'])) {
