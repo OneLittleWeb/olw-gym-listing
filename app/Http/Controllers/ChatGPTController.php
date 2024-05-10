@@ -88,7 +88,7 @@ class ChatGPTController extends Controller
             $categorySection,
             $reviewsAvailable ? "\n\n" . $reviewsDetails : ''
         ];
-
+        
         // Filtering out empty sections
         $queryInstructions = implode("\n", array_filter($queryParts, function($value) { return !empty($value); }));
 
@@ -103,10 +103,10 @@ class ChatGPTController extends Controller
                 "Content-Type" => "application/json",
                 "Authorization" => "Bearer " . config('services.chatgpt.api_key'),
             ])->post(config('services.chatgpt.base_uri'), [
-                "model" => "gpt-4",
+                "model" => "gpt-4-turbo",
                 "messages" => [["role" => "user", "content" => $queryInstructions]],
                 "temperature" => 1,
-                "max_tokens" => 2024,
+                "max_tokens" => 2048,
             ])->json();
 
             if (isset($response['choices'][0]['message']['content'])) {
