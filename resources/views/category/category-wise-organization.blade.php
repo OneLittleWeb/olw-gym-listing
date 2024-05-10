@@ -59,7 +59,8 @@
                                                     @if ($organization->organization_address)
                                                         {{ str_replace('Address: ', '', $organization->organization_address) }}
                                                     @else
-                                                        {{ ucfirst($organization->city->name ?? '') }}, {{ ucfirst($organization->State->name ?? '') }}, US
+                                                        {{ ucfirst($organization->city->name ?? '') }}
+                                                        , {{ ucfirst($organization->State->name ?? '') }}, US
                                                     @endif
                                                 </a>
                                             </p>
@@ -125,7 +126,8 @@
                                     @foreach($organization_categories as $category)
                                         @if($category->organization_category && $category->organization_category_slug != $organization_category_slug)
                                             <li>
-                                                <a class="font-size-17" href="{{ route('category.wise.business',['state_slug' => $category->State->slug , 'organization_category_slug' => $category->organization_category_slug]) }}">{{ $category->organization_category }}
+                                                <a class="font-size-17"
+                                                   href="{{ route('category.wise.business',['state_slug' => $category->State->slug , 'organization_category_slug' => $category->organization_category_slug]) }}">{{ $category->organization_category }}
                                                     ({{ $category->category_count }})</a>
                                             </li>
                                         @endif
@@ -253,49 +255,48 @@
 @section('json-ld')
     @foreach($organizations as $organization)
         @php
-        // Splitting the Org Address to use in LocalBusiness Schema data
+            // Splitting the Org Address to use in LocalBusiness Schema data
             $organization_address = $organization->organization_address;
             $add_parts = explode(', ', $organization_address);
-            $org_streetAddress = trim(str_replace("Address: ", "", $add_parts[0])); ;
-            $org_city = $add_parts[1];
-            $org_stateZip = explode(' ', trim($add_parts[2]));
-            $org_state = $org_stateZip[0];
-            $org_postalCode = $org_stateZip[1];
-            $org_country = $add_parts[3];
+            $org_streetAddress = isset($add_parts[0]) ? trim(str_replace("Address: ", "", $add_parts[0])) : '';
+            $org_city = $add_parts[1] ?? '';
+            $org_stateZip = isset($add_parts[2]) ? explode(' ', trim($add_parts[2])) : [];
+            $org_state = $org_stateZip[0] ?? '';
+            $org_postalCode = $org_stateZip[1] ?? '';
+            $org_country = $add_parts[3] ?? '';
         @endphp
-        <!-- =======Schema======= -->
+            <!-- =======Schema======= -->
         <script type="application/ld+json">
             {
-              "@context": "http://schema.org",
-              "@type": "LocalBusiness",
-              "name": "{{ $organization->organization_name ?? '' }}",
-          "description": "{{ $organization->organization_short_description ?? '' }}",
+                "@context": "http://schema.org",
+                "@type": "LocalBusiness",
+                "name": "{{ $organization->organization_name ?? '' }}",
+                "description": "{{ $organization->organization_short_description ?? '' }}",
             @if(!is_null($organization->organization_phone_number))
-                "telephone": "{{ $organization->organization_phone_number ?? '' }}",
+                "telephone": "{{ $organization->organization_phone_number }}",
             @endif
             @if(!is_null($organization->organization_address))
                 "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "{{$org_streetAddress ?? ''}}",
-            "addressLocality": "{{$org_city ?? ''}}",
-            "addressRegion": "{{$org_state ?? ''}}",
-            "postalCode": "{{$org_postalCode ?? ''}}",
-            "addressCountry": "{{$org_country ?? ''}}"
-          },
+                    "@type": "PostalAddress",
+                    "streetAddress": "{{ $org_streetAddress }}",
+                "addressLocality": "{{ $org_city }}",
+                "addressRegion": "{{ $org_state }}",
+                "postalCode": "{{ $org_postalCode }}",
+                "addressCountry": "{{ $org_country }}"
+            },
             @endif
             "aggregateRating": {
-                  "@type": "AggregateRating",
-                  "ratingValue": "{{ $organization->rate_stars ?? 0 }}",
-                "reviewCount": {{ $organization->reviews->count() ?? 0 }}
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": "{{ $organization->organization_latitude ?? '' }}",
+                "@type": "AggregateRating",
+                "ratingValue": "{{ $organization->rate_stars ?? '0' }}",
+            "reviewCount": "{{ $organization->reviews->count() ?? '0' }}"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "{{ $organization->organization_latitude ?? '' }}",
             "longitude": "{{ $organization->organization_longitude ?? '' }}"
-          }
+        }
             @if(!is_null($organization->organization_website))
-                ,
-                "url": "{{ $organization->organization_website ?? '' }}"
+                , "url": "{{ $organization->organization_website }}"
             @endif
             }
         </script>
