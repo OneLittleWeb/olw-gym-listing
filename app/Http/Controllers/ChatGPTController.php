@@ -11,7 +11,7 @@ class ChatGPTController extends Controller
 {
     public function getAboutUs()
     {
-        $organizations = Organization::with(['reviews', 'city', 'state'])->where('last_updated', null)->take(100)->get();
+        $organizations = Organization::with(['reviews', 'city', 'state'])->where('last_updated', null)->take(10)->get();
 
         foreach ($organizations as $organization) {
             // Prepare data for the API request
@@ -107,7 +107,7 @@ class ChatGPTController extends Controller
                 "Content-Type" => "application/json",
                 "Authorization" => "Bearer " . config('services.chatgpt.api_key'),
             ])->post(config('services.chatgpt.base_uri'), [
-                "model" => "gpt-4-turbo",
+                "model" => "gpt-4o",
                 "messages" => [["role" => "user", "content" => $queryInstructions]],
                 "temperature" => 1,
                 // "max_tokens" => 2024,
