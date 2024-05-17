@@ -6,30 +6,25 @@ use App\Models\Organization;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
 
 class ChatGPTController extends Controller
 {
-    public function getAboutUs()
+    public function getAboutUs(OutputInterface $output)
     {
-        $organizations = Organization::with(['reviews', 'city', 'state'])
-            ->where('last_updated', null)
-            ->take(50)
-            ->get();
+        $organizations = Organization::with(['reviews', 'city', 'state'])->where('last_updated', null)->take(2)->get();
 
-        // Initialize the ProgressBar
-        $progressBar = new ProgressBar($this->output, $organizations->count());
+        // Initialize the ProgressBar using the passed output
+        $progressBar = new ProgressBar($output, $organizations->count());
         $progressBar->start();
 
         foreach ($organizations as $organization) {
-            // Prepare data for the API request
             $queryInstructions = $this->prepareQueryInstructions($organization);
 
             try {
-                // Make the API request
                 $response = $this->requestChatGptDescription($queryInstructions);
 
-                // Update the organization with the new description
                 if ($response) {
                     $organization->update([
                         'organization_description' => $response,
@@ -40,15 +35,14 @@ class ChatGPTController extends Controller
                 Log::error("Error processing organization {$organization->id}: " . $e->getMessage());
             }
 
-            // Advance the progress bar
             $progressBar->advance();
         }
 
-        // Finish the progress bar
         $progressBar->finish();
 
-        // Send Data to Webhook and redirect
+        // Send Data to Webhook
         $this->sendToWebhook();
+
         alert()->success('Success', 'Descriptions updated. Please check your email for confirmation.');
 
         return redirect()->route('home');
