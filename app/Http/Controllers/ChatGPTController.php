@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Organization;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Throwable;
 
 class ChatGPTController extends Controller
 {
     public function getAboutUs()
     {
-        $organizations = Organization::with(['reviews', 'city', 'state'])->where('last_updated', null)->take(500)->get();
+        $organizations = Organization::with(['reviews', 'city', 'state'])
+            ->where('last_updated', null)
+            ->take(50)
+            ->get();
+
+        // Initialize the ProgressBar
+        $progressBar = new ProgressBar($this->output, $organizations->count());
+        $progressBar->start();
 
         foreach ($organizations as $organization) {
             // Prepare data for the API request
@@ -31,10 +39,16 @@ class ChatGPTController extends Controller
             } catch (\Exception $e) {
                 Log::error("Error processing organization {$organization->id}: " . $e->getMessage());
             }
-        }
-        //Send Data to Webhook
-        $this->sendToWebhook();
 
+            // Advance the progress bar
+            $progressBar->advance();
+        }
+
+        // Finish the progress bar
+        $progressBar->finish();
+
+        // Send Data to Webhook and redirect
+        $this->sendToWebhook();
         alert()->success('Success', 'Descriptions updated. Please check your email for confirmation.');
 
         return redirect()->route('home');

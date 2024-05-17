@@ -39,8 +39,6 @@ class GenerateDescriptionCommand extends Command
     public function handle()
     {
         $controller = new ChatGPTController();
-        $description = $controller->getAboutUs();
-        $this->info('Generate Description: ' . $description);
-        return 0;
+        $controller->getAboutUs();
     }
 }
