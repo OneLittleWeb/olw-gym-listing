@@ -94,7 +94,8 @@ class OrganizationController extends Controller
 
             // Assuming you have the organization's description as a JSON string
             $jsonString = $organization->organization_description;
-            $organization->description = json_decode($jsonString, true);
+            $cleanJsonString = str_replace(['```json', '```'], '', $jsonString);
+            $organization->description = json_decode($cleanJsonString, true);
 
             if ($organization->organization_address && $organization->located_in) {
                 $address_line = explode(',', $organization->organization_address);
@@ -228,7 +229,6 @@ class OrganizationController extends Controller
                 }
                 $seventh_day_opening_hours = ltrim($seventh_day_work_hours[0]);
                 $seventh_day_closing_hours = ltrim($seventh_day_work_hours[1]);
-
                 return view('organization.show', compact('organization', 'city', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'first_day', 'first_day_opening_hours', 'first_day_closing_hours', 'second_day', 'second_day_opening_hours', 'second_day_closing_hours', 'third_day', 'third_day_opening_hours', 'third_day_closing_hours', 'fourth_day', 'fourth_day_opening_hours', 'fourth_day_closing_hours', 'fifth_day', 'fifth_day_opening_hours', 'fifth_day_closing_hours', 'sixth_day', 'sixth_day_opening_hours', 'sixth_day_closing_hours', 'seventh_day', 'seventh_day_opening_hours', 'seventh_day_closing_hours', 'review_pros', 'review_cons', 'org_streetAddress', 'org_city', 'org_state', 'org_postalCode', 'org_country'));
             } else {
                 return view('organization.show', compact('organization', 'city', 'five_star_reviews', 'four_star_reviews', 'three_star_reviews', 'two_star_reviews', 'one_star_reviews', 'select_hours', 'also_viewed', 'review_pros', 'review_cons','org_streetAddress', 'org_city', 'org_state', 'org_postalCode', 'org_country'));
