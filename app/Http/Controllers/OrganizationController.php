@@ -94,8 +94,13 @@ class OrganizationController extends Controller
 
             // Assuming you have the organization's description as a JSON string
             $jsonString = $organization->organization_description;
-            $cleanJsonString = str_replace(['```json', '```'], '', $jsonString);
-            $organization->description = json_decode($cleanJsonString, true);
+             $startPos = strpos($jsonString, '[');
+            $endPos = strrpos($jsonString, ']') + 1; // +1 to include the ']'
+
+            // Extract the JSON string between these positions
+            $finalJsonString = substr($jsonString, $startPos, $endPos - $startPos);
+            $organization->description = json_decode($finalJsonString, true);
+
 
             if ($organization->organization_address && $organization->located_in) {
                 $address_line = explode(',', $organization->organization_address);
