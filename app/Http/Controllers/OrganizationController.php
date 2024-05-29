@@ -145,7 +145,7 @@ class OrganizationController extends Controller
             $add_parts = explode(', ', $organization_address);
             $org_streetAddress = trim(str_replace("Address: ", "", $add_parts[0])); ;
             $org_city = $add_parts[1] ?? '';
-            $org_stateZip = explode(' ', trim($add_parts[2]));
+            $org_stateZip = explode(' ', trim($add_parts[2] ?? ''));
             $org_state = $org_stateZip[0] ?? '';
             $org_postalCode = $org_stateZip[1] ?? '';
             $org_country = $add_parts[3] ?? '';

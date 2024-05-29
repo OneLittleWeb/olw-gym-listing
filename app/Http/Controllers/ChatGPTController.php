@@ -13,7 +13,7 @@ class ChatGPTController extends Controller
 {
     public function getAboutUs(OutputInterface $output)
     {
-        $organizations = Organization::with(['reviews', 'city', 'state'])->where('last_updated', null)->take(500)->get();
+        $organizations = Organization::with(['reviews', 'city', 'state'])->where('last_updated', null)->take(200)->get();
 
         // Initialize the ProgressBar using the passed output
         $progressBar = new ProgressBar($output, $organizations->count());
@@ -46,7 +46,7 @@ class ChatGPTController extends Controller
 
         alert()->success('Success', 'Descriptions updated. Please check your email for confirmation.');
 
-        return redirect()->route('home');
+        print('done');
     }
 
     protected function prepareQueryInstructions($organization)
