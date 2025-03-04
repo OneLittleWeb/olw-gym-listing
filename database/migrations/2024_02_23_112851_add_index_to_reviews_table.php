@@ -21,6 +21,9 @@ class AddIndexToReviewsTable extends Migration
             $table->index('review_date');
             $table->index('review_rate_stars');
         });
+
+        // Add index with a key length for TEXT column
+        DB::statement('ALTER TABLE reviews ADD INDEX reviews_organization_gmaps_id_index (organization_gmaps_id(191))');
     }
 
     /**
@@ -38,5 +41,10 @@ class AddIndexToReviewsTable extends Migration
             $table->dropIndex('reviews_review_date_index');
             $table->dropIndex('reviews_review_rate_stars_index');
         });
+
+        // Drop index for TEXT column
+        DB::statement('ALTER TABLE reviews DROP INDEX reviews_organization_gmaps_id_index');
+
+        
     }
 }
