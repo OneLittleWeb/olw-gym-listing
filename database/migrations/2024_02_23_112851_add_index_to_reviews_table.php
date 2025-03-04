@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class AddIndexToReviewsTable extends Migration
@@ -14,7 +15,6 @@ class AddIndexToReviewsTable extends Migration
     public function up()
     {
         Schema::table('reviews', function (Blueprint $table) {
-            $table->index('organization_gmaps_id');
             $table->index('review_id');
             $table->index('reviewer_name');
             $table->index('reviewer_reviews_count');
@@ -45,6 +45,6 @@ class AddIndexToReviewsTable extends Migration
         // Drop index for TEXT column
         DB::statement('ALTER TABLE reviews DROP INDEX reviews_organization_gmaps_id_index');
 
-        
+
     }
 }
