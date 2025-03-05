@@ -5,6 +5,7 @@ use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubscribeController;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -119,6 +120,14 @@ Route::get('/get-original-review-date', [ReviewController::class, 'reviewDateDif
 
 //route for subscriber store
 Route::post('/subscriber-store', [SubscribeController::class, 'subscriberStore'])->name('subscriber.store');
+
+// The wildcard route
+Route::get('/blog/{any}', function ($any) {
+    if (File::exists(public_path("blog/$any"))) {
+        return response()->file(public_path("blog/$any"));
+    }
+    return redirect('/blog/index.php');
+})->where('any', '.*');
 
 // The wildcard route
 Route::get('/{category_slug}-{suffix}', [OrganizationController::class, 'gymNearMe'])->where(['category_slug' => '.*', 'suffix' => 'near-me'])->name('gym.near.me');
