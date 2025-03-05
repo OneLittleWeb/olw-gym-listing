@@ -67,7 +67,8 @@
         </script>--}}
 
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6GMWZHSYY"></script>
+    @endproduction
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6GMWZHSYY"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
 
@@ -79,8 +80,8 @@
 
             gtag('config', 'G-S6GMWZHSYY');
         </script>
-    @endproduction
 </head>
+
 <body>
 
 @include('partials.header')
